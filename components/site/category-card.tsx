@@ -11,7 +11,7 @@ export function CategoryCard({ category }: { category: Category }) {
     >
       <div className="absolute inset-0 bg-gradient-to-br from-brand-blue-700 via-brand-blue-dark to-brand-blue-dark" />
       <div className="relative">
-        <span className="flex size-11 items-center justify-center rounded-xl bg-white/15 backdrop-blur">
+        <span className="panel-icon on-dark size-11">
           <CategoryIcon name={category.icon} className="size-6" />
         </span>
         <h3 className="mt-4 font-heading text-xl font-bold text-white">

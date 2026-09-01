@@ -15,10 +15,7 @@ export function Distributors() {
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {distributors.map((zone) => (
-            <div
-              key={zone.zone}
-              className="rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur"
-            >
+            <div key={zone.zone} className="panel-quiet p-6">
               <div className="flex items-center gap-2 text-white/85">
                 <MapPin className="size-4" aria-hidden />
                 <h3 className="font-heading text-base font-semibold uppercase tracking-wide text-white">

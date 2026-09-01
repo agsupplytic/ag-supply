@@ -127,6 +127,46 @@
 }
 
 /* ============================================================================
+   Components — one panel system, used on every surface so cards read as a set.
+   ========================================================================== */
+@layer components {
+  /* Content panel on light sections. Real shadow (offset + soft blur), hairline
+     border, never a colored border-left tab. */
+  .panel {
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-white);
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--color-brand-blue-dark) 6%, transparent),
+      0 14px 34px -20px color-mix(in srgb, var(--color-brand-blue-dark) 22%, transparent);
+  }
+
+  /* Same shape on a brand-colour or photo band. Translucent tint held by an
+     inset ring — NOT a glass/backdrop-blur effect. */
+  .panel-quiet {
+    border-radius: 1rem;
+    background: color-mix(in srgb, #fff 9%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);
+  }
+
+  /* Small square icon holder, consistent across sections. */
+  .panel-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    background: var(--color-brand-blue);
+    color: #fff;
+    box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--color-brand-blue) 60%, transparent);
+  }
+  .panel-quiet .panel-icon,
+  .panel-icon.on-dark {
+    background: color-mix(in srgb, #fff 16%, transparent);
+    box-shadow: none;
+  }
+}
+
+/* ============================================================================
    Utilities
    ========================================================================== */
 @layer utilities {

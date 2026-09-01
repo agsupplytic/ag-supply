@@ -20,7 +20,7 @@ import { Container } from "@/components/site/container";
 import { BackgroundCarousel } from "@/components/site/background-carousel";
 import { Reveal } from "@/components/site/reveal";
 import { CountUp } from "@/components/site/count-up";
-import { BrandFeatureCard } from "@/components/site/brand-feature-card";
+import { BrandSplit } from "@/components/site/brand-split";
 import { siteConfig } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
@@ -93,7 +93,7 @@ export default async function NosotrosPage() {
             con vocación de servir a toda la región del Caribe.
           </p>
         </Container>
-        <div className="relative border-t border-white/15 bg-brand-blue-dark/45 backdrop-blur">
+        <div className="relative border-t border-white/15 bg-brand-blue-dark/70">
           <Container className="grid grid-cols-2 divide-x divide-white/15 md:grid-cols-4">
             {heroStats.map((s) => (
               <div key={s.v} className="px-4 py-5 md:px-6">
@@ -160,10 +160,7 @@ export default async function NosotrosPage() {
 
               <div className="mt-7 grid gap-3 sm:grid-cols-3">
                 {plantStats.map((s) => (
-                  <div
-                    key={s.v}
-                    className="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur"
-                  >
+                  <div key={s.v} className="panel-quiet p-4">
                     <s.icon className="size-5 text-white" aria-hidden />
                     <p className="mt-2 font-heading text-xl font-bold text-white">
                       {s.k}
@@ -202,11 +199,8 @@ export default async function NosotrosPage() {
             { icon: Target, label: "Misión", body: siteConfig.mission },
             { icon: Eye, label: "Visión", body: siteConfig.vision },
           ].map((c) => (
-            <div
-              key={c.label}
-              className="rounded-2xl border border-border border-l-4 border-l-brand-blue bg-white p-8 shadow-sm"
-            >
-              <span className="flex size-12 items-center justify-center rounded-xl bg-brand-blue-50 text-brand-blue-dark">
+            <div key={c.label} className="panel p-8">
+              <span className="panel-icon size-12">
                 <c.icon className="size-6" aria-hidden />
               </span>
               <p className="mt-4 font-heading text-lg font-bold text-ink">
@@ -232,10 +226,7 @@ export default async function NosotrosPage() {
         <SectionHeading title="Seis valores que sostienen la operación" />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {siteConfig.values.map((v) => (
-            <div
-              key={v.name}
-              className="rounded-2xl border border-border bg-white p-6 shadow-sm"
-            >
+            <div key={v.name} className="panel p-6">
               <span className="block h-1 w-8 rounded-full bg-brand-blue" />
               <p className="mt-4 font-heading text-lg font-semibold text-ink">
                 {v.name}
@@ -282,26 +273,26 @@ export default async function NosotrosPage() {
       </div>
 
       {/* =========================================================== BRANDS */}
-      <Section className="border-t border-border">
+      <Section className="border-t border-border pb-0">
         <SectionHeading
           title="Por qué existen dos líneas"
           intro="Cada marca sirve a un público. Ninguna es «mejor»: son operaciones distintas con necesidades distintas."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          <BrandFeatureCard
-            slug="ocean-breeze"
-            name="Ocean Breeze"
-            tag="Premium · Hoteles, restaurantes y cadenas"
-            body={ocean?.short}
-          />
-          <BrandFeatureCard
-            slug="bonche"
-            name="Bonche"
-            tag="Económica · Consumo masivo y uso cotidiano"
-            body={bonche?.short}
-          />
-        </div>
       </Section>
+      <BrandSplit
+        oceanBreeze={{
+          slug: "ocean-breeze",
+          name: "Ocean Breeze",
+          tag: "Premium · Hoteles, restaurantes y cadenas",
+          body: ocean?.short,
+        }}
+        bonche={{
+          slug: "bonche",
+          name: "Bonche",
+          tag: "Económica · Consumo masivo y uso cotidiano",
+          body: bonche?.short,
+        }}
+      />
 
       {/* ========================================================= CTA band */}
       <div className="bg-brand-gradient text-white">

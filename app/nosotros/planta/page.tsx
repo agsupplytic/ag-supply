@@ -85,7 +85,7 @@ export default function PlantaPage() {
           {STAGES.map((stage, i) => (
             <li
               key={stage.title}
-              className="grid gap-6 rounded-2xl border border-border bg-white p-4 md:grid-cols-[280px_1fr] md:items-center md:p-6"
+              className="panel grid gap-6 p-4 md:grid-cols-[280px_1fr] md:items-center md:p-6"
             >
               <Figure
                 src={stage.img}

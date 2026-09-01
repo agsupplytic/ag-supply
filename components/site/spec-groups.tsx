@@ -74,12 +74,9 @@ export function SpecGroups({ specs }: { specs: ProductSpecs }) {
   return (
     <div className="grid gap-6 md:grid-cols-2">
       {groups.map((g) => (
-        <div
-          key={g.title}
-          className="rounded-2xl border border-border bg-white p-6 shadow-sm"
-        >
+        <div key={g.title} className="panel p-6">
           <div className="flex items-center gap-2.5">
-            <span className="flex size-9 items-center justify-center rounded-lg bg-brand-blue-50 text-brand-blue-dark">
+            <span className="panel-icon size-9">
               <g.icon className="size-5" aria-hidden />
             </span>
             <h3 className="font-heading text-base font-bold text-ink">

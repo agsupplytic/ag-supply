@@ -15,7 +15,7 @@ import { Swoosh } from "@/components/site/swoosh";
 import { Figure } from "@/components/site/figure";
 import { BackgroundCarousel } from "@/components/site/background-carousel";
 import { CategoryCard } from "@/components/site/category-card";
-import { BrandFeatureCard } from "@/components/site/brand-feature-card";
+import { BrandSplit } from "@/components/site/brand-split";
 import { CountUp } from "@/components/site/count-up";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
@@ -178,28 +178,30 @@ export default async function HomePage() {
       </Section>
 
       {/* ------------------------------------------------------------- brands */}
-      <Section className="border-t border-border">
+      <Section className="border-t border-border pb-0">
         <Reveal>
           <SectionHeading
             title={t("home.brandsTitle")}
             intro="Misma planta, mismo control de calidad. Cambia el posicionamiento según a quién sirve cada línea."
           />
         </Reveal>
-        <Reveal className="mt-10 grid gap-6 md:grid-cols-2">
-          <BrandFeatureCard
-            slug="ocean-breeze"
-            name="Ocean Breeze"
-            tag="Premium · Hoteles, restaurantes y cadenas"
-            body={oceanBreeze?.short}
-          />
-          <BrandFeatureCard
-            slug="bonche"
-            name="Bonche"
-            tag="Económica · Consumo masivo y uso cotidiano"
-            body={bonche?.short}
-          />
-        </Reveal>
       </Section>
+      <Reveal>
+        <BrandSplit
+          oceanBreeze={{
+            slug: "ocean-breeze",
+            name: "Ocean Breeze",
+            tag: "Premium · Hoteles, restaurantes y cadenas",
+            body: oceanBreeze?.short,
+          }}
+          bonche={{
+            slug: "bonche",
+            name: "Bonche",
+            tag: "Económica · Consumo masivo y uso cotidiano",
+            body: bonche?.short,
+          }}
+        />
+      </Reveal>
 
       {/* --------------------------------------------------------- why us (red band) */}
       <div className="relative isolate overflow-hidden text-white">
@@ -219,11 +221,8 @@ export default async function HomePage() {
           </Reveal>
           <Reveal className="mt-10 grid gap-5 md:grid-cols-3">
             {pillars.map((p) => (
-              <div
-                key={p.title}
-                className="rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur"
-              >
-                <span className="flex size-11 items-center justify-center rounded-xl bg-white/15 text-white">
+              <div key={p.title} className="panel-quiet p-6">
+                <span className="panel-icon size-11">
                   <p.icon className="size-5" aria-hidden />
                 </span>
                 <p className="mt-4 font-heading text-base font-semibold">
@@ -247,11 +246,8 @@ export default async function HomePage() {
         <Reveal className="mt-12">
           <ol className="grid gap-5 md:grid-cols-3">
             {steps.map((step) => (
-              <li
-                key={step.n}
-                className="relative rounded-2xl border border-border bg-white p-6 shadow-sm"
-              >
-                <span className="flex size-11 items-center justify-center rounded-xl bg-brand-blue font-heading text-lg font-bold text-white shadow-lg shadow-brand-blue/20">
+              <li key={step.n} className="panel relative p-6">
+                <span className="panel-icon size-11 font-heading text-lg font-bold">
                   {step.n}
                 </span>
                 <p className="mt-4 font-heading text-lg font-semibold text-ink">
