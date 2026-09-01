@@ -60,7 +60,7 @@ export function QuoteView({ index }: { index: QuoteIndex }) {
           </div>
         ) : items.length === 0 ? (
           <div className="mx-auto max-w-md rounded-2xl border border-dashed border-control-border p-12 text-center">
-            <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-brand-blue-50 text-brand-blue-dark">
+            <span className="panel-icon mx-auto size-14">
               <FileText className="size-7" aria-hidden />
             </span>
             <p className="mt-4 font-heading text-lg font-semibold text-ink">

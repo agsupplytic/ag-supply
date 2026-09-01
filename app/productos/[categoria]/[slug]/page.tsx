@@ -231,7 +231,7 @@ export default async function ProductPage({
         <Container className="grid gap-8 py-12 sm:grid-cols-3">
           {trust.map((t) => (
             <div key={t.title} className="flex gap-3.5">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-blue text-white shadow-sm">
+              <span className="panel-icon size-11 shrink-0">
                 <t.icon className="size-5" aria-hidden />
               </span>
               <div>

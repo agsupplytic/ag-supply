@@ -116,7 +116,7 @@ export default async function HomePage() {
         <Container className="grid grid-cols-1 gap-6 py-9 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="flex items-start gap-3.5">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-blue text-white shadow-sm">
+              <span className="panel-icon size-10 shrink-0">
                 <s.icon className="size-5" aria-hidden />
               </span>
               <div>

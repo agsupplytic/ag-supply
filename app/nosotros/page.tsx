@@ -119,7 +119,7 @@ export default async function NosotrosPage() {
           />
           {TIMELINE.map((m, i) => (
             <li key={m.year} className="relative">
-              <span className="relative z-10 inline-flex size-14 items-center justify-center rounded-2xl bg-brand-blue font-heading text-lg font-bold text-white shadow-lg shadow-brand-blue/25">
+              <span className="panel-icon relative z-10 size-14 rounded-2xl font-heading text-lg font-bold">
                 {i + 1}
               </span>
               <p className="mt-4 font-heading text-4xl font-bold leading-none text-brand-blue">
@@ -251,7 +251,7 @@ export default async function NosotrosPage() {
             />
             {STEPS.map((step, i) => (
               <li key={step.title} className="relative">
-                <span className="relative z-10 grid size-12 place-items-center rounded-xl bg-brand-blue font-heading text-lg font-bold text-white shadow-lg shadow-brand-blue/25">
+                <span className="panel-icon relative z-10 size-12 font-heading text-lg font-bold">
                   {i + 1}
                 </span>
                 <div className="mt-4 flex items-center gap-2">

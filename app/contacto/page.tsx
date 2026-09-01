@@ -100,13 +100,8 @@ export default function ContactoPage() {
       <Container className="relative z-10 -mt-14 md:-mt-16">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card) => (
-            <div
-              key={card.title}
-              className="flex flex-col rounded-2xl border border-border bg-white p-6 shadow-lg"
-            >
-              <span className="flex size-12 items-center justify-center rounded-xl bg-brand-blue-50 text-brand-blue-dark">
-                {card.icon}
-              </span>
+            <div key={card.title} className="panel flex flex-col p-6">
+              <span className="panel-icon size-12">{card.icon}</span>
               <p className="mt-4 font-heading text-lg font-bold text-ink">
                 {card.title}
               </p>
@@ -142,11 +137,8 @@ export default function ContactoPage() {
 
             <dl className="mt-6 grid gap-4 sm:grid-cols-2">
               {infoTiles.map((tile) => (
-                <div
-                  key={tile.title}
-                  className="rounded-2xl border border-border p-5"
-                >
-                  <span className="flex size-10 items-center justify-center rounded-lg bg-brand-blue-50 text-brand-blue-dark">
+                <div key={tile.title} className="panel p-5">
+                  <span className="panel-icon size-10">
                     <tile.icon className="size-5" aria-hidden />
                   </span>
                   <dt className="mt-3 font-heading font-semibold text-ink">
