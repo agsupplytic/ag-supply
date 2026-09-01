@@ -5,11 +5,10 @@ import { InstagramIcon } from "./icons";
 import { Container } from "./container";
 import { getCategories } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
-import { makeT, type Locale } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
 
-export async function SiteFooter({ locale }: { locale: Locale }) {
+export async function SiteFooter() {
   const categories = await getCategories();
-  const t = makeT(locale);
   const year = new Date().getFullYear();
 
   return (
@@ -56,6 +55,14 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
                 className="inline-flex items-center gap-1 font-semibold text-brand-blue-dark hover:underline"
               >
                 {t("nav.fullCatalog")} <ArrowRight className="size-3.5" />
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/faq"
+                className="transition-colors hover:text-brand-blue-dark"
+              >
+                {t("nav.faq")}
               </Link>
             </li>
           </ul>

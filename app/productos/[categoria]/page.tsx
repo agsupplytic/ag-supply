@@ -11,7 +11,9 @@ import {
 } from "@/lib/content";
 import { Container } from "@/components/site/container";
 import { PageHero } from "@/components/site/page-hero";
+import { BreadcrumbJsonLd } from "@/components/site/json-ld";
 import { Catalog } from "@/components/site/catalog";
+import { ogFor } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const categories = await getCategories();
@@ -30,10 +32,7 @@ export async function generateMetadata({
     title: category.name,
     description: category.description,
     alternates: { canonical: `/productos/${category.slug}` },
-    openGraph: {
-      title: `${category.name} — AG Supply`,
-      description: category.short,
-    },
+    openGraph: ogFor(`${category.name} — AG Supply`, category.short),
   };
 }
 
@@ -54,6 +53,12 @@ export default async function CategoriaPage({
 
   return (
     <>
+      <BreadcrumbJsonLd
+        trail={[
+          ["Catálogo", "/productos"],
+          [category.name, `/productos/${category.slug}`],
+        ]}
+      />
       <PageHero
         image={{
           src: "/images/placeholders/section-manufactura.webp",

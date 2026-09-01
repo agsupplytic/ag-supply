@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
-import { getLocale } from "@/lib/i18n";
 import { QuoteProvider } from "@/lib/quote/context";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { WhatsAppFab } from "@/components/site/whatsapp-button";
 import { Toaster } from "@/components/ui/toaster";
 import { ProtectImages } from "@/components/site/protect-images";
-import { OrganizationJsonLd } from "@/components/site/json-ld";
+import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/site/json-ld";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -79,20 +78,19 @@ export const metadata: Metadata = {
   // Favicons auto-detected from app/icon.png + app/apple-icon.png.
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await getLocale();
-
   return (
     <html
-      lang={locale === "en" ? "en" : "es-DO"}
+      lang="es-DO"
       className={`${montserrat.variable} ${inter.variable}`}
     >
       <body>
         <OrganizationJsonLd />
+        <WebSiteJsonLd />
         <QuoteProvider>
           <a
             href="#contenido"
@@ -100,9 +98,9 @@ export default async function RootLayout({
           >
             Saltar al contenido
           </a>
-          <SiteHeader locale={locale} />
+          <SiteHeader />
           <main id="contenido">{children}</main>
-          <SiteFooter locale={locale} />
+          <SiteFooter />
           <WhatsAppFab />
           <Toaster />
           <ProtectImages />

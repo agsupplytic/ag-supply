@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { BrandLanding } from "@/components/site/brand-landing";
+import { ogFor } from "@/lib/seo";
+
+const OB_DESC =
+  "Ocean Breeze es la línea premium de AG Supply para hoteles, restaurantes y cadenas: servilletas, faciales, higiénicos y toallas con blancura superior al 98 %, alta resistencia y cortes exactos.";
 
 export const metadata: Metadata = {
   title: "Ocean Breeze — Línea premium HORECA",
-  description:
-    "Ocean Breeze es la línea premium de AG Supply para hoteles, restaurantes y cadenas: servilletas, faciales, higiénicos y toallas con blancura superior al 98 %, alta resistencia y cortes exactos.",
+  description: OB_DESC,
   alternates: { canonical: "/ocean-breeze" },
+  openGraph: ogFor("Ocean Breeze — Línea premium HORECA de AG Supply", OB_DESC),
 };
 
 export default function OceanBreezePage() {

@@ -25,11 +25,15 @@ import { siteConfig } from "@/lib/site-config";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { getBrands } from "@/lib/content";
+import { ogFor } from "@/lib/seo";
+
+const NOSOTROS_DESC =
+  "AG Supply SRL, convertidora de papel en Las Palomas, Santiago. Desde 2014 fabricamos, convertimos y distribuimos productos desechables de papel bajo las marcas Ocean Breeze y Bonche, con capacidad para 400 toneladas de papel al mes.";
 
 export const metadata: Metadata = {
   title: "Nosotros",
-  description:
-    "AG Supply SRL, convertidora de papel en Las Palomas, Santiago. Desde 2014 fabricamos, convertimos y distribuimos productos desechables de papel bajo las marcas Ocean Breeze y Bonche, con capacidad para 400 toneladas de papel al mes.",
+  description: NOSOTROS_DESC,
+  openGraph: ogFor("Nosotros — AG Supply", NOSOTROS_DESC),
   alternates: { canonical: "/nosotros" },
 };
 

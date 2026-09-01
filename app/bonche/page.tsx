@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { BrandLanding } from "@/components/site/brand-landing";
+import { ogFor } from "@/lib/seo";
+
+const BONCHE_DESC =
+  "Bonche es la línea económica de AG Supply para colmados, supermercados y consumo masivo: alta absorción y rendimiento excepcional a precios muy competitivos.";
 
 export const metadata: Metadata = {
   title: "Bonche — Línea económica de consumo masivo",
-  description:
-    "Bonche es la línea económica de AG Supply para colmados, supermercados y consumo masivo: alta absorción y rendimiento excepcional a precios muy competitivos.",
+  description: BONCHE_DESC,
   alternates: { canonical: "/bonche" },
+  openGraph: ogFor("Bonche — Línea económica de AG Supply", BONCHE_DESC),
 };
 
 export default function BonchePage() {

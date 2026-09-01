@@ -6,12 +6,16 @@ import { BackgroundCarousel } from "@/components/site/background-carousel";
 import { Figure } from "@/components/site/figure";
 import { PendingContent } from "@/components/site/pending-content";
 import { Button } from "@/components/ui/button";
+import { ogFor } from "@/lib/seo";
+
+const PLANTA_DESC =
+  "El proceso de conversión de AG Supply en Las Palomas, Santiago: rebobinado, corte, doblado, interfoliado y empaque.";
 
 export const metadata: Metadata = {
   title: "La planta",
-  description:
-    "El proceso de conversión de AG Supply en Las Palomas, Santiago: rebobinado, corte, doblado, interfoliado y empaque.",
+  description: PLANTA_DESC,
   alternates: { canonical: "/nosotros/planta" },
+  openGraph: ogFor("La planta — AG Supply", PLANTA_DESC),
 };
 
 const STAGES = [

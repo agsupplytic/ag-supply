@@ -21,19 +21,19 @@ git push -u origin main
 `.gitignore` ya excluye `node_modules/`, `.next/`, `.env*`, `.vercel` y `*.tsbuildinfo`.
 Cambios posteriores: `git add -A && git commit -m "..." && git push`.
 
-## 1. Vercel (sitio)
+## 1. Sitio estático — `docs/MIGRACION-ESTATICA.md`
 
-1. En **vercel.com → Add New → Project**, importa `agsupplytic/ag-supply`.
-   Framework: Next.js (autodetectado). Build: `next build`. Output: por defecto.
-   Cada `git push` a `main` genera un deploy con URL en vivo.
-2. Variables de entorno (Project → Settings → Environment Variables):
-   - `CONTENT_SOURCE=local` para lanzar ya con el catálogo del repo.
-   - Cuando conectes Sanity, cámbiala a `sanity` y añade las de la sección 2.
-3. Dominio: añade `agsupply.com.do` (y `www`) en Project → Domains y apunta los
-   registros DNS que Vercel indique.
-4. Deploy. El sitio es 100% estático salvo `/api/revalidate`.
+El sitio se compila a **HTML estático** (`next.config.ts` → `output: 'export'`). `npm run build`
+escribe la carpeta `out/`, desplegable sin servidor Node.
 
-Nada de esto necesita Sanity: el sitio arranca leyendo `content/*.json`.
+- **GitHub Pages** (recomendado, gratis): workflow completo en `docs/MIGRACION-ESTATICA.md`.
+- **Netlify / Cloudflare Pages**: conectar el repo, build `npm run build`, publish `out`.
+- **Vercel**: también sirve; solo tiene sentido si más adelante se vuelve a SSR para Sanity.
+
+Env var opcional en el hosting: `NEXT_PUBLIC_WEB3FORMS_KEY` (formulario de contacto → inbox;
+sin ella el formulario abre el cliente de correo del visitante).
+
+Dominio `agsupply.com.do`: crear `public/CNAME` con el dominio y apuntar el DNS al host elegido.
 
 ## 2. Sanity (CMS headless) — cuando se decida activar
 
@@ -81,7 +81,13 @@ En Vercel: `CONTENT_SOURCE=sanity`, `NEXT_PUBLIC_SANITY_PROJECT_ID`,
 `NEXT_PUBLIC_SANITY_DATASET`, `SANITY_API_READ_TOKEN` (Viewer). Redeploy.
 `lib/content/index.ts` cambia de adaptador solo con esa variable.
 
-## 3. Webhook de revalidación (ISR)
+> **Nota:** con el sitio en `output: 'export'` no hay `/api/revalidate` ni ISR. Para editar
+> desde Sanity sin rebuild manual: o se vuelve a SSR en Vercel (quitar `output: 'export'`,
+> restaurar la ruta), o se dispara el workflow de GitHub Actions con un webhook
+> `repository_dispatch` en cada publicación (rebuild completo, ~1–2 min). Detalle en
+> `docs/MIGRACION-ESTATICA.md`.
+
+## 3. Webhook de revalidación (ISR) — solo si se vuelve a SSR
 
 Para que publicar en Sanity actualice el sitio sin rebuild completo:
 

@@ -3,13 +3,18 @@ import { Suspense } from "react";
 import { getCategories, getProducts, getBrands } from "@/lib/content";
 import { Container } from "@/components/site/container";
 import { PageHero } from "@/components/site/page-hero";
+import { OperationalInfo } from "@/components/site/operational-info";
 import { Catalog } from "@/components/site/catalog";
+import { ogFor } from "@/lib/seo";
+
+const CATALOGO_DESC =
+  "Papel higiénico, toallas, servilletas, faciales, interfoliados, jabón y desechables fabricados por AG Supply. Filtra por categoría, marca y especificación. Sin precios públicos.";
 
 export const metadata: Metadata = {
   title: "Catálogo de productos",
-  description:
-    "Papel higiénico, toallas, servilletas, faciales, interfoliados, jabón y desechables fabricados por AG Supply. Filtra por categoría, marca y especificación. Sin precios públicos.",
+  description: CATALOGO_DESC,
   alternates: { canonical: "/productos" },
+  openGraph: ogFor("Catálogo de productos — AG Supply", CATALOGO_DESC),
 };
 
 export default async function ProductosPage() {
@@ -35,6 +40,8 @@ export default async function ProductosPage() {
           </>
         }
       />
+
+      <OperationalInfo />
 
       <Container className="py-12">
         <Suspense fallback={<div className="py-20 text-center text-muted">Cargando catálogo…</div>}>

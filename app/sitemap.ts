@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { getCategories, getProducts } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
   const now = new Date();
@@ -13,8 +15,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/productos",
     "/ocean-breeze",
     "/bonche",
+    "/faq",
     "/contacto",
-    "/cotizacion",
   ].map((path) => ({
     url: `${base}${path}`,
     lastModified: now,

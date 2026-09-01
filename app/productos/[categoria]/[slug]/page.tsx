@@ -22,7 +22,9 @@ import { SpecGroups } from "@/components/site/spec-groups";
 import { AddToQuoteButton } from "@/components/site/add-to-quote-button";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { brandLabel } from "@/components/site/brand-badge";
+import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/site/json-ld";
 import { siteConfig } from "@/lib/site-config";
+import { ogFor } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const products = await getProducts();
@@ -45,11 +47,7 @@ export async function generateMetadata({
     title: product.name,
     description,
     alternates: { canonical: `/productos/${product.category}/${product.slug}` },
-    openGraph: {
-      title: `${product.name} — AG Supply`,
-      description,
-      images: product.images.length ? [product.images[0]] : undefined,
-    },
+    openGraph: ogFor(`${product.name} — AG Supply`, description),
   };
 }
 
@@ -88,6 +86,18 @@ export default async function ProductPage({
 
   return (
     <>
+      <ProductJsonLd product={product} category={category} />
+      <BreadcrumbJsonLd
+        trail={[
+          ["Catálogo", "/productos"],
+          [
+            category?.name ?? product.category,
+            `/productos/${product.category}`,
+          ],
+          [product.name, `/productos/${product.category}/${product.slug}`],
+        ]}
+      />
+
       {/* ============================================================ HERO */}
       <section className="relative isolate overflow-hidden bg-brand-gradient text-white">
         <Container className="relative py-10 md:py-14">

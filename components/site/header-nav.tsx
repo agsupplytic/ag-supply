@@ -9,7 +9,6 @@ import { Logo } from "./logo";
 import { CategoryIcon } from "./category-icon";
 import { QuoteButton } from "./quote-button";
 import { WhatsAppButton } from "./whatsapp-button";
-import { LanguageToggle } from "./language-toggle";
 import {
   Sheet,
   SheetContent,
@@ -18,7 +17,6 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import type { Locale } from "@/lib/i18n";
 
 type Cat = {
   slug: string;
@@ -41,11 +39,9 @@ type Labels = {
 export function HeaderNav({
   categories,
   labels,
-  locale,
 }: {
   categories: Cat[];
   labels: Labels;
-  locale: Locale;
 }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -56,6 +52,7 @@ export function HeaderNav({
     { href: "/", label: labels.home },
     { href: "/nosotros", label: labels.about },
     { href: "/productos", label: labels.products, mega: true },
+    { href: "/faq", label: "FAQ" },
     { href: "/contacto", label: labels.contact },
   ];
 
@@ -227,9 +224,6 @@ export function HeaderNav({
         </nav>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
-          <span className="hidden md:block">
-            <LanguageToggle locale={locale} />
-          </span>
           <QuoteButton />
           <span className="hidden lg:block">
             <WhatsAppButton size="sm">{labels.whatsapp}</WhatsAppButton>
@@ -245,9 +239,8 @@ export function HeaderNav({
             </SheetTrigger>
             <SheetContent side="right" className="p-0">
               <SheetTitle className="sr-only">Menú de navegación</SheetTitle>
-              <div className="flex h-16 items-center justify-between border-b border-border px-5">
+              <div className="flex h-16 items-center border-b border-border px-5">
                 <Logo height={26} />
-                <LanguageToggle locale={locale} />
               </div>
               <nav className="flex flex-col gap-1 overflow-y-auto p-4">
                 {NAV.filter((n) => !n.mega).map((item) => (

@@ -19,8 +19,24 @@ import { BrandFeatureCard } from "@/components/site/brand-feature-card";
 import { CountUp } from "@/components/site/count-up";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
+import type { Metadata } from "next";
 import { siteConfig } from "@/lib/site-config";
-import { getT } from "@/lib/i18n";
+import { t } from "@/lib/i18n";
+import { ogFor } from "@/lib/seo";
+
+export const metadata: Metadata = {
+  title: {
+    absolute:
+      "AG Supply — Fabricante de papel higiénico, servilletas y toallas en Santiago, RD",
+  },
+  description:
+    "AG Supply convierte bobinas en papel higiénico, toallas, servilletas, faciales, interfoliados y desechables para empresas de República Dominicana. Marcas propias Ocean Breeze y Bonche. Cotiza por WhatsApp, sin precios en línea.",
+  alternates: { canonical: "/" },
+  openGraph: ogFor(
+    "AG Supply — Fabricante de higiene institucional en República Dominicana",
+    "Convertidora de papel en Santiago. Papel higiénico, toallas, servilletas, faciales e interfoliados bajo las marcas Ocean Breeze y Bonche.",
+  ),
+};
 
 const HERO_IMAGES = [
   { src: "/images/placeholders/hero-1.webp", alt: "Planta de conversión de AG Supply" },
@@ -29,11 +45,10 @@ const HERO_IMAGES = [
 ];
 
 export default async function HomePage() {
-  const [categories, products, brands, t] = await Promise.all([
+  const [categories, products, brands] = await Promise.all([
     getCategories(),
     getProducts(),
     getBrands(),
-    getT(),
   ]);
 
   const oceanBreeze = brands.find((b) => b.slug === "ocean-breeze");
