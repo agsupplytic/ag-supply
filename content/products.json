@@ -1,0 +1,3904 @@
+[
+  {
+    "slug": "combo-clear-hw-2-pzas-ten-cuchi-3829",
+    "name": "Combo Clear HW 2 PZAS Ten+cuchi",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0284-COM-16",
+    "odooId": 3829,
+    "active": true
+  },
+  {
+    "slug": "combo-hw-1-pieza-pannez-impreso-100-1-3940",
+    "name": "Combo HW 1 Pieza Pannez Impreso 100/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "100/1"
+    },
+    "keySpecs": [
+      "Presentación 100/1"
+    ],
+    "sku": "0395-COM-17",
+    "odooId": 3940,
+    "active": true
+  },
+  {
+    "slug": "combo-hw-2-pzas-chito-impreso-100-1-3543",
+    "name": "Combo HW 2 PZAS Chito Impreso 100/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "100/1"
+    },
+    "keySpecs": [
+      "Presentación 100/1"
+    ],
+    "sku": "0001-COM-01",
+    "odooId": 3543,
+    "active": true
+  },
+  {
+    "slug": "combo-hw-2-pzas-pannez-impreso-100-1-hight-bolsas-lisas-3583",
+    "name": "Combo HW 2 PZAS Pannez Impreso 100/1. Hight. Bolsas Lisas",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "100/1"
+    },
+    "keySpecs": [
+      "Presentación 100/1"
+    ],
+    "sku": "0041-COM-03",
+    "odooId": 3583,
+    "active": true
+  },
+  {
+    "slug": "combos-1-pieza-blanco-mw-500uds-4142",
+    "name": "Combos 1 Pieza Blanco MW 500UDS",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": "Slim fold",
+      "packageDims": "21.6 x 4.5 x 1.2 cm / 8.5 x 1.8 x 0.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "Blanco"
+    ],
+    "sku": "0889-COM-11",
+    "odooId": 4142,
+    "active": true
+  },
+  {
+    "slug": "combos-1-piezas-negro-hw-500-uds-3814",
+    "name": "Combos 1 Piezas Negro HW 500 UDS",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Negro",
+      "fold": "Slim fold",
+      "packageDims": "21.6 x 4.5 x 1.2 cm / 8.5 x 1.8 x 0.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "Negro"
+    ],
+    "sku": "0269-COM-14",
+    "odooId": 3814,
+    "active": true
+  },
+  {
+    "slug": "combos-2-piezas-blancos-mw-500-1-4175",
+    "name": "Combos 2 Piezas Blancos MW 500/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "500/1"
+    },
+    "keySpecs": [
+      "Presentación 500/1"
+    ],
+    "sku": "0889-COM-12",
+    "odooId": 4175,
+    "active": true
+  },
+  {
+    "slug": "combos-2-piezas-negros-hw-100-uds-3790",
+    "name": "Combos 2 Piezas Negros HW 100 UDS",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [
+      "/images/products/odoo-3790.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "color": "Negro",
+      "fold": "Slim fold",
+      "packageDims": "21.6 x 4.5 x 1.2 cm / 8.5 x 1.8 x 0.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "Negro"
+    ],
+    "sku": "0245-COM-12",
+    "odooId": 3790,
+    "active": true
+  },
+  {
+    "slug": "combos-2-pzas-negro-mw-500-1-4193",
+    "name": "Combos 2 PZAS Negro MW 500/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [
+      "/images/products/odoo-4193.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "color": "Negro",
+      "fold": null,
+      "packFormat": "500/1"
+    },
+    "keySpecs": [
+      "Presentación 500/1",
+      "Negro"
+    ],
+    "sku": "0889-COM-14",
+    "odooId": 4193,
+    "active": true
+  },
+  {
+    "slug": "combos-3-piezas-blanco-mw-5-100-3804",
+    "name": "Combos 3 Piezas Blanco MW 5/100",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [
+      "/images/products/odoo-3804.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "color": "Blanco",
+      "fold": "Slim fold",
+      "packFormat": "5/100",
+      "packageDims": "21.6 x 4.5 x 1.2 cm / 8.5 x 1.8 x 0.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "Presentación 5/100",
+      "Blanco"
+    ],
+    "sku": "0259-COM-13",
+    "odooId": 3804,
+    "active": true
+  },
+  {
+    "slug": "combos-en-caja-hw-2-piezas-500-1-hight-caja-3588",
+    "name": "Combos en Caja HW 2 Piezas 500/1. Hight. Caja",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "500/1"
+    },
+    "keySpecs": [
+      "Presentación 500/1"
+    ],
+    "sku": "0046-COM-08",
+    "odooId": 3588,
+    "active": true
+  },
+  {
+    "slug": "combos-en-caja-hw-3-piezas-10-25-hight-4324",
+    "name": "Combos en Caja HW 3 Piezas 10/25 Hight",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Combos",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "10/25"
+    },
+    "keySpecs": [
+      "Presentación 10/25"
+    ],
+    "sku": "0274-COM-19",
+    "odooId": 4324,
+    "active": true
+  },
+  {
+    "slug": "cuchara-blanca-mw-1000-1-3805",
+    "name": "Cuchara Blanca MW 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1",
+      "Blanco"
+    ],
+    "sku": "0260-CUC-02",
+    "odooId": 3805,
+    "active": true
+  },
+  {
+    "slug": "cuchara-negra-hw-1000-1-3815",
+    "name": "Cuchara Negra HW 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Negro",
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1",
+      "Negro"
+    ],
+    "sku": "0270-CUC-04",
+    "odooId": 3815,
+    "active": true
+  },
+  {
+    "slug": "cucharas-blanca-mw-40-25-4107",
+    "name": "Cucharas Blanca MW 40/25",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null,
+      "packFormat": "40/25"
+    },
+    "keySpecs": [
+      "Presentación 40/25",
+      "Blanco"
+    ],
+    "odooId": 4107,
+    "active": true
+  },
+  {
+    "slug": "cuchillo-blanco-mw-1000-1-3807",
+    "name": "Cuchillo Blanco MW 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1",
+      "Blanco"
+    ],
+    "sku": "0262-CUC-03",
+    "odooId": 3807,
+    "active": true
+  },
+  {
+    "slug": "cuchillo-clear-1000-1-3830",
+    "name": "Cuchillo Clear 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1"
+    ],
+    "sku": "0285-CUC-06",
+    "odooId": 3830,
+    "active": true
+  },
+  {
+    "slug": "cuchillo-negro-hw-1000-1-3791",
+    "name": "Cuchillo Negro HW 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Negro",
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1",
+      "Negro"
+    ],
+    "sku": "0246-CUC-01",
+    "odooId": 3791,
+    "active": true
+  },
+  {
+    "slug": "cuchillo-negro-mw-1000-1-3819",
+    "name": "Cuchillo Negro MW 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Negro",
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1",
+      "Negro"
+    ],
+    "sku": "0274-CUC-05",
+    "odooId": 3819,
+    "active": true
+  },
+  {
+    "slug": "tenedor-blanco-mw-1000-1-3806",
+    "name": "Tenedor Blanco MW 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1",
+      "Blanco"
+    ],
+    "sku": "0261-TEN-02",
+    "odooId": 3806,
+    "active": true
+  },
+  {
+    "slug": "tenedor-clear-1000-1-3831",
+    "name": "Tenedor Clear 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1"
+    ],
+    "sku": "0286-TEN-04",
+    "odooId": 3831,
+    "active": true
+  },
+  {
+    "slug": "tenedor-mw-blanco-40-25-4108",
+    "name": "Tenedor MW Blanco 40/25",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null,
+      "packFormat": "40/25"
+    },
+    "keySpecs": [
+      "Presentación 40/25",
+      "Blanco"
+    ],
+    "odooId": 4108,
+    "active": true
+  },
+  {
+    "slug": "tenedor-negro-hw-1000-1-3792",
+    "name": "Tenedor Negro HW 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Negro",
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1",
+      "Negro"
+    ],
+    "sku": "0247-TEN-01",
+    "odooId": 3792,
+    "active": true
+  },
+  {
+    "slug": "tenedor-negro-mw-1000-1-3820",
+    "name": "Tenedor Negro MW 1000/1",
+    "brand": "generico",
+    "category": "cuberteria",
+    "subcategory": "Cubertería suelta",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Negro",
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1",
+      "Negro"
+    ],
+    "sku": "0275-TEN-03",
+    "odooId": 3820,
+    "active": true
+  },
+  {
+    "slug": "fardo-funda-2-blanca-v-10x200-3611",
+    "name": "Fardo Funda 2# Blanca V 10X200",
+    "brand": "generico",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null
+    },
+    "keySpecs": [
+      "Blanco"
+    ],
+    "sku": "0069-FAR-01",
+    "odooId": 3611,
+    "active": true
+  },
+  {
+    "slug": "fardo-funda-bano-blanca-30-paq-3945",
+    "name": "Fardo Funda Baño Blanca 30 Paq",
+    "brand": "generico",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null,
+      "packsPerBale": 30
+    },
+    "keySpecs": [
+      "30 paquetes",
+      "Blanco"
+    ],
+    "sku": "0400-FAR-08",
+    "odooId": 3945,
+    "active": true
+  },
+  {
+    "slug": "fardo-funda-cocina-30-paquetes-3614",
+    "name": "Fardo Funda Cocina 30 Paquetes",
+    "brand": "generico",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packsPerBale": 30
+    },
+    "keySpecs": [
+      "30 paquetes"
+    ],
+    "sku": "0072-FAR-04",
+    "odooId": 3614,
+    "active": true
+  },
+  {
+    "slug": "fardo-funda-jardin-3943",
+    "name": "Fardo Funda Jardin",
+    "brand": "generico",
+    "category": "desechables",
+    "subcategory": "Plastico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0398-FAR-07",
+    "odooId": 3943,
+    "active": true
+  },
+  {
+    "slug": "fardo-funda-tanque-negra-30-5-3616",
+    "name": "Fardo Funda Tanque Negra 30/5",
+    "brand": "generico",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Negro",
+      "fold": null,
+      "packFormat": "30/5"
+    },
+    "keySpecs": [
+      "Presentación 30/5",
+      "Negro"
+    ],
+    "sku": "0074-FAR-06",
+    "odooId": 3616,
+    "active": true
+  },
+  {
+    "slug": "funda-13-gls-cocina-24x30-negra-3951",
+    "name": "Funda 13 GLS Cocina 24X30 Negra",
+    "brand": "generico",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Negro",
+      "fold": null
+    },
+    "keySpecs": [
+      "Negro"
+    ],
+    "sku": "0406-FUN-74",
+    "odooId": 3951,
+    "active": true
+  },
+  {
+    "slug": "funda-4-gln-18x22-blanca-3628",
+    "name": "Funda 4 GLN 18X22 Blanca",
+    "brand": "generico",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null
+    },
+    "keySpecs": [
+      "Blanco"
+    ],
+    "odooId": 3628,
+    "active": true
+  },
+  {
+    "slug": "funda-mtz-36-x-52-hd-lisa-1-100-4145",
+    "name": "Funda MTZ 36 X 52 Hd Lisa 1/100",
+    "brand": "generico",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "1/100"
+    },
+    "keySpecs": [
+      "Presentación 1/100"
+    ],
+    "sku": "0889-FUN-51",
+    "odooId": 4145,
+    "active": true
+  },
+  {
+    "slug": "papel-encerado-16x24-caja-de-1000-3922",
+    "name": "Papel Encerado 16X24 Caja de 1000",
+    "brand": "generico",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0377-PAP-19",
+    "odooId": 3922,
+    "active": true
+  },
+  {
+    "slug": "papel-encerado-70-pies-caja-24-1-4230",
+    "name": "Papel Encerado 70 Pies Caja 24/1",
+    "brand": "generico",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "24/1"
+    },
+    "keySpecs": [
+      "Presentación 24/1"
+    ],
+    "sku": "0328-PAP-19",
+    "odooId": 4230,
+    "active": true
+  },
+  {
+    "slug": "papel-encerado-tipo-periodico-12x12-1000-1-4128",
+    "name": "Papel Encerado Tipo Periodico 12X12 1000/1",
+    "brand": "ocean-breeze",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1"
+    ],
+    "sku": "0889-PAP-23",
+    "odooId": 4128,
+    "active": true
+  },
+  {
+    "slug": "papel-mg-impresion-12x11-1000-1-4251",
+    "name": "Papel MG Impresion 12X11 1000/1",
+    "brand": "ocean-breeze",
+    "category": "desechables",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Presentación 1000/1"
+    ],
+    "sku": "0256-PAP-15",
+    "odooId": 4251,
+    "active": true
+  },
+  {
+    "slug": "plegadizas-papel-encerado-bonche-75-pies-x-12-pulg-4186",
+    "name": "Plegadizas Papel Encerado Bonche ( 75 Pies X 12 Pulg)",
+    "brand": "bonche",
+    "category": "desechables",
+    "subcategory": "Cocktail",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "odooId": 4186,
+    "active": true
+  },
+  {
+    "slug": "panuelos-faciales-30-1-cubo-ocean-breeze-3710",
+    "name": "Pañuelos Faciales 30/1 Cubo Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "facial",
+    "subcategory": "Facial Interfold",
+    "images": [
+      "/images/products/odoo-3710.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "widthCm": 19,
+      "sheetLengthCm": 20,
+      "sheets": 85,
+      "grammageGsm": 15,
+      "color": "Blanco",
+      "fold": "Interfold",
+      "finish": null,
+      "paperType": "Facial",
+      "packFormat": "30/1",
+      "packageDims": "4.5 X 4 X 5 in",
+      "caseDims": "20.5 x 13.5 x 10.5 in",
+      "unitsPerPallet": 24,
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Interfold"
+    ],
+    "sku": "0168-PAÑ-01",
+    "odooId": 3710,
+    "active": true
+  },
+  {
+    "slug": "panuelos-faciales-30-1-plano-ocean-breeze-3711",
+    "name": "Pañuelos Faciales 30/1 Plano Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "facial",
+    "subcategory": "Facial Interfold",
+    "images": [
+      "/images/products/odoo-3711.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "widthCm": 20.3,
+      "sheetLengthCm": 17.7,
+      "sheets": 100,
+      "grammageGsm": 15,
+      "color": "Blanco",
+      "fold": "Interfold",
+      "finish": null,
+      "paperType": "Facial",
+      "packFormat": "30/1",
+      "packageDims": "8 X 4.26 X 1.7 in",
+      "caseDims": "21.6 x 8.7 x 11.5 in",
+      "unitsPerPallet": 24,
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Interfold"
+    ],
+    "sku": "0169-PAÑ-02",
+    "odooId": 3711,
+    "active": true
+  },
+  {
+    "slug": "interfold-mini-napkin-18-125-2-ply-4147",
+    "name": "Interfold Mini Napkin 18/125 2 PLY",
+    "brand": "generico",
+    "category": "interfoliados",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": "Interfold",
+      "finish": null,
+      "paperType": null,
+      "packFormat": "18/125"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Interfold"
+    ],
+    "sku": "0889-INT-07",
+    "odooId": 4147,
+    "active": true
+  },
+  {
+    "slug": "interfold-mini-napkin-ob-30-200-3688",
+    "name": "Interfold Mini Napkin OB 30/200",
+    "brand": "ocean-breeze",
+    "category": "interfoliados",
+    "subcategory": "Facial Interfold",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": "Interfold",
+      "finish": null,
+      "paperType": null,
+      "packFormat": "30/200"
+    },
+    "keySpecs": [
+      "Interfold"
+    ],
+    "sku": "0146-INT-02",
+    "odooId": 3688,
+    "active": true
+  },
+  {
+    "slug": "interfold-quick-napkin-30-200-shh-4250",
+    "name": "Interfold Quick Napkin 30/200 SHH",
+    "brand": "generico",
+    "category": "interfoliados",
+    "images": [
+      "/images/products/odoo-4250.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "widthCm": 16.51,
+      "sheetLengthCm": 20.32,
+      "sheets": 200,
+      "grammageGsm": 19,
+      "color": "Blanco",
+      "fold": "Interfold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "30/200",
+      "packageDims": "6.5 x 4 x 3 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Interfold"
+    ],
+    "sku": "0255-INT-05",
+    "odooId": 4250,
+    "active": true
+  },
+  {
+    "slug": "interfold-quick-napkin-ocean-brezze-30-200-3834",
+    "name": "Interfold Quick Napkin Ocean Brezze 30/200",
+    "brand": "ocean-breeze",
+    "category": "interfoliados",
+    "images": [
+      "/images/products/odoo-3834.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "widthCm": 16.51,
+      "sheetLengthCm": 20.32,
+      "sheets": 200,
+      "grammageGsm": 19,
+      "color": "Blanco",
+      "fold": "Interfold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "30/200",
+      "packageDims": "6.5 x 4 x 3 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Interfold"
+    ],
+    "sku": "0289-INT-03",
+    "odooId": 3834,
+    "active": true
+  },
+  {
+    "slug": "brillo-verde-durasol-2-1-133031-3573",
+    "name": "Brillo Verde Durasol 2/1 133031",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Verde",
+      "fold": null,
+      "packFormat": "2/1"
+    },
+    "keySpecs": [
+      "Presentación 2/1",
+      "Verde"
+    ],
+    "sku": "0031-BRI-01",
+    "odooId": 3573,
+    "active": true
+  },
+  {
+    "slug": "cartucho-jabon-espuma-caja-de-4-ud-3576",
+    "name": "Cartucho Jabon Espuma, Caja de 4 UD",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0034-CAR-01",
+    "odooId": 3576,
+    "active": true
+  },
+  {
+    "slug": "desinfectante-lavanda-mibea-4-1-3990",
+    "name": "Desinfectante Lavanda Mibea 4/1",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "packFormat": "4/1"
+    },
+    "keySpecs": [
+      "Presentación 4/1"
+    ],
+    "sku": "0438-DES-01",
+    "odooId": 3990,
+    "active": true
+  },
+  {
+    "slug": "dispensador-de-jabon-cartucho-3603",
+    "name": "Dispensador de Jabon Cartucho",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0061-DIS-01",
+    "odooId": 3603,
+    "active": true
+  },
+  {
+    "slug": "dispensador-de-jabon-liquido-c-valvula-3604",
+    "name": "Dispensador de Jabon Liquido C/valvula",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0062-DIS-02",
+    "odooId": 3604,
+    "active": true
+  },
+  {
+    "slug": "dispensador-de-papel-jumbo-3991",
+    "name": "Dispensador de Papel Jumbo",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0439-DIS-03",
+    "odooId": 3991,
+    "active": true
+  },
+  {
+    "slug": "dispensador-de-toalla-4144",
+    "name": "Dispensador de Toalla",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0889-DIS-05",
+    "odooId": 4144,
+    "active": true
+  },
+  {
+    "slug": "dispensador-inox-jumbo-3992",
+    "name": "Dispensador Inox Jumbo",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0440-DIS-04",
+    "odooId": 3992,
+    "active": true
+  },
+  {
+    "slug": "esponja-de-acero-inoxidable-durasol-3608",
+    "name": "Esponja de Acero Inoxidable Durasol",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0066-ESP-01",
+    "odooId": 3608,
+    "active": true
+  },
+  {
+    "slug": "esponja-doble-uso-durasol-3609",
+    "name": "Esponja Doble Uso Durasol",
+    "brand": "generico",
+    "category": "jabon",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null
+    },
+    "keySpecs": [],
+    "sku": "0067-ESP-02",
+    "odooId": 3609,
+    "active": true
+  },
+  {
+    "slug": "higienico-12-1-u-r-3665",
+    "name": "Higienico 12/1 U.R",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "widthCm": 23,
+      "sheetLengthCm": 8.89,
+      "grammageGsm": 15,
+      "color": "Blanco",
+      "fold": "Hoja continua",
+      "finish": "Repujado",
+      "paperType": "Bath tissue",
+      "packFormat": "12/1",
+      "caseDims": "27 x 18 x 7 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 12/1"
+    ],
+    "sku": "0123-HIG-04",
+    "odooId": 3665,
+    "active": true
+  },
+  {
+    "slug": "higienico-12-1-xl-mopc-3668",
+    "name": "Higienico 12/1, XL, Mopc",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "Fardo 12/1"
+    ],
+    "sku": "0126-HIG-07",
+    "odooId": 3668,
+    "active": true
+  },
+  {
+    "slug": "higienico-12-4-48-1-200-hojas-bio-2-capas-3669",
+    "name": "Higienico 12/4, 48/1, 200 Hojas, Bio, 2 Capas",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "sheets": 200,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/4"
+    },
+    "keySpecs": [
+      "2 capas",
+      "200 hojas"
+    ],
+    "sku": "0127-HIG-08",
+    "odooId": 3669,
+    "active": true
+  },
+  {
+    "slug": "higienico-24-1-350-hojas-liso-2-capas-4273",
+    "name": "HIGIENICO 24/1, 350 hojas, liso, 2 capas",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "sheets": 350,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "24/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "350 hojas"
+    ],
+    "sku": "0267-HIG-18",
+    "odooId": 4273,
+    "active": true
+  },
+  {
+    "slug": "higienico-24-1-m-ob-2-capas-3671",
+    "name": "Higienico 24/1, M, OB, 2 Capas",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "24/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 24/1"
+    ],
+    "sku": "0129-HIG-10",
+    "odooId": 3671,
+    "active": true
+  },
+  {
+    "slug": "higienico-30-1-economico-sd-4304",
+    "name": "Higienico 30/1 Economico SD",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": "Virgen",
+      "packFormat": "30/1"
+    },
+    "keySpecs": [
+      "Fardo 30/1"
+    ],
+    "sku": "0274-HIG-19",
+    "odooId": 4304,
+    "active": true
+  },
+  {
+    "slug": "higienico-30-1-economico-2-capas-3548",
+    "name": "Higienico 30/1 Economico, 2 Capas",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": "Virgen",
+      "packFormat": "30/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 30/1"
+    ],
+    "sku": "0006-HIG-02",
+    "odooId": 3548,
+    "active": true
+  },
+  {
+    "slug": "higienico-30-1-rosado-generico-3672",
+    "name": "Higienico 30/1, Rosado, Genérico",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Rosado",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "30/1"
+    },
+    "keySpecs": [
+      "Fardo 30/1"
+    ],
+    "sku": "0130-HIG-11",
+    "odooId": 3672,
+    "active": true
+  },
+  {
+    "slug": "higienico-48-1-sin-envoltura-s-d-4305",
+    "name": "Higienico 48/1 Sin Envoltura S.D",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "48/1"
+    },
+    "keySpecs": [
+      "Fardo 48/1"
+    ],
+    "sku": "0270-HIG-20",
+    "odooId": 4305,
+    "active": true
+  },
+  {
+    "slug": "higienico-48-1-24mts-envuelto-ob-2-capas-3673",
+    "name": "Higienico 48/1, 24MTS, Envuelto, OB, 2 Capas",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [
+      "/images/products/odoo-3673.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "rollLengthM": 24,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "48/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "24 m"
+    ],
+    "sku": "0131-HIG-12",
+    "odooId": 3673,
+    "active": true
+  },
+  {
+    "slug": "higienico-48-1-35mts-2-capa-envuelto-individual-s-d-4312",
+    "name": "Higienico 48/1, 35MTS, 2 Capa Envuelto Individual S.D",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "rollLengthM": 35,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "48/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "35 m"
+    ],
+    "sku": "0273-HIG-22",
+    "odooId": 4312,
+    "active": true
+  },
+  {
+    "slug": "higienico-48-1-35mts-s-d-2-capas-4307",
+    "name": "Higienico 48/1, 35MTS, S.D 2 Capas",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "rollLengthM": 35,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "48/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "35 m"
+    ],
+    "sku": "0272-HIG-21",
+    "odooId": 4307,
+    "active": true
+  },
+  {
+    "slug": "higienico-48-1-60-65-gr-20mts-3675",
+    "name": "Higienico 48/1, 60-65 Gr, 20MTS",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthM": 20,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "48/1"
+    },
+    "keySpecs": [
+      "20 m",
+      "Fardo 48/1"
+    ],
+    "sku": "0133-HIG-14",
+    "odooId": 3675,
+    "active": true
+  },
+  {
+    "slug": "higienico-48-1-envueltos-35mts-ob-2-capas-3676",
+    "name": "Higienico 48/1, Envueltos, 35MTS, Ob. 2 Capas",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "rollLengthM": 35,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "48/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "35 m"
+    ],
+    "sku": "0134-HIG-15",
+    "odooId": 3676,
+    "active": true
+  },
+  {
+    "slug": "higienico-48-1-m-individual-ob-3678",
+    "name": "Higienico 48/1, M, Individual OB",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "48/1"
+    },
+    "keySpecs": [
+      "Fardo 48/1"
+    ],
+    "sku": "0136-HIG-17",
+    "odooId": 3678,
+    "active": true
+  },
+  {
+    "slug": "higienico-48-1-sin-envoltura-5-pulgoso-105-gr-4237",
+    "name": "HIGIENICO 48/1, sin envoltura 5 pulgoso, 105 gr",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "48/1"
+    },
+    "keySpecs": [
+      "Fardo 48/1"
+    ],
+    "sku": "0333-HIG-17",
+    "odooId": 4237,
+    "active": true
+  },
+  {
+    "slug": "higienico-jumbo-12-libras-12-1-2-capas-3832",
+    "name": "Higienico Jumbo 12 Libras 12/1. 2 Capas",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Jumbo",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 12/1"
+    ],
+    "sku": "0287-HIG-26",
+    "odooId": 3832,
+    "active": true
+  },
+  {
+    "slug": "higienico-jumbo-12-1-especial-3549",
+    "name": "Higienico Jumbo 12/1, Especial",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Jumbo",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "Fardo 12/1"
+    ],
+    "sku": "0007-HIG-03",
+    "odooId": 3549,
+    "active": true
+  },
+  {
+    "slug": "higienico-jumbo-14-libras-3-25-2-capas-3680",
+    "name": "Higienico Jumbo 14 Libras. 3.25. 2 Capas",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Jumbo",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [
+      "2 capas"
+    ],
+    "sku": "0138-HIG-19",
+    "odooId": 3680,
+    "active": true
+  },
+  {
+    "slug": "higienico-jumbo-6-1-kraft-2-capas-3682",
+    "name": "Higienico Jumbo 6/1 Kraft, 2 Capas",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Jumbo",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": "Kraft",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 6/1"
+    ],
+    "sku": "0140-HIG-21",
+    "odooId": 3682,
+    "active": true
+  },
+  {
+    "slug": "higienico-jumbo-center-pull-super-12-1-2-capas-3683",
+    "name": "Higienico Jumbo Center Pull Super 12/1. 2 Capas",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Jumbo",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": "Center pull",
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 12/1"
+    ],
+    "sku": "0141-HIG-22",
+    "odooId": 3683,
+    "active": true
+  },
+  {
+    "slug": "higienico-normal-45mt-envuelto-fardo-de-48-3684",
+    "name": "HIGIENICO NORMAL. 45Mt. Envuelto. Fardo de 48",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthM": 45,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [
+      "45 m"
+    ],
+    "sku": "0142-HIG-23",
+    "odooId": 3684,
+    "active": true
+  },
+  {
+    "slug": "jumbo-12-1-xtra-2-capas-3689",
+    "name": "Jumbo 12/1, Xtra, 2 Capas",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Jumbo",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 12/1"
+    ],
+    "sku": "0147-JUM-03",
+    "odooId": 3689,
+    "active": true
+  },
+  {
+    "slug": "jumbo-1200-pies-1-ply-4003",
+    "name": "Jumbo 1200 Pies 1 PLY",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "rollLengthFt": 1200,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [
+      "1 capa",
+      "1200 pies"
+    ],
+    "sku": "0451-JUM-10",
+    "odooId": 4003,
+    "active": true
+  },
+  {
+    "slug": "jumbo-ag-6-1-lc-2-capas-3694",
+    "name": "Jumbo AG 6/1, Lc, 2 Capas",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Jumbo",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 6/1"
+    ],
+    "sku": "0152-JUM-08",
+    "odooId": 3694,
+    "active": true
+  },
+  {
+    "slug": "jumbo-economico-12-1-2-capas-3695",
+    "name": "Jumbo Economico 12/1, 2 Capas",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Jumbo",
+    "images": [
+      "/images/products/odoo-3695.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 12/1"
+    ],
+    "sku": "0153-JUM-09",
+    "odooId": 3695,
+    "active": true
+  },
+  {
+    "slug": "jumbo-economico-12-1-alianza-4264",
+    "name": "Jumbo Economico 12/1, Alianza",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Jumbo",
+    "images": [
+      "/images/products/odoo-4264.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "Fardo 12/1"
+    ],
+    "sku": "0264-JUM-06",
+    "odooId": 4264,
+    "active": true
+  },
+  {
+    "slug": "jumbos-mini-6-1-312-pies-4161",
+    "name": "Jumbos Mini 6/1 312 Pies",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthFt": 312,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "312 pies",
+      "Fardo 6/1"
+    ],
+    "sku": "0889-JUM-06",
+    "odooId": 4161,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-12-1-bionatural-4012",
+    "name": "Papel Higienico 12/1 Bionatural",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "Fardo 12/1"
+    ],
+    "sku": "0460-PAP-27",
+    "odooId": 4012,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-12-1-m-ocean-breeze-3861",
+    "name": "Papel Higienico 12/1 M Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "Fardo 12/1"
+    ],
+    "sku": "0316-PAP-09",
+    "odooId": 3861,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-30-mts-individual-0-b-4030",
+    "name": "Papel Higienico 30 Mts Individual 0.B",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthM": 30,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [
+      "30 m"
+    ],
+    "sku": "0889-PAP-29",
+    "odooId": 4030,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-48-1-m-individual-o-b-3866",
+    "name": "Papel Higienico 48/1 M Individual O.B",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "48/1"
+    },
+    "keySpecs": [
+      "Fardo 48/1"
+    ],
+    "sku": "0321-PAP-11",
+    "odooId": 3866,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-6-1-9-lbs-3942",
+    "name": "Papel Higienico 6/1 9 Lbs",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0397-PAP-24",
+    "odooId": 3942,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-60-mts-individual-0-b-4125",
+    "name": "Papel Higienico 60 Mts Individual 0.B",
+    "brand": "ocean-breeze",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthM": 60,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [
+      "60 m"
+    ],
+    "sku": "0889-[08-02",
+    "odooId": 4125,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-jumbo-1000-pies-12-1-caja-3816",
+    "name": "Papel Higienico Jumbo 1000 Pies 12/1 Caja",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthFt": 1000,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "1000 pies",
+      "Fardo 12/1"
+    ],
+    "sku": "0271-PAP-07",
+    "odooId": 3816,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-jumbo-16-libras-12-1-caja-3938",
+    "name": "Papel Higienico Jumbo 16 Libras 12/1 Caja",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "Fardo 12/1"
+    ],
+    "sku": "0393-PAP-23",
+    "odooId": 3938,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-jumbo16-lbs-800-pies-12-1-3785",
+    "name": "Papel Higienico JUMBO16 Lbs 800 Pies 12/1",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthFt": 800,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "800 pies",
+      "Fardo 12/1"
+    ],
+    "sku": "0243-PAP-05",
+    "odooId": 3785,
+    "active": true
+  },
+  {
+    "slug": "papel-higienico-xtra-jerez-brand-30-1-3708",
+    "name": "Papel Higienico Xtra Jerez Brand 30/1",
+    "brand": "generico",
+    "category": "papel-higienico",
+    "subcategory": "Higiénico",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "30/1"
+    },
+    "keySpecs": [
+      "Fardo 30/1"
+    ],
+    "sku": "0166-PAP-02",
+    "odooId": 3708,
+    "active": true
+  },
+  {
+    "slug": "cocktail-kraft-senator-10-100-1-capa-caja-3827",
+    "name": "Cocktail Kraft Senator 10/100. 1 Capa. Caja",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Cocktail",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "color": "Kraft",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "10/100"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Fardo 10/100"
+    ],
+    "sku": "0282-COC-03",
+    "odooId": 3827,
+    "active": true
+  },
+  {
+    "slug": "dinner-12-100-boblez-1-4-4277",
+    "name": "Dinner 12/100 boblez 1/4",
+    "brand": "generico",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/100"
+    },
+    "keySpecs": [
+      "Fardo 12/100"
+    ],
+    "sku": "0269-DIN-01",
+    "odooId": 4277,
+    "active": true
+  },
+  {
+    "slug": "dispenser-comprimidas-25-de-185-fardo-4213",
+    "name": "Dispenser Comprimidas 25 de 185 fardo",
+    "brand": "generico",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [],
+    "sku": "0889-DIS-06",
+    "odooId": 4213,
+    "active": true
+  },
+  {
+    "slug": "lunch-napkin-24-paqutes-de-100-ud-4009",
+    "name": "Lunch Napkin 24 Paqutes de 100 UD",
+    "brand": "generico",
+    "category": "servilletas",
+    "images": [
+      "/images/products/odoo-4009.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [],
+    "sku": "0457-LUN-02",
+    "odooId": 4009,
+    "active": true
+  },
+  {
+    "slug": "servilleta-c-fold-24-100-3723",
+    "name": "Servilleta C-FOLD 24/100",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "subcategory": "Toalla",
+    "images": [
+      "/images/products/odoo-3723.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 6.75,
+      "sheetLengthCm": 24.13,
+      "sheets": 100,
+      "grammageGsm": 32,
+      "color": "Blanco",
+      "fold": "C-fold",
+      "finish": "Repujado",
+      "paperType": "Papel toalla absorbente",
+      "packFormat": "24/100",
+      "packageDims": "9.5 x 4 x 3.15 in",
+      "caseDims": "22 x 14.25 x 9.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "C-fold"
+    ],
+    "sku": "0181-SER-07",
+    "odooId": 3723,
+    "active": true
+  },
+  {
+    "slug": "servilleta-c-fold-24-100-kraft-3724",
+    "name": "Servilleta C-FOLD 24/100 Kraft",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Toalla",
+    "images": [
+      "/images/products/odoo-3724.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 6.75,
+      "sheetLengthCm": 24.13,
+      "sheets": 100,
+      "grammageGsm": 32,
+      "color": "Kraft",
+      "fold": "C-fold",
+      "finish": "Repujado",
+      "paperType": "Papel toalla absorbente",
+      "packFormat": "24/100",
+      "packageDims": "9.5 x 4 x 3.15 in",
+      "caseDims": "22 x 14.25 x 9.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "C-fold"
+    ],
+    "sku": "0182-SER-08",
+    "odooId": 3724,
+    "active": true
+  },
+  {
+    "slug": "servilleta-c-fold-48-50-blanca-4240",
+    "name": "Servilleta C-FOLD 48/50 Blanca",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "subcategory": "Toalla",
+    "images": [
+      "/images/products/odoo-4240.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 6.75,
+      "sheetLengthCm": 24.13,
+      "sheets": 100,
+      "grammageGsm": 32,
+      "color": "Blanco",
+      "fold": "C-fold",
+      "finish": "Repujado",
+      "paperType": "Papel toalla absorbente",
+      "packFormat": "48/50",
+      "packageDims": "9.5 x 4 x 3.15 in",
+      "caseDims": "22 x 14.25 x 9.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "C-fold"
+    ],
+    "sku": "0253-SER-53",
+    "odooId": 4240,
+    "active": true
+  },
+  {
+    "slug": "servilleta-cocktail-azul-8-125-2-ply-o-b-3871",
+    "name": "Servilleta Cocktail Azul 8/125 2 PLY O.B",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": "Azul",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "8/125"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 8/125"
+    ],
+    "sku": "0326-SER-53",
+    "odooId": 3871,
+    "active": true
+  },
+  {
+    "slug": "servilleta-cocktail-la-terminal-1000-1-3726",
+    "name": "Servilleta Cocktail la Terminal 1000/1",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Cocktail timbradas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "1000/1"
+    },
+    "keySpecs": [
+      "Fardo 1000/1"
+    ],
+    "sku": "0184-SER-10",
+    "odooId": 3726,
+    "active": true
+  },
+  {
+    "slug": "servilleta-dinner-20-100-2-ply-white-ocean-breeze-4153",
+    "name": "Servilleta Dinner 20/100, 2 PLY White Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 38.1,
+      "sheetLengthCm": 37,
+      "sheets": 150,
+      "grammageGsm": 21,
+      "color": "Blanco",
+      "fold": "1/4 fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "20/100",
+      "packageDims": "7.5 x 4 x 7.2 in/ 19 x 10.1 x 18.2 cm",
+      "caseDims": "20 x 16.1 x 14.6 in / 50.8 x 40.89 x 18.2 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "1/4 fold"
+    ],
+    "sku": "0889-SER-58",
+    "odooId": 4153,
+    "active": true
+  },
+  {
+    "slug": "servilleta-dinner-20-150-ocean-breeze-3846",
+    "name": "Servilleta Dinner 20/150 Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 38.1,
+      "sheetLengthCm": 37,
+      "sheets": 150,
+      "grammageGsm": 21,
+      "color": "Blanco",
+      "fold": "1/4 fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "20/150",
+      "packageDims": "7.5 x 4 x 7.2 in/ 19 x 10.1 x 18.2 cm",
+      "caseDims": "20 x 16.1 x 14.6 in / 50.8 x 40.89 x 18.2 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "1/4 fold"
+    ],
+    "sku": "0301-SER-47",
+    "odooId": 3846,
+    "active": true
+  },
+  {
+    "slug": "servilleta-dinner-azul-20150-2-ply-3914",
+    "name": "Servilleta Dinner Azul 20150 2 PLY",
+    "brand": "generico",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": "Azul",
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [
+      "2 capas"
+    ],
+    "sku": "0369-SER-63",
+    "odooId": 3914,
+    "active": true
+  },
+  {
+    "slug": "servilleta-dinner-azul-8-125-2-ply-3728",
+    "name": "Servilleta Dinner Azul 8/125, 2 PLY",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dinner",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": "Azul",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "8/125"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 8/125"
+    ],
+    "sku": "0186-SER-12",
+    "odooId": 3728,
+    "active": true
+  },
+  {
+    "slug": "servilleta-dinner-kraft-senator-10-100-3730",
+    "name": "Servilleta Dinner Kraft Senator 10/100",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dinner timbradas",
+    "images": [
+      "/images/products/odoo-3730.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "color": "Kraft",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "10/100"
+    },
+    "keySpecs": [
+      "Fardo 10/100"
+    ],
+    "sku": "0188-SER-14",
+    "odooId": 3730,
+    "active": true
+  },
+  {
+    "slug": "servilleta-kraft-geto-10-500-ocean-breeze-3962",
+    "name": "Servilleta Kraft Geto 10/500 Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Kraft",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "10/500"
+    },
+    "keySpecs": [
+      "Fardo 10/500"
+    ],
+    "sku": "0417-SER-72",
+    "odooId": 3962,
+    "active": true
+  },
+  {
+    "slug": "servilleta-white-36-300-tall-fold-8-5x13-o-b-3926",
+    "name": "Servilleta White 36/300 Tall Fold 8.5X13 O.B",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 21,
+      "sheetLengthCm": 35,
+      "sheets": 300,
+      "color": "Blanco",
+      "fold": "Tall fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "36/300",
+      "packageDims": "6.5 x 3 x 4.5 in / 16.5 x 7.6 x 11.4 cm",
+      "caseDims": "21.5 x 15 x 15.5 in / 54.61 x 38.1 x 39.37 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Tall fold"
+    ],
+    "sku": "0381-SER-65",
+    "odooId": 3926,
+    "active": true
+  },
+  {
+    "slug": "servilletas-60-1-3732",
+    "name": "Servilletas 60/1",
+    "brand": "generico",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "60/1"
+    },
+    "keySpecs": [
+      "Fardo 60/1"
+    ],
+    "sku": "0190-SER-16",
+    "odooId": 3732,
+    "active": true
+  },
+  {
+    "slug": "servilletas-blanca-30x30-10-500-impresa-4300",
+    "name": "Servilletas Blanca 30X30. 10/500 Impresa",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [
+      "/images/products/odoo-4300.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 15.24,
+      "sheetLengthCm": 31.75,
+      "sheets": 500,
+      "grammageGsm": 20,
+      "color": "Blanco",
+      "fold": "Z-fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "10/500",
+      "packageDims": "17.5 x 6.5 x 4.5 in",
+      "caseDims": "22.5 x 17.5 6.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Z-fold"
+    ],
+    "sku": "0274-SER-53",
+    "odooId": 4300,
+    "active": true
+  },
+  {
+    "slug": "servilletas-blanca-disp-10-500-impresa-4235",
+    "name": "Servilletas Blanca Disp. 10/500 Impresa",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [
+      "/images/products/odoo-4235.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 15.24,
+      "sheetLengthCm": 31.75,
+      "sheets": 500,
+      "grammageGsm": 20,
+      "color": "Blanco",
+      "fold": "Z-fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "10/500",
+      "packageDims": "17.5 x 6.5 x 4.5 in",
+      "caseDims": "22.5 x 17.5 6.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Z-fold"
+    ],
+    "sku": "0331-SER-52",
+    "odooId": 4235,
+    "active": true
+  },
+  {
+    "slug": "servilletas-blanca-disp-10-500-ocean-breeze-3733",
+    "name": "Servilletas Blanca Disp. 10/500 Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [
+      "/images/products/odoo-3733.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 15.24,
+      "sheetLengthCm": 31.75,
+      "sheets": 500,
+      "grammageGsm": 20,
+      "color": "Blanco",
+      "fold": "Z-fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "10/500",
+      "packageDims": "17.5 x 6.5 x 4.5 in",
+      "caseDims": "22.5 x 17.5 6.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Z-fold"
+    ],
+    "sku": "0191-SER-17",
+    "odooId": 3733,
+    "active": true
+  },
+  {
+    "slug": "servilletas-cocktail-20-50-rojas-2-ply-2-capas-bolsas-lisas-3735",
+    "name": "Servilletas Cocktail 20/50 Rojas 2 Ply. 2 Capas. Bolsas Lisas",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "subcategory": "Cocktail",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "20/50"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 20/50"
+    ],
+    "sku": "0193-SER-19",
+    "odooId": 3735,
+    "active": true
+  },
+  {
+    "slug": "servilletas-cocktail-8-500-1-ply-kraft-3736",
+    "name": "Servilletas Cocktail 8/500 1 PLY Kraft",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Cocktail",
+    "images": [
+      "/images/products/odoo-3736.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 24.1,
+      "sheetLengthCm": 25.4,
+      "sheets": 500,
+      "grammageGsm": 17.8,
+      "color": "Kraft",
+      "fold": "1/4 fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "8/500",
+      "packageDims": "18.2 x 9.4 x 8.3 in/ 46.2 x 23.8 x 21 cm",
+      "caseDims": "19.2 x 11.2 x 9.5 in/ 48.7 x 28.4 x 24.1 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "1/4 fold"
+    ],
+    "sku": "0194-SER-20",
+    "odooId": 3736,
+    "active": true
+  },
+  {
+    "slug": "servilletas-cocktail-8-500-1-ply-ob-3737",
+    "name": "Servilletas Cocktail 8/500 1 PLY OB",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "subcategory": "Cocktail",
+    "images": [
+      "/images/products/odoo-3737.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 24.1,
+      "sheetLengthCm": 25.4,
+      "sheets": 500,
+      "color": "Blanco",
+      "fold": "1/4 fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "8/500",
+      "packageDims": "18.2 x 9.4 x 8.3 in/ 46.2 x 23.8 x 21 cm",
+      "caseDims": "19.2 x 11.2 x 9.5 in/ 48.7 x 28.4 x 24.1 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "1/4 fold"
+    ],
+    "sku": "0195-SER-21",
+    "odooId": 3737,
+    "active": true
+  },
+  {
+    "slug": "servilletas-cocktail-elegance-10-120-negras-3738",
+    "name": "Servilletas Cocktail Elegance 10/120 Negras",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Cocktail",
+    "images": [
+      "/images/products/odoo-3738.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "widthCm": 24.1,
+      "sheetLengthCm": 25.4,
+      "sheets": 120,
+      "grammageGsm": 32,
+      "color": "Negro",
+      "fold": "1/4 fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "10/120",
+      "packageDims": "3.8 x 4.5 x 2 in/ 12 x 14 x 6 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "2 capas",
+      "1/4 fold"
+    ],
+    "sku": "0196-SER-22",
+    "odooId": 3738,
+    "active": true
+  },
+  {
+    "slug": "servilletas-cocktail-gris-8-125-2-ply-caja-o-b-3869",
+    "name": "Servilletas Cocktail Gris 8/125 2 PLY Caja O.B",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "images": [
+      "/images/products/odoo-3869.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "color": "Gris",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "8/125"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 8/125"
+    ],
+    "sku": "0324-SER-51",
+    "odooId": 3869,
+    "active": true
+  },
+  {
+    "slug": "servilletas-cuadrada-13x13-10-300-3739",
+    "name": "Servilletas Cuadrada 13X13-10/300",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [
+      "/images/products/odoo-3739.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "widthCm": 31.75,
+      "sheetLengthCm": 31.75,
+      "color": "Blanco",
+      "fold": null,
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "10/300",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 10/300"
+    ],
+    "sku": "0197-SER-23",
+    "odooId": 3739,
+    "active": true
+  },
+  {
+    "slug": "servilletas-dinner-12-250-o-b-1-ply-3911",
+    "name": "Servilletas Dinner 12/250 O.B 1 PLY",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/250"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Fardo 12/250"
+    ],
+    "sku": "0366-SER-62",
+    "odooId": 3911,
+    "active": true
+  },
+  {
+    "slug": "servilletas-dinner-20-150-ocean-breeze-blanca-timbrada-1-cap-3743",
+    "name": "Servilletas Dinner 20/150 Ocean Breeze. Blanca. Timbrada. 1 Capa",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "subcategory": "Dinner timbradas",
+    "images": [
+      "/images/products/odoo-3743.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "color": "Blanco",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "20/150"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Fardo 20/150"
+    ],
+    "sku": "0201-SER-27",
+    "odooId": 3743,
+    "active": true
+  },
+  {
+    "slug": "servilletas-dinner-kraft-2-ply-20-100-3746",
+    "name": "Servilletas Dinner Kraft 2 PLY 20/100",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dinner",
+    "images": [
+      "/images/products/odoo-3746.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "widthCm": 38.1,
+      "sheetLengthCm": 37,
+      "sheets": 100,
+      "color": "Kraft",
+      "fold": "1/4 fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "20/100",
+      "packageDims": "7.5 x 4 x 7.2 in/ 19 x 10.1 x 18.2 cm",
+      "caseDims": "20 x 16.1 x 14.6 in / 50.8 x 40.89 x 37.1 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "2 capas",
+      "1/4 fold"
+    ],
+    "sku": "0204-SER-30",
+    "odooId": 3746,
+    "active": true
+  },
+  {
+    "slug": "servilletas-dinner-rancho-chito-3747",
+    "name": "Servilletas Dinner Rancho Chito",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dinner timbradas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [],
+    "sku": "0205-SER-31",
+    "odooId": 3747,
+    "active": true
+  },
+  {
+    "slug": "servilletas-dispenser-10-400-mb-3748",
+    "name": "Servilletas Dispenser 10/400 MB",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [
+      "/images/products/odoo-3748.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "color": "Blanco",
+      "fold": "Z-fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "10/400",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Z-fold"
+    ],
+    "sku": "0206-SER-32",
+    "odooId": 3748,
+    "active": true
+  },
+  {
+    "slug": "servilletas-dispenser-10-400-samey-4180",
+    "name": "Servilletas Dispenser 10/400 Samey",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [
+      "/images/products/odoo-4180.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "color": "Blanco",
+      "fold": "Z-fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "10/400",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Z-fold"
+    ],
+    "sku": "0889-SER-56",
+    "odooId": 4180,
+    "active": true
+  },
+  {
+    "slug": "servilletas-dispenser-bonche-10-paquetes-3552",
+    "name": "Servilletas Dispenser Bonche 10 Paquetes",
+    "brand": "bonche",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [
+      "/images/products/odoo-3552.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 31.75,
+      "sheetLengthCm": 31.75,
+      "sheets": 150,
+      "grammageGsm": 16,
+      "color": "Blanco",
+      "fold": "Z-fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packsPerBale": 10,
+      "packageDims": "12.5 x 4.75 x 6.25 in",
+      "caseDims": "23.75 x 12.75 x 6.75 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Z-fold"
+    ],
+    "sku": "SER-01",
+    "odooId": 3552,
+    "active": true
+  },
+  {
+    "slug": "servilletas-elegance-24-pquetes-de-60-ud-3749",
+    "name": "Servilletas Elegance 24 Pquetes de 60 UD",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packsPerBale": 24
+    },
+    "keySpecs": [
+      "24 paquetes"
+    ],
+    "sku": "0207-SER-33",
+    "odooId": 3749,
+    "active": true
+  },
+  {
+    "slug": "servilletas-impresa-barcelo-4311",
+    "name": "Servilletas Impresa Barcelo",
+    "brand": "generico",
+    "category": "servilletas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [],
+    "sku": "0272-SER-54",
+    "odooId": 4311,
+    "active": true
+  },
+  {
+    "slug": "servilletas-kraft-disp-10-500-ocean-breeze-3750",
+    "name": "Servilletas Kraft DISP.10/500 Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [
+      "/images/products/odoo-3750.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 15.24,
+      "sheetLengthCm": 31.75,
+      "sheets": 500,
+      "grammageGsm": 21,
+      "color": "Kraft",
+      "fold": "Z-fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "10/500",
+      "packageDims": "17.5 x 6.5 x 4.5 in",
+      "caseDims": "22.5 x x17.5 x 6.5 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Z-fold"
+    ],
+    "sku": "0208-SER-34",
+    "odooId": 3750,
+    "active": true
+  },
+  {
+    "slug": "servilletas-lunch-20-50-azul-2-ply-4017",
+    "name": "Servilletas Lunch 20/50 Azul 2 PLY",
+    "brand": "generico",
+    "category": "servilletas",
+    "images": [
+      "/images/products/odoo-4017.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "color": "Azul",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "20/50"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 20/50"
+    ],
+    "sku": "0465-SER-73",
+    "odooId": 4017,
+    "active": true
+  },
+  {
+    "slug": "servilletas-lunch-20-50-rojas-2-ply-3751",
+    "name": "Servilletas Lunch 20/50 Rojas 2 PLY",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [
+      "/images/products/odoo-3751.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "20/50"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 20/50"
+    ],
+    "sku": "0209-SER-35",
+    "odooId": 3751,
+    "active": true
+  },
+  {
+    "slug": "servilletas-lunch-20-50-salmon-2-ply-3752",
+    "name": "Servilletas Lunch 20/50 Salmon 2 PLY",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 2,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "20/50"
+    },
+    "keySpecs": [
+      "2 capas",
+      "Fardo 20/50"
+    ],
+    "sku": "0210-SER-36",
+    "odooId": 3752,
+    "active": true
+  },
+  {
+    "slug": "servilletas-maravilla-10-paquetes-de-400-3753",
+    "name": "Servilletas Maravilla 10 Paquetes de 400",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packsPerBale": 10
+    },
+    "keySpecs": [
+      "10 paquetes"
+    ],
+    "sku": "0211-SER-37",
+    "odooId": 3753,
+    "active": true
+  },
+  {
+    "slug": "servilletas-moka-36-300-tall-fold-ob-1-capa-kraft-3553",
+    "name": "Servilletas Moka 36/300 Tall Fold OB. 1 capa. Kraft",
+    "brand": "ocean-breeze",
+    "category": "servilletas",
+    "subcategory": "Tall Fold",
+    "images": [
+      "/images/products/odoo-3553.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 21,
+      "sheetLengthCm": 35,
+      "sheets": 300,
+      "grammageGsm": 20.41,
+      "color": "Kraft",
+      "fold": "Tall fold",
+      "finish": "Repujado",
+      "paperType": "Napkin tissue",
+      "packFormat": "36/300",
+      "packageDims": "6.5 x 3 x 4.5 in / 16.5 x 7.6 x 11.4 cm",
+      "caseDims": "21.5 x 15 x 15.5 in / 54.6 x 38.1 x 39.3 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "Tall fold"
+    ],
+    "sku": "0011-SER-02",
+    "odooId": 3553,
+    "active": true
+  },
+  {
+    "slug": "servilletas-xtra-10-paquetes-3756",
+    "name": "Servilletas Xtra 10 Paquetes",
+    "brand": "generico",
+    "category": "servilletas",
+    "subcategory": "Dispenser",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packsPerBale": 10
+    },
+    "keySpecs": [
+      "10 paquetes"
+    ],
+    "sku": "0214-SER-40",
+    "odooId": 3756,
+    "active": true
+  },
+  {
+    "slug": "toalla-6-1-tad-500-pies-sumeh-3759",
+    "name": "Toalla 6/1 TAD 500 Pies Sumeh",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 19.05,
+      "sheetLengthCm": 20.32,
+      "sheets": 500,
+      "grammageGsm": 26,
+      "rollLengthFt": 500,
+      "color": "Blanco",
+      "fold": "Hoja continua",
+      "finish": "Repujado",
+      "paperType": "Papel toalla",
+      "packFormat": "6/1",
+      "caseDims": "24 x 15.5 x 8 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "500 pies"
+    ],
+    "sku": "0217-TOA-06",
+    "odooId": 3759,
+    "active": true
+  },
+  {
+    "slug": "toalla-6-1-tad-600-pies-3554",
+    "name": "Toalla 6/1 TAD 600 Pies",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 20.3,
+      "sheetLengthCm": 20.3,
+      "sheets": 600,
+      "grammageGsm": 32,
+      "rollLengthFt": 600,
+      "color": "Blanco",
+      "fold": "Hoja continua",
+      "finish": "Repujado",
+      "paperType": "Papel toalla",
+      "packFormat": "6/1",
+      "caseDims": "24 x 16 x 8 in/ 60.9 x 40.6 x 20.3 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "600 pies"
+    ],
+    "sku": "0012-TOA-01",
+    "odooId": 3554,
+    "active": true
+  },
+  {
+    "slug": "toalla-blanca-600-pies-6-rollos-fdo-4328",
+    "name": "TOALLA Blanca, 600 pies , 6 rollos/fdo",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 20.3,
+      "sheetLengthCm": 20.3,
+      "sheets": 700,
+      "grammageGsm": 30,
+      "rollLengthFt": 600,
+      "color": "Blanco",
+      "fold": "Hoja continua",
+      "finish": "Repujado",
+      "paperType": "Papel toalla",
+      "caseDims": "24 x 15.5 x 8 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "600 pies"
+    ],
+    "sku": "0278-TOA-37",
+    "odooId": 4328,
+    "active": true
+  },
+  {
+    "slug": "toalla-blanca-700-pies-6-rollos-fdo-4319",
+    "name": "TOALLA Blanca, 700 pies , 6 rollos/fdo",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 20.3,
+      "sheetLengthCm": 20.3,
+      "sheets": 700,
+      "grammageGsm": 30,
+      "rollLengthFt": 700,
+      "color": "Blanco",
+      "fold": "Hoja continua",
+      "finish": "Repujado",
+      "paperType": "Papel toalla",
+      "caseDims": "24 x 15.5 x 8 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "700 pies"
+    ],
+    "sku": "0270-TOA-36",
+    "odooId": 4319,
+    "active": true
+  },
+  {
+    "slug": "toalla-bleach-6-1-900gr-3762",
+    "name": "Toalla Bleach 6/1 900GR",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0220-TOA-09",
+    "odooId": 3762,
+    "active": true
+  },
+  {
+    "slug": "toalla-bleach-6-1-920-950-gr-generico-4048",
+    "name": "Toalla Bleach 6/1 920-950 Gr Generico",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Blanco",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0889-TOA-32",
+    "odooId": 4048,
+    "active": true
+  },
+  {
+    "slug": "toalla-blech-6-1-800-pies-1500-grs-3802",
+    "name": "Toalla Blech 6/1 800 Pies 1500 Grs",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthFt": 800,
+      "color": "Blanco",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "800 pies",
+      "Fardo 6/1"
+    ],
+    "sku": "0257-TOA-29",
+    "odooId": 3802,
+    "active": true
+  },
+  {
+    "slug": "toalla-blech-700-pies-6-1-3904",
+    "name": "Toalla Blech 700 Pies 6/1",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 20.3,
+      "sheetLengthCm": 20.3,
+      "sheets": 700,
+      "grammageGsm": 30,
+      "rollLengthFt": 700,
+      "color": "Blanco",
+      "fold": "Hoja continua",
+      "finish": "Repujado",
+      "paperType": "Papel toalla",
+      "packFormat": "6/1",
+      "caseDims": "24 x 15.5 x 8 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "700 pies"
+    ],
+    "sku": "0359-TOA-39",
+    "odooId": 3904,
+    "active": true
+  },
+  {
+    "slug": "toalla-blech-750-pies-caja-12-1-4058",
+    "name": "Toalla Blech 750 Pies Caja 12/1",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthFt": 750,
+      "color": "Blanco",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "750 pies",
+      "Fardo 12/1"
+    ],
+    "sku": "0889-TOA-33",
+    "odooId": 4058,
+    "active": true
+  },
+  {
+    "slug": "toalla-center-pull-6-1-3763",
+    "name": "Toalla Center Pull 6/1",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": "Center pull",
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0221-TOA-10",
+    "odooId": 3763,
+    "active": true
+  },
+  {
+    "slug": "toalla-cocina-2-1-pre-cortada-cja-9-2-18-4214",
+    "name": "Toalla Cocina 2/1 Pre- Cortada Cja 9/2 (18)",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "2/1"
+    },
+    "keySpecs": [
+      "Fardo 2/1"
+    ],
+    "sku": "0889-TOA-33",
+    "odooId": 4214,
+    "active": true
+  },
+  {
+    "slug": "toalla-economica-6-1-3796",
+    "name": "Toalla Economica 6/1",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0251-TOA-28",
+    "odooId": 3796,
+    "active": true
+  },
+  {
+    "slug": "toalla-economica-xtra-6-1-4266",
+    "name": "Toalla Economica Xtra 6/1",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0265-TOA-36",
+    "odooId": 4266,
+    "active": true
+  },
+  {
+    "slug": "toalla-especial-6-1-830-grs-4094",
+    "name": "Toalla Especial 6/1 830 Grs",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0889-TOA-33",
+    "odooId": 4094,
+    "active": true
+  },
+  {
+    "slug": "toalla-kraft-22-lbs-6-1-1578-4138",
+    "name": "Toalla Kraft 22 Lbs 6/1 1578",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Kraft",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0889-TOA-33",
+    "odooId": 4138,
+    "active": true
+  },
+  {
+    "slug": "toalla-kraft-22-lbs-6-1-1578-grs-3853",
+    "name": "Toalla Kraft 22 Lbs 6/1 1578 Grs",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 20.3,
+      "sheetLengthCm": 20.3,
+      "sheets": 800,
+      "color": "Kraft",
+      "fold": "Hoja continua",
+      "finish": "Repujado",
+      "paperType": "Papel toalla",
+      "packFormat": "6/1",
+      "caseDims": "24 x 16 x 8 in/ 60.9 x 40.6 x 20.3 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "800 hojas"
+    ],
+    "sku": "0308-TOA-32",
+    "odooId": 3853,
+    "active": true
+  },
+  {
+    "slug": "toalla-kraft-600-pies-6-1-3555",
+    "name": "Toalla Kraft 600 Pies 6/1",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [
+      "/images/products/odoo-3555.webp"
+    ],
+    "placeholderImage": false,
+    "specs": {
+      "ply": 1,
+      "widthCm": 20.3,
+      "sheetLengthCm": 20.3,
+      "sheets": 600,
+      "grammageGsm": 32,
+      "rollLengthFt": 600,
+      "color": "Kraft",
+      "fold": "Hoja continua",
+      "finish": "Repujado",
+      "paperType": "Papel toalla",
+      "packFormat": "6/1",
+      "caseDims": "24 x 16 x 8 in/ 60.9 x 40.6 x 20.3 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "600 pies"
+    ],
+    "sku": "0013-TOA-02",
+    "odooId": 3555,
+    "active": true
+  },
+  {
+    "slug": "toalla-kraft-center-pull-6-1-7-5-bolsas-lisas-3767",
+    "name": "Toalla Kraft Center Pull 6/1. 7.5\". Bolsas Lisas",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Kraft",
+      "fold": "Center pull",
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0225-TOA-14",
+    "odooId": 3767,
+    "active": true
+  },
+  {
+    "slug": "toalla-kraft-eco-6-1-3768",
+    "name": "Toalla Kraft Eco 6/1",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Kraft",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0226-TOA-15",
+    "odooId": 3768,
+    "active": true
+  },
+  {
+    "slug": "toalla-multifold-16-250-maine-3918",
+    "name": "Toalla Multifold 16/250 Maine",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": "Multifold",
+      "finish": null,
+      "paperType": null,
+      "packFormat": "16/250"
+    },
+    "keySpecs": [
+      "Fardo 16/250"
+    ],
+    "sku": "0373-TOA-40",
+    "odooId": 3918,
+    "active": true
+  },
+  {
+    "slug": "toalla-slim-12-1-450-pies-3839",
+    "name": "Toalla Slim 12/1 450 Pies",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthFt": 450,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "450 pies",
+      "Fardo 12/1"
+    ],
+    "sku": "0294-TOA-31",
+    "odooId": 3839,
+    "active": true
+  },
+  {
+    "slug": "toalla-slim-kraft-12-1-3878",
+    "name": "Toalla Slim Kraft 12/1",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 16.51,
+      "sheetLengthCm": 20.32,
+      "sheets": 350,
+      "grammageGsm": 32,
+      "color": "Kraft",
+      "fold": null,
+      "finish": "Repujado",
+      "paperType": "Papel toalla",
+      "packFormat": "12/1",
+      "caseDims": "19.50 x 13.25 x 16.50 in",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "350 hojas"
+    ],
+    "sku": "0333-TOA-36",
+    "odooId": 3878,
+    "active": true
+  },
+  {
+    "slug": "toalla-tad-13-libras-6-1-con-3770",
+    "name": "Toalla TAD 13 Libras 6/1 con",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0228-TOA-17",
+    "odooId": 3770,
+    "active": true
+  },
+  {
+    "slug": "toalla-tad-6-1-580-pies-3954",
+    "name": "Toalla TAD 6/1 580 Pies",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "rollLengthFt": 580,
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "580 pies",
+      "Fardo 6/1"
+    ],
+    "sku": "0409-TOA-43",
+    "odooId": 3954,
+    "active": true
+  },
+  {
+    "slug": "toalla-tad-6-1-pro-3771",
+    "name": "Toalla TAD 6/1 Pro",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0229-TOA-18",
+    "odooId": 3771,
+    "active": true
+  },
+  {
+    "slug": "toalla-tad-caja-12-1-4219",
+    "name": "Toalla TAD Caja 12/1",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/1"
+    },
+    "keySpecs": [
+      "Fardo 12/1"
+    ],
+    "sku": "0889-TOA-34",
+    "odooId": 4219,
+    "active": true
+  },
+  {
+    "slug": "toalla-tad-economica-6-1-3901",
+    "name": "Toalla TAD Economica 6/1",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0356-TOA-38",
+    "odooId": 3901,
+    "active": true
+  },
+  {
+    "slug": "toalla-tad-smc-6-1-3773",
+    "name": "Toalla TAD Smc 6/1",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0231-TOA-20",
+    "odooId": 3773,
+    "active": true
+  },
+  {
+    "slug": "toalla-tela-cocina-5-uds-50-paq-3893",
+    "name": "Toalla Tela Cocina 5 UDS 50 Paq",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packsPerBale": 50
+    },
+    "keySpecs": [
+      "50 paquetes"
+    ],
+    "sku": "0348-TOA-37",
+    "odooId": 3893,
+    "active": true
+  },
+  {
+    "slug": "toallacocina-individual-pre-cortada-4158",
+    "name": "Toallacocina Individual Pre- Cortada",
+    "brand": "generico",
+    "category": "toallas",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null
+    },
+    "keySpecs": [],
+    "sku": "0889-TOA-34",
+    "odooId": 4158,
+    "active": true
+  },
+  {
+    "slug": "toallas-6-1-2-1-ocean-breeze-3774",
+    "name": "Toallas 6/1 2/1 Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0232-TOA-21",
+    "odooId": 3774,
+    "active": true
+  },
+  {
+    "slug": "toallas-bleach-6-1-800-pies-3775",
+    "name": "Toallas Bleach 6/1 800 Pies",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "ply": 1,
+      "widthCm": 20.3,
+      "sheetLengthCm": 20.3,
+      "sheets": 800,
+      "grammageGsm": 30,
+      "rollLengthFt": 800,
+      "color": "Blanco",
+      "fold": "Hoja continua",
+      "finish": "Repujado",
+      "paperType": "Papel toalla",
+      "packFormat": "6/1",
+      "caseDims": "24 x 16 x 8 in/ 60.9 x 40.6 x 20.3 cm",
+      "compliance": "NORDOM 860/ NORDOM 870 res- CTE-08-2021"
+    },
+    "keySpecs": [
+      "1 capa",
+      "800 pies"
+    ],
+    "sku": "0233-TOA-22",
+    "odooId": 3775,
+    "active": true
+  },
+  {
+    "slug": "toallas-cocina-12-3-ocean-breeze-3777",
+    "name": "Toallas Cocina 12/3 Ocean Breeze",
+    "brand": "ocean-breeze",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "12/3"
+    },
+    "keySpecs": [
+      "Fardo 12/3"
+    ],
+    "sku": "0235-TOA-24",
+    "odooId": 3777,
+    "active": true
+  },
+  {
+    "slug": "toallas-eco-6-1-xtra-3778",
+    "name": "Toallas Eco 6/1 Xtra",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": null,
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0236-TOA-25",
+    "odooId": 3778,
+    "active": true
+  },
+  {
+    "slug": "toallas-kraft-6-1-1250-gr-3779",
+    "name": "Toallas Kraft 6/1 1250 Gr",
+    "brand": "generico",
+    "category": "toallas",
+    "subcategory": "Toalla",
+    "images": [],
+    "placeholderImage": true,
+    "specs": {
+      "color": "Kraft",
+      "fold": null,
+      "finish": null,
+      "paperType": null,
+      "packFormat": "6/1"
+    },
+    "keySpecs": [
+      "Fardo 6/1"
+    ],
+    "sku": "0237-TOA-26",
+    "odooId": 3779,
+    "active": true
+  }
+]

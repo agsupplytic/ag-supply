@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   AG Supply brand tokens — the ONLY place hex values live.
+   Anchors taken from the official logo (Logo_1.png), verified by pixel sample.
+   Do NOT use #1E6FB5 or #EB252A anywhere — those are incorrect legacy variants.
+   ========================================================================== */
+@theme {
+  /* Blue — primary. The logo blue is the hero; keep large surfaces bright,
+     reserve the deep tone for text/hover only. */
+  --color-brand-blue: #1c75bc;
+  --color-brand-blue-700: #175f9a;
+  --color-brand-blue-dark: #124d7c;
+  --color-brand-blue-600: #2f86ca;
+  --color-brand-blue-500: #4ea0da;
+  --color-brand-blue-400: #7bb8e6;
+  --color-brand-blue-200: #b8d6ec;
+  --color-brand-blue-100: #d7e8f5;
+  --color-brand-blue-50: #eaf3fb;
+
+  /* Ready-made brand gradient for big surfaces. Softened per client request —
+     lighter entry, but every stop still keeps white small text >= 4.5:1. */
+  --gradient-brand: linear-gradient(135deg, #2276b3 0%, #1a659f 52%, #134d7c 100%);
+  /* Occasional red band (client-requested alternation). Darkened so white text
+     is >= 5:1 across the whole ramp. */
+  --gradient-red: linear-gradient(135deg, #c81a22 0%, #a5121a 50%, #8f0f16 100%);
+
+  /* Red — accent / urgency. Large fills only in the deliberate red band above. */
+  --color-brand-red: #ed1c24;
+  --color-brand-red-dark: #c2131a;
+  --color-brand-red-900: #8f0f16; /* tiny white text on red (badges, band end) */
+
+  /* Bonche palette — sampled from the Bonche logo (green blob + orange/blue
+     bubbles). Used ONLY on Bonche brand surfaces to match its identity; never
+     for AG Supply itself. Ocean Breeze keeps the AG blue family. */
+  --color-bonche: #3f8f3a;
+  --color-bonche-dark: #245f22;
+  --color-bonche-100: #d9e8cb;
+  --color-bonche-50: #f1f6ec;
+  --color-bonche-accent: #f2941d; /* orange bubble */
+  --gradient-bonche: linear-gradient(135deg, #57ab4d 0%, #3c8c37 52%, #276627 100%);
+
+  /* WhatsApp green. `whatsapp` is the recognizable brand green used as the button
+     FILL; text/icon on top is `whatsapp-ink` (deep green, ~6:1 on #25d366) so the
+     button still passes contrast while looking like WhatsApp. */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-hover: #1fb257;
+  --color-whatsapp-ink: #0b3d1f;
+
+  /* Neutrals — warm-neutral grey, not blue-tinted. */
+  --color-white: #ffffff;
+  --color-ink: #333333;
+  --color-body: #535353; /* 7.6:1 on white, 7.0:1 on surface (AAA) */
+  --color-muted: #6a6a6a; /* 4.9:1 on white, 4.6:1 on surface (AA) */
+  --color-border: #e5e5e5; /* decorative card borders only */
+  --color-control-border: #8b9199; /* interactive borders — 3.2:1 non-text */
+  --color-surface: #f5f5f5;
+  --color-surface-2: #ededed;
+
+  /* Semantic aliases used by base elements. */
+  --color-background: #ffffff;
+  --color-foreground: #333333;
+
+  /* Typography — wired to next/font in app/layout.tsx. */
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: var(--font-montserrat), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body);
+
+  /* Motion. */
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-accordion-down: accordion-down 0.24s var(--ease-brand);
+  --animate-accordion-up: accordion-up 0.2s var(--ease-brand);
+
+  /* Container. */
+  --spacing-gutter: 1.5rem;
+}
+
+/* ============================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-white);
+    color: var(--color-body);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-ink);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.75rem, 3.6vw, 2.5rem); font-weight: 600; letter-spacing: -0.015em; }
+  h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 600; letter-spacing: -0.01em; }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::selection {
+    background: var(--color-brand-blue);
+    color: var(--color-white);
+  }
+
+  /* Dual ring: white inner + deep-blue outer stays visible on both light and
+     brand-blue backgrounds. */
+  :focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--color-brand-blue-dark);
+    border-radius: 3px;
+  }
+
+  /* Firefox number input: hide spinners for the quote qty field. */
+  input[type="number"] { appearance: textfield; -moz-appearance: textfield; }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+}
+
+/* ============================================================================
+   Utilities
+   ========================================================================== */
+@layer utilities {
+  /* Label / eyebrow text. */
+  .label-eyebrow {
+    font-family: var(--font-heading);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-brand-blue-dark); /* 8.8:1 white / 7.9:1 blue-50 (AAA) */
+  }
+
+  /* Bright brand gradient for large surfaces. */
+  .bg-brand-gradient {
+    background-image: var(--gradient-brand);
+  }
+  .bg-red-gradient {
+    background-image: var(--gradient-red);
+  }
+  .bg-bonche-gradient {
+    background-image: var(--gradient-bonche);
+  }
+
+  /* Blue scrim for text-over-photo sections. Deliberately light so the photo
+     stays the hero: a wedge behind the copy (top-left) that clears to
+     transparent on the right, plus a faint bottom band for any stat bar. */
+  .overlay-brand {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-brand-blue-dark) 30%, transparent) 0%,
+        color-mix(in srgb, var(--color-brand-blue-dark) 8%, transparent) 42%,
+        color-mix(in srgb, var(--color-brand-blue-dark) 44%, transparent) 100%
+      ),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-brand-blue-dark) 64%, transparent) 0%,
+        color-mix(in srgb, var(--color-brand-blue-dark) 30%, transparent) 44%,
+        transparent 74%
+      );
+  }
+  @media (max-width: 767px) {
+    .overlay-brand {
+      background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-brand-blue-dark) 52%, transparent) 0%,
+        color-mix(in srgb, var(--color-brand-blue-dark) 40%, transparent) 55%,
+        color-mix(in srgb, var(--color-brand-blue-dark) 58%, transparent) 100%
+      );
+    }
+  }
+
+  /* Scrim for interior page headers. Softened so the photo shows through, with a
+     diagonal wedge that stays dense enough behind the copy (left) for the white
+     h1 to hold >= 4.5:1, clearing toward the right. */
+  .hero-scrim-deep {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-brand-blue-dark) 46%, transparent) 0%,
+        color-mix(in srgb, var(--color-brand-blue-dark) 30%, transparent) 45%,
+        color-mix(in srgb, var(--color-brand-blue-dark) 52%, transparent) 100%
+      ),
+      linear-gradient(
+        105deg,
+        color-mix(in srgb, var(--color-brand-blue-dark) 66%, transparent) 0%,
+        color-mix(in srgb, var(--color-brand-blue-dark) 40%, transparent) 42%,
+        transparent 78%
+      );
+  }
+
+  /* Corner badge for a placeholder/test image. */
+  .figure-note {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-ink) 88%, transparent);
+    padding: 0.25rem 0.625rem;
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #fff;
+    backdrop-filter: blur(4px);
+  }
+
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+}
+
+/* Deter casual image extraction (not DRM — just friction). */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  user-select: none;
+}
+[data-protected] {
+  position: relative;
+}
+[data-protected]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: auto;
+}
+/* keep real controls above the shield */
+[data-protected] a,
+[data-protected] button {
+  position: relative;
+  z-index: 6;
+}
+
+/* Section reveal-on-scroll (hook: components/site/Reveal). */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s var(--ease-brand),
+    transform 0.6s var(--ease-brand);
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Swoosh "draw" on hover of a featured card. */
+.swoosh-draw path {
+  stroke-dasharray: var(--swoosh-len, 600);
+  stroke-dashoffset: var(--swoosh-len, 600);
+  transition: stroke-dashoffset 0.7s var(--ease-brand);
+}
+.group:hover .swoosh-draw path,
+.swoosh-draw:hover path {
+  stroke-dashoffset: 0;
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; transition: none; }
+  .swoosh-draw path { transition: none; stroke-dashoffset: 0; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

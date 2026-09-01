@@ -1,0 +1,464 @@
+<!-- AUTO-GENERADO por scripts/normalize-odoo.mjs — no editar a mano la sección de datos -->
+# Contenido pendiente de confirmar antes de publicar
+
+> Estado de todos los textos: **docs/COPY-NEEDED.md**.
+
+## 1. Textos institucionales
+- **Confirmados e integrados**: slogan, historia (2007/2014), planta (400 t/mes,
+  m², ubicación), misión, visión, valores, propuesta de valor, descripciones de
+  las 8 categorías y posicionamiento de las 2 marcas. Fuente: NotebookLM del cliente.
+- **Pendiente**: dirección exacta (calle/número en Las Palomas), correo público
+  (`infoagsupply@gmail.com` vs `agsupplycxc@gmail.com`), horario, sucursal Santo
+  Domingo, confirmación de distribuidores, proveedor de envío del formulario.
+
+## 2. Fotografía (reemplazar placeholders antes de publicar)
+- Hero, Nosotros y Planta usan paneles de marca como placeholder. Sustituir por **fotografía real** de la planta de conversión en Las Palomas, Santiago.
+- Solo **33** productos publicados traen foto real desde Odoo (35 imágenes extraídas en total). El resto (135) muestra un panel de categoría. Falta fotografía de producto/fardo.
+
+## 3. Datos de catálogo (import Odoo — AUTO)
+- Productos publicados: **168** (de 435 registros activos en Odoo).
+- Por categoría: Papel higiénico 38 · Toallas de papel 35 · Servilletas 42 · Interfoliados 4 · Papel facial 2 · Jabón y limpieza 10 · Desechables 13 · Cubertería 24
+- Por marca: Ocean Breeze 34 · Bonche 2 · Genérico 132
+
+### 3.1 Productos sin specs estructuradas (specs inferidas del nombre — revisar) — 99
+- Brillo Verde Durasol 2/1 133031
+- Cartucho Jabon Espuma, Caja de 4 UD
+- Combo Clear HW 2 PZAS Ten+cuchi
+- Combo HW 1 Pieza Pannez Impreso 100/1
+- Combo HW 2 PZAS Chito Impreso 100/1
+- Combos 2 PZAS Negro MW 500/1
+- Combos 2 Piezas Blancos MW 500/1
+- Cuchara Blanca MW 1000/1
+- Cuchara Negra HW 1000/1
+- Cuchillo Blanco MW 1000/1
+- Cuchillo Clear 1000/1
+- Cuchillo Negro HW 1000/1
+- Cuchillo Negro MW 1000/1
+- Desinfectante Lavanda Mibea 4/1
+- Dinner 12/100 boblez 1/4
+- Dispensador Inox Jumbo
+- Dispensador de Jabon Cartucho
+- Dispensador de Jabon Liquido C/valvula
+- Dispensador de Papel Jumbo
+- Dispensador de Toalla
+- Dispenser Comprimidas 25 de 185 fardo
+- Esponja Doble Uso Durasol
+- Esponja de Acero Inoxidable Durasol
+- Fardo Funda 2# Blanca V 10X200
+- Fardo Funda Baño Blanca 30 Paq
+- Fardo Funda Cocina 30 Paquetes
+- Funda 4 GLN 18X22 Blanca
+- HIGIENICO NORMAL. 45Mt. Envuelto. Fardo de 48
+- Higienico 30/1, Rosado, Genérico
+- Higienico 48/1 Sin Envoltura S.D
+- Higienico Jumbo 12 Libras 12/1. 2 Capas
+- Higienico Jumbo 14 Libras. 3.25. 2 Capas
+- Interfold Mini Napkin 18/125 2 PLY
+- Interfold Mini Napkin OB 30/200
+- Jumbo 1200 Pies 1 PLY
+- Jumbo AG 6/1, Lc, 2 Capas
+- Jumbo Economico 12/1, 2 Capas
+- Jumbo Economico 12/1, Alianza
+- Jumbos Mini 6/1 312 Pies
+- Lunch Napkin 24 Paqutes de 100 UD
+- Papel Encerado 16X24 Caja de 1000
+- Papel Encerado 70 Pies Caja 24/1
+- Papel Encerado Tipo Periodico 12X12 1000/1
+- Papel Higienico 12/1 Bionatural
+- Papel Higienico 12/1 M Ocean Breeze
+- Papel Higienico 48/1 M Individual O.B
+- Papel Higienico 6/1 9 Lbs
+- Papel Higienico 60 Mts Individual 0.B
+- Papel Higienico JUMBO16 Lbs 800 Pies 12/1
+- Papel Higienico Jumbo 1000 Pies 12/1 Caja
+- Papel Higienico Jumbo 16 Libras 12/1 Caja
+- Papel Higienico Xtra Jerez Brand 30/1
+- Papel MG Impresion 12X11 1000/1
+- Servilleta Cocktail Azul 8/125 2 PLY O.B
+- Servilleta Cocktail la Terminal 1000/1
+- Servilleta Dinner Azul 20150 2 PLY
+- Servilleta Dinner Azul 8/125, 2 PLY
+- Servilleta Dinner Kraft Senator 10/100
+- Servilleta Kraft Geto 10/500 Ocean Breeze
+- Servilletas 60/1
+- Servilletas Cocktail 20/50 Rojas 2 Ply. 2 Capas. Bolsas Lisas
+- Servilletas Cocktail Gris 8/125 2 PLY Caja O.B
+- Servilletas Dinner 12/250 O.B 1 PLY
+- Servilletas Dinner Rancho Chito
+- Servilletas Elegance 24 Pquetes de 60 UD
+- Servilletas Impresa Barcelo
+- Servilletas Lunch 20/50 Azul 2 PLY
+- Servilletas Lunch 20/50 Rojas 2 PLY
+- Servilletas Lunch 20/50 Salmon 2 PLY
+- Servilletas Maravilla 10 Paquetes de 400
+- Servilletas Xtra 10 Paquetes
+- Tenedor Blanco MW 1000/1
+- Tenedor Clear 1000/1
+- Tenedor Negro HW 1000/1
+- Tenedor Negro MW 1000/1
+- Toalla Bleach 6/1 900GR
+- Toalla Bleach 6/1 920-950 Gr Generico
+- Toalla Blech 6/1 800 Pies 1500 Grs
+- Toalla Blech 750 Pies Caja 12/1
+- Toalla Center Pull 6/1
+- Toalla Cocina 2/1 Pre- Cortada Cja 9/2 (18)
+- Toalla Economica 6/1
+- Toalla Economica Xtra 6/1
+- Toalla Kraft 22 Lbs 6/1 1578
+- Toalla Kraft Eco 6/1
+- Toalla Multifold 16/250 Maine
+- Toalla Slim 12/1 450 Pies
+- Toalla TAD 13 Libras 6/1 con
+- Toalla TAD 6/1 580 Pies
+- Toalla TAD 6/1 Pro
+- Toalla TAD Caja 12/1
+- Toalla TAD Economica 6/1
+- Toalla TAD Smc 6/1
+- Toalla Tela Cocina 5 UDS 50 Paq
+- Toallacocina Individual Pre- Cortada
+- Toallas 6/1 2/1 Ocean Breeze
+- Toallas Cocina 12/3 Ocean Breeze
+- Toallas Eco 6/1 Xtra
+- Toallas Kraft 6/1 1250 Gr
+
+### 3.2 Productos sin imagen real — 135
+- Brillo Verde Durasol 2/1 133031
+- Cartucho Jabon Espuma, Caja de 4 UD
+- Cocktail Kraft Senator 10/100. 1 Capa. Caja
+- Combo Clear HW 2 PZAS Ten+cuchi
+- Combo HW 1 Pieza Pannez Impreso 100/1
+- Combo HW 2 PZAS Chito Impreso 100/1
+- Combo HW 2 PZAS Pannez Impreso 100/1. Hight. Bolsas Lisas
+- Combos 1 Pieza Blanco MW 500UDS
+- Combos 1 Piezas Negro HW 500 UDS
+- Combos 2 Piezas Blancos MW 500/1
+- Combos en Caja HW 2 Piezas 500/1. Hight. Caja
+- Combos en Caja HW 3 Piezas 10/25 Hight
+- Cuchara Blanca MW 1000/1
+- Cuchara Negra HW 1000/1
+- Cucharas Blanca MW 40/25
+- Cuchillo Blanco MW 1000/1
+- Cuchillo Clear 1000/1
+- Cuchillo Negro HW 1000/1
+- Cuchillo Negro MW 1000/1
+- Desinfectante Lavanda Mibea 4/1
+- Dinner 12/100 boblez 1/4
+- Dispensador Inox Jumbo
+- Dispensador de Jabon Cartucho
+- Dispensador de Jabon Liquido C/valvula
+- Dispensador de Papel Jumbo
+- Dispensador de Toalla
+- Dispenser Comprimidas 25 de 185 fardo
+- Esponja Doble Uso Durasol
+- Esponja de Acero Inoxidable Durasol
+- Fardo Funda 2# Blanca V 10X200
+- Fardo Funda Baño Blanca 30 Paq
+- Fardo Funda Cocina 30 Paquetes
+- Fardo Funda Jardin
+- Fardo Funda Tanque Negra 30/5
+- Funda 13 GLS Cocina 24X30 Negra
+- Funda 4 GLN 18X22 Blanca
+- Funda MTZ 36 X 52 Hd Lisa 1/100
+- HIGIENICO 24/1, 350 hojas, liso, 2 capas
+- HIGIENICO 48/1, sin envoltura 5 pulgoso, 105 gr
+- HIGIENICO NORMAL. 45Mt. Envuelto. Fardo de 48
+- Higienico 12/1 U.R
+- Higienico 12/1, XL, Mopc
+- Higienico 12/4, 48/1, 200 Hojas, Bio, 2 Capas
+- Higienico 24/1, M, OB, 2 Capas
+- Higienico 30/1 Economico SD
+- Higienico 30/1 Economico, 2 Capas
+- Higienico 30/1, Rosado, Genérico
+- Higienico 48/1 Sin Envoltura S.D
+- Higienico 48/1, 35MTS, 2 Capa Envuelto Individual S.D
+- Higienico 48/1, 35MTS, S.D 2 Capas
+- Higienico 48/1, 60-65 Gr, 20MTS
+- Higienico 48/1, Envueltos, 35MTS, Ob. 2 Capas
+- Higienico 48/1, M, Individual OB
+- Higienico Jumbo 12 Libras 12/1. 2 Capas
+- Higienico Jumbo 12/1, Especial
+- Higienico Jumbo 14 Libras. 3.25. 2 Capas
+- Higienico Jumbo 6/1 Kraft, 2 Capas
+- Higienico Jumbo Center Pull Super 12/1. 2 Capas
+- Interfold Mini Napkin 18/125 2 PLY
+- Interfold Mini Napkin OB 30/200
+- Jumbo 12/1, Xtra, 2 Capas
+- Jumbo 1200 Pies 1 PLY
+- Jumbo AG 6/1, Lc, 2 Capas
+- Jumbos Mini 6/1 312 Pies
+- Papel Encerado 16X24 Caja de 1000
+- Papel Encerado 70 Pies Caja 24/1
+- Papel Encerado Tipo Periodico 12X12 1000/1
+- Papel Higienico 12/1 Bionatural
+- Papel Higienico 12/1 M Ocean Breeze
+- Papel Higienico 30 Mts Individual 0.B
+- Papel Higienico 48/1 M Individual O.B
+- Papel Higienico 6/1 9 Lbs
+- Papel Higienico 60 Mts Individual 0.B
+- Papel Higienico JUMBO16 Lbs 800 Pies 12/1
+- Papel Higienico Jumbo 1000 Pies 12/1 Caja
+- Papel Higienico Jumbo 16 Libras 12/1 Caja
+- Papel Higienico Xtra Jerez Brand 30/1
+- Papel MG Impresion 12X11 1000/1
+- Plegadizas Papel Encerado Bonche ( 75 Pies X 12 Pulg)
+- Servilleta Cocktail Azul 8/125 2 PLY O.B
+- Servilleta Cocktail la Terminal 1000/1
+- Servilleta Dinner 20/100, 2 PLY White Ocean Breeze
+- Servilleta Dinner 20/150 Ocean Breeze
+- Servilleta Dinner Azul 20150 2 PLY
+- Servilleta Dinner Azul 8/125, 2 PLY
+- Servilleta Kraft Geto 10/500 Ocean Breeze
+- Servilleta White 36/300 Tall Fold 8.5X13 O.B
+- Servilletas 60/1
+- Servilletas Cocktail 20/50 Rojas 2 Ply. 2 Capas. Bolsas Lisas
+- Servilletas Dinner 12/250 O.B 1 PLY
+- Servilletas Dinner Rancho Chito
+- Servilletas Elegance 24 Pquetes de 60 UD
+- Servilletas Impresa Barcelo
+- Servilletas Lunch 20/50 Salmon 2 PLY
+- Servilletas Maravilla 10 Paquetes de 400
+- Servilletas Xtra 10 Paquetes
+- TOALLA Blanca, 600 pies , 6 rollos/fdo
+- TOALLA Blanca, 700 pies , 6 rollos/fdo
+- Tenedor Blanco MW 1000/1
+- Tenedor Clear 1000/1
+- Tenedor MW Blanco 40/25
+- Tenedor Negro HW 1000/1
+- Tenedor Negro MW 1000/1
+- Toalla 6/1 TAD 500 Pies Sumeh
+- Toalla 6/1 TAD 600 Pies
+- Toalla Bleach 6/1 900GR
+- Toalla Bleach 6/1 920-950 Gr Generico
+- Toalla Blech 6/1 800 Pies 1500 Grs
+- Toalla Blech 700 Pies 6/1
+- Toalla Blech 750 Pies Caja 12/1
+- Toalla Center Pull 6/1
+- Toalla Cocina 2/1 Pre- Cortada Cja 9/2 (18)
+- Toalla Economica 6/1
+- Toalla Economica Xtra 6/1
+- Toalla Especial 6/1 830 Grs
+- Toalla Kraft 22 Lbs 6/1 1578
+- Toalla Kraft 22 Lbs 6/1 1578 Grs
+- Toalla Kraft Center Pull 6/1. 7.5". Bolsas Lisas
+- Toalla Kraft Eco 6/1
+- Toalla Multifold 16/250 Maine
+- Toalla Slim 12/1 450 Pies
+- Toalla Slim Kraft 12/1
+- Toalla TAD 13 Libras 6/1 con
+- Toalla TAD 6/1 580 Pies
+- Toalla TAD 6/1 Pro
+- Toalla TAD Caja 12/1
+- Toalla TAD Economica 6/1
+- Toalla TAD Smc 6/1
+- Toalla Tela Cocina 5 UDS 50 Paq
+- Toallacocina Individual Pre- Cortada
+- Toallas 6/1 2/1 Ocean Breeze
+- Toallas Bleach 6/1 800 Pies
+- Toallas Cocina 12/3 Ocean Breeze
+- Toallas Eco 6/1 Xtra
+- Toallas Kraft 6/1 1250 Gr
+
+### 3.3 Registros Odoo excluidos del catálogo — 259
+(servicios, materia prima, empaque, productos de segunda, sin clasificar)
+- [3545] (name) CORRUGADA FACIAL PLANA OCEAN BREEZE FACIAL
+- [3546] (name) CORRUGADAS FACIAL CUBO QUICK NAP OCEAN BREEZE 
+- [3566] (name) RECYCLED NAPKIN  PAPER 1 PLY BROWN 24",  DIA (45-50"), CORE 3 ", 20 GSM
+- [3568] (name) BOBINA OCTUBRE 2024, SERV ROJA, 2 PLY
+- [3569] (name) BOBINA PAPEL ENCERADO
+- [3571] (name) BOBINA SERVILLETA AZUL 2 PLY
+- [3572] (name) BOBINA SERVILLETA GRIS 2 PLY
+- [3575] (name) CAJA EXTERIOR SERVILLETAS COLOR - IMPRESA 
+- [3577] (categ) CAUCEDO
+- [3579] (name) CEPILLO PARED DURASOL CAJA 72 UNIT. Normal
+- [3593] (name) CORRUGADA COCKTAIL COC1001 OCEAN BREEZE 
+- [3594] (name) CORRUGADA DINNER DIN1001,1002 OCEAN
+- [3602] (name) CORRUGADAS DINNER 1PLY OCEAN BREEZE 
+- [3605] (name) ESCOBA GRANDE DURASOL 
+- [3606] (name) ESCOBA MEDIANA DURASOL 
+- [3607] (name) ESCOBA PEQUEÑA DURASOL
+- [3610] (name) ETIQUETAS ADHESIVA OCEAN BREEZE 138.98X
+- [3617] (name) FUNDA 10 1/4X8 SIN FUELLE CAL 120 BAJA 
+- [3619] (name) FUNDA 11X17 CAL 1.2 DISPENSER EXTRA
+- [3624] (name) FUNDA 30/1 LISA 20.5X26+4FF LD CAL 175
+- [3625] (name) FUNDA 30/1,20.75X30  CAL 1.8 EXTRA 
+- [3627] (name) FUNDA 32X44 AZUL PARA COMBOS 
+- [3631] (funda-empaque) Funda C-FOLD Ocean Breeze 6.75 X 12.1.75
+- [3632] (name) FUNDA DE PAPEL 2
+- [3633] (name) FUNDA DINNER IMP . 10.25X12+2 OCEAN BREZE
+- [3635] (name) FUNDA HIG 30/1.12.5+8X33, ROSADA BAJA DENS 
+- [3636] (name) FUNDA HIG BIO-NAT-IMP - BOPP 12/1 (19*13.75+4)
+- [3637] (funda-empaque) Funda Hig Bionatural P.e 4/1
+- [3639] (name) FUNDA HIGIENICO IMP 22X29+4,30/1
+- [3640] (name) FUNDA HIGIENICOS IMPRESA 16X18+3 CAL 150 12/1
+- [3642] (name) FUNDA JARDIN 30 GLN 28X35 NEGRA CAL 80
+- [3644] (name) FUNDA JUMBO 23X32,CAL 1.8 EXTRA
+- [3648] (name) FUNDA SERV 500, 12X21+2FF SL CAL  150 OCEAN
+- [3650] (name) FUNDA SERV BONCHE 10.625X 17+2 FF BAJA 
+- [3651] (funda-empaque) Funda Serv Lisa Exterior CF14.5X11X42
+- [3652] (name) FUNDA SERV MOKA 8X10.25+1.5 TALL FOLD
+- [3653] (name) FUNDA SERV. COMPRIMIDAS OB 6X9.5+1 CAL 150
+- [3655] (name) FUNDA SERV.LISA 11X17+2 CAL 120 BAJA
+- [3657] (funda-empaque) Funda Toalla 12X8X28, Lisa
+- [3659] (name) FUNDA TOALLA 21.5X29+4 LD CAL 175 BAJA DENS 
+- [3660] (name) FUNDA TOALLA/COMBO 16X18+3,LISA BAJA DENs cal 150
+- [3662] (name) FUNDAS DE PAPEL 4
+- [3664] (name) HANDY FUEL 2 HORAS (1/72)
+- [3697] (categ) KILO PAPEL BAÑO SEGUNDA
+- [3698] (categ) KILO PAPEL DINNER SEGUNDA
+- [3699] (categ) KILO PAPEL JUMBO SEGUNDA
+- [3700] (categ) KILO PAPEL SERVILLETAS MOKA SEGUNDA
+- [3701] (categ) KILO PAPEL SERVILLETAS SEGUNDA
+- [3702] (categ) KILO PAPEL TOALLA SEGUNDA
+- [3703] (name) LAMINA POLIPROPILENEO 6 3/4 20 A 25 MICRAS
+- [3704] (name) MULTIESPONJO DURASOL
+- [3705] (categ) NAVIERA
+- [3706] (name) PALA RECOGER DURASOL CAJA 24 UTNI
+- [3712] (name) PLEGADIZA FACIAL CUBO OCEAN BREEZE
+- [3713] (name) PLEGADIZA FACIAL PLANA OCEAN BREEZE
+- [3714] (unclassified) Plegadizas Coctail Elegance
+- [3715] (unclassified) Plegadizas One Napkin Impresas
+- [3716] (categ) PORT COLLECT
+- [3718] (name) RASTRILLO JARDINERA DURASOL
+- [3720] (name) SERVICIO COMBOS 2 PIEZAS EN CAJA 500/1
+- [3757] (categ) Servicio Aduanero
+- [3781] (categ) Transporte Terrestre
+- [3782] (categ) Wendy
+- [3794] (name) SERVILLETAS PARA COMBOS 12X15
+- [3801] (unclassified) Fundas 23.5X34+3 Lisas Baja Dens
+- [3803] (name) CAJA CORRUGADA TOWEL PLUS TOW 1006
+- [3808] (name) SERVILLETAS PARA COMBOS DISPENSER
+- [3837] (unclassified) Fundas Lisas 7X13+1 Cal 120
+- [3862] (name) FUNDA 16X18+4 CAL 150 HIG 12/1 IMP
+- [3865] (name) FUNDA 24/1 IMPRESA 20.125X23.5+4
+- [3875] (name) PAPHIGIENICO JUMBO 2/1 OCEAN BREEZE
+- [3876] (name) FUNDA JUMBO 2/1 15+2FF 14 SL CAL 150 OCEAN BREEZE
+- [3881] (name) FUNDA SERV. COCKTAIL 12.5X9+2.25 DIS 1004 O.B
+- [3897] (name) SERVILLETAS PARA COMBOS RANCHO  CHITO
+- [3908] (name) SERVILLETA COMBO DOÑA PULA.  KILO
+- [3909] (name) CAJA CORRUGADA CUTLERY  OCEAN BREEZE HUED
+- [3915] (name) CAJA CORRUGADA PARA COMBO 22X13X13
+- [3921] (name) PRODUCTO TERMINADO JRT JUMBO TISSUE PLUS DIC. 2022
+- [3924] (name) CAJA CORRUGADA 25X17X2.75 PAPEL ENCERADO HUED
+- [3927] (name) CAJA CORRUGADA DISP MOKA DIS 1001 OCEAN BREEZE
+- [3933] (name) FUNDA 21.5X29.5 CAL 1.8 TOALLA XTRA
+- [3937] (name) SERVILLETA PARA COMBO PANNEZ
+- [3939] (name) CAJA CORRUGADA HIGIENICO JUMBO
+- [3972] (name) TOALLA /JUMBO IRREGULAR
+- [3981] (name) BOBINA NAPKIN KRAFT  LOT 
+- [3993] (name) ETIQUETAS ADHESIVAS OCEAN BREEZE  173.7 X 90 MM
+- [3994] (name) FARDO FUNDA #4 BLANCA V 10X200
+- [3999] (funda-empaque) Funda Papel 1/2K PU 1/1000
+- [4000] (name) FUNDA PAPEL 4K PU 1/1000
+- [4001] (name) FUNDA PAPEL 7K PU 1/1000
+- [4004] (name) LAMINA COMBO PAPEL 5.6
+- [4006] (name) LAMINA HIGIENICO 15 3/8 P.P.  ENVUELTO  WAVES
+- [4007] (name) LAMINA HIGIENICOS  BE LIVE (ROLLO IMP.BOPP TRANS A:17´´)
+- [4008] (name) LAMINA SERV. POLIETILENO CAL.120, 50UD.  OB
+- [4011] (unclassified) Papel Envoltura Teddy
+- [4015] (name) PROD TERM. HWT TOWEL TISSUE PLUS DIC 2022
+- [4018] (name) SUAPE INDUSTRIAL RUBERMAID
+- [4022] (name) BOLSA KRAFT 5X5 + FUELLE
+- [4023] (funda-empaque) Funda de Papel 25K PU 1/500
+- [4025] (categ) Implementación Sistema Odoo
+- [4026] (name) BOBINA SERVILLETA 2 PLY SALMON
+- [4027] (name) NAPKIN 2 PLY BLACK 17 GSM, WIDTH 10" (254 MM), 
+- [4028] (name) BOBINA TOALLA KRAFT LOT
+- [4029] (name) Napkin Tissue paper 15 inches wide (381 mm) 3 inches core, 1 ply, 20 GSM
+- [4032] (name) Core Stock 3 inches 220 GSM diameter 48"
+- [4033] (name) Napkin Tissue paper 9.5 inches(241 mm) core 3 inches 1 Ply 20 GSM
+- [4034] (name) PAPER TOWEL 1 PLY 30 GSM 100", DIAM 45-50 ", CORE 3 " ,
+- [4036] (name) Bath Tissue Virgin, 2 ply,  100"  wide (2540 mm), 14.5 GSM, 3 " core, DIAM 45-50"
+- [4037] (name) BOBINA SERVILLETA LOTE 1 PLY
+- [4039] (categ) Servicio Telefono y comunicacion
+- [4040] (name) BOBINA TOALLA TAD LOTE 18 LB 101" 
+- [4041] (name) BOBINA TOALLA CENTER PULL LOTE
+- [4042] (name) Napkin Tissue 20 GSM , 24" (609.6 mm) Width, 3" core, 1 ply, virgen
+- [4043] (name) Facial tissue 2 ply 50 " (1270 mm), 14.5 GSM, 3 " core,  DIAM 45-50"
+- [4044] (name) Napkin tissue Paper, 36 inches wide (914 mm), 20 GSM, 3 inches core
+- [4045] (categ) Servicios aduaneros y gastos
+- [4049] (categ) SUMINISTROS MAQUINARIAS Y EQUIPOS
+- [4050] (categ) SUMINISTROS EDIFICACION
+- [4051] (categ) SUMINISTROS MATERIAL DE EMPAQUE
+- [4052] (categ) SUMINISTROS MATERIALES OFICINA
+- [4053] (categ) SUMINISTRO COMBUSTIBLE
+- [4054] (categ) SERVICIOS ADUANEROS Y GASTOS IMPORT
+- [4055] (categ) SERVICIO APORTE ANUAL
+- [4056] (categ) MANTENIMIENTO ACTIVOS FIJOS
+- [4057] (categ) SERVICIOS LEGALES
+- [4061] (categ) ATENCIONES AL PERSONAL
+- [4062] (categ) SERVICIO ENVIO Y TRANSPORTE
+- [4063] (categ) SERVICIO ENERGIA ELECTRICA
+- [4066] (name) Fardo funda Papel #4
+- [4067] (categ) SERVICIO TELEFONO Y COMUNICACION
+- [4068] (categ) INTERESES PRESTAMOS FORMALES
+- [4071] (categ) COMISIONES VENDEDORES
+- [4076] (unclassified) Oferta Bonche 10 Paquetes
+- [4077] (name) CAJA CORRUGADA GENERICA CUCHARA/TENEDOR 
+- [4079] (name) FUNDA 55 GLN TANQUE 34 X 46 NEGRA CAL 90
+- [4080] (categ) COMISION PRODUC. MAQ. SERVILLETAS
+- [4081] (categ) OTROS INTERESES SOBRE PRESTAMOS
+- [4082] (name) Artículos Fuera de Inventario
+- [4083] (categ) SALARIOS
+- [4084] (categ) LEASING CAMION
+- [4085] (categ) BENEFICIOS
+- [4086] (categ) AVANCE SUELDOS
+- [4087] (categ) INCENTIVOS
+- [4088] (categ) DIETAS Y VIATICOS
+- [4089] (categ) DESCUENTO EMPLEADOS
+- [4092] (categ) ARRENDAMIENTO
+- [4093] (categ) MENSAJERIA
+- [4097] (categ) Anticipo
+- [4100] (categ) COMBUSTIBLE A VENDEDORES
+- [4101] (categ) REPARACION EDIFICACION
+- [4102] (categ) SERVICIO AGUA Y BASURA
+- [4103] (categ) SERVICIOS INFORMATICOS
+- [4104] (categ) ANTICIPO ISR
+- [4105] (categ) INFOTEP
+- [4106] (categ) USO VEHICULOS VENDEDORES
+- [4109] (categ) AFP EMPRESA
+- [4110] (categ) SFS EMPRESA
+- [4111] (categ) SRL APORTE
+- [4112] (categ) RETENCION AFP EMPLEADO
+- [4113] (categ) RETENCION SFS EMPLEADO
+- [4114] (categ) PER CAPITA ADICIONAL
+- [4115] (name) SERVILLETA PARA COMBO DISPENSER(KILO )
+- [4118] (name) LAMINA  HIG. BOPP INDIVIDUAL M O.B
+- [4119] (unclassified) Papel Envoltura Ocean Breeze
+- [4120] (unclassified) Papel Envoltura Ocean Breeze Azul/verde
+- [4121] (unclassified) Papel Envoltura Ocean Breeze Azul/rojo
+- [4126] (name) BOBINA 1 PLY TOWEL 30 GSM 24" , DIAM 45- 50", CORE 3"
+- [4129] (categ) SUMINISTROS LIMPIEZA
+- [4130] (name) SERVICIO COMBOS 3 PIEZAS  HW CAJA 3
+- [4131] (name) SERVICIO DE COMBO 1 PIEZA
+- [4132] (categ) DESCUENTO S/ VENTAS
+- [4134] (name)  1 PLY TOWEL 30 GSM  12" , DIAM 45"-49", CORE 3" C FOLD 
+- [4135] (categ) INTERES PREST. BANESCO
+- [4136] (name) CAJA CORRUGADA TOALLA 12/1 KRAFT
+- [4137] (categ) INTERES PREST. SANTA CRUZ
+- [4139] (categ) INTERES COOPDENOR
+- [4140] (categ) INTERES COOPEDAC
+- [4141] (categ) COMISION BANCARIA
+- [4143] (name) BOBINA TOALLA TAD 28 GSM, 3" core  100"  DIA 45-50 "
+- [4148] (name) BOBINA HIGIENICO LOTE
+- [4149] (categ) Cheques Devueltos de Clientes
+- [4154] (name) BOBINA TOALLA BLEACH LOTE
+- [4157] (categ) DESCUENTO S/COMPRAS
+- [4160] (name) FUNDA SL 12 X 17+2  LUNCH OCEAN BREEZE
+- [4162] (name) FUNDA SL 16 X 18.5+4 JOSE LUIS 12/1
+- [4163] (name) CAJA CORRUGADA COMBO LISA IPP
+- [4167] (name) BOBINA 1 PLY TOWEL 21 GSM 100" DIAM 45-49", CORE 3"
+- [4171] (categ) INGRESOS VENTA ACTIVO
+- [4172] (categ) ITBIS EN IMPORTACION
+- [4178] (unclassified) Fundas SL 11 X 17 + 2 Samey
+- [4184] (name) combo Sorbeto mas servilleta caja 1000
+- [4195] (categ) 482
+- [4196] (categ) ENERGIA ELECTRICA
+- [4197] (categ) SERVILLETAS PARA COMBOS 12X15 (1000 unidades)
+- [4200] (categ) Caja Perchas 84 units
+- [4201] (categ) Caja sorteos envueltos, 24/500
+- [4202] (name) Brazaletes papel, caja 20 millares
+- [4203] (categ) Servicio de consolidadcion
+- [4204] (categ) [0460-PAP-27] PAPEL HIGIENICO 12/1 BIONATURA 300 hojasL
+- [4205] (categ) [0127-HIG-08] HIGIENICO 12/4, 48/1, 300 HOJAS, BIO, 2 capas
+
+…y 59 más
