@@ -60,7 +60,7 @@ export default async function HomePage() {
     {
       icon: Layers,
       value: <CountUp to={products.length} suffix="+" />,
-      label: `${categories.length} ${t("nav.products").toLowerCase()} · ${t("stats.capacity")}`,
+      label: `${categories.length} categorías · ${t("stats.capacity")}`,
     },
     { icon: ShieldCheck, value: t("stats.brands"), label: t("stats.brandsLabel") },
   ];

@@ -74,10 +74,11 @@ export default async function CategoriaPage({
           </span>
         }
         title={category.name}
-        lead={category.description}
+        lead={category.short}
         meta={`${products.length} ${
           products.length === 1 ? "producto" : "productos"
         } en esta categoría`}
+        body={<p>{category.description}</p>}
       />
 
       <Container className="py-12">

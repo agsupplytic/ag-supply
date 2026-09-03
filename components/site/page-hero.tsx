@@ -22,6 +22,7 @@ export function PageHero({
   breadcrumb,
   title,
   lead,
+  body,
   meta,
   actions,
   tone = "deep",
@@ -33,6 +34,12 @@ export function PageHero({
   breadcrumb?: React.ReactNode;
   title: string;
   lead?: React.ReactNode;
+  /**
+   * Long-form detail (technical specs, formats). Never set white-over-photo:
+   * it renders in a plain light band right under the hero, dark text on white,
+   * so a spec paragraph stays legible and does not push page content off-screen.
+   */
+  body?: React.ReactNode;
   meta?: React.ReactNode;
   actions?: React.ReactNode;
   /** "deep" = darker scrim for busy interior photos; "brand" = light overlay. */
@@ -44,6 +51,7 @@ export function PageHero({
   const isDev = process.env.NODE_ENV !== "production";
 
   return (
+    <>
     <section
       className={cn(
         "relative isolate border-b border-border text-white",
@@ -105,5 +113,16 @@ export function PageHero({
         {children}
       </Container>
     </section>
+
+    {body && (
+      <div className="border-b border-border bg-white">
+        <Container className="py-8 md:py-10">
+          <div className="max-w-3xl text-pretty leading-relaxed text-body">
+            {body}
+          </div>
+        </Container>
+      </div>
+    )}
+    </>
   );
 }
