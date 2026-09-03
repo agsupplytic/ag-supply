@@ -194,7 +194,7 @@ export default async function ProductPage({
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={src}
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${src}`}
                         alt={product.name}
                         className="h-full w-full object-contain p-2"
                       />

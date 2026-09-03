@@ -27,6 +27,11 @@ jobs:
       - run: npm run build
         env:
           NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.NEXT_PUBLIC_WEB3FORMS_KEY }}
+          # GitHub Pages sirve el proyecto desde /ag-supply/. Con dominio propio
+          # (agsupply.com.do) el sitio va a la raíz: borrar esta línea entonces.
+          NEXT_PUBLIC_BASE_PATH: /ag-supply
+      - name: Disable Jekyll
+        run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
