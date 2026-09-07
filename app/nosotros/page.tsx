@@ -13,7 +13,22 @@ import {
   Gauge,
   Building2,
   Boxes,
+  HeartHandshake,
+  Users,
+  Sparkles,
+  ShieldCheck,
+  Lightbulb,
 } from "lucide-react";
+
+/** Íconos para siteConfig.values, en el mismo orden. */
+const VALUE_ICONS = [
+  HeartHandshake,
+  Users,
+  Gauge,
+  Sparkles,
+  ShieldCheck,
+  Lightbulb,
+];
 import Image from "next/image";
 import { Section, SectionHeading } from "@/components/site/section";
 import { Container } from "@/components/site/container";
@@ -222,20 +237,28 @@ export default async function NosotrosPage() {
       </div>
 
       {/* =========================================================== VALUES */}
-      <Section className="bg-surface">
-        <SectionHeading title="Seis valores que sostienen la operación" />
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {siteConfig.values.map((v) => (
-            <div key={v.name} className="panel p-6">
-              <span className="block h-1 w-8 rounded-full bg-brand-blue" />
-              <p className="mt-4 font-heading text-lg font-semibold text-ink">
-                {v.name}
-              </p>
-              <p className="mt-1.5 text-sm text-body">{v.text}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
+      <div className="relative isolate overflow-hidden bg-brand-gradient text-white">
+        <Section className="relative">
+          <SectionHeading
+            title="Seis valores que sostienen la operación"
+            className="[&_h2]:text-white"
+          />
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {siteConfig.values.map((v, i) => {
+              const Icon = VALUE_ICONS[i];
+              return (
+                <div key={v.name} className="panel-quiet p-6">
+                  <span className="panel-icon size-11">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <p className="mt-4 font-heading text-lg font-bold">{v.name}</p>
+                  <p className="mt-1.5 text-sm text-white/85">{v.text}</p>
+                </div>
+              );
+            })}
+          </div>
+        </Section>
+      </div>
 
       {/* ================================================ CONVERSION PROCESS */}
       <div className="bg-brand-blue-50">

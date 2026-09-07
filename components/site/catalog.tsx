@@ -1,12 +1,15 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { ProductCard } from "./product-card";
 import { brandLabel } from "./brand-badge";
 import { cn } from "@/lib/utils";
 import type { Brand, Category, Product } from "@/lib/content/types";
+
+const norm = (s: string) =>
+  s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 
 const ATTR_DEFS = [
   { key: "ply", param: "capas", label: "Capas", suffix: (v: string) => `${v} ${v === "1" ? "capa" : "capas"}` },
@@ -38,6 +41,9 @@ export function Catalog({
     color: params.get("color") ?? "",
   };
 
+  const urlQ = params.get("q") ?? "";
+  const [query, setQuery] = useState(urlQ);
+
   const subOptions = useMemo(() => {
     const cat = categories.find((c) => c.slug === selected.categoria);
     if (!cat?.subcategories?.length) return [];
@@ -61,8 +67,16 @@ export function Catalog({
   );
 
   const clearAll = useCallback(() => {
+    setQuery("");
     router.replace(pathname, { scroll: false });
   }, [pathname, router]);
+
+  // debounce the box -> ?q=
+  useEffect(() => {
+    if (query.trim() === urlQ) return;
+    const t = setTimeout(() => setParam("q", query.trim()), 250);
+    return () => clearTimeout(t);
+  }, [query, urlQ, setParam]);
 
   // Apply category + brand + subcategory first; attribute options come from that subset.
   const preAttr = useMemo(
@@ -93,17 +107,21 @@ export function Catalog({
     return out;
   }, [preAttr]);
 
-  const filtered = useMemo(
-    () =>
-      preAttr.filter((p) =>
-        ATTR_DEFS.every((def) => {
-          const want = selected[def.param as keyof typeof selected];
-          if (!want) return true;
-          return String(p.specs[def.key as keyof Product["specs"]] ?? "") === want;
-        }),
-      ),
-    [preAttr, selected],
-  );
+  const filtered = useMemo(() => {
+    const q = norm(urlQ.trim());
+    return preAttr.filter((p) => {
+      const okAttrs = ATTR_DEFS.every((def) => {
+        const want = selected[def.param as keyof typeof selected];
+        if (!want) return true;
+        return (
+          String(p.specs[def.key as keyof Product["specs"]] ?? "") === want
+        );
+      });
+      if (!okAttrs) return false;
+      if (!q) return true;
+      return norm(`${p.name} ${p.sku ?? ""}`).includes(q);
+    });
+  }, [preAttr, selected, urlQ]);
 
   const brandCountsInScope = useMemo(() => {
     const base = products.filter(
@@ -120,7 +138,8 @@ export function Catalog({
     selected.sub ||
     selected.capas ||
     selected.doblez ||
-    selected.color;
+    selected.color ||
+    urlQ;
 
   return (
     <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
@@ -217,21 +236,48 @@ export function Catalog({
 
       {/* grid */}
       <div>
+        <div className="relative mb-4">
+          <Search
+            className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted"
+            aria-hidden
+          />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Buscar por nombre o referencia…"
+            aria-label="Buscar productos"
+            className="w-full rounded-lg border border-control-border bg-white py-2.5 pl-10 pr-9 text-sm text-ink placeholder:text-muted focus-visible:border-brand-blue"
+          />
+          {query && (
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              aria-label="Borrar búsqueda"
+              className="absolute right-2.5 top-1/2 grid size-6 -translate-y-1/2 place-items-center rounded-md text-muted hover:text-brand-blue-dark"
+            >
+              <X className="size-4" />
+            </button>
+          )}
+        </div>
         <p className="mb-5 text-sm text-muted">
           {filtered.length}{" "}
           {filtered.length === 1 ? "producto" : "productos"}
+          {urlQ ? ` para «${urlQ}»` : ""}
           {selected.marca ? ` · ${brandLabel(selected.marca as never)}` : ""}
         </p>
         {filtered.length === 0 ? (
           <div className="rounded-xl border border-dashed border-border p-12 text-center">
             <p className="font-heading font-semibold text-ink">
-              Sin resultados para esta combinación de filtros.
+              {urlQ
+                ? `Nada coincide con «${urlQ}».`
+                : "Sin resultados para esta combinación de filtros."}
             </p>
             <button
               onClick={clearAll}
               className="mt-2 text-sm font-medium text-brand-blue hover:underline"
             >
-              Limpiar filtros
+              Limpiar {urlQ ? "búsqueda y filtros" : "filtros"}
             </button>
           </div>
         ) : (

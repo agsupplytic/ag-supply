@@ -77,19 +77,17 @@ export async function BrandLanding({
           )}
         </div>
 
-        {/* logo as oversized artwork bleeding off the right — no plate */}
-        <Image
-          src={heroLogo}
-          alt=""
-          aria-hidden
-          width={1600}
-          height={1000}
-          priority
-          draggable={false}
-          className="pointer-events-none absolute -right-[8%] top-1/2 hidden w-[46%] -translate-y-1/2 opacity-30 mix-blend-soft-light lg:block"
-        />
-
         <Container className="relative max-w-2xl py-20 md:py-28">
+          {/* full brand logo, crisp, no plate */}
+          <Image
+            src={heroLogo}
+            alt={brand?.name ?? ""}
+            width={1600}
+            height={1000}
+            priority
+            draggable={false}
+            className="mb-6 h-16 w-auto max-w-[15rem] object-contain object-left drop-shadow-[0_3px_16px_rgba(0,0,0,0.3)] md:h-20"
+          />
           <h1 className="text-white">{headline}</h1>
           <p className="mt-3 font-heading text-xl italic text-white/95">
             {siteConfig.slogan}

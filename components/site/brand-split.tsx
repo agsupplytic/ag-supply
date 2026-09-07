@@ -18,27 +18,20 @@ function BrandHalf({ slug, name, tag, body }: Half) {
   return (
     <Link
       href={`/${slug}`}
-      className={`group relative isolate flex min-h-[24rem] flex-col justify-end overflow-hidden p-8 text-white md:min-h-[30rem] md:p-14 ${THEME[slug]}`}
+      className={`group relative isolate flex min-h-[24rem] flex-col justify-between overflow-hidden p-8 text-white md:min-h-[30rem] md:p-14 ${THEME[slug]}`}
     >
-      {/* logo as an oversized graphic bleeding off the top-right — no plate */}
+      {/* full logo, crisp, no plate */}
       <Image
         src={`/images/brand/${slug}-logo.webp`}
-        alt=""
-        aria-hidden
+        alt={name}
         width={1600}
         height={1000}
         priority
         draggable={false}
-        className="pointer-events-none absolute -right-[12%] -top-[14%] w-[78%] opacity-25 mix-blend-soft-light transition-all duration-500 group-hover:-translate-y-1 group-hover:opacity-40 md:w-[64%]"
+        className="h-16 w-auto max-w-[70%] object-contain object-left drop-shadow-[0_3px_14px_rgba(0,0,0,0.28)] transition-transform duration-500 group-hover:scale-105 md:h-24"
       />
 
-      {/* keep the copy legible over the artwork */}
-      <span
-        aria-hidden
-        className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/25 to-transparent"
-      />
-
-      <div className="relative">
+      <div>
         <p className="font-heading text-4xl font-bold tracking-tight md:text-5xl">
           {name}
         </p>
@@ -59,8 +52,8 @@ function BrandHalf({ slug, name, tag, body }: Half) {
 
 /**
  * Full-bleed split band — the two brand lines as two doors, edge to edge, each
- * its own colour field. The brand name in large type carries the identity; the
- * logo rides behind it as oversized artwork, never boxed on white.
+ * its own colour field with its full logo shown crisp (no white plate) and the
+ * brand name set large.
  */
 export function BrandSplit({
   oceanBreeze,
