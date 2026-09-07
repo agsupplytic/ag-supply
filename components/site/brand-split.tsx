@@ -18,31 +18,33 @@ function BrandHalf({ slug, name, tag, body }: Half) {
   return (
     <Link
       href={`/${slug}`}
-      className={`group relative isolate flex min-h-[22rem] flex-col justify-between overflow-hidden p-8 text-white md:min-h-[28rem] md:p-14 ${THEME[slug]}`}
+      className={`group relative isolate flex min-h-[24rem] flex-col justify-end overflow-hidden p-8 text-white md:min-h-[30rem] md:p-14 ${THEME[slug]}`}
     >
-      {/* hover wash */}
-      <span
+      {/* logo as an oversized graphic bleeding off the top-right — no plate */}
+      <Image
+        src={`/images/brand/${slug}-logo.webp`}
+        alt=""
         aria-hidden
-        className="absolute inset-0 -z-10 bg-white/0 transition-colors duration-300 group-hover:bg-white/[0.06]"
+        width={1600}
+        height={1000}
+        priority
+        draggable={false}
+        className="pointer-events-none absolute -right-[12%] -top-[14%] w-[78%] opacity-25 mix-blend-soft-light transition-all duration-500 group-hover:-translate-y-1 group-hover:opacity-40 md:w-[64%]"
       />
 
-      {/* logo (PNG con alfa) sobre placa blanca */}
-      <span className="inline-flex w-fit rounded-2xl bg-white px-6 py-5 shadow-xl transition-transform duration-500 group-hover:scale-[1.03] md:px-8 md:py-6">
-        <Image
-          src={`/images/brand/${slug}-logo.webp`}
-          alt={name}
-          width={320}
-          height={200}
-          draggable={false}
-          className="h-12 w-auto object-contain md:h-16"
-        />
-      </span>
+      {/* keep the copy legible over the artwork */}
+      <span
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/25 to-transparent"
+      />
 
-      <div className="mt-10">
-        <p className="font-heading text-3xl font-bold md:text-4xl">{name}</p>
+      <div className="relative">
+        <p className="font-heading text-4xl font-bold tracking-tight md:text-5xl">
+          {name}
+        </p>
         <p className="mt-2 text-sm font-semibold text-white/80">{tag}</p>
         {body && (
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/90">
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/90">
             {body}
           </p>
         )}
@@ -57,10 +59,16 @@ function BrandHalf({ slug, name, tag, body }: Half) {
 
 /**
  * Full-bleed split band — the two brand lines as two doors, edge to edge, each
- * in its own colour with the logo crisp on white. Replaces the earlier grid of
- * small bordered cards.
+ * its own colour field. The brand name in large type carries the identity; the
+ * logo rides behind it as oversized artwork, never boxed on white.
  */
-export function BrandSplit({ oceanBreeze, bonche }: { oceanBreeze: Half; bonche: Half }) {
+export function BrandSplit({
+  oceanBreeze,
+  bonche,
+}: {
+  oceanBreeze: Half;
+  bonche: Half;
+}) {
   return (
     <div className="grid md:grid-cols-2">
       <BrandHalf {...oceanBreeze} />

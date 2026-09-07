@@ -20,8 +20,8 @@ export function CategoryCard({ category }: { category: Category }) {
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
       )}
-      {/* blue scrim: dense at the base for the text, clearing toward the top */}
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-blue-dark via-brand-blue-dark/85 to-brand-blue-dark/35" />
+      {/* blue scrim: dense at the base for the text, clearing so the photo reads on top */}
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-blue-dark via-brand-blue-dark/70 via-45% to-brand-blue-dark/5" />
 
       <div className="relative">
         <span className="panel-icon on-dark size-11">

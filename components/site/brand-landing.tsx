@@ -77,53 +77,50 @@ export async function BrandLanding({
           )}
         </div>
 
-        <Container className="relative grid gap-10 py-20 md:py-28 lg:grid-cols-[1fr_360px] lg:items-center">
-          <div>
-            <h1 className="max-w-2xl text-white">{headline}</h1>
-            <p className="mt-3 font-heading text-xl italic text-white/95">
-              {siteConfig.slogan}
-            </p>
-            <p className="mt-5 max-w-xl text-lg text-white/90">{subhead}</p>
-            <div className="mt-7 flex flex-wrap items-center gap-2">
-              {audience.map((a) => (
-                <span
-                  key={a}
-                  className="rounded-full bg-white/15 px-3 py-1 text-sm font-medium text-white ring-1 ring-white/25"
-                >
-                  {a}
-                </span>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button
-                asChild
-                size="lg"
-                className={
-                  tone === "premium"
-                    ? "bg-white text-brand-blue hover:bg-brand-blue-50"
-                    : "bg-white text-bonche-dark hover:bg-bonche-50"
-                }
-              >
-                <Link href={`/productos?marca=${slug}`}>
-                  Ver productos {brand?.name}
-                  <ArrowRight className="size-5" />
-                </Link>
-              </Button>
-              <WhatsAppButton size="lg" />
-            </div>
-          </div>
+        {/* logo as oversized artwork bleeding off the right — no plate */}
+        <Image
+          src={heroLogo}
+          alt=""
+          aria-hidden
+          width={1600}
+          height={1000}
+          priority
+          draggable={false}
+          className="pointer-events-none absolute -right-[8%] top-1/2 hidden w-[46%] -translate-y-1/2 opacity-30 mix-blend-soft-light lg:block"
+        />
 
-          {/* brand logo on a clean white plate */}
-          <div className="flex items-center justify-center rounded-2xl bg-white p-8 shadow-2xl">
-            <Image
-              src={heroLogo}
-              alt={brand?.name ?? ""}
-              width={460}
-              height={288}
-              priority
-              draggable={false}
-              className="h-auto w-full max-w-[22rem] object-contain"
-            />
+        <Container className="relative max-w-2xl py-20 md:py-28">
+          <h1 className="text-white">{headline}</h1>
+          <p className="mt-3 font-heading text-xl italic text-white/95">
+            {siteConfig.slogan}
+          </p>
+          <p className="mt-5 text-lg text-white/90">{subhead}</p>
+          <div className="mt-7 flex flex-wrap items-center gap-2">
+            {audience.map((a) => (
+              <span
+                key={a}
+                className="rounded-full bg-white/15 px-3 py-1 text-sm font-medium text-white ring-1 ring-white/25"
+              >
+                {a}
+              </span>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Button
+              asChild
+              size="lg"
+              className={
+                tone === "premium"
+                  ? "bg-white text-brand-blue hover:bg-brand-blue-50"
+                  : "bg-white text-bonche-dark hover:bg-bonche-50"
+              }
+            >
+              <Link href={`/productos?marca=${slug}`}>
+                Ver productos {brand?.name}
+                <ArrowRight className="size-5" />
+              </Link>
+            </Button>
+            <WhatsAppButton size="lg" />
           </div>
         </Container>
       </section>
