@@ -77,48 +77,53 @@ export async function BrandLanding({
           )}
         </div>
 
-        <Container className="relative max-w-2xl py-20 md:py-28">
-          {/* full brand logo, crisp, no plate */}
-          <Image
-            src={heroLogo}
-            alt={brand?.name ?? ""}
-            width={1600}
-            height={1000}
-            priority
-            draggable={false}
-            className="mb-6 h-16 w-auto max-w-[15rem] object-contain object-left drop-shadow-[0_3px_16px_rgba(0,0,0,0.3)] md:h-20"
-          />
-          <h1 className="text-white">{headline}</h1>
-          <p className="mt-3 font-heading text-xl italic text-white/95">
-            {siteConfig.slogan}
-          </p>
-          <p className="mt-5 text-lg text-white/90">{subhead}</p>
-          <div className="mt-7 flex flex-wrap items-center gap-2">
-            {audience.map((a) => (
-              <span
-                key={a}
-                className="rounded-full bg-white/15 px-3 py-1 text-sm font-medium text-white ring-1 ring-white/25"
+        <Container className="relative grid items-center gap-10 py-20 md:py-28 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+          <div>
+            <h1 className="text-white">{headline}</h1>
+            <p className="mt-3 font-heading text-xl italic text-white/95">
+              {siteConfig.slogan}
+            </p>
+            <p className="mt-5 max-w-xl text-lg text-white/90">{subhead}</p>
+            <div className="mt-7 flex flex-wrap items-center gap-2">
+              {audience.map((a) => (
+                <span
+                  key={a}
+                  className="rounded-full bg-white/25 px-3 py-1 text-sm font-medium text-white ring-1 ring-white/40"
+                >
+                  {a}
+                </span>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button
+                asChild
+                size="lg"
+                className={
+                  tone === "premium"
+                    ? "bg-white text-brand-blue hover:bg-brand-blue-50"
+                    : "bg-white text-bonche-dark hover:bg-bonche-50"
+                }
               >
-                {a}
-              </span>
-            ))}
+                <Link href={`/productos?marca=${slug}`}>
+                  Ver productos {brand?.name}
+                  <ArrowRight className="size-5" />
+                </Link>
+              </Button>
+              <WhatsAppButton size="lg" />
+            </div>
           </div>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button
-              asChild
-              size="lg"
-              className={
-                tone === "premium"
-                  ? "bg-white text-brand-blue hover:bg-brand-blue-50"
-                  : "bg-white text-bonche-dark hover:bg-bonche-50"
-              }
-            >
-              <Link href={`/productos?marca=${slug}`}>
-                Ver productos {brand?.name}
-                <ArrowRight className="size-5" />
-              </Link>
-            </Button>
-            <WhatsAppButton size="lg" />
+
+          {/* full brand logo, crisp, centred — no plate */}
+          <div className="flex justify-center lg:justify-end">
+            <Image
+              src={heroLogo}
+              alt={brand?.name ?? ""}
+              width={1600}
+              height={1000}
+              priority
+              draggable={false}
+              className="h-auto w-full max-w-[22rem] object-contain drop-shadow-[0_6px_28px_rgba(0,0,0,0.35)] md:max-w-[26rem]"
+            />
           </div>
         </Container>
       </section>
