@@ -22,20 +22,21 @@ interface BrandLandingProps {
   tone: "premium" | "value";
 }
 
-/** Per-brand hero background. Ocean Breeze has a real photo of its own boxes in
- *  the plant; Bonche has no photo yet, so its header waits on a green slot. */
+/** Per-brand hero background + scrim. Ocean Breeze: cajas propias en la planta.
+ *  Bonche: producto Bonche sobre fondo verde de marca. */
 const HERO: Record<
   "premium" | "value",
-  { src: string; alt: string; slotFile?: string }
+  { src: string; alt: string; scrim: string }
 > = {
   premium: {
     src: "/images/placeholders/section-manufactura.webp",
     alt: "Cajas de producto Ocean Breeze en la planta de AG Supply",
+    scrim: "hero-scrim-deep",
   },
   value: {
-    src: "",
-    alt: "",
-    slotFile: "brand-bonche-hero.webp",
+    src: "/images/placeholders/brand-bonche-hero.webp",
+    alt: "Servilletas y empaques Bonche",
+    scrim: "hero-scrim-bonche",
   },
 };
 
@@ -52,9 +53,8 @@ export async function BrandLanding({
     getProducts({ brand: slug }),
   ]);
 
-  const heroLogo = `/images/brand/${slug}-plate.webp`;
+  const heroLogo = `/images/brand/${slug}-logo.webp`;
   const hero = HERO[tone];
-  const hasPhoto = Boolean(hero.src);
   const isDev = process.env.NODE_ENV !== "production";
 
   return (
@@ -62,30 +62,18 @@ export async function BrandLanding({
       {/* ------------------------------------------------------------ hero */}
       <section className="relative isolate border-b border-border text-white">
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          {hasPhoto ? (
-            <>
-              <Image
-                src={hero.src}
-                alt={hero.alt}
-                fill
-                priority
-                sizes="100vw"
-                draggable={false}
-                className="object-cover"
-              />
-              <div className="absolute inset-0 hero-scrim-deep" />
-              {!isRealImage(hero.src) && isDev && (
-                <span className="figure-note">Imagen de prueba</span>
-              )}
-            </>
-          ) : (
-            <>
-              {/* Bonche: green brand wash until a real photo lands */}
-              <div className="absolute inset-0 bg-bonche-gradient" />
-              {isDev && (
-                <span className="figure-note">{hero.slotFile}</span>
-              )}
-            </>
+          <Image
+            src={hero.src}
+            alt={hero.alt}
+            fill
+            priority
+            sizes="100vw"
+            draggable={false}
+            className="object-cover"
+          />
+          <div className={`absolute inset-0 ${hero.scrim}`} />
+          {!isRealImage(hero.src) && isDev && (
+            <span className="figure-note">Imagen de prueba</span>
           )}
         </div>
 

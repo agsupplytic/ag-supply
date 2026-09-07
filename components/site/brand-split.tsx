@@ -26,10 +26,10 @@ function BrandHalf({ slug, name, tag, body }: Half) {
         className="absolute inset-0 -z-10 bg-white/0 transition-colors duration-300 group-hover:bg-white/[0.06]"
       />
 
-      {/* logo on a clean white plate */}
-      <span className="inline-flex w-fit rounded-2xl bg-white p-5 shadow-xl transition-transform duration-500 group-hover:scale-[1.03] md:p-6">
+      {/* logo (PNG con alfa) sobre placa blanca */}
+      <span className="inline-flex w-fit rounded-2xl bg-white px-6 py-5 shadow-xl transition-transform duration-500 group-hover:scale-[1.03] md:px-8 md:py-6">
         <Image
-          src={`/images/brand/${slug}-plate.webp`}
+          src={`/images/brand/${slug}-logo.webp`}
           alt={name}
           width={320}
           height={200}

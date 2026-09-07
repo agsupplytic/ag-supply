@@ -4,7 +4,6 @@ import { Container } from "@/components/site/container";
 import { Section } from "@/components/site/section";
 import { BackgroundCarousel } from "@/components/site/background-carousel";
 import { Figure } from "@/components/site/figure";
-import { PendingContent } from "@/components/site/pending-content";
 import { Button } from "@/components/ui/button";
 import { ogFor } from "@/lib/seo";
 
@@ -75,12 +74,6 @@ export default function PlantaPage() {
       </section>
 
       <Section>
-        <PendingContent label="Fotografía de planta" className="mb-10 w-full">
-          Las imágenes de esta página son de prueba. Deben reemplazarse por
-          fotografía real de la planta y de la línea de producción antes de
-          publicar (ver docs/COPY-NEEDED.md).
-        </PendingContent>
-
         <ol className="space-y-6">
           {STAGES.map((stage, i) => (
             <li

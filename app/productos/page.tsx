@@ -28,8 +28,8 @@ export default async function ProductosPage() {
     <>
       <PageHero
         image={{
-          src: "/images/placeholders/hero-2.webp",
-          alt: "Bobinas de papel entrando a la línea de conversión de AG Supply",
+          src: "/images/placeholders/header-productos.webp",
+          alt: "Producto terminado de AG Supply listo para despacho",
         }}
         title="Catálogo de productos AG Supply"
         lead={

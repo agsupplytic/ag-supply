@@ -159,13 +159,13 @@ export function HeaderNav({
                                 name: "Ocean Breeze",
                                 tag: "Premium · HORECA",
                                 href: "/ocean-breeze",
-                                img: "/images/placeholders/brand-ocean-breeze.webp",
+                                img: "/images/brand/ocean-breeze-logo.webp",
                               },
                               {
                                 name: "Bonche",
                                 tag: "Económica · Masivo",
                                 href: "/bonche",
-                                img: "/images/placeholders/brand-bonche.webp",
+                                img: "/images/brand/bonche-logo.webp",
                               },
                             ].map((b) => (
                               <Link

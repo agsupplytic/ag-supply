@@ -239,6 +239,23 @@
       );
   }
 
+  /* Same wedge as hero-scrim-deep but in the Bonche green, for the /bonche header. */
+  .hero-scrim-bonche {
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-bonche-dark) 46%, transparent) 0%,
+        color-mix(in srgb, var(--color-bonche-dark) 30%, transparent) 45%,
+        color-mix(in srgb, var(--color-bonche-dark) 52%, transparent) 100%
+      ),
+      linear-gradient(
+        105deg,
+        color-mix(in srgb, var(--color-bonche-dark) 68%, transparent) 0%,
+        color-mix(in srgb, var(--color-bonche-dark) 42%, transparent) 42%,
+        transparent 78%
+      );
+  }
+
   /* Corner badge for a placeholder/test image. */
   .figure-note {
     position: absolute;
