@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Ocean Breeze — Línea premium HORECA",
   description: OB_DESC,
   alternates: { canonical: "/ocean-breeze" },
-  openGraph: ogFor("Ocean Breeze — Línea premium HORECA de AG Supply", OB_DESC),
+  openGraph: ogFor("Ocean Breeze — Línea premium HORECA de AG Supply", OB_DESC, "/ocean-breeze"),
 };
 
 export default function OceanBreezePage() {

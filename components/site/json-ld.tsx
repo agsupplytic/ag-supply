@@ -25,7 +25,7 @@ export function OrganizationJsonLd() {
         alternateName: siteConfig.name,
         slogan: siteConfig.slogan,
         url: siteConfig.url,
-        logo: `${siteConfig.url}/images/brand/agsupply-logo.png`,
+        logo: `${siteConfig.url}/images/brand/agsupply-logo-main.png`,
         image: `${siteConfig.url}/images/og.png`,
         description: siteConfig.description,
         foundingDate: String(siteConfig.company.foundedYear),

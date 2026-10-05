@@ -32,7 +32,7 @@ export async function generateMetadata({
     title: category.name,
     description: category.description,
     alternates: { canonical: `/productos/${category.slug}` },
-    openGraph: ogFor(`${category.name} — AG Supply`, category.short),
+    openGraph: ogFor(`${category.name} — AG Supply`, category.short, `/productos/${category.slug}`),
   };
 }
 

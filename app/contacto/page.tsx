@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   title: "Contacto",
   description: CONTACTO_DESC,
   alternates: { canonical: "/contacto" },
-  openGraph: ogFor("Contacto — AG Supply", CONTACTO_DESC),
+  openGraph: ogFor("Contacto — AG Supply", CONTACTO_DESC, "/contacto"),
 };
 
 export default function ContactoPage() {

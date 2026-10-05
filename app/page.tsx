@@ -34,8 +34,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: ogFor(
     "AG Supply — Fabricante de higiene institucional en República Dominicana",
-    "Convertidora de papel en Santiago. Papel higiénico, toallas, servilletas, faciales e interfoliados bajo las marcas Ocean Breeze y Bonche.",
-  ),
+    "Convertidora de papel en Santiago. Papel higiénico, toallas, servilletas, faciales e interfoliados bajo las marcas Ocean Breeze y Bonche.", "/"),
 };
 
 const HERO_IMAGES = [

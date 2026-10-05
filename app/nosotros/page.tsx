@@ -48,7 +48,7 @@ const NOSOTROS_DESC =
 export const metadata: Metadata = {
   title: "Nosotros",
   description: NOSOTROS_DESC,
-  openGraph: ogFor("Nosotros — AG Supply", NOSOTROS_DESC),
+  openGraph: ogFor("Nosotros — AG Supply", NOSOTROS_DESC, "/nosotros"),
   alternates: { canonical: "/nosotros" },
 };
 

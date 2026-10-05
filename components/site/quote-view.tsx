@@ -34,7 +34,10 @@ export function QuoteView({ index }: { index: QuoteIndex }) {
   const { items, hydrated, updateQty, updateNote, removeItem, clear } =
     useQuote();
 
-  const message = buildWhatsAppMessage(items);
+  // Carritos guardados antes de añadir el SKU: se completa desde el catálogo.
+  const message = buildWhatsAppMessage(
+    items.map((i) => ({ ...i, sku: i.sku ?? index[i.slug]?.sku ?? undefined })),
+  );
   const totalUnits = items.reduce((s, i) => s + i.qty, 0);
 
   return (
@@ -138,7 +141,7 @@ export function QuoteView({ index }: { index: QuoteIndex }) {
                               ))}
                               {meta?.sku && (
                                 <span className="text-[0.7rem] text-muted">
-                                  Ref. {meta.sku}
+                                  SKU {meta.sku}
                                 </span>
                               )}
                             </div>

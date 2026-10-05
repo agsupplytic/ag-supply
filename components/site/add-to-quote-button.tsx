@@ -8,7 +8,7 @@ import { useQuote } from "@/lib/quote/context";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/lib/content/types";
 
-type QuoteTarget = Pick<Product, "slug" | "name" | "brand">;
+type QuoteTarget = Pick<Product, "slug" | "name" | "brand" | "sku">;
 
 export function AddToQuoteButton({
   product,
@@ -31,7 +31,12 @@ export function AddToQuoteButton({
 
   function add() {
     const isNew = addItem(
-      { slug: product.slug, name: product.name, brand: product.brand },
+      {
+        slug: product.slug,
+        name: product.name,
+        brand: product.brand,
+        sku: product.sku,
+      },
       qty,
     );
     toast.success(isNew ? "Añadido a cotización" : "Cantidad actualizada", {

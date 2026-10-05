@@ -10,6 +10,7 @@ export function ogFor(
   title: string,
   description: string,
   path?: string,
+  image?: string,
 ): NonNullable<Metadata["openGraph"]> {
   return {
     title,
@@ -20,7 +21,7 @@ export function ogFor(
     type: "website",
     images: [
       {
-        url: "/images/og.png",
+        url: image ?? "/images/og.png",
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} — ${siteConfig.slogan}`,

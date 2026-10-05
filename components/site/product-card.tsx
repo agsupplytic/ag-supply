@@ -32,6 +32,12 @@ export function ProductCard({
           </Link>
         </h3>
 
+        {product.sku && (
+          <p className="-mt-1.5 text-xs font-medium tabular-nums text-muted">
+            SKU {product.sku}
+          </p>
+        )}
+
         {product.keySpecs.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {product.keySpecs.map((s) => (

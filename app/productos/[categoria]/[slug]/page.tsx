@@ -19,6 +19,7 @@ import { Section } from "@/components/site/section";
 import { ProductImage } from "@/components/site/product-image";
 import { ProductCard } from "@/components/site/product-card";
 import { SpecGroups } from "@/components/site/spec-groups";
+import { CopySku } from "@/components/site/copy-sku";
 import { AddToQuoteButton } from "@/components/site/add-to-quote-button";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { brandLabel } from "@/components/site/brand-badge";
@@ -41,13 +42,18 @@ export async function generateMetadata({
   if (!product) return {};
   const specLine = product.keySpecs.join(" · ");
   const description =
-    `${product.name}${specLine ? ` — ${specLine}` : ""}. Fabricado por AG Supply. ` +
+    `${product.name}${product.sku ? ` (SKU ${product.sku})` : ""}${specLine ? ` — ${specLine}` : ""}. Fabricado por AG Supply. ` +
     "Solicita cotización sin compromiso.";
   return {
     title: product.name,
     description,
     alternates: { canonical: `/productos/${product.category}/${product.slug}` },
-    openGraph: ogFor(`${product.name} — AG Supply`, description),
+    openGraph: ogFor(
+      `${product.name} — AG Supply`,
+      description,
+      `/productos/${product.category}/${product.slug}`,
+      product.images[0],
+    ),
   };
 }
 
@@ -127,14 +133,15 @@ export default async function ProductPage({
                     {product.subcategory}
                   </span>
                 )}
-                {product.sku && (
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/85">
-                    Ref. {product.sku}
-                  </span>
-                )}
               </div>
 
               <h1 className="mt-4 text-white">{product.name}</h1>
+
+              {product.sku && (
+                <div className="mt-4">
+                  <CopySku sku={product.sku} />
+                </div>
+              )}
 
               {product.keySpecs.length > 0 && (
                 <div className="mt-5 flex flex-wrap gap-2">
@@ -166,7 +173,7 @@ export default async function ProductPage({
                   <WhatsAppButton
                     size="sm"
                     message={`Hola, quisiera información sobre: ${product.name}${
-                      product.sku ? ` (Ref. ${product.sku})` : ""
+                      product.sku ? ` (SKU ${product.sku})` : ""
                     }`}
                   >
                     Consultar por WhatsApp
@@ -216,7 +223,7 @@ export default async function ProductPage({
           aquí lo confirmamos por pedido.
         </p>
         <div className="mt-8">
-          <SpecGroups specs={product.specs} />
+          <SpecGroups specs={product.specs} sku={product.sku} />
         </div>
         {product.placeholderImage && (
           <p className="mt-4 text-sm text-muted">

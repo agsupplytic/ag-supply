@@ -45,6 +45,7 @@ function readStorage(): QuoteItem[] {
         slug: x.slug,
         name: x.name,
         brand: x.brand ?? "generico",
+        sku: typeof x.sku === "string" ? x.sku : undefined,
         qty: clampQty(x.qty),
         note: typeof x.note === "string" ? x.note : undefined,
       }));

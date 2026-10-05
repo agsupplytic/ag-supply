@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "Preguntas frecuentes",
   description: FAQ_DESC,
   alternates: { canonical: "/faq" },
-  openGraph: ogFor("Preguntas frecuentes — AG Supply", FAQ_DESC),
+  openGraph: ogFor("Preguntas frecuentes — AG Supply", FAQ_DESC, "/faq"),
 };
 
 export default async function FaqPage() {

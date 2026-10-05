@@ -402,6 +402,17 @@ const brandCounts = {};
 for (const p of products) brandCounts[p.brand] = (brandCounts[p.brand] || 0) + 1;
 const brandsOut = BRANDS.map((b) => ({ ...b, count: brandCounts[b.slug] || 0 }));
 
+// Guardarraíl: el SKU es lo que usa el cliente para cotizar; debe ser único.
+{
+  const bySku = new Map();
+  for (const p of products) {
+    if (!p.sku) console.warn(`[sku] SIN SKU: ${p.name} (odoo ${p.odooId})`);
+    else bySku.set(p.sku, [...(bySku.get(p.sku) ?? []), p.name]);
+  }
+  for (const [sku, names] of bySku)
+    if (names.length > 1) console.warn(`[sku] DUPLICADO ${sku}: ${names.join(" | ")}`);
+}
+
 writeFileSync(join(ROOT, "content", "products.json"), JSON.stringify(products, null, 2));
 writeFileSync(join(ROOT, "content", "categories.json"), JSON.stringify(categoriesOut, null, 2));
 writeFileSync(join(ROOT, "content", "brands.json"), JSON.stringify(brandsOut, null, 2));

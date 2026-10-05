@@ -1,3 +1,5 @@
+import { statSync } from "node:fs";
+import { join } from "node:path";
 import type { MetadataRoute } from "next";
 import { getCategories, getProducts } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
@@ -6,7 +8,8 @@ export const dynamic = "force-static";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
-  const now = new Date();
+  // Fecha del último cambio de contenido (no la del build), para no marcar todo como nuevo.
+  const now = statSync(join(process.cwd(), "content", "products.json")).mtime;
 
   const staticRoutes = [
     "",

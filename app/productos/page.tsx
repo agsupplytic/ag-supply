@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Catálogo de productos",
   description: CATALOGO_DESC,
   alternates: { canonical: "/productos" },
-  openGraph: ogFor("Catálogo de productos — AG Supply", CATALOGO_DESC),
+  openGraph: ogFor("Catálogo de productos — AG Supply", CATALOGO_DESC, "/productos"),
 };
 
 export default async function ProductosPage() {

@@ -5,6 +5,8 @@ export interface QuoteItem {
   slug: string;
   name: string;
   brand: BrandSlug;
+  /** Código interno (referencia de Odoo); lo usa el equipo comercial para cotizar. */
+  sku?: string;
   qty: number;
   note?: string;
 }
@@ -19,7 +21,7 @@ const BRAND_LABEL: Record<BrandSlug, string> = {
  * Plain-text WhatsApp message for a quote request. Format is fixed by the spec:
  *
  *   Hola, quisiera cotizar los siguientes productos de AG Supply:
- *   - [Nombre] — Cantidad: [X]
+ *   - [SKU X] [Nombre] — Cantidad: [X]
  *     Nota: ...
  *   Gracias.
  */
@@ -30,7 +32,8 @@ export function buildWhatsAppMessage(items: QuoteItem[]): string {
       item.brand && item.brand !== "generico"
         ? ` (${BRAND_LABEL[item.brand]})`
         : "";
-    lines.push(`- ${item.name}${brand} — Cantidad: ${item.qty}`);
+    const sku = item.sku ? `[SKU ${item.sku}] ` : "";
+    lines.push(`- ${sku}${item.name}${brand} — Cantidad: ${item.qty}`);
     if (item.note?.trim()) lines.push(`  Nota: ${item.note.trim()}`);
   }
   lines.push(siteConfig.whatsapp.quoteOutro);

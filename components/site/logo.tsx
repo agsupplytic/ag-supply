@@ -4,14 +4,15 @@ import { siteConfig } from "@/lib/site-config";
 
 // Natural aspect ratios — the logo is never stretched or cropped.
 const SRC = {
-  header: { src: "/images/brand/agsupply-header.png", ratio: 1081 / 336 },
-  full: { src: "/images/brand/agsupply-logo.png", ratio: 1920 / 736 },
+  header: { src: "/images/brand/agsupply-logo-main.png", ratio: 1080 / 328 },
+  full: { src: "/images/brand/agsupply-logo-main.png", ratio: 1080 / 328 },
 } as const;
 
 /**
  * Official logo.
- *  - "header" : wordmark + swoosh, no tagline (for the white header)
- *  - "full"   : wordmark + swoosh + «Siente la Limpieza» script (footer, OG)
+ *  Header y footer usan el mismo archivo (PNG con transparencia, sin eslogan).
+ *  - "header" : barra superior
+ *  - "full"   : pie de página
  */
 export function Logo({
   variant = "header",

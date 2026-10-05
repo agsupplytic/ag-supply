@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Bonche — Línea económica de consumo masivo",
   description: BONCHE_DESC,
   alternates: { canonical: "/bonche" },
-  openGraph: ogFor("Bonche — Línea económica de AG Supply", BONCHE_DESC),
+  openGraph: ogFor("Bonche — Línea económica de AG Supply", BONCHE_DESC, "/bonche"),
 };
 
 export default function BonchePage() {

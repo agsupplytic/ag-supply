@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "La planta",
   description: PLANTA_DESC,
   alternates: { canonical: "/nosotros/planta" },
-  openGraph: ogFor("La planta — AG Supply", PLANTA_DESC),
+  openGraph: ogFor("La planta — AG Supply", PLANTA_DESC, "/nosotros/planta"),
 };
 
 const STAGES = [

@@ -9,12 +9,13 @@ function val(v?: string | number, unit = ""): string | undefined {
   return `${v}${unit}`;
 }
 
-function buildGroups(s: ProductSpecs): Group[] {
+function buildGroups(s: ProductSpecs, sku?: string): Group[] {
   const groups: Group[] = [
     {
       title: "Material y formato",
       icon: Layers,
       rows: [
+        { label: "Código interno / SKU", value: val(sku) },
         { label: "Capas", value: val(s.ply) },
         { label: "Gramaje", value: val(s.grammageGsm, " g/m²") },
         { label: "Color", value: val(s.color) },
@@ -59,8 +60,14 @@ function buildGroups(s: ProductSpecs): Group[] {
     .filter((g) => g.rows.length > 0);
 }
 
-export function SpecGroups({ specs }: { specs: ProductSpecs }) {
-  const groups = buildGroups(specs);
+export function SpecGroups({
+  specs,
+  sku,
+}: {
+  specs: ProductSpecs;
+  sku?: string;
+}) {
+  const groups = buildGroups(specs, sku);
 
   if (groups.length === 0) {
     return (
