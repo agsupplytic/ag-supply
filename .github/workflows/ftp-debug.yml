@@ -1,0 +1,23 @@
+name: FTP debug (solo lectura)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Directorio actual y raiz del FTP
+        env:
+          H: ${{ secrets.FTP_SERVER }}
+          U: ${{ secrets.FTP_USERNAME }}
+          P: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          echo "== PWD (directorio inicial del usuario FTP)"
+          curl -s --ftp-pasv -u "$U:$P" "ftp://$H/" -Q "PWD" -o /dev/null -v 2>&1 | grep -E "^< 257|^> PWD" || true
+          echo "== Listado de /"
+          curl -s --ftp-pasv -u "$U:$P" "ftp://$H/" --list-only
+          echo "== Listado de /public_html/"
+          curl -s --ftp-pasv -u "$U:$P" "ftp://$H/public_html/" --list-only | head -40
+          echo "== Listado de /domains/"
+          curl -s --ftp-pasv -u "$U:$P" "ftp://$H/domains/" --list-only | head -20 || true
