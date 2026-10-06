@@ -3,7 +3,7 @@ import { BrandLanding } from "@/components/site/brand-landing";
 import { ogFor } from "@/lib/seo";
 
 const BONCHE_DESC =
-  "Bonche es la línea económica de AG Supply para colmados, supermercados y consumo masivo: alta absorción y rendimiento excepcional a precios muy competitivos.";
+  "Bonche es la línea económica de AG Supply, fábrica de servilletas y papel en Santiago, RD, para colmados, supermercados y consumo masivo: alta absorción y rendimiento a precios muy competitivos.";
 
 export const metadata: Metadata = {
   title: "Bonche — Línea económica de consumo masivo",

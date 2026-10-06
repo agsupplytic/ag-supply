@@ -9,7 +9,7 @@ export const siteConfig = {
   /** Official brand slogan. */
   slogan: "Siente la limpieza",
   description:
-    "Convertidora de papel en Santiago, República Dominicana. Fabricamos papel higiénico, toallas, servilletas, faciales, interfoliados y desechables bajo las marcas Ocean Breeze y Bonche.",
+    "AG Supply es una convertidora de papel y fábrica de papel higiénico, servilletas y toallas en Santiago, República Dominicana. Fabricamos faciales, interfoliados y desechables bajo las marcas Ocean Breeze y Bonche.",
   url: "https://agsupply.com.do",
 
   phones: [

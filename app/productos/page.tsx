@@ -8,10 +8,10 @@ import { Catalog } from "@/components/site/catalog";
 import { ogFor } from "@/lib/seo";
 
 const CATALOGO_DESC =
-  "Papel higiénico, toallas, servilletas, faciales, interfoliados, jabón y desechables fabricados por AG Supply. Filtra por categoría, marca y especificación. Sin precios públicos.";
+  "Catálogo de AG Supply, convertidora de papel en República Dominicana: papel higiénico, toallas, servilletas, faciales, interfoliados, jabón y desechables con su SKU. Busca por código y cotiza por WhatsApp.";
 
 export const metadata: Metadata = {
-  title: "Catálogo de productos",
+  title: "Catálogo — papel higiénico, servilletas, toallas y desechables",
   description: CATALOGO_DESC,
   alternates: { canonical: "/productos" },
   openGraph: ogFor("Catálogo de productos — AG Supply", CATALOGO_DESC, "/productos"),

@@ -23,7 +23,7 @@ const CONTACTO_DESC =
   "Contacta a AG Supply en Las Palomas, Santiago. Teléfonos 809-612-2020 y 809-778-9119, correo agsupplycxc@gmail.com. Horario de lunes a viernes de 8:00 a.m. a 5:00 p.m. Cotiza por WhatsApp.";
 
 export const metadata: Metadata = {
-  title: "Contacto",
+  title: "Contacto — Cotiza con AG Supply en Santiago, RD",
   description: CONTACTO_DESC,
   alternates: { canonical: "/contacto" },
   openGraph: ogFor("Contacto — AG Supply", CONTACTO_DESC, "/contacto"),

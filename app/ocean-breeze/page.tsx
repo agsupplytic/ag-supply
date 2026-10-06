@@ -3,7 +3,7 @@ import { BrandLanding } from "@/components/site/brand-landing";
 import { ogFor } from "@/lib/seo";
 
 const OB_DESC =
-  "Ocean Breeze es la línea premium de AG Supply para hoteles, restaurantes y cadenas: servilletas, faciales, higiénicos y toallas con blancura superior al 98 %, alta resistencia y cortes exactos.";
+  "Ocean Breeze es la línea premium de AG Supply, fábrica de papel en República Dominicana, para hoteles, restaurantes y cadenas: servilletas, faciales, higiénicos y toallas con blancura superior al 98 %, alta resistencia y cortes exactos.";
 
 export const metadata: Metadata = {
   title: "Ocean Breeze — Línea premium HORECA",

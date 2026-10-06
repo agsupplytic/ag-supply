@@ -25,7 +25,7 @@ import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { brandLabel } from "@/components/site/brand-badge";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/site/json-ld";
 import { siteConfig } from "@/lib/site-config";
-import { ogFor } from "@/lib/seo";
+import { clip, ogFor, productDescription } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const products = await getProducts();
@@ -40,16 +40,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = await getProduct(slug);
   if (!product) return {};
-  const specLine = product.keySpecs.join(" · ");
-  const description =
-    `${product.name}${product.sku ? ` (SKU ${product.sku})` : ""}${specLine ? ` — ${specLine}` : ""}. Fabricado por AG Supply. ` +
-    "Solicita cotización sin compromiso.";
+  const [category, brand] = await Promise.all([
+    getCategory(product.category),
+    getBrand(product.brand),
+  ]);
+  const description = clip(
+    productDescription(product, category?.name, brand?.name),
+  );
+  const title = product.sku
+    ? `${product.name} · SKU ${product.sku}`
+    : product.name;
   return {
-    title: product.name,
+    title,
     description,
     alternates: { canonical: `/productos/${product.category}/${product.slug}` },
     openGraph: ogFor(
-      `${product.name} — AG Supply`,
+      `${title} — AG Supply`,
       description,
       `/productos/${product.category}/${product.slug}`,
       product.images[0],
@@ -92,7 +98,11 @@ export default async function ProductPage({
 
   return (
     <>
-      <ProductJsonLd product={product} category={category} />
+      <ProductJsonLd
+        product={product}
+        category={category}
+        brandName={brand?.name}
+      />
       <BreadcrumbJsonLd
         trail={[
           ["Catálogo", "/productos"],
@@ -156,11 +166,10 @@ export default async function ProductPage({
                 </div>
               )}
 
-              {product.description && (
-                <p className="mt-5 max-w-xl text-lg text-white/90">
-                  {product.description}
-                </p>
-              )}
+              <p className="mt-5 max-w-xl text-lg text-white/90">
+                {product.description ??
+                  productDescription(product, category?.name, brand?.name)}
+              </p>
 
               {/* action card floats on the band */}
               <div className="mt-8 rounded-2xl bg-white p-6 text-ink shadow-2xl md:p-7">

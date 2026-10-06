@@ -27,10 +27,10 @@ import { ogFor } from "@/lib/seo";
 export const metadata: Metadata = {
   title: {
     absolute:
-      "AG Supply — Fabricante de papel higiénico, servilletas y toallas en Santiago, RD",
+      "AG Supply — Convertidora de papel y fábrica de papel higiénico, servilletas y toallas en RD",
   },
   description:
-    "AG Supply convierte bobinas en papel higiénico, toallas, servilletas, faciales, interfoliados y desechables para empresas de República Dominicana. Marcas propias Ocean Breeze y Bonche. Cotiza por WhatsApp, sin precios en línea.",
+    "AG Supply es convertidora y fábrica de papel en Santiago, RD: papel higiénico, toallas, servilletas, faciales, interfoliados y desechables para hoteles, restaurantes y comercios. Marcas Ocean Breeze y Bonche. Cotiza por WhatsApp.",
   alternates: { canonical: "/" },
   openGraph: ogFor(
     "AG Supply — Fabricante de higiene institucional en República Dominicana",

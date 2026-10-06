@@ -11,9 +11,9 @@ import {
 } from "@/lib/content";
 import { Container } from "@/components/site/container";
 import { PageHero } from "@/components/site/page-hero";
-import { BreadcrumbJsonLd } from "@/components/site/json-ld";
+import { BreadcrumbJsonLd, CollectionJsonLd } from "@/components/site/json-ld";
 import { Catalog } from "@/components/site/catalog";
-import { ogFor } from "@/lib/seo";
+import { clip, ogFor } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const categories = await getCategories();
@@ -29,8 +29,10 @@ export async function generateMetadata({
   const category = await getCategory(categoria);
   if (!category) return {};
   return {
-    title: category.name,
-    description: category.description,
+    title: `${category.name} | Fábrica en Santiago, República Dominicana`,
+    description: clip(
+      `${category.description} Fabricado por AG Supply, convertidora de papel en Santiago, RD. Cotiza por WhatsApp.`,
+    ),
     alternates: { canonical: `/productos/${category.slug}` },
     openGraph: ogFor(`${category.name} — AG Supply`, category.short, `/productos/${category.slug}`),
   };
@@ -53,6 +55,7 @@ export default async function CategoriaPage({
 
   return (
     <>
+      <CollectionJsonLd category={category} products={products} />
       <BreadcrumbJsonLd
         trail={[
           ["Catálogo", "/productos"],

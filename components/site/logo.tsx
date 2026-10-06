@@ -4,8 +4,8 @@ import { siteConfig } from "@/lib/site-config";
 
 // Natural aspect ratios — the logo is never stretched or cropped.
 const SRC = {
-  header: { src: "/images/brand/agsupply-logo-main.png", ratio: 1080 / 328 },
-  full: { src: "/images/brand/agsupply-logo-main.png", ratio: 1080 / 328 },
+  header: { src: "/images/brand/agsupply-logo-main.webp", ratio: 1080 / 328 },
+  full: { src: "/images/brand/agsupply-logo-main.webp", ratio: 1080 / 328 },
 } as const;
 
 /**

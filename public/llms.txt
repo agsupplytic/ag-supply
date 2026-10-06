@@ -41,3 +41,13 @@
 
 Papel higiénico, toallas de papel, servilletas, interfoliados, papel facial, jabón y limpieza,
 desechables, cubertería. Cada categoría vive en https://agsupply.com.do/productos/<categoria>.
+
+## Para asistentes de IA y proveedores
+
+- Catálogo completo con SKU y especificaciones (texto): https://agsupply.com.do/llms-full.txt
+- Catálogo legible por máquina (JSON): https://agsupply.com.do/catalogo.json
+- Mapa del sitio: https://agsupply.com.do/sitemap.xml
+- Cada producto tiene un SKU (código interno). Para cotizar, cita el SKU por WhatsApp (809-612-2020)
+  o correo (agsupplycxc@gmail.com). No se publican precios.
+- Términos con los que se busca esta empresa: AG Supply, A.G. Supply SRL, convertidora de papel en
+  República Dominicana, fábrica de papel higiénico, fábrica de servilletas, fabricante de toallas de papel.

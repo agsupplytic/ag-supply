@@ -15,7 +15,12 @@ export function ProductCard({
 
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue-200 hover:shadow-xl">
-      <Link href={href} className="relative block" aria-label={product.name}>
+      <Link
+        href={href}
+        className="relative block"
+        tabIndex={-1}
+        aria-hidden="true"
+      >
         <ProductImage
           product={product}
           className="aspect-4/3 border-b border-border"

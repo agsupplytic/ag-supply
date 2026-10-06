@@ -1,5 +1,6 @@
 import { siteConfig, distributors } from "@/lib/site-config";
 import { brandLabel } from "./brand-badge";
+import { productDescription } from "@/lib/seo";
 import type { Product, Category } from "@/lib/content/types";
 
 const ORG_ID = `${siteConfig.url}/#organization`;
@@ -22,7 +23,23 @@ export function OrganizationJsonLd() {
         "@type": ["Organization", "LocalBusiness"],
         "@id": ORG_ID,
         name: siteConfig.legalName,
-        alternateName: siteConfig.name,
+        alternateName: [
+          siteConfig.name,
+          "A.G. Supply",
+          "A.G. Supply, S.R.L.",
+          "AG Supply RD",
+          "AG Supply República Dominicana",
+        ],
+        knowsAbout: [
+          "convertidora de papel",
+          "fábrica de papel higiénico",
+          "fábrica de servilletas",
+          "toallas de papel",
+          "papel facial",
+          "interfoliados",
+          "desechables",
+          "higiene institucional",
+        ],
         slogan: siteConfig.slogan,
         url: siteConfig.url,
         logo: `${siteConfig.url}/images/brand/agsupply-logo-main.png`,
@@ -89,27 +106,83 @@ export function WebSiteJsonLd() {
 export function ProductJsonLd({
   product,
   category,
+  brandName,
 }: {
   product: Product;
   category?: Category | null;
+  brandName?: string;
 }) {
+  const specs: [string, string | number | undefined][] = [
+    ["Capas", product.specs.ply],
+    ["Color", product.specs.color ?? undefined],
+    ["Presentación", product.specs.packFormat],
+    ["Gramaje (g/m²)", product.specs.grammageGsm],
+    ["Ancho (cm)", product.specs.widthCm],
+    ["Hojas", product.specs.sheets],
+  ];
+  const url = `${siteConfig.url}/productos/${product.category}/${product.slug}`;
   return (
     <JsonLd
       data={{
         "@context": "https://schema.org",
         "@type": "Product",
+        "@id": `${url}#product`,
         name: product.name,
         description:
           product.description ??
-          `${product.name}. Fabricado por ${siteConfig.legalName}.`,
-        ...(product.sku ? { sku: product.sku, mpn: product.sku } : {}),
+          productDescription(product, category?.name, brandName),
+        ...(product.sku
+          ? { sku: product.sku, mpn: product.sku, productID: product.sku }
+          : {}),
         ...(product.images.length
           ? { image: `${siteConfig.url}${product.images[0]}` }
           : {}),
         category: category?.name ?? product.category,
-        brand: { "@type": "Brand", name: brandLabel(product.brand) },
+        brand: { "@type": "Brand", name: brandName ?? brandLabel(product.brand) },
         manufacturer: { "@id": ORG_ID },
-        url: `${siteConfig.url}/productos/${product.category}/${product.slug}`,
+        additionalProperty: specs
+          .filter(([, v]) => v !== undefined && v !== "")
+          .map(([name, value]) => ({
+            "@type": "PropertyValue",
+            name,
+            value,
+          })),
+        url,
+      }}
+    />
+  );
+}
+
+/** CollectionPage + ItemList — on each category page. */
+export function CollectionJsonLd({
+  category,
+  products,
+}: {
+  category: Category;
+  products: Product[];
+}) {
+  const url = `${siteConfig.url}/productos/${category.slug}`;
+  return (
+    <JsonLd
+      data={{
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `${category.name} — AG Supply`,
+        description: category.description,
+        url,
+        inLanguage: "es-DO",
+        isPartOf: { "@id": `${siteConfig.url}/#website` },
+        about: { "@id": ORG_ID },
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: products.length,
+          itemListElement: products.map((p, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${siteConfig.url}/productos/${p.category}/${p.slug}`,
+            name: p.sku ? `${p.name} (SKU ${p.sku})` : p.name,
+          })),
+        },
       }}
     />
   );
