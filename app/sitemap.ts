@@ -1,15 +1,28 @@
-import { statSync } from "node:fs";
-import { join } from "node:path";
+import { execSync } from "node:child_process";
 import type { MetadataRoute } from "next";
 import { getCategories, getProducts } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
 export const dynamic = "force-static";
 
+/** Fecha del último commit que tocó el catálogo (no la del build). */
+function contentDate(): Date {
+  try {
+    const iso = execSync("git log -1 --format=%cI -- content", {
+      stdio: ["ignore", "pipe", "ignore"],
+    })
+      .toString()
+      .trim();
+    if (iso) return new Date(iso);
+  } catch {
+    /* sin git: se usa la fecha fija de abajo */
+  }
+  return new Date("2026-10-05T00:00:00Z");
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
-  // Fecha del último cambio de contenido (no la del build), para no marcar todo como nuevo.
-  const now = statSync(join(process.cwd(), "content", "products.json")).mtime;
+  const now = contentDate();
 
   const staticRoutes = [
     "",
