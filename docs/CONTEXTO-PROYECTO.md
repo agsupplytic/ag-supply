@@ -23,6 +23,13 @@ prop `body` en `PageHero`, FAB de WhatsApp oculto mientras el hero es visible,
 copy "8 categorias" en el home, "Bio" -> "Bonche" en papel higienico, y loader de
 imagen con `width`. Verificar contra el codigo antes de dar por cierto algo de abajo.
 
+> **Ronda 16 (oct-2026) — rediseño institucional-industrial.** Sustituye todo lo que esta memoria
+> dice sobre estética (azul brillante, banda roja, Swoosh, paneles `.panel`, carrusel, contadores,
+> Montserrat/Inter, GitHub Pages). Referencias vigentes: `docs/SISTEMA-DISENO.md`,
+> `docs/INFORME-RENOVACION.md`, `docs/DEPLOY.md` (Hostinger por FTP al hacer push a `main`),
+> `docs/DATOS-PENDIENTES.md`. El historial de rechazos del cliente a rediseños anteriores sigue
+> siendo relevante: validar el rediseño con el cliente antes de fusionar a `main`.
+
 ---
 
 

@@ -60,9 +60,11 @@ ErrorDocument 404 /404.html
 AddDefaultCharset UTF-8
 
 # Archivos ocultos (p. ej. el estado del despliegue FTP) no se sirven nunca.
+<IfModule mod_authz_core.c>
 <FilesMatch "^\.(?!htaccess$)">
 Require all denied
 </FilesMatch>
+</IfModule>
 
 <IfModule mod_deflate.c>
 AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/plain application/xml

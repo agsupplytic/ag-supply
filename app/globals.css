@@ -13,27 +13,27 @@
   /* Azul de marca */
   --color-brand-blue: #1c75bc;
   --color-brand-blue-700: #175f9a;
-  --color-brand-blue-dark: #124d7c; /* texto/enlaces sobre blanco: 8.2:1 */
+  --color-brand-blue-dark: #124d7c; /* texto/enlaces sobre blanco: 8.8:1 */
   --color-brand-blue-200: #b8d6ec;
   --color-brand-blue-100: #d9e8f5;
   --color-brand-blue-50: #eef5fb;
 
   /* Rojo de marca: acento */
   --color-brand-red: #ed1c24;
-  --color-brand-red-dark: #b8121a; /* texto rojo sobre blanco: 6.5:1 */
+  --color-brand-red-dark: #b8121a; /* texto rojo sobre blanco: 6.7:1 */
 
   /* Marino: única superficie oscura */
   --color-navy: #0f2a43;
   --color-navy-700: #173b5c;
-  --color-navy-300: #9db4c9; /* texto secundario sobre marino: 7.4:1 */
+  --color-navy-300: #9db4c9; /* texto secundario sobre marino: 6.8:1 */
 
   /* Neutros (fríos, afines al azul) */
   --color-white: #ffffff;
   --color-ink: #14222f;
-  --color-body: #36444f; /* 9.8:1 sobre blanco */
-  --color-muted: #566573; /* 6.1:1 sobre blanco, 5.6:1 sobre surface */
+  --color-body: #36444f; /* 10.0:1 sobre blanco */
+  --color-muted: #566573; /* 6.0:1 sobre blanco, 5.5:1 sobre surface */
   --color-border: #d3dae1;
-  --color-control-border: #76828e; /* bordes de controles: 3.9:1 */
+  --color-control-border: #76828e; /* bordes de controles: 3.9:1 (mín. 3:1) */
   --color-surface: #f3f6f9;
   --color-surface-2: #e7ecf1;
   --color-background: #ffffff;
@@ -45,7 +45,7 @@
   --color-ocean-50: #eaf6fc;
 
   /* Bonche (solo páginas de la marca) */
-  --color-bonche: #2f7a2b; /* texto blanco encima: 5.4:1 */
+  --color-bonche: #2f7a2b; /* texto blanco encima: 5.3:1 */
   --color-bonche-dark: #1f5a1d;
   --color-bonche-100: #d9e8cb;
   --color-bonche-50: #f1f6ec;

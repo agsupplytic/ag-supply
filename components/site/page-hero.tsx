@@ -48,7 +48,7 @@ export function PageHero({
             src={image.src}
             alt={image.alt}
             ratio="4/3"
-            priority
+            lazy
             position={image.position}
             sizes="(max-width: 1024px) 100vw, 480px"
             className="hidden lg:block"

@@ -64,12 +64,15 @@ export default async function CategoriaPage({
           { name: category.name },
         ]}
         title={category.name}
-        lead={category.description}
+        lead={category.short}
         meta={`${products.length} ${products.length === 1 ? "producto" : "productos"} · ${
           category.fabricated ? "Fabricado en la planta de AG Supply" : "Suministrado por AG Supply"
         }`}
         image={photo}
       />
+      <Container className="pt-10 md:pt-12">
+        <p className="max-w-3xl text-lg text-body">{category.description}</p>
+      </Container>
       <Container className="py-10 md:py-12">
         <Catalog
           products={products}

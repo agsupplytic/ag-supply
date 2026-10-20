@@ -18,6 +18,7 @@ export function Photo({
   ratio = "4/3",
   sizes = "(max-width: 1024px) 100vw, 560px",
   priority = false,
+  lazy = false,
   position = "center",
   className,
 }: {
@@ -26,6 +27,8 @@ export function Photo({
   ratio?: keyof typeof RATIO;
   sizes?: string;
   priority?: boolean;
+  /** Carga diferida: para imágenes que pueden estar ocultas (display:none) según el ancho. */
+  lazy?: boolean;
   position?: string;
   className?: string;
 }) {
@@ -37,6 +40,7 @@ export function Photo({
         fill
         sizes={sizes}
         priority={priority}
+        loading={lazy ? "lazy" : undefined}
         className="object-cover"
         style={{ objectPosition: position }}
       />

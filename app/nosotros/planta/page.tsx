@@ -57,7 +57,6 @@ export default function PlantaPage() {
         ]}
         title="Proceso de conversión, etapa por etapa"
         lead="Planta de AG Supply en Las Palomas, Santiago de los Caballeros."
-        image={{ src: "/images/fotos/planta-3.webp", alt: "Máquina de conversión de papel" }}
       />
 
       <Section>

@@ -1,57 +1,50 @@
 # AG Supply — sitio institucional
 
-Sitio B2B de **AG Supply SRL**, convertidora de papel en Licey al Medio, Santiago
-de los Caballeros. Catálogo sin precios + cotización que termina en WhatsApp.
-Marcas propias: **Ocean Breeze** (premium/HORECA) y **Bonche** (económica/masiva).
+Sitio de AG Supply SRL, convertidora de papel en Santiago de los Caballeros, República Dominicana
+([agsupply.com.do](https://agsupply.com.do)). Next.js 16 (App Router, exportación estática),
+TypeScript, Tailwind v4. Se publica como HTML estático en Hostinger.
 
-## Stack
+> **Next.js de esta versión tiene cambios incompatibles.** Antes de tocar APIs de Next, lea la guía
+> correspondiente en `node_modules/next/dist/docs/` (ver `AGENTS.md`).
 
-- **Next.js 16** (App Router) + TypeScript, para Vercel
-- **Tailwind v4** — tokens de marca en `@theme` dentro de `app/globals.css`
-  (única fuente de hex; nada de colores hardcodeados en componentes)
-- **Radix primitives** + `lucide-react` (iconografía única)
-- **React Context + localStorage** para la cotización (sin backend, sin login)
-- Contenido: capa `lib/content` con adaptadores `local` (hoy, `content/*.json`)
-  y `sanity` (listo, se activa con `CONTENT_SOURCE=sanity`)
-
-## Desarrollo
+## Arranque
 
 ```bash
-npm install
-npm run dev          # http://localhost:3000
-npm run build        # build de producción (type-check + 187 páginas estáticas)
+npm ci
+npm run dev        # http://localhost:3000
+npm run check      # lint + typecheck
+npm run build      # genera out/ (HTML estático)
+npm run check:out  # verifica out/: enlaces, canónicos, JSON-LD, sitemap, catálogo en HTML
 ```
 
-No hace falta configurar nada: por defecto lee `content/*.json`.
+Variable opcional: `NEXT_PUBLIC_WEB3FORMS_KEY` (formulario de contacto directo a la bandeja; sin ella
+se abre el correo del visitante). Ver `.env.example`.
 
 ## Estructura
 
-```
-app/                 rutas (App Router)
-components/ui/        primitivos (button, sheet, accordion, badge, toaster)
-components/site/      header, footer, swoosh, catálogo, tarjetas, cotización…
-lib/content/          adaptador de contenido (local | sanity) + tipos
-lib/quote/            contexto de cotización + generador de mensaje WhatsApp
-lib/site-config.ts    teléfonos, correo, dirección, número de WhatsApp
-content/             seed generado desde Odoo (products/categories/brands.json)
-sanity/ + sanity.config.ts   schema de Sanity (definido, sin desplegar)
-scripts/             import de Odoo + normalización + seed de Sanity
-docs/                DEPLOY, CONTENT, DATA-IMPORT, PENDING-CONTENT
-```
+| Ruta | Contenido |
+|---|---|
+| `app/` | Páginas (inicio, nosotros, planta, catálogo, categorías, fichas, marcas, contacto, FAQ, cotización), `sitemap`, `robots`, `llms-full.txt`, `catalogo.json` |
+| `components/site/` | Componentes del sitio (cabecera, pie, catálogo, tabla, formulario, JSON-LD…) |
+| `components/ui/` | Primitivas (botón, insignia, acordeón, panel lateral, avisos) |
+| `lib/site-config.ts` | **Única fuente** de teléfonos, correo, dirección, horario, cifras de planta y distribuidores |
+| `lib/content/` | Acceso a `content/*.json` con validación (zod) en build |
+| `lib/quote/` | Lista de cotización (almacén sobre `localStorage`) y mensaje de WhatsApp |
+| `lib/seo.ts` | Metadatos por página, canónicos con barra final, descripción de producto |
+| `content/` | Catálogo (`products.json`, `categories.json`, `brands.json`) y `slug-redirects.json` |
+| `scripts/` | Importación desde Odoo, curación editorial, verificación de `out/` |
+| `docs/` | Sistema de diseño, despliegue, seguridad, datos pendientes, fotografía, informe |
 
-## Reglas de contenido (no romper)
+## Contenido y catálogo
 
-- Nunca «distribuidor» → «convertidora de papel» / «fabricante»
-- Nunca «24 horas» de entrega → «entrega en tiempo acordado»
-- Sin precios en ningún punto del sitio
-- Sin emojis en copy institucional
-- Texto no confirmado → `<PendingContent>` + entrada en `docs/PENDING-CONTENT.md`
+El catálogo viene de Odoo: `import-from-odoo.mjs` → `normalize-odoo.mjs` →
+`npm run content:curate` (nombres públicos, sin marcas de terceros; `fabricated`; redirecciones).
+Ver `docs/DATA-IMPORT.md` y `docs/CATALOGO-DATOS.md`.
+
+Regla editorial: solo se afirma «fabricado por AG Supply» para el papel tissue (`fabricated` en los
+datos). No hay precios, valoraciones ni certificaciones inventadas.
 
 ## Documentación
 
-| Archivo | Contenido |
-|---|---|
-| [docs/DEPLOY.md](docs/DEPLOY.md) | Vercel, Sanity Studio, webhook ISR, dominio |
-| [docs/CONTENT.md](docs/CONTENT.md) | Editar contenido (hoy local, mañana Sanity) |
-| [docs/DATA-IMPORT.md](docs/DATA-IMPORT.md) | Re-importar el catálogo desde Odoo |
-| [docs/PENDING-CONTENT.md](docs/PENDING-CONTENT.md) | Pendientes antes de publicar (auto) |
+`docs/SISTEMA-DISENO.md` · `docs/DEPLOY.md` · `docs/SECURITY.md` · `docs/DATOS-PENDIENTES.md` ·
+`docs/FOTOGRAFIA.md` · `docs/INFORME-RENOVACION.md`

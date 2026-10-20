@@ -190,7 +190,7 @@ export function Catalog({
             type="search"
             value={query}
             onChange={(e) => onQuery(e.target.value)}
-            placeholder="Buscar por producto, SKU, marca o presentación (ej. 48/1)"
+            placeholder="Buscar producto, SKU o presentación"
             aria-label="Buscar productos"
             className="h-12 w-full border border-control-border bg-white pl-11 pr-10 text-base text-ink placeholder:text-muted"
           />
@@ -314,6 +314,7 @@ export function Catalog({
           </div>
         </div>
 
+        <h2 className="sr-only">Resultados</h2>
         {filtered.length === 0 ? (
           <div className="border border-dashed border-control-border p-10 text-center">
             <p className="font-heading text-lg font-semibold text-ink">

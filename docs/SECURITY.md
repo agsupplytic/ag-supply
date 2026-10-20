@@ -1,39 +1,26 @@
 # Seguridad y privacidad de datos
 
-## Odoo (nunca expuesto al navegador)
+## Odoo
 
-- La conexión a Odoo vive **solo** en `scripts/import-from-odoo.mjs`, un script
-  que se corre a mano en local/CI. **No** se importa desde ningún componente de
-  `app/` ni `lib/` — no entra al bundle del cliente ni al runtime del servidor.
-- Las credenciales (`ODOO_URL`, `ODOO_DB`, `ODOO_USER`, `ODOO_API_KEY`) solo
-  existen en `.env` / variables de entorno de CI. `.env*` está en `.gitignore`
-  (excepto `.env.example`, que no tiene valores).
-- `scripts/odoo-raw.json` (volcado intermedio con datos de producto, sin
-  credenciales) está en `.gitignore`. Lo que se publica es `content/*.json`,
-  ya normalizado y curado.
-- El sitio en producción **no habla con Odoo**. Lee `content/*.json` (o Sanity,
-  si se activa `CONTENT_SOURCE=sanity`).
+La conexión vive solo en `scripts/import-from-odoo.mjs` (manual, local o CI). No se importa desde
+`app/` ni `lib/`. Credenciales (`ODOO_*`) solo en `.env` o variables de CI; `.env*` está en
+`.gitignore` salvo `.env.example` (sin valores). `scripts/odoo-raw.json` (volcado intermedio) también
+está ignorado. Producción no habla con Odoo: lee `content/*.json`.
 
-## Sanity (cuando se conecte)
+## Sitio
 
-- Token de **lectura** (`SANITY_API_READ_TOKEN`) solo del lado servidor.
-- Token de **escritura** (`SANITY_API_WRITE_TOKEN`) solo para `scripts/seed-sanity.mjs`.
-- Secreto del webhook ISR (`SANITY_REVALIDATE_SECRET`) valida cada POST a
-  `/api/revalidate`.
+- Exportación estática: no hay servidor, base de datos ni API propia que proteger.
+- Formulario de contacto: validación con zod, campo señuelo anti-spam (`botcheck`), envío por
+  Web3Forms (clave pública por diseño: restringirla al dominio en su panel) con `mailto:` de respaldo.
+- Cabeceras en `.htaccess`: `nosniff`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`.
+  Falta una CSP: Next inyecta scripts en línea y exigiría nonces; se recomienda evaluarla con el
+  hosting.
+- JSON-LD: se serializa con `<` escapado.
+- La lista de cotización vive solo en `localStorage` del visitante y se valida al leerla.
+- Las imágenes se sirven sin bloqueo de clic derecho ni arrastre (la protección anterior no era
+  DRM y estorbaba al comprador).
 
-## Imágenes
+## Despliegue
 
-- `components/site/protect-images.tsx` bloquea el menú contextual y el arrastre
-  sobre imágenes; `Figure` / `ProductImage` / `CategoryCard` marcan sus
-  contenedores con `data-protected` (capa transparente que impide "Guardar
-  imagen como" y drag-to-desktop) y `draggable={false}`.
-- Esto es **fricción, no DRM**: las imágenes se sirven por HTTP y un usuario
-  decidido puede obtenerlas. Para producto se añade una marca de agua discreta
-  del logo en la esquina.
-
-## Antes de subir a git
-
-- [ ] Confirmar que `.env` / `.env.local` **no** están trackeados.
-- [ ] `git init` y primer commit sin `scripts/odoo-raw.json` ni `node_modules`.
-- [ ] Variables sensibles cargadas en Vercel (Project → Settings → Env Vars),
-      no en el repo.
+Secretos FTP en GitHub Actions; el workflow tiene `permissions: contents: read`. No se suben
+archivos de entorno. Ver `docs/DEPLOY.md` para FTPS y HSTS.

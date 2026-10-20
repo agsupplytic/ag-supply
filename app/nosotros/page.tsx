@@ -83,9 +83,14 @@ export default function NosotrosPage() {
               <tr><th scope="row">Terreno</th><td>{fmt(company.plant.landM2)} m²</td></tr>
               <tr><th scope="row">Construcción</th><td>{fmt(company.plant.builtM2)} m²: {company.plant.officeM2} m² de oficinas y {company.plant.productionM2} m² de producción</td></tr>
               <tr><th scope="row">Dirección</th><td>{address.line1}, {address.city}, {address.country}</td></tr>
-              {company.plant.proximity.map((p, i) => (
-                <tr key={p}><th scope="row">{i === 0 ? "Ubicación" : ""}</th><td>{p}</td></tr>
-              ))}
+              <tr>
+                <th scope="row">Ubicación</th>
+                <td>
+                  {company.plant.proximity.map((p) => (
+                    <span key={p} className="block">{p}</span>
+                  ))}
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

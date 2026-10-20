@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Section, SectionHeading } from "./section";
 import { distributors } from "@/lib/site-config";
 
@@ -29,8 +28,7 @@ export function Distributors({ headingAs = "h2" as "h2" | "h3" }) {
         ))}
       </div>
       <p className="mt-8 text-sm text-muted">
-        Para ser distribuidor autorizado, escriba a {" "}
-        <Link href="/contacto" className="link">Contacto</Link>.
+        Para ser distribuidor autorizado, escríbanos por el formulario de contacto o por WhatsApp.
       </p>
     </Section>
   );

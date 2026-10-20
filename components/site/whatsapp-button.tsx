@@ -55,19 +55,21 @@ export function WhatsAppFab() {
   }, []);
 
   return (
-    <a
-      href={waLink(siteConfig.whatsapp.genericMessage)}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Escríbenos por WhatsApp"
-      aria-hidden={!pastHero}
-      tabIndex={pastHero ? undefined : -1}
-      className={cn(
-        "fixed bottom-4 right-4 z-40 flex size-12 items-center justify-center rounded-md bg-whatsapp text-[color:var(--color-whatsapp-ink)] transition-opacity duration-200 hover:bg-whatsapp-hover lg:hidden",
-        pastHero ? "opacity-100" : "pointer-events-none opacity-0",
-      )}
-    >
-      <WhatsAppIcon className="size-6" />
-    </a>
+    <aside aria-label="Atención por WhatsApp" className="lg:hidden">
+      <a
+        href={waLink(siteConfig.whatsapp.genericMessage)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Escríbanos por WhatsApp"
+        aria-hidden={!pastHero}
+        tabIndex={pastHero ? undefined : -1}
+        className={cn(
+          "fixed bottom-4 right-4 z-40 flex size-12 items-center justify-center rounded-md bg-whatsapp text-[color:var(--color-whatsapp-ink)] transition-opacity duration-200 hover:bg-whatsapp-hover",
+          pastHero ? "opacity-100" : "pointer-events-none opacity-0",
+        )}
+      >
+        <WhatsAppIcon className="size-6" />
+      </a>
+    </aside>
   );
 }

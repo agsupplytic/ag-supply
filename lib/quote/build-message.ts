@@ -19,8 +19,12 @@ const BRAND_LABEL: Record<BrandSlug, string> = {
   generico: "Genérico",
 };
 
-/** Largo máximo por mensaje: WhatsApp admite más, pero los enlaces wa.me largos fallan. */
-export const MAX_MESSAGE_CHARS = 3500;
+/**
+ * Largo máximo por mensaje, medido CODIFICADO (lo que viaja en el enlace wa.me): las
+ * tildes y la raya inflan el texto ~1,5 veces y los enlaces muy largos fallan.
+ */
+export const MAX_ENCODED_CHARS = 3800;
+const enc = (t: string) => encodeURIComponent(t).length;
 
 function lineFor(item: QuoteItem): string[] {
   const brand =
@@ -46,19 +50,19 @@ export function buildWhatsAppMessage(items: QuoteItem[]): string {
 
 /**
  * Igual que `buildWhatsAppMessage`, pero reparte la lista en varios mensajes si
- * excede MAX_MESSAGE_CHARS. Cada parte empieza con la introducción y, si hay más
+ * excede MAX_ENCODED_CHARS. Cada parte empieza con la introducción y, si hay más
  * de una, lleva "(parte i de n)".
  */
 export function buildWhatsAppMessages(items: QuoteItem[]): string[] {
   const whole = buildWhatsAppMessage(items);
-  if (whole.length <= MAX_MESSAGE_CHARS) return [whole];
+  if (enc(whole) <= MAX_ENCODED_CHARS) return [whole];
 
-  const budget = MAX_MESSAGE_CHARS - siteConfig.whatsapp.quoteIntro.length - siteConfig.whatsapp.quoteOutro.length - 40;
+  const budget = MAX_ENCODED_CHARS - enc(siteConfig.whatsapp.quoteIntro) - enc(siteConfig.whatsapp.quoteOutro) - 120;
   const groups: string[][] = [[]];
   let size = 0;
   for (const item of items) {
     const block = lineFor(item);
-    const len = block.join("\n").length + 1;
+    const len = enc(block.join("\n") + "\n");
     if (size + len > budget && groups[groups.length - 1].length) {
       groups.push([]);
       size = 0;
