@@ -65,11 +65,13 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     images: ["/images/og.png"],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
-  },
+  robots: process.env.NEXT_PUBLIC_PREVIEW
+    ? { index: false, follow: false }
+    : {
+        index: true,
+        follow: true,
+        googleBot: { index: true, follow: true, "max-image-preview": "large" },
+      },
   // Favicons auto-detected from app/icon.png + app/apple-icon.png.
 };
 
