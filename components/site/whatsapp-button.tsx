@@ -63,13 +63,11 @@ export function WhatsAppFab() {
       aria-hidden={!pastHero}
       tabIndex={pastHero ? undefined : -1}
       className={cn(
-        "fixed bottom-5 right-5 z-40 flex size-14 items-center justify-center rounded-full bg-whatsapp text-[color:var(--color-whatsapp-ink)] shadow-lg ring-4 ring-whatsapp/30 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-105 hover:bg-whatsapp-hover lg:hidden",
-        pastHero
-          ? "translate-y-0 opacity-100"
-          : "pointer-events-none translate-y-3 opacity-0",
+        "fixed bottom-4 right-4 z-40 flex size-12 items-center justify-center rounded-md bg-whatsapp text-[color:var(--color-whatsapp-ink)] transition-opacity duration-200 hover:bg-whatsapp-hover lg:hidden",
+        pastHero ? "opacity-100" : "pointer-events-none opacity-0",
       )}
     >
-      <WhatsAppIcon className="size-7" />
+      <WhatsAppIcon className="size-6" />
     </a>
   );
 }

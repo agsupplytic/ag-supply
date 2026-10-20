@@ -1,31 +1,20 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import {
-  ChevronRight,
-  Factory,
-  SlidersHorizontal,
-  Truck,
-} from "lucide-react";
-import {
-  getBrand,
-  getCategory,
-  getProduct,
-  getProducts,
-  getRelatedProducts,
-} from "@/lib/content";
+import Image from "next/image";
+import { getBrand, getCategory, getProduct, getProducts, getRelatedProducts } from "@/lib/content";
 import { Container } from "@/components/site/container";
 import { Section } from "@/components/site/section";
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ProductImage } from "@/components/site/product-image";
 import { ProductCard } from "@/components/site/product-card";
 import { SpecGroups } from "@/components/site/spec-groups";
 import { CopySku } from "@/components/site/copy-sku";
 import { AddToQuoteButton } from "@/components/site/add-to-quote-button";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
-import { brandLabel } from "@/components/site/brand-badge";
+import { BrandBadge } from "@/components/site/brand-badge";
 import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/site/json-ld";
-import { siteConfig } from "@/lib/site-config";
-import { clip, ogFor, productDescription } from "@/lib/seo";
+import { clip, pageMetadata, productDescription } from "@/lib/seo";
 
 export async function generateStaticParams() {
   const products = await getProducts();
@@ -40,27 +29,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = await getProduct(slug);
   if (!product) return {};
-  const [category, brand] = await Promise.all([
-    getCategory(product.category),
-    getBrand(product.brand),
-  ]);
-  const description = clip(
-    productDescription(product, category?.name, brand?.name),
-  );
-  const title = product.sku
-    ? `${product.name} · SKU ${product.sku}`
-    : product.name;
-  return {
-    title,
-    description,
-    alternates: { canonical: `/productos/${product.category}/${product.slug}` },
-    openGraph: ogFor(
-      `${title} — AG Supply`,
-      description,
-      `/productos/${product.category}/${product.slug}`,
-      product.images[0],
-    ),
-  };
+  const [category, brand] = await Promise.all([getCategory(product.category), getBrand(product.brand)]);
+  return pageMetadata({
+    title: clip(product.name, 56),
+    description: clip(productDescription(product, category?.name, brand?.name)),
+    path: `/productos/${product.category}/${product.slug}`,
+    image: product.images[0] ? { url: product.images[0], alt: product.name } : undefined,
+  });
 }
 
 export default async function ProductPage({
@@ -77,204 +52,116 @@ export default async function ProductPage({
     getBrand(product.brand),
     getRelatedProducts(product, 4),
   ]);
-
-  const trust = [
-    {
-      icon: Factory,
-      title: "Fabricado en planta propia",
-      text: "Se produce en nuestra nave de Las Palomas, Santiago. Control de gramaje y formato lote a lote.",
-    },
-    {
-      icon: SlidersHorizontal,
-      title: "Formato a tu medida",
-      text: "Ajustamos presentación, conteo y empaque al volumen de tu operación.",
-    },
-    {
-      icon: Truck,
-      title: "Entrega en el tiempo acordado",
-      text: "Cobertura nacional. Confirmamos precio y disponibilidad por pedido.",
-    },
-  ];
+  const { packFormat } = product.specs;
 
   return (
     <>
-      <ProductJsonLd
-        product={product}
-        category={category}
-        brandName={brand?.name}
-      />
+      <ProductJsonLd product={product} category={category} brandName={brand?.name} />
       <BreadcrumbJsonLd
         trail={[
           ["Catálogo", "/productos"],
-          [
-            category?.name ?? product.category,
-            `/productos/${product.category}`,
-          ],
+          [category?.name ?? product.category, `/productos/${product.category}`],
           [product.name, `/productos/${product.category}/${product.slug}`],
         ]}
       />
 
-      {/* ============================================================ HERO */}
-      <section className="relative isolate overflow-hidden bg-brand-gradient text-white">
-        <Container className="relative py-10 md:py-14">
-          <nav className="flex flex-wrap items-center gap-1.5 text-sm text-white/80">
-            <Link href="/productos" className="hover:text-white">
-              Catálogo
-            </Link>
-            <ChevronRight className="size-3.5" />
-            <Link
-              href={`/productos/${product.category}`}
-              className="hover:text-white"
-            >
-              {category?.name ?? product.category}
-            </Link>
-            <ChevronRight className="size-3.5" />
-            <span className="text-white">{product.name}</span>
-          </nav>
+      <Container className="py-8 md:py-10">
+        <Breadcrumbs
+          items={[
+            { name: "Inicio", href: "/" },
+            { name: "Catálogo", href: "/productos" },
+            { name: category?.name ?? product.category, href: `/productos/${product.category}` },
+            { name: product.name },
+          ]}
+        />
 
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-            <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white ring-1 ring-white/25">
-                  {brand?.name ?? brandLabel(product.brand)}
-                </span>
-                {product.subcategory && (
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/85">
-                    {product.subcategory}
-                  </span>
-                )}
-              </div>
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
+          <div>
+            <ProductImage
+              product={product}
+              className="border border-border"
+              sizes="(max-width: 1024px) 100vw, 560px"
+              priority
+            />
+            {product.images.length > 1 && (
+              <ul className="mt-3 grid grid-cols-4 gap-3">
+                {product.images.slice(1).map((src, i) => (
+                  <li key={src} className="relative aspect-square border border-border bg-white">
+                    <Image src={src} alt={`${product.name}, vista ${i + 2}`} fill sizes="120px" className="object-contain p-2" />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
-              <h1 className="mt-4 text-white">{product.name}</h1>
-
-              {product.sku && (
-                <div className="mt-4">
-                  <CopySku sku={product.sku} />
-                </div>
-              )}
-
-              {product.keySpecs.length > 0 && (
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {product.keySpecs.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded-md bg-white/15 px-2.5 py-1 text-sm font-semibold text-white ring-1 ring-white/20"
-                    >
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              <p className="mt-5 max-w-xl text-lg text-white/90">
-                {product.description ??
-                  productDescription(product, category?.name, brand?.name)}
-              </p>
-
-              {/* action card floats on the band */}
-              <div className="mt-8 rounded-2xl bg-white p-6 text-ink shadow-2xl md:p-7">
-                <AddToQuoteButton product={product} withQuantity size="lg" />
-                <p className="mt-3 text-sm text-muted">
-                  Sin precio en línea. Confirmamos precio y disponibilidad por
-                  pedido, con entrega en el tiempo acordado.
-                </p>
-                <div className="mt-4 border-t border-border pt-4">
-                  <WhatsAppButton
-                    size="sm"
-                    message={`Hola, quisiera información sobre: ${product.name}${
-                      product.sku ? ` (SKU ${product.sku})` : ""
-                    }`}
-                  >
-                    Consultar por WhatsApp
-                  </WhatsAppButton>
-                </div>
-              </div>
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <BrandBadge brand={product.brand} />
+              {product.subcategory && <span className="label text-muted">{product.subcategory}</span>}
             </div>
+            <h1 className="mt-3 !text-[clamp(1.75rem,3.4vw,2.5rem)]">{product.name}</h1>
 
-            {/* visual */}
-            <div className="lg:pt-2">
-              <div className="overflow-hidden rounded-3xl bg-white p-6 shadow-2xl">
-                <ProductImage
-                  product={product}
-                  className="aspect-square rounded-2xl"
-                  sizes="(max-width: 1024px) 100vw, 460px"
-                  priority
-                />
-              </div>
-              {product.images.length > 1 && (
-                <div className="mt-3 grid grid-cols-4 gap-3">
-                  {product.images.slice(1).map((src) => (
-                    <div
-                      key={src}
-                      className="relative aspect-square overflow-hidden rounded-lg bg-white"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${src}`}
-                        alt={product.name}
-                        className="h-full w-full object-contain p-2"
-                      />
-                    </div>
+            <table className="spec-table mt-6">
+              <tbody>
+                <tr>
+                  <th scope="row">SKU</th>
+                  <td>{product.sku ? <CopySku sku={product.sku} /> : "Por confirmar con atención comercial"}</td>
+                </tr>
+                {packFormat && <tr><th scope="row">Presentación</th><td>{packFormat}</td></tr>}
+                {product.keySpecs
+                  .filter((k) => !k.startsWith("Presentación"))
+                  .map((k) => (
+                    <tr key={k}><th scope="row">Detalle</th><td>{k}</td></tr>
                   ))}
-                </div>
-              )}
+                <tr>
+                  <th scope="row">Origen</th>
+                  <td>
+                    {product.fabricated
+                      ? "Fabricado por AG Supply en Las Palomas, Santiago"
+                      : "Suministrado por AG Supply"}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div className="mt-8 border-t-2 border-ink pt-6">
+              <AddToQuoteButton product={product} layout="detail" />
+              <p className="mt-3 text-sm text-muted">
+                Sin precio en línea: el precio y la disponibilidad se confirman por pedido.
+              </p>
+              <div className="mt-4">
+                <WhatsAppButton
+                  size="sm"
+                  message={`Hola, quisiera información sobre: ${product.name}${product.sku ? ` (SKU ${product.sku})` : ""}`}
+                >
+                  Consultar este producto por WhatsApp
+                </WhatsAppButton>
+              </div>
             </div>
           </div>
-        </Container>
-      </section>
+        </div>
+      </Container>
 
-      {/* ==================================================== SPECIFICATIONS */}
-      <Section>
-        <h2>Especificaciones técnicas</h2>
+      <Section tone="surface">
+        <h2 className="rule-red">Especificaciones técnicas</h2>
         <p className="mt-3 max-w-2xl text-body">
-          Datos de fábrica para{" "}
-          {category?.name?.toLowerCase() ?? "este producto"}. Lo que no aparezca
-          aquí lo confirmamos por pedido.
+          Datos de {category?.name?.toLowerCase() ?? "este producto"} registrados en catálogo. Lo que no aparece se confirma por pedido.
         </p>
         <div className="mt-8">
-          <SpecGroups specs={product.specs} sku={product.sku} />
+          <SpecGroups specs={product.specs} />
         </div>
-        {product.placeholderImage && (
-          <p className="mt-4 text-sm text-muted">
-            Foto y ficha en actualización. Para dimensiones completas o una
-            muestra física, escríbenos a {siteConfig.email}.
-          </p>
-        )}
       </Section>
 
-      {/* ================================================= MANUFACTURER STRIP */}
-      <div className="bg-brand-blue-50">
-        <Container className="grid gap-8 py-12 sm:grid-cols-3">
-          {trust.map((t) => (
-            <div key={t.title} className="flex gap-3.5">
-              <span className="panel-icon size-11 shrink-0">
-                <t.icon className="size-5" aria-hidden />
-              </span>
-              <div>
-                <p className="font-heading font-semibold text-ink">{t.title}</p>
-                <p className="mt-1 text-sm text-body">{t.text}</p>
-              </div>
-            </div>
-          ))}
-        </Container>
-      </div>
-
-      {/* =========================================================== RELATED */}
       {related.length > 0 && (
-        <Section className="border-t border-border">
+        <Section>
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <h2>De la misma categoría</h2>
-            <Link
-              href={`/productos/${product.category}`}
-              className="font-heading text-sm font-semibold text-brand-blue-dark hover:underline"
-            >
+            <h2 className="rule-red">Productos relacionados</h2>
+            <Link href={`/productos/${product.category}`} className="link font-semibold">
               Ver toda la categoría
             </Link>
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {related.map((p) => (
-              <ProductCard key={p.slug} product={p} categorySlug={p.category} />
-            ))}
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {related.map((p) => <ProductCard key={p.slug} product={p} />)}
           </div>
         </Section>
       )}

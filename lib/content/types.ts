@@ -43,6 +43,10 @@ export interface Product {
   sku?: string;
   odooId: number;
   active: boolean;
+  /** True si AG Supply lo convierte/fabrica en planta (papel tissue). Gobierna toda afirmación de "fabricado". */
+  fabricated: boolean;
+  /** Calculado al cargar: ok | duplicate (SKU repetido en otro producto) | invalid (formato inválido, se descarta). */
+  skuStatus?: "ok" | "duplicate" | "invalid" | "missing";
 }
 
 export interface Category {
@@ -56,8 +60,8 @@ export interface Category {
   /** Full description for the category page header. */
   description: string;
   count: number;
-  /** Background image for the category card (placeholder until real photo). */
-  placeholder?: string;
+  /** Categoría que AG Supply fabrica en planta (papel tissue). El resto se suministra. */
+  fabricated: boolean;
   /** Ordered subcategory labels shown as filters on the category page. */
   subcategories?: string[];
 }

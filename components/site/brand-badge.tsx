@@ -9,7 +9,7 @@ const LABEL: Record<BrandSlug, string> = {
 
 export function BrandBadge({ brand }: { brand: BrandSlug }) {
   return (
-    <Badge variant={brand === "generico" ? "outline" : "blue"}>
+    <Badge variant={brand === "generico" ? "outline" : brand === "bonche" ? "neutral" : "blue"}>
       {LABEL[brand]}
     </Badge>
   );

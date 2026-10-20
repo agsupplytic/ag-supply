@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { toast } from "@/components/ui/toaster";
 
-/** Código interno (SKU) del producto, con botón para copiarlo al cotizar. */
+/** SKU del producto con botón para copiarlo al cotizar. */
 export function CopySku({ sku }: { sku: string }) {
   const [copied, setCopied] = useState(false);
 
@@ -15,29 +15,22 @@ export function CopySku({ sku }: { sku: string }) {
       toast.success("SKU copiado", { description: sku });
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      toast.error("No se pudo copiar. Selecciona el código manualmente.");
+      toast.error("No se pudo copiar. Seleccione el código manualmente.");
     }
   }
 
   return (
-    <div className="inline-flex items-center gap-3 rounded-xl bg-white/15 py-2 pl-4 pr-2 ring-1 ring-white/25">
-      <div>
-        <p className="text-[0.65rem] font-semibold uppercase tracking-wider text-white/75">
-          Código interno / SKU
-        </p>
-        <p className="select-all font-heading text-lg font-bold tabular-nums text-white">
-          {sku}
-        </p>
-      </div>
+    <span className="inline-flex items-center gap-3">
+      <span className="select-all font-heading text-lg font-semibold tabular-nums text-ink">{sku}</span>
       <button
         type="button"
         onClick={copy}
-        className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-2 text-xs font-semibold text-brand-blue-dark transition-colors hover:bg-brand-blue-50"
+        className="inline-flex h-8 items-center gap-1.5 border border-control-border px-2.5 text-sm font-semibold text-brand-blue-dark hover:bg-brand-blue-50"
         aria-label={`Copiar SKU ${sku}`}
       >
-        {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
+        {copied ? <Check className="size-3.5" aria-hidden /> : <Copy className="size-3.5" aria-hidden />}
         {copied ? "Copiado" : "Copiar"}
       </button>
-    </div>
+    </span>
   );
 }

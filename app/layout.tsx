@@ -1,27 +1,33 @@
 import type { Metadata } from "next";
-import { Montserrat, Inter } from "next/font/google";
+import { Barlow, Barlow_Semi_Condensed, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
-import { QuoteProvider } from "@/lib/quote/context";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { WhatsAppFab } from "@/components/site/whatsapp-button";
 import { Toaster } from "@/components/ui/toaster";
-import { ProtectImages } from "@/components/site/protect-images";
 import { OrganizationJsonLd, WebSiteJsonLd } from "@/components/site/json-ld";
 
-const montserrat = Montserrat({
+const barlow = Barlow({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-montserrat",
-  weight: ["500", "600", "700", "800"],
+  variable: "--font-barlow",
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-const inter = Inter({
+const barlowSc = Barlow_Semi_Condensed({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
-  weight: ["400", "500", "600"],
+  variable: "--font-barlow-sc",
+  weight: ["600"],
+});
+
+// Fuente variable: un solo archivo cubre 400–700.
+const source = Source_Sans_3({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-source",
 });
 
 export const metadata: Metadata = {
@@ -33,34 +39,10 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  keywords: [
-    "AG Supply",
-    "AG Supply SRL",
-    "A.G. Supply",
-    "agsupply.com.do",
-    "convertidora de papel",
-    "convertidora de papel en República Dominicana",
-    "fábrica de papel",
-    "fábrica de papel higiénico",
-    "fábrica de servilletas",
-    "fabricante de papel higiénico",
-    "fabricante de toallas de papel",
-    "papel higiénico institucional",
-    "servilletas al por mayor",
-    "toallas de papel",
-    "papel tissue",
-    "Ocean Breeze",
-    "Bonche",
-    "Santiago de los Caballeros",
-    "República Dominicana",
-    "HORECA",
-    "desechables",
-  ],
   category: "Manufactura de papel e higiene institucional",
   authors: [{ name: siteConfig.legalName }],
   creator: siteConfig.legalName,
   publisher: siteConfig.legalName,
-  alternates: { canonical: "/", languages: { "es-DO": "/" } },
   openGraph: {
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
@@ -99,25 +81,24 @@ export default function RootLayout({
   return (
     <html
       lang="es-DO"
-      className={`${montserrat.variable} ${inter.variable}`}
+      className={`${barlow.variable} ${barlowSc.variable} ${source.variable}`}
     >
       <body>
         <OrganizationJsonLd />
         <WebSiteJsonLd />
-        <QuoteProvider>
-          <a
-            href="#contenido"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand-blue focus:px-4 focus:py-2 focus:text-white"
-          >
-            Saltar al contenido
-          </a>
-          <SiteHeader />
-          <main id="contenido">{children}</main>
-          <SiteFooter />
-          <WhatsAppFab />
-          <Toaster />
-          <ProtectImages />
-        </QuoteProvider>
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-brand-blue focus:px-4 focus:py-2 focus:text-white"
+        >
+          Saltar al contenido
+        </a>
+        <SiteHeader />
+        <main id="contenido" tabIndex={-1}>
+          {children}
+        </main>
+        <SiteFooter />
+        <WhatsAppFab />
+        <Toaster />
       </body>
     </html>
   );

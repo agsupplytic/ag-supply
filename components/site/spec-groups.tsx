@@ -1,21 +1,18 @@
-import { Layers, Ruler, PackageOpen, ShieldCheck, type LucideIcon } from "lucide-react";
 import type { ProductSpecs } from "@/lib/content/types";
 
 type Row = { label: string; value?: string };
-type Group = { title: string; icon: LucideIcon; rows: Row[] };
+type Group = { title: string; rows: Row[] };
 
 function val(v?: string | number, unit = ""): string | undefined {
   if (v === undefined || v === null || v === "") return undefined;
   return `${v}${unit}`;
 }
 
-function buildGroups(s: ProductSpecs, sku?: string): Group[] {
+function buildGroups(s: ProductSpecs): Group[] {
   const groups: Group[] = [
     {
       title: "Material y formato",
-      icon: Layers,
       rows: [
-        { label: "Código interno / SKU", value: val(sku) },
         { label: "Capas", value: val(s.ply) },
         { label: "Gramaje", value: val(s.grammageGsm, " g/m²") },
         { label: "Color", value: val(s.color) },
@@ -26,84 +23,57 @@ function buildGroups(s: ProductSpecs, sku?: string): Group[] {
     },
     {
       title: "Medidas",
-      icon: Ruler,
       rows: [
         { label: "Ancho", value: val(s.widthCm, " cm") },
         { label: "Largo de hoja", value: val(s.sheetLengthCm, " cm") },
-        { label: "Hojas por rollo / paquete", value: val(s.sheets) },
-        {
-          label: "Longitud del rollo",
-          value: val(s.rollLengthM, " m") ?? val(s.rollLengthFt, " pies"),
-        },
+        { label: "Hojas por rollo o paquete", value: val(s.sheets) },
+        { label: "Longitud del rollo", value: val(s.rollLengthM, " m") ?? val(s.rollLengthFt, " pies") },
       ],
     },
     {
       title: "Empaque y logística",
-      icon: PackageOpen,
       rows: [
         { label: "Presentación", value: val(s.packFormat) },
         { label: "Paquetes por fardo", value: val(s.packsPerBale) },
         { label: "Dimensiones del paquete", value: val(s.packageDims) },
-        { label: "Dimensiones del fardo / caja", value: val(s.caseDims) },
+        { label: "Dimensiones del fardo o caja", value: val(s.caseDims) },
         { label: "Unidades por paleta", value: val(s.unitsPerPallet) },
       ],
     },
-    {
-      title: "Cumplimiento normativo",
-      icon: ShieldCheck,
-      rows: [{ label: "Normas", value: val(s.compliance) }],
-    },
+    { title: "Cumplimiento normativo", rows: [{ label: "Normas", value: val(s.compliance) }] },
   ];
-
   return groups
     .map((g) => ({ ...g, rows: g.rows.filter((r) => r.value) }))
     .filter((g) => g.rows.length > 0);
 }
 
-export function SpecGroups({
-  specs,
-  sku,
-}: {
-  specs: ProductSpecs;
-  sku?: string;
-}) {
-  const groups = buildGroups(specs, sku);
-
+/** Ficha técnica: una tabla por grupo, solo con los datos que existen. */
+export function SpecGroups({ specs }: { specs: ProductSpecs }) {
+  const groups = buildGroups(specs);
   if (groups.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-border p-8 text-center text-body">
-        Ficha técnica en actualización. Escríbenos para las dimensiones completas o
-        una muestra física de este producto.
-      </div>
+      <p className="max-w-xl border-l-4 border-border pl-4 text-body">
+        La ficha técnica de este producto está en actualización. Escríbanos para las dimensiones
+        completas o una muestra.
+      </p>
     );
   }
-
   return (
-    <div className="grid gap-6 md:grid-cols-2">
+    <div className="grid gap-x-12 gap-y-8 md:grid-cols-2">
       {groups.map((g) => (
-        <div key={g.title} className="panel p-6">
-          <div className="flex items-center gap-2.5">
-            <span className="panel-icon size-9">
-              <g.icon className="size-5" aria-hidden />
-            </span>
-            <h3 className="font-heading text-base font-bold text-ink">
-              {g.title}
-            </h3>
-          </div>
-          <dl className="mt-4 divide-y divide-border">
-            {g.rows.map((r) => (
-              <div
-                key={r.label}
-                className="flex items-baseline justify-between gap-6 py-2.5"
-              >
-                <dt className="text-sm text-muted">{r.label}</dt>
-                <dd className="text-right font-heading text-sm font-semibold text-ink">
-                  {r.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+        <section key={g.title}>
+          <h3 className="label !text-ink">{g.title}</h3>
+          <table className="spec-table mt-2">
+            <tbody>
+              {g.rows.map((r) => (
+                <tr key={r.label}>
+                  <th scope="row">{r.label}</th>
+                  <td>{r.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
       ))}
     </div>
   );

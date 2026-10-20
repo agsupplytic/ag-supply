@@ -27,45 +27,45 @@ const imageIds = new Set(
    `description` (más largo) para la cabecera de la página de categoría. */
 const CATEGORIES = [
   {
-    slug: "papel-higienico", name: "Papel higiénico", icon: "Disc3", order: 1,
+    slug: "papel-higienico", fabricated: true, name: "Papel higiénico", icon: "Disc3", order: 1,
     short: "Papel higiénico doméstico e institucional: 12/1 genérico, doble capa 24/1 y 30/1, y 48/1 envuelto individual en 24 m y 35 m.",
-    description: "Manufactura y distribución de papel higiénico de uso doméstico e institucional. La gama incluye el formato clásico 12/1 genérico, formatos de doble capa 24/1 (gramajes de 65, 75 y 85 g) y 30/1 (75 y 90–95 g), paquetes de 6/1 de 9 libras y el formato 48/1 con opciones envueltas individualmente en metrajes de 24 m y 35 m (marcas Ocean Breeze y Bio).",
+    description: "Papel higiénico de uso doméstico e institucional. La gama incluye el formato clásico 12/1 genérico, formatos de doble capa 24/1 (gramajes de 65, 75 y 85 g) y 30/1 (75 y 90–95 g), paquetes de 6/1 de 9 libras y el formato 48/1 con opciones envueltas individualmente en metrajes de 24 m y 35 m (marcas Ocean Breeze y Bonche).",
   },
   {
-    slug: "toallas", name: "Toallas de papel", icon: "Layers", order: 2,
+    slug: "toallas", fabricated: true, name: "Toallas de papel", icon: "Layers", order: 2,
     short: "Secado de manos y limpieza para alto tránsito: center pull 6/1, toallas de cocina, bobina Kraft de 550 pies y rollos Bleach de 600 y 700 pies.",
     description: "Soluciones para el secado de manos y la limpieza en entornos corporativos y hoteleros de alto tránsito. Destacan las toallas Center Pull 6/1, toallas de cocina lisas, bobinas de papel toalla Kraft de 550 pies, toallas en caja Wave o fardo de 800 pies y los rollos de Toalla Bleach industrial en formatos de 600 y 700 pies.",
   },
   {
-    slug: "servilletas", name: "Servilletas", icon: "Square", order: 3,
+    slug: "servilletas", fabricated: true, name: "Servilletas", icon: "Square", order: 3,
     short: "Servilletas de mesa, cafetería y restaurante: dispensador (Softpel, Bonche), dinner 15x17 blanca o Kraft de 2 capas, Moka y cocktail.",
     description: "Línea especializada en servilletas de mesa, cafeterías y restaurantes. Abarca desde la servilleta genérica de 10 paquetes y la cuadrada de 13x13 hasta las servilletas de dispensador (Softpel, Bonche) en formatos 10/500 y 10/1, la línea Dinner 15x17 blanca o Kraft de 2 capas, las servilletas Moka y las cocktail en blanco, Kraft y negro.",
   },
   {
-    slug: "interfoliados", name: "Interfoliados", icon: "Rows3", order: 4,
+    slug: "interfoliados", fabricated: true, name: "Interfoliados", icon: "Rows3", order: 4,
     short: "Toallas interfoliadas (plegado Z o V) para dispensación individual: Sanitisue 20/200, Mini Napkin Waves 30/200 y Quick Nap.",
     description: "Toallas de papel interfoliadas (plegadas en «Z» o «V») para dispensación individual manual, lo que reduce drásticamente el desperdicio y garantiza la máxima higiene en oficinas y comercios. Ejemplos: Interfold Sanitisue 20/200, Interfold Mini Napkin Waves 30/200, Interfold Quick Nap y Mini Napkin de 2 capas.",
   },
   {
-    slug: "facial", name: "Papel facial", icon: "Wind", order: 5,
+    slug: "facial", fabricated: true, name: "Papel facial", icon: "Wind", order: 5,
     short: "Pañuelos de papel tisú de doble capa, muy suaves y absorbentes. Marca Ocean Breeze en caja plana y formato cubo 30/1.",
     description: "Pañuelos de papel tisú de doble capa, con extraordinaria suavidad y alta absorción, para el cuidado personal en oficinas, clínicas y habitaciones de hotel. Se comercializan bajo la marca Ocean Breeze en formato de caja plana o cubo de 30/1.",
   },
   {
-    slug: "jabon", name: "Jabón y limpieza", icon: "SprayCan", order: 6,
+    slug: "jabon", fabricated: false, name: "Jabón y limpieza", icon: "SprayCan", order: 6,
     short: "Químicos y limpieza líquida: cloro, desinfectantes perfumados, desengrasantes, lavaplatos, jabón de manos, suavizantes y detergentes en polvo.",
     description: "Productos químicos y soluciones de limpieza líquida para la higiene industrial, institucional y doméstica: cloro líquido, desinfectantes perfumados (lavanda, floral, brisa marina), desengrasantes, lavaplatos líquido, jabones líquidos para manos, jabón hipoalergénico, suavizantes para ropa y detergentes en polvo para ropa blanca, de color o negra.",
   },
   {
-    slug: "desechables", name: "Desechables", icon: "Trash2", order: 7,
+    slug: "desechables", fabricated: false, name: "Desechables", icon: "Trash2", order: 7,
     short: "Fundas de basura, papel encerado, bandejas de aluminio y envases desechables para servicio de alimentos y manejo de desperdicios.",
     description: "Desechables para el servicio de alimentos y el manejo de desperdicios: fundas de basura en distintos calibres y galonajes, papel encerado y papel MG para envolver, bandejas de aluminio, envases de sopa/habichuela de 4 oz con tapa y cajas de pizza. Opciones plásticas y biodegradables.",
   },
   {
-    slug: "cuberteria", name: "Cubertería", icon: "Utensils", order: 8,
+    slug: "cuberteria", fabricated: false, name: "Cubertería", icon: "Utensils", order: 8,
     subcategories: ["Cubertería suelta", "Combos"],
     short: "Cucharas, tenedores, cuchillos, vasos, platos y sorbetes desechables, más los combos preensamblados de cubierto + servilleta.",
-    description: "Menaje de mesa de un solo uso para comida rápida, eventos y catering. Incluye cubertería suelta —cucharas, tenedores, cuchillos de mango de madera, platos (n.º 9, n.º 6 para picadera y con divisiones), vasos rígidos y biodegradables (n.º 10 y 7) y sorbetes de papel— y la subcategoría de Combos: sets pre-empaquetados de cubierto + servilleta de alta calidad, fabricados de forma automatizada, ideales para delivery y hotelería (combos HW de 2 piezas 500/1, de 1 pieza blanco MW, de 3 piezas en caja, de 2 piezas negro MW y Pannez impresos).",
+    description: "Menaje de mesa de un solo uso para comida rápida, eventos y catering. Incluye cubertería suelta —cucharas, tenedores, cuchillos de mango de madera, platos (n.º 9, n.º 6 para picadera y con divisiones), vasos rígidos y biodegradables (n.º 10 y 7) y sorbetes de papel— y la subcategoría de Combos: sets pre-empaquetados de cubierto + servilleta de alta calidad, ideales para delivery y hotelería (combos HW de 2 piezas 500/1, de 1 pieza blanco MW, de 3 piezas en caja, de 2 piezas negro MW).",
   },
 ];
 const CATEGORY_SLUGS = new Set(CATEGORIES.map((c) => c.slug));
@@ -75,18 +75,18 @@ const CATEGORY_SLUGS = new Set(CATEGORIES.map((c) => c.slug));
 const BRANDS = [
   {
     slug: "ocean-breeze", name: "Ocean Breeze", positioning: "premium",
-    short: "Marca premium para el mercado institucional, corporativo y hotelero: alta resistencia, óptima absorción y blancura superior al 98 %.",
-    description: "Nuestra marca premium, desarrollada específicamente para satisfacer las altas exigencias del mercado institucional, corporativo y hotelero. Se distingue por productos de alta resistencia, óptima absorción y una blancura superior al 98 %. Garantizamos metrajes y cortes exactos combinados con una extraordinaria suavidad, asegurando un rendimiento excelente y precios justos que maximizan el valor de la inversión corporativa.",
+    short: "Línea de AG Supply para el mercado institucional, corporativo y hotelero: papel higiénico, toallas, servilletas, interfoliados y faciales.",
+    description: "Línea de AG Supply para el mercado institucional, corporativo y hotelero. Se fabrica en la planta de Santiago con metrajes y cortes definidos por referencia, y se ofrece en papel higiénico, toallas, servilletas, interfoliados y papel facial.",
   },
   {
     slug: "bonche", name: "Bonche", positioning: "economica",
-    short: "La solución para el consumo masivo y el uso cotidiano: alta absorción, rendimiento excepcional y precios muy competitivos.",
-    description: "La solución perfecta para el consumo masivo y el uso cotidiano. Diseñada para brindar productos de alta absorción con un rendimiento excepcional en el día a día. Ofrece precios sumamente económicos y competitivos sin sacrificar la utilidad, respaldada por una disponibilidad inmediata que asegura el abastecimiento constante del hogar o el negocio.",
+    short: "Línea de AG Supply para consumo masivo y uso cotidiano, de precio accesible, orientada a colmados, supermercados y mayoristas.",
+    description: "Línea de AG Supply para el consumo masivo y el uso cotidiano, con precio accesible. Se dirige a colmados, supermercados, mayoristas y cafeterías. Hoy el catálogo publicado incluye servilletas y papel encerado Bonche; otras referencias se confirman por consulta.",
   },
   {
     slug: "generico", name: "Genérico", positioning: "generico",
-    short: "Producto institucional de base, sin marca comercial, para operaciones que priorizan rendimiento y costo.",
-    description: "Producto institucional de base, sin marca comercial, para operaciones que priorizan el rendimiento y el costo por unidad.",
+    short: "Productos de línea institucional sin marca comercial propia, para operaciones que priorizan el rendimiento y el costo.",
+    description: "Productos de línea institucional sin marca comercial propia, para operaciones que priorizan el rendimiento y el costo por unidad. Incluye referencias fabricadas por AG Supply y otras que suministra.",
   },
 ];
 
@@ -396,7 +396,6 @@ for (const p of products) counts[p.category] = (counts[p.category] || 0) + 1;
 const categoriesOut = CATEGORIES.map((c) => ({
   ...c,
   count: counts[c.slug] || 0,
-  placeholder: `/images/placeholders/cat-${c.slug}.webp`,
 }));
 const brandCounts = {};
 for (const p of products) brandCounts[p.brand] = (brandCounts[p.brand] || 0) + 1;

@@ -3,24 +3,24 @@
     "slug": "ocean-breeze",
     "name": "Ocean Breeze",
     "positioning": "premium",
-    "short": "Marca premium para el mercado institucional, corporativo y hotelero: alta resistencia, óptima absorción y blancura superior al 98 %.",
-    "description": "Nuestra marca premium, desarrollada específicamente para satisfacer las altas exigencias del mercado institucional, corporativo y hotelero. Se distingue por productos de alta resistencia, óptima absorción y una blancura superior al 98 %. Garantizamos metrajes y cortes exactos combinados con una extraordinaria suavidad, asegurando un rendimiento excelente y precios justos que maximizan el valor de la inversión corporativa.",
+    "short": "Línea de AG Supply para el mercado institucional, corporativo y hotelero: papel higiénico, toallas, servilletas, interfoliados y faciales.",
+    "description": "Línea de AG Supply para el mercado institucional, corporativo y hotelero. Se fabrica en la planta de Santiago con metrajes y cortes definidos por referencia, y se ofrece en papel higiénico, toallas, servilletas, interfoliados y papel facial.",
     "count": 34
   },
   {
     "slug": "bonche",
     "name": "Bonche",
     "positioning": "economica",
-    "short": "La solución para el consumo masivo y el uso cotidiano: alta absorción, rendimiento excepcional y precios muy competitivos.",
-    "description": "La solución perfecta para el consumo masivo y el uso cotidiano. Diseñada para brindar productos de alta absorción con un rendimiento excepcional en el día a día. Ofrece precios sumamente económicos y competitivos sin sacrificar la utilidad, respaldada por una disponibilidad inmediata que asegura el abastecimiento constante del hogar o el negocio.",
+    "short": "Línea de AG Supply para consumo masivo y uso cotidiano, de precio accesible, orientada a colmados, supermercados y mayoristas.",
+    "description": "Línea de AG Supply para el consumo masivo y el uso cotidiano, con precio accesible. Se dirige a colmados, supermercados, mayoristas y cafeterías. Hoy el catálogo publicado incluye servilletas y papel encerado Bonche; otras referencias se confirman por consulta.",
     "count": 2
   },
   {
     "slug": "generico",
     "name": "Genérico",
     "positioning": "generico",
-    "short": "Producto institucional de base, sin marca comercial, para operaciones que priorizan rendimiento y costo.",
-    "description": "Producto institucional de base, sin marca comercial, para operaciones que priorizan el rendimiento y el costo por unidad.",
+    "short": "Productos de línea institucional sin marca comercial propia, para operaciones que priorizan el rendimiento y el costo.",
+    "description": "Productos de línea institucional sin marca comercial propia, para operaciones que priorizan el rendimiento y el costo por unidad. Incluye referencias fabricadas por AG Supply y otras que suministra.",
     "count": 132
   }
 ]

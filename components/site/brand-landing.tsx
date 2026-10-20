@@ -1,225 +1,177 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { getBrand, getProducts } from "@/lib/content";
+import { getBrand, getCategories, getProducts } from "@/lib/content";
+import { Container } from "./container";
 import { Section, SectionHeading } from "./section";
-import { Reveal } from "./reveal";
-import { ProductCard } from "./product-card";
+import { Breadcrumbs } from "./breadcrumbs";
+import { ProductRow, ROW_COLS } from "./product-row";
+import { ClosingCta } from "./closing-cta";
+import { Photo } from "./photo";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "./whatsapp-button";
-import { Container } from "./container";
-import { siteConfig } from "@/lib/site-config";
-import { isRealImage } from "@/lib/real-images";
+import { cn } from "@/lib/utils";
 import type { BrandSlug } from "@/lib/content/types";
 
-interface BrandLandingProps {
+type Props = {
   slug: Extract<BrandSlug, "ocean-breeze" | "bonche">;
-  eyebrow?: string;
   headline: string;
   subhead: string;
   audience: string[];
-  valueProps: { title: string; text: string }[];
-  tone: "premium" | "value";
-}
-
-/** Per-brand hero background + scrim. Ocean Breeze: cajas propias en la planta.
- *  Bonche: producto Bonche sobre fondo verde de marca. */
-const HERO: Record<
-  "premium" | "value",
-  { src: string; alt: string; scrim: string }
-> = {
-  premium: {
-    src: "/images/placeholders/section-manufactura.webp",
-    alt: "Cajas de producto Ocean Breeze en la planta de AG Supply",
-    scrim: "hero-scrim-deep",
-  },
-  value: {
-    src: "/images/placeholders/brand-bonche-hero.webp",
-    alt: "Servilletas y empaques Bonche",
-    scrim: "hero-scrim-bonche",
-  },
+  features: { title: string; text: string }[];
 };
 
-export async function BrandLanding({
-  slug,
-  headline,
-  subhead,
-  audience,
-  valueProps,
-  tone,
-}: BrandLandingProps) {
-  const [brand, products] = await Promise.all([
+/**
+ * Página de marca. Cada marca conserva su identidad y su composición propia:
+ *  - Ocean Breeze: fondo celeste y logotipo protagonista (línea institucional).
+ *  - Bonche: banda verde con fotografía de producto (línea de consumo masivo).
+ * Ambas dicen con claridad que AG Supply es quien las fabrica.
+ */
+export async function BrandLanding({ slug, headline, subhead, audience, features }: Props) {
+  const [brand, products, categories] = await Promise.all([
     getBrand(slug),
     getProducts({ brand: slug }),
+    getCategories(),
   ]);
+  const ocean = slug === "ocean-breeze";
+  const name = brand?.name ?? "";
+  const byCategory = categories
+    .map((c) => ({ c, n: products.filter((p) => p.category === c.slug).length }))
+    .filter((x) => x.n > 0);
 
-  const heroLogo = `/images/brand/${slug}-logo.webp`;
-  const hero = HERO[tone];
-  const isDev = process.env.NODE_ENV !== "production";
+  const crumbs = [{ name: "Inicio", href: "/" }, { name: "Marcas" }, { name }];
 
   return (
     <>
-      {/* ------------------------------------------------------------ hero */}
-      <section className="relative isolate border-b border-border text-white">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <Image
-            src={hero.src}
-            alt={hero.alt}
-            fill
-            priority
-            sizes="100vw"
-            draggable={false}
-            className="object-cover"
-          />
-          <div className={`absolute inset-0 ${hero.scrim}`} />
-          {!isRealImage(hero.src) && isDev && (
-            <span className="figure-note">Imagen de prueba</span>
-          )}
+      {ocean ? (
+        <section className="border-b-4 border-ocean bg-ocean-50">
+          <Container className="grid items-center gap-10 py-12 md:py-16 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+            <Image
+              src="/images/brand/ocean-breeze-logo.webp"
+              alt="Logotipo Ocean Breeze"
+              width={560}
+              height={350}
+              priority
+              className="mx-auto h-auto w-full max-w-md"
+            />
+            <div>
+              <Breadcrumbs items={crumbs} className="mb-5" />
+              <h1 className="!text-ocean">{headline}</h1>
+              <p className="mt-4 max-w-xl text-lg text-body">{subhead}</p>
+              <p className="label mt-5 text-muted">Fabricada por AG Supply · Santiago, República Dominicana</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Button asChild size="lg" className="bg-ocean hover:bg-ocean/90">
+                  <Link href={`/productos?marca=${slug}`}>Ver productos {name}</Link>
+                </Button>
+                <WhatsAppButton size="lg" />
+              </div>
+            </div>
+          </Container>
+        </section>
+      ) : (
+        <section className="bg-bonche text-white">
+          <Container className="grid items-center gap-8 py-10 md:py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
+            <div>
+              <Breadcrumbs items={crumbs} className="mb-5 [&_*]:!text-white/90" />
+              <div className="inline-block bg-white p-3">
+                <Image
+                  src="/images/brand/bonche-logo.webp"
+                  alt="Logotipo Bonche Servilletas"
+                  width={220}
+                  height={138}
+                  priority
+                  className="h-auto w-48"
+                />
+              </div>
+              <h1 className="mt-6 !text-white">{headline}</h1>
+              <p className="mt-4 max-w-xl text-lg text-white/95">{subhead}</p>
+              <p className="label mt-5 text-white/90">Fabricada por AG Supply · Santiago, República Dominicana</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Button asChild size="lg" variant="light" className="text-bonche-dark">
+                  <Link href={`/productos?marca=${slug}`}>Ver productos {name}</Link>
+                </Button>
+                <WhatsAppButton size="lg" />
+              </div>
+            </div>
+            <Photo
+              src="/images/fotos/brand-bonche-hero.webp"
+              alt="Servilletas Bonche en su empaque"
+              ratio="3/2"
+              priority
+              sizes="(max-width: 1024px) 100vw, 520px"
+            />
+          </Container>
+        </section>
+      )}
+
+      <Section>
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+          <div>
+            <SectionHeading title={`${name} en una línea`} intro={brand?.description} />
+            <h3 className="label mt-8 text-muted">A quién atiende</h3>
+            <p className="mt-2 text-lg text-ink">{audience.join(" · ")}</p>
+          </div>
+          <div>
+            <h3 className="label text-muted">Qué incluye hoy el catálogo</h3>
+            <table className="spec-table mt-3">
+              <tbody>
+                {byCategory.map(({ c, n }) => (
+                  <tr key={c.slug}>
+                    <th scope="row" className="!normal-case !tracking-normal !text-base !font-semibold !text-ink">
+                      <Link href={`/productos/${c.slug}?marca=${slug}`} className="hover:text-brand-blue-dark hover:underline">
+                        {c.name}
+                      </Link>
+                    </th>
+                    <td>{n} {n === 1 ? "producto" : "productos"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <Container className="relative grid items-center gap-10 py-20 md:py-28 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
-          <div>
-            <h1 className="text-white">{headline}</h1>
-            <p className="mt-3 font-heading text-xl italic text-white/95">
-              {siteConfig.slogan}
-            </p>
-            <p className="mt-5 max-w-xl text-lg text-white/90">{subhead}</p>
-            <div className="mt-7 flex flex-wrap items-center gap-2">
-              {audience.map((a) => (
-                <span
-                  key={a}
-                  className="rounded-full bg-white/25 px-3 py-1 text-sm font-medium text-white ring-1 ring-white/40"
-                >
-                  {a}
-                </span>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button
-                asChild
-                size="lg"
-                className={
-                  tone === "premium"
-                    ? "bg-white text-brand-blue hover:bg-brand-blue-50"
-                    : "bg-white text-bonche-dark hover:bg-bonche-50"
-                }
-              >
-                <Link href={`/productos?marca=${slug}`}>
-                  Ver productos {brand?.name}
-                  <ArrowRight className="size-5" />
-                </Link>
-              </Button>
-              <WhatsAppButton size="lg" />
-            </div>
-          </div>
-
-          {/* full brand logo, crisp, centred — no plate */}
-          <div className="flex justify-center lg:justify-end">
-            <Image
-              src={heroLogo}
-              alt={brand?.name ?? ""}
-              width={1600}
-              height={1000}
-              priority
-              draggable={false}
-              className="h-auto w-full max-w-[22rem] object-contain drop-shadow-[0_6px_28px_rgba(0,0,0,0.35)] md:max-w-[26rem]"
-            />
-          </div>
-        </Container>
-      </section>
-
-      {/* --------------------------------------------------------- positioning */}
-      <Section>
-        <Reveal>
-          <SectionHeading
-            title={
-              tone === "premium"
-                ? "Consistencia y presentación para el canal HORECA"
-                : "Rendimiento y volumen para el canal masivo"
-            }
-            intro={brand?.description}
-          />
-        </Reveal>
-        <Reveal className="mt-10 grid gap-6 md:grid-cols-3">
-          {valueProps.map((v) => (
-            <div
-              key={v.title}
-              className={
-                "rounded-2xl border p-6 " +
-                (tone === "premium"
-                  ? "border-brand-blue-100 bg-brand-blue-50"
-                  : "border-bonche-100 bg-bonche-50")
-              }
-            >
-              <span
-                className={
-                  "block h-1 w-8 rounded-full " +
-                  (tone === "premium" ? "bg-brand-blue" : "bg-bonche")
-                }
-              />
-              <p className="mt-4 font-heading text-lg font-semibold text-ink">
-                {v.title}
-              </p>
-              <p className="mt-2 text-sm text-body">{v.text}</p>
+        <dl className="mt-12 grid gap-x-10 gap-y-0 md:grid-cols-3">
+          {features.map((f) => (
+            <div key={f.title} className={cn("border-t-2 py-4", ocean ? "border-ocean" : "border-bonche")}>
+              <dt className="font-heading text-xl font-semibold text-ink">{f.title}</dt>
+              <dd className="mt-1 text-body">{f.text}</dd>
             </div>
           ))}
-        </Reveal>
+        </dl>
       </Section>
 
-      {/* ------------------------------------------------------------ products */}
-      <Section className="border-t border-border">
-        <Reveal className="flex flex-wrap items-end justify-between gap-4">
+      <Section tone="surface">
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            title={`Productos ${brand?.name}`}
-            intro={`${products.length} productos de esta línea disponibles para cotización.`}
+            title={`Productos ${name}`}
+            intro={`${products.length} ${products.length === 1 ? "producto" : "productos"} de esta línea en el catálogo.`}
           />
           <Button asChild variant="outline">
-            <Link href={`/productos?marca=${slug}`}>Ver todos</Link>
+            <Link href={`/productos?marca=${slug}`}>Filtrar en el catálogo</Link>
           </Button>
-        </Reveal>
-        <Reveal className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {products.slice(0, 9).map((p) => (
-            <ProductCard key={p.slug} product={p} categorySlug={p.category} />
-          ))}
-        </Reveal>
-        {products.length === 0 && (
-          <p className="mt-8 text-body">
-            Estamos cargando el catálogo de esta línea. Mientras tanto,{" "}
-            <Link href="/contacto" className="text-brand-blue-dark underline">
-              escríbenos
-            </Link>{" "}
-            y te compartimos las fichas.
+        </div>
+        {products.length > 0 ? (
+          <div className="mt-8 border-y border-border bg-white">
+            <div className={cn("label hidden gap-x-4 border-b-2 border-ink px-3 py-2 text-muted md:grid", ROW_COLS)} aria-hidden>
+              <span>SKU</span><span>Producto</span><span>Marca</span><span>Presentación</span><span className="text-right">Cotizar</span>
+            </div>
+            <ul className="divide-y divide-border">
+              {products.slice(0, 12).map((p) => <ProductRow key={p.slug} product={p} />)}
+            </ul>
+          </div>
+        ) : null}
+        {products.length > 12 && (
+          <p className="mt-4">
+            <Link href={`/productos?marca=${slug}`} className="link font-semibold">
+              Ver los {products.length} productos
+            </Link>
           </p>
         )}
       </Section>
 
-      {/* ----------------------------------------------------------- cta band */}
-      <div
-        className={
-          "text-white " +
-          (tone === "premium" ? "bg-brand-gradient" : "bg-bonche-gradient")
-        }
-      >
-        <Section className="text-center">
-          <h2 className="mx-auto max-w-xl text-white">
-            ¿Abasteces con {brand?.name}? Arma tu cotización
-          </h2>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button
-              asChild
-              size="lg"
-              className={
-                tone === "premium"
-                  ? "bg-white text-brand-blue hover:bg-brand-blue-50"
-                  : "bg-white text-bonche-dark hover:bg-bonche-50"
-              }
-            >
-              <Link href={`/productos?marca=${slug}`}>Ir al catálogo</Link>
-            </Button>
-            <WhatsAppButton size="lg" />
-          </div>
-        </Section>
-      </div>
+      <ClosingCta
+        title={`Cotice ${name}`}
+        text="Arme su lista en el catálogo o consulte por referencias que aún no aparecen publicadas."
+      />
     </>
   );
 }

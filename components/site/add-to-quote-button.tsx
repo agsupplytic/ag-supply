@@ -1,98 +1,110 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Plus, Minus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Check, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toaster";
-import { useQuote } from "@/lib/quote/context";
+import { useQuote } from "@/lib/quote/store";
 import { cn } from "@/lib/utils";
 import type { Product } from "@/lib/content/types";
 
-type QuoteTarget = Pick<Product, "slug" | "name" | "brand" | "sku">;
+type QuoteSource = Pick<Product, "slug" | "name" | "brand" | "sku" | "specs">;
 
+const parseQty = (v: string) => {
+  const n = Math.floor(Number(v));
+  return Number.isFinite(n) && n >= 1 ? n : 1;
+};
+
+/**
+ * Añade un producto a la lista de cotización.
+ *  - `inline`: campo de cantidad + botón compacto (filas del catálogo).
+ *  - `block` : botón de ancho completo (tarjetas).
+ *  - `detail`: cantidad + botón grande (ficha).
+ */
 export function AddToQuoteButton({
   product,
-  variant = "primary",
-  size = "md",
-  withQuantity = false,
+  layout = "block",
   className,
-  label = "Añadir a cotización",
 }: {
-  product: QuoteTarget;
-  variant?: "primary" | "outline" | "subtle";
-  size?: "sm" | "md" | "lg";
-  withQuantity?: boolean;
+  product: QuoteSource;
+  layout?: "inline" | "block" | "detail";
   className?: string;
-  label?: string;
 }) {
-  const { addItem, has } = useQuote();
-  const inQuote = has(product.slug);
-  const [qty, setQty] = useState(1);
+  const { addItem, has, hydrated } = useQuote();
+  const router = useRouter();
+  const [qty, setQty] = useState("1");
+  const inQuote = hydrated && has(product.slug);
 
   function add() {
+    const n = parseQty(qty);
     const isNew = addItem(
       {
         slug: product.slug,
         name: product.name,
         brand: product.brand,
         sku: product.sku,
+        pack: product.specs.packFormat,
       },
-      qty,
+      n,
     );
-    toast.success(isNew ? "Añadido a cotización" : "Cantidad actualizada", {
+    setQty("1");
+    toast.success(isNew ? "Añadido a la cotización" : "Cantidad actualizada", {
       description: product.name,
-      action: { label: "Ver", onClick: () => (window.location.href = "/cotizacion") },
+      action: { label: "Ver lista", onClick: () => router.push("/cotizacion") },
     });
   }
 
-  if (withQuantity) {
+  const qtyInput = (
+    <input
+      type="number"
+      inputMode="numeric"
+      min={1}
+      value={qty}
+      onChange={(e) => setQty(e.target.value)}
+      onBlur={() => setQty(String(parseQty(qty)))}
+      onKeyDown={(e) => e.key === "Enter" && add()}
+      aria-label={`Cantidad de ${product.name}`}
+      className={cn(
+        "border border-control-border bg-white text-center font-heading font-semibold text-ink",
+        layout === "detail" ? "h-12 w-20" : "h-9 w-16 text-sm",
+      )}
+    />
+  );
+
+  const icon = inQuote ? <Check aria-hidden /> : <Plus aria-hidden />;
+
+  if (layout === "inline") {
     return (
-      <div className={cn("flex flex-wrap items-center gap-3", className)}>
-        <div className="inline-flex items-center rounded-md border border-border">
-          <button
-            type="button"
-            onClick={() => setQty((q) => Math.max(1, q - 1))}
-            className="grid size-11 place-items-center text-body hover:text-brand-blue"
-            aria-label="Disminuir cantidad"
-          >
-            <Minus className="size-4" />
-          </button>
-          <input
-            type="number"
-            min={1}
-            value={qty}
-            onChange={(e) =>
-              setQty(Math.max(1, Math.floor(Number(e.target.value) || 1)))
-            }
-            className="w-14 border-x border-border bg-transparent py-2 text-center font-heading font-semibold text-ink"
-            aria-label="Cantidad"
-          />
-          <button
-            type="button"
-            onClick={() => setQty((q) => q + 1)}
-            className="grid size-11 place-items-center text-body hover:text-brand-blue"
-            aria-label="Aumentar cantidad"
-          >
-            <Plus className="size-4" />
-          </button>
-        </div>
-        <Button variant={variant} size={size} onClick={add}>
-          {inQuote ? <Check className="size-4" /> : <Plus className="size-4" />}
-          {inQuote ? "En cotización · añadir más" : label}
+      <div className={cn("flex items-center gap-2", className)}>
+        {qtyInput}
+        <Button size="sm" variant={inQuote ? "subtle" : "primary"} onClick={add}>
+          {icon}
+          {inQuote ? "Sumar" : "Añadir"}
         </Button>
       </div>
     );
   }
-
+  if (layout === "detail") {
+    return (
+      <div className={cn("flex flex-wrap items-center gap-3", className)}>
+        {qtyInput}
+        <Button size="lg" onClick={add}>
+          {icon}
+          {inQuote ? "En la lista · sumar cantidad" : "Añadir a la cotización"}
+        </Button>
+      </div>
+    );
+  }
   return (
     <Button
-      variant={inQuote ? "subtle" : variant}
-      size={size}
+      variant={inQuote ? "subtle" : "outline"}
+      size="sm"
       onClick={add}
       className={className}
     >
-      {inQuote ? <Check className="size-4" /> : <Plus className="size-4" />}
-      {inQuote ? "En cotización" : label}
+      {icon}
+      {inQuote ? "En la lista" : "Añadir a la cotización"}
     </Button>
   );
 }

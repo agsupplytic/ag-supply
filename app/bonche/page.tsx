@@ -1,39 +1,25 @@
-import type { Metadata } from "next";
 import { BrandLanding } from "@/components/site/brand-landing";
-import { ogFor } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
-const BONCHE_DESC =
-  "Bonche es la línea económica de AG Supply, fábrica de servilletas y papel en Santiago, RD, para colmados, supermercados y consumo masivo: alta absorción y rendimiento a precios muy competitivos.";
-
-export const metadata: Metadata = {
-  title: "Bonche — Línea económica de consumo masivo",
-  description: BONCHE_DESC,
-  alternates: { canonical: "/bonche" },
-  openGraph: ogFor("Bonche — Línea económica de AG Supply", BONCHE_DESC, "/bonche"),
-};
+export const metadata = pageMetadata({
+  title: "Bonche: servilletas de consumo masivo",
+  description:
+    "Bonche, marca de AG Supply para consumo masivo y uso cotidiano: servilletas y papel encerado fabricados en Santiago para colmados, supermercados y mayoristas.",
+  path: "/bonche",
+  image: { url: "/images/fotos/brand-bonche-hero.webp", alt: "Servilletas Bonche" },
+});
 
 export default function BonchePage() {
   return (
     <BrandLanding
       slug="bonche"
-      tone="value"
-
-      headline="Bonche: higiene de alto volumen para el canal masivo"
-      subhead="Servilletas de dispensador y productos de uso diario en presentaciones de mucho paquete, pensados para colmados, supermercados y operaciones que mueven volumen."
+      headline="Bonche, la línea de AG Supply para consumo masivo"
+      subhead="Servilletas de dispensador y papel de uso diario, de precio accesible, para colmados, supermercados, mayoristas y cafeterías."
       audience={["Colmados", "Supermercados", "Mayoristas", "Cafeterías"]}
-      valueProps={[
-        {
-          title: "Rinde más por peso",
-          text: "Formatos de alto conteo de paquetes por fardo para bajar el costo por unidad.",
-        },
-        {
-          title: "Rotación rápida",
-          text: "Producto de uso diario, fácil de exhibir y de reponer en góndola.",
-        },
-        {
-          title: "Fabricación local",
-          text: "Se produce en Santiago, así que el abastecimiento no depende de importación.",
-        },
+      features={[
+        { title: "Servilletas de dispensador", text: "Presentación en paquetes para exhibición y reposición en góndola." },
+        { title: "Papel encerado", text: "Plegadizas de papel encerado para envolver alimentos." },
+        { title: "Más referencias por consulta", text: "El catálogo publicado es parcial; consulte por otras presentaciones." },
       ]}
     />
   );

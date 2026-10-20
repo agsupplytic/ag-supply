@@ -1,0 +1,187 @@
+[
+  {
+    "category": "cuberteria",
+    "from": "combo-hw-1-pieza-pannez-impreso-100-1-3940",
+    "to": "combo-hw-1-pieza-impreso-100-1-3940"
+  },
+  {
+    "category": "cuberteria",
+    "from": "combo-hw-2-pzas-chito-impreso-100-1-3543",
+    "to": "combo-hw-2-pzas-impreso-100-1-3543"
+  },
+  {
+    "category": "cuberteria",
+    "from": "combo-hw-2-pzas-pannez-impreso-100-1-hight-bolsas-lisas-3583",
+    "to": "combo-hw-2-pzas-impreso-100-1-hight-bolsas-lisas-3583"
+  },
+  {
+    "category": "interfoliados",
+    "from": "interfold-mini-napkin-ob-30-200-3688",
+    "to": "interfold-mini-napkin-ocean-breeze-30-200-3688"
+  },
+  {
+    "category": "interfoliados",
+    "from": "interfold-quick-napkin-ocean-brezze-30-200-3834",
+    "to": "interfold-quick-napkin-ocean-breeze-30-200-3834"
+  },
+  {
+    "category": "papel-higienico",
+    "from": "higienico-24-1-m-ob-2-capas-3671",
+    "to": "higienico-24-1-m-ocean-breeze-2-capas-3671"
+  },
+  {
+    "category": "papel-higienico",
+    "from": "higienico-48-1-24mts-envuelto-ob-2-capas-3673",
+    "to": "higienico-48-1-24mts-envuelto-ocean-breeze-2-capas-3673"
+  },
+  {
+    "category": "papel-higienico",
+    "from": "higienico-48-1-envueltos-35mts-ob-2-capas-3676",
+    "to": "higienico-48-1-envueltos-35mts-ocean-breeze-2-capas-3676"
+  },
+  {
+    "category": "papel-higienico",
+    "from": "higienico-48-1-m-individual-ob-3678",
+    "to": "higienico-48-1-m-individual-ocean-breeze-3678"
+  },
+  {
+    "category": "papel-higienico",
+    "from": "papel-higienico-30-mts-individual-0-b-4030",
+    "to": "papel-higienico-30-mts-individual-ocean-breeze-4030"
+  },
+  {
+    "category": "papel-higienico",
+    "from": "papel-higienico-48-1-m-individual-o-b-3866",
+    "to": "papel-higienico-48-1-m-individual-ocean-breeze-3866"
+  },
+  {
+    "category": "papel-higienico",
+    "from": "papel-higienico-60-mts-individual-0-b-4125",
+    "to": "papel-higienico-60-mts-individual-ocean-breeze-4125"
+  },
+  {
+    "category": "papel-higienico",
+    "from": "papel-higienico-jumbo16-lbs-800-pies-12-1-3785",
+    "to": "papel-higienico-jumbo-16-lbs-800-pies-12-1-3785"
+  },
+  {
+    "category": "papel-higienico",
+    "from": "papel-higienico-xtra-jerez-brand-30-1-3708",
+    "to": "papel-higienico-xtra-30-1-3708"
+  },
+  {
+    "category": "servilletas",
+    "from": "cocktail-kraft-senator-10-100-1-capa-caja-3827",
+    "to": "cocktail-kraft-10-100-1-capa-caja-3827"
+  },
+  {
+    "category": "servilletas",
+    "from": "dinner-12-100-boblez-1-4-4277",
+    "to": "dinner-12-100-doblez-1-4-4277"
+  },
+  {
+    "category": "servilletas",
+    "from": "lunch-napkin-24-paqutes-de-100-ud-4009",
+    "to": "lunch-napkin-24-paquetes-de-100-ud-4009"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilleta-cocktail-azul-8-125-2-ply-o-b-3871",
+    "to": "servilleta-cocktail-azul-8-125-2-ply-ocean-breeze-3871"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilleta-cocktail-la-terminal-1000-1-3726",
+    "to": "servilleta-cocktail-1000-1-3726"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilleta-dinner-kraft-senator-10-100-3730",
+    "to": "servilleta-dinner-kraft-10-100-3730"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilleta-kraft-geto-10-500-ocean-breeze-3962",
+    "to": "servilleta-kraft-10-500-ocean-breeze-3962"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilleta-white-36-300-tall-fold-8-5x13-o-b-3926",
+    "to": "servilleta-white-36-300-tall-fold-8-5x13-ocean-breeze-3926"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilletas-cocktail-8-500-1-ply-ob-3737",
+    "to": "servilletas-cocktail-8-500-1-ply-ocean-breeze-3737"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilletas-cocktail-gris-8-125-2-ply-caja-o-b-3869",
+    "to": "servilletas-cocktail-gris-8-125-2-ply-caja-ocean-breeze-3869"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilletas-dinner-12-250-o-b-1-ply-3911",
+    "to": "servilletas-dinner-12-250-ocean-breeze-1-ply-3911"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilletas-dinner-rancho-chito-3747",
+    "to": "servilletas-dinner-3747"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilletas-dispenser-10-400-samey-4180",
+    "to": "servilletas-dispenser-10-400-4180"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilletas-elegance-24-pquetes-de-60-ud-3749",
+    "to": "servilletas-elegance-24-paquetes-de-60-ud-3749"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilletas-impresa-barcelo-4311",
+    "to": "servilletas-impresa-4311"
+  },
+  {
+    "category": "servilletas",
+    "from": "servilletas-moka-36-300-tall-fold-ob-1-capa-kraft-3553",
+    "to": "servilletas-moka-36-300-tall-fold-ocean-breeze-1-capa-kraft-3553"
+  },
+  {
+    "category": "toallas",
+    "from": "toalla-6-1-tad-500-pies-sumeh-3759",
+    "to": "toalla-6-1-tad-500-pies-3759"
+  },
+  {
+    "category": "toallas",
+    "from": "toalla-blech-6-1-800-pies-1500-grs-3802",
+    "to": "toalla-bleach-6-1-800-pies-1500-grs-3802"
+  },
+  {
+    "category": "toallas",
+    "from": "toalla-blech-700-pies-6-1-3904",
+    "to": "toalla-bleach-700-pies-6-1-3904"
+  },
+  {
+    "category": "toallas",
+    "from": "toalla-blech-750-pies-caja-12-1-4058",
+    "to": "toalla-bleach-750-pies-caja-12-1-4058"
+  },
+  {
+    "category": "toallas",
+    "from": "toalla-cocina-2-1-pre-cortada-cja-9-2-18-4214",
+    "to": "toalla-cocina-2-1-precortada-cja-9-2-18-4214"
+  },
+  {
+    "category": "toallas",
+    "from": "toalla-multifold-16-250-maine-3918",
+    "to": "toalla-multifold-16-250-3918"
+  },
+  {
+    "category": "toallas",
+    "from": "toallacocina-individual-pre-cortada-4158",
+    "to": "toallacocina-individual-precortada-4158"
+  }
+]

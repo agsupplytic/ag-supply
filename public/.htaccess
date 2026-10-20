@@ -10,6 +10,46 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://agsupply.com.do%{REQUEST_URI} [L,R=301]
 
+# >>> slug-redirects (generado por scripts/curate-products.mjs)
+RewriteRule ^productos/cuberteria/combo-hw-1-pieza-pannez-impreso-100-1-3940/?$ /productos/cuberteria/combo-hw-1-pieza-impreso-100-1-3940/ [R=301,L]
+RewriteRule ^productos/cuberteria/combo-hw-2-pzas-chito-impreso-100-1-3543/?$ /productos/cuberteria/combo-hw-2-pzas-impreso-100-1-3543/ [R=301,L]
+RewriteRule ^productos/cuberteria/combo-hw-2-pzas-pannez-impreso-100-1-hight-bolsas-lisas-3583/?$ /productos/cuberteria/combo-hw-2-pzas-impreso-100-1-hight-bolsas-lisas-3583/ [R=301,L]
+RewriteRule ^productos/interfoliados/interfold-mini-napkin-ob-30-200-3688/?$ /productos/interfoliados/interfold-mini-napkin-ocean-breeze-30-200-3688/ [R=301,L]
+RewriteRule ^productos/interfoliados/interfold-quick-napkin-ocean-brezze-30-200-3834/?$ /productos/interfoliados/interfold-quick-napkin-ocean-breeze-30-200-3834/ [R=301,L]
+RewriteRule ^productos/papel-higienico/higienico-24-1-m-ob-2-capas-3671/?$ /productos/papel-higienico/higienico-24-1-m-ocean-breeze-2-capas-3671/ [R=301,L]
+RewriteRule ^productos/papel-higienico/higienico-48-1-24mts-envuelto-ob-2-capas-3673/?$ /productos/papel-higienico/higienico-48-1-24mts-envuelto-ocean-breeze-2-capas-3673/ [R=301,L]
+RewriteRule ^productos/papel-higienico/higienico-48-1-envueltos-35mts-ob-2-capas-3676/?$ /productos/papel-higienico/higienico-48-1-envueltos-35mts-ocean-breeze-2-capas-3676/ [R=301,L]
+RewriteRule ^productos/papel-higienico/higienico-48-1-m-individual-ob-3678/?$ /productos/papel-higienico/higienico-48-1-m-individual-ocean-breeze-3678/ [R=301,L]
+RewriteRule ^productos/papel-higienico/papel-higienico-30-mts-individual-0-b-4030/?$ /productos/papel-higienico/papel-higienico-30-mts-individual-ocean-breeze-4030/ [R=301,L]
+RewriteRule ^productos/papel-higienico/papel-higienico-48-1-m-individual-o-b-3866/?$ /productos/papel-higienico/papel-higienico-48-1-m-individual-ocean-breeze-3866/ [R=301,L]
+RewriteRule ^productos/papel-higienico/papel-higienico-60-mts-individual-0-b-4125/?$ /productos/papel-higienico/papel-higienico-60-mts-individual-ocean-breeze-4125/ [R=301,L]
+RewriteRule ^productos/papel-higienico/papel-higienico-jumbo16-lbs-800-pies-12-1-3785/?$ /productos/papel-higienico/papel-higienico-jumbo-16-lbs-800-pies-12-1-3785/ [R=301,L]
+RewriteRule ^productos/papel-higienico/papel-higienico-xtra-jerez-brand-30-1-3708/?$ /productos/papel-higienico/papel-higienico-xtra-30-1-3708/ [R=301,L]
+RewriteRule ^productos/servilletas/cocktail-kraft-senator-10-100-1-capa-caja-3827/?$ /productos/servilletas/cocktail-kraft-10-100-1-capa-caja-3827/ [R=301,L]
+RewriteRule ^productos/servilletas/dinner-12-100-boblez-1-4-4277/?$ /productos/servilletas/dinner-12-100-doblez-1-4-4277/ [R=301,L]
+RewriteRule ^productos/servilletas/lunch-napkin-24-paqutes-de-100-ud-4009/?$ /productos/servilletas/lunch-napkin-24-paquetes-de-100-ud-4009/ [R=301,L]
+RewriteRule ^productos/servilletas/servilleta-cocktail-azul-8-125-2-ply-o-b-3871/?$ /productos/servilletas/servilleta-cocktail-azul-8-125-2-ply-ocean-breeze-3871/ [R=301,L]
+RewriteRule ^productos/servilletas/servilleta-cocktail-la-terminal-1000-1-3726/?$ /productos/servilletas/servilleta-cocktail-1000-1-3726/ [R=301,L]
+RewriteRule ^productos/servilletas/servilleta-dinner-kraft-senator-10-100-3730/?$ /productos/servilletas/servilleta-dinner-kraft-10-100-3730/ [R=301,L]
+RewriteRule ^productos/servilletas/servilleta-kraft-geto-10-500-ocean-breeze-3962/?$ /productos/servilletas/servilleta-kraft-10-500-ocean-breeze-3962/ [R=301,L]
+RewriteRule ^productos/servilletas/servilleta-white-36-300-tall-fold-8-5x13-o-b-3926/?$ /productos/servilletas/servilleta-white-36-300-tall-fold-8-5x13-ocean-breeze-3926/ [R=301,L]
+RewriteRule ^productos/servilletas/servilletas-cocktail-8-500-1-ply-ob-3737/?$ /productos/servilletas/servilletas-cocktail-8-500-1-ply-ocean-breeze-3737/ [R=301,L]
+RewriteRule ^productos/servilletas/servilletas-cocktail-gris-8-125-2-ply-caja-o-b-3869/?$ /productos/servilletas/servilletas-cocktail-gris-8-125-2-ply-caja-ocean-breeze-3869/ [R=301,L]
+RewriteRule ^productos/servilletas/servilletas-dinner-12-250-o-b-1-ply-3911/?$ /productos/servilletas/servilletas-dinner-12-250-ocean-breeze-1-ply-3911/ [R=301,L]
+RewriteRule ^productos/servilletas/servilletas-dinner-rancho-chito-3747/?$ /productos/servilletas/servilletas-dinner-3747/ [R=301,L]
+RewriteRule ^productos/servilletas/servilletas-dispenser-10-400-samey-4180/?$ /productos/servilletas/servilletas-dispenser-10-400-4180/ [R=301,L]
+RewriteRule ^productos/servilletas/servilletas-elegance-24-pquetes-de-60-ud-3749/?$ /productos/servilletas/servilletas-elegance-24-paquetes-de-60-ud-3749/ [R=301,L]
+RewriteRule ^productos/servilletas/servilletas-impresa-barcelo-4311/?$ /productos/servilletas/servilletas-impresa-4311/ [R=301,L]
+RewriteRule ^productos/servilletas/servilletas-moka-36-300-tall-fold-ob-1-capa-kraft-3553/?$ /productos/servilletas/servilletas-moka-36-300-tall-fold-ocean-breeze-1-capa-kraft-3553/ [R=301,L]
+RewriteRule ^productos/toallas/toalla-6-1-tad-500-pies-sumeh-3759/?$ /productos/toallas/toalla-6-1-tad-500-pies-3759/ [R=301,L]
+RewriteRule ^productos/toallas/toalla-blech-6-1-800-pies-1500-grs-3802/?$ /productos/toallas/toalla-bleach-6-1-800-pies-1500-grs-3802/ [R=301,L]
+RewriteRule ^productos/toallas/toalla-blech-700-pies-6-1-3904/?$ /productos/toallas/toalla-bleach-700-pies-6-1-3904/ [R=301,L]
+RewriteRule ^productos/toallas/toalla-blech-750-pies-caja-12-1-4058/?$ /productos/toallas/toalla-bleach-750-pies-caja-12-1-4058/ [R=301,L]
+RewriteRule ^productos/toallas/toalla-cocina-2-1-pre-cortada-cja-9-2-18-4214/?$ /productos/toallas/toalla-cocina-2-1-precortada-cja-9-2-18-4214/ [R=301,L]
+RewriteRule ^productos/toallas/toalla-multifold-16-250-maine-3918/?$ /productos/toallas/toalla-multifold-16-250-3918/ [R=301,L]
+RewriteRule ^productos/toallas/toallacocina-individual-pre-cortada-4158/?$ /productos/toallas/toallacocina-individual-precortada-4158/ [R=301,L]
+# <<< slug-redirects
+
 # /ruta -> /ruta/ (trailingSlash: true)
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteCond %{REQUEST_URI} !/$
@@ -17,6 +57,12 @@ RewriteRule ^(.*)$ /$1/ [L,R=301]
 </IfModule>
 
 ErrorDocument 404 /404.html
+AddDefaultCharset UTF-8
+
+# Archivos ocultos (p. ej. el estado del despliegue FTP) no se sirven nunca.
+<FilesMatch "^\.(?!htaccess$)">
+Require all denied
+</FilesMatch>
 
 <IfModule mod_deflate.c>
 AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/plain application/xml
@@ -29,13 +75,21 @@ ExpiresByType text/css "access plus 1 year"
 ExpiresByType application/javascript "access plus 1 year"
 ExpiresByType image/webp "access plus 1 month"
 ExpiresByType image/png "access plus 1 month"
-ExpiresByType font/ttf "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType image/svg+xml "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 month"
+ExpiresByType font/woff2 "access plus 1 year"
+ExpiresByType text/plain "access plus 1 day"
+ExpiresByType application/xml "access plus 1 day"
+ExpiresByType application/json "access plus 1 day"
 </IfModule>
 
 <IfModule mod_headers.c>
-<FilesMatch "\.(css|js)$">
+<FilesMatch "\.(css|js|woff2)$">
 Header set Cache-Control "public, max-age=31536000, immutable"
 </FilesMatch>
 Header always set X-Content-Type-Options "nosniff"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 </IfModule>

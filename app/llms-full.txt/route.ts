@@ -1,5 +1,6 @@
 import { getBrands, getCategories, getProducts } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
+import { absUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
@@ -14,19 +15,18 @@ export async function GET() {
     getBrands(),
     getProducts(),
   ]);
-  const base = siteConfig.url;
-  const L: string[] = [];
+    const L: string[] = [];
 
   L.push("# AG Supply — catálogo completo");
   L.push("");
   L.push(
-    `> ${siteConfig.legalName} es una convertidora de papel y fábrica de papel higiénico, servilletas, toallas, faciales, interfoliados y desechables en ${siteConfig.address.city}, República Dominicana. Marcas propias: Ocean Breeze (premium, HORECA) y Bonche (económica, consumo masivo). Sitio: ${base}`,
+    `> ${siteConfig.legalName} es una convertidora de papel con planta en ${siteConfig.address.city}, República Dominicana. Fabrica papel higiénico, toallas, servilletas, interfoliados y papel facial; también suministra jabón y limpieza, desechables y cubertería. Marcas propias: Ocean Breeze (hoteles, restaurantes y cadenas) y Bonche (consumo masivo). Sitio: ${absUrl("/")}`,
   );
   L.push("");
   L.push("## Cómo cotizar");
   L.push("");
   L.push(
-    `Cada producto tiene un SKU (código interno). Cita el SKU al cotizar por WhatsApp (${siteConfig.phones[0].value}) o correo (${siteConfig.email}). No hay precios públicos: se confirman por pedido según formato y volumen. Horario: ${siteConfig.hours.label}`,
+    `Cada producto tiene un SKU (código interno de AG Supply; algunos códigos están repetidos entre referencias, por eso se cita también el nombre). Indique SKU y nombre al cotizar por WhatsApp (${siteConfig.phones[0].value}) o correo (${siteConfig.email}). No hay precios públicos: se confirman por pedido según formato y volumen. Horario: ${siteConfig.hours.label}`,
   );
   L.push("");
   L.push("## Marcas");
@@ -38,17 +38,17 @@ export async function GET() {
     const items = products.filter((p) => p.category === c.slug);
     L.push(`## ${c.name} (${items.length})`);
     L.push("");
-    L.push(`${c.description} ${base}/productos/${c.slug}`);
+    L.push(`${c.description} ${c.fabricated ? "Fabricado por AG Supply." : "Suministrado por AG Supply."} ${absUrl(`/productos/${c.slug}`)}`);
     L.push("");
     for (const p of items) {
       const bits = [
         p.sku ? `SKU ${p.sku}` : null,
-        p.brand !== "generico" ? p.brand : null,
+        p.brand !== "generico" ? brands.find((b) => b.slug === p.brand)?.name : null,
         p.subcategory ?? null,
         ...p.keySpecs,
       ].filter(Boolean);
       L.push(
-        `- [${p.name}](${base}/productos/${p.category}/${p.slug})${bits.length ? " — " + bits.join(" · ") : ""}`,
+        `- [${p.name}](${absUrl(`/productos/${p.category}/${p.slug}`)})${bits.length ? " — " + bits.join(" · ") : ""}`,
       );
     }
     L.push("");

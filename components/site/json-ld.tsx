@@ -1,100 +1,88 @@
-import { siteConfig, distributors } from "@/lib/site-config";
-import { brandLabel } from "./brand-badge";
-import { productDescription } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
+import { absUrl, productDescription } from "@/lib/seo";
 import type { Product, Category } from "@/lib/content/types";
 
 const ORG_ID = `${siteConfig.url}/#organization`;
+const WEBSITE_ID = `${siteConfig.url}/#website`;
 
 function JsonLd({ data }: { data: unknown }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      // `<` escapado para que ningún texto pueda cerrar la etiqueta <script>
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   );
 }
 
-/** Organization + LocalBusiness — site-wide, rendered once in the layout. */
+/**
+ * Organization — una sola entidad en todo el sitio (se renderiza en el layout).
+ * Datos verificados únicamente: nombre, año de fundación, contacto, sede y horario.
+ * La sede va en `location` (Place); no se declara como LocalBusiness porque la
+ * empresa atiende a clientes corporativos desde una planta, no es un comercio local.
+ */
 export function OrganizationJsonLd() {
+  const a = siteConfig.address;
   return (
     <JsonLd
       data={{
         "@context": "https://schema.org",
-        "@type": ["Organization", "LocalBusiness"],
+        "@type": "Organization",
         "@id": ORG_ID,
         name: siteConfig.legalName,
-        alternateName: [
-          siteConfig.name,
-          "A.G. Supply",
-          "A.G. Supply, S.R.L.",
-          "AG Supply RD",
-          "AG Supply República Dominicana",
-        ],
-        knowsAbout: [
-          "convertidora de papel",
-          "fábrica de papel higiénico",
-          "fábrica de servilletas",
-          "toallas de papel",
-          "papel facial",
-          "interfoliados",
-          "desechables",
-          "higiene institucional",
-        ],
+        alternateName: [siteConfig.name, "A.G. Supply, S.R.L."],
         slogan: siteConfig.slogan,
-        url: siteConfig.url,
+        url: absUrl("/"),
         logo: `${siteConfig.url}/images/brand/agsupply-logo-main.png`,
         image: `${siteConfig.url}/images/og.png`,
         description: siteConfig.description,
         foundingDate: String(siteConfig.company.foundedYear),
         email: siteConfig.email,
         telephone: siteConfig.phones.map((p) => p.tel),
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: siteConfig.address.line1,
-          addressLocality: siteConfig.address.city,
-          addressRegion: "Santiago",
-          addressCountry: "DO",
+        contactPoint: siteConfig.phones.map((p) => ({
+          "@type": "ContactPoint",
+          contactType: "ventas",
+          telephone: p.tel,
+          email: siteConfig.email,
+          availableLanguage: "es",
+        })),
+        location: {
+          "@type": "Place",
+          name: "Planta de AG Supply",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: a.line1,
+            addressLocality: a.city,
+            addressCountry: "DO",
+          },
+          geo: { "@type": "GeoCoordinates", latitude: a.lat, longitude: a.lng },
+          openingHoursSpecification: {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: siteConfig.hours.days,
+            opens: siteConfig.hours.opens,
+            closes: siteConfig.hours.closes,
+          },
         },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: siteConfig.address.lat,
-          longitude: siteConfig.address.lng,
-        },
-        openingHoursSpecification: {
-          "@type": "OpeningHoursSpecification",
-          dayOfWeek: siteConfig.hours.days,
-          opens: siteConfig.hours.opens,
-          closes: siteConfig.hours.closes,
-        },
-        areaServed: { "@type": "Country", name: "Dominican Republic" },
         sameAs: [siteConfig.social.instagram],
         brand: [
           { "@type": "Brand", name: "Ocean Breeze" },
           { "@type": "Brand", name: "Bonche" },
         ],
-        subOrganization: distributors.flatMap((z) =>
-          z.items.map((d) => ({
-            "@type": "Organization",
-            name: d.name,
-            telephone: d.tel,
-            areaServed: z.zone,
-          })),
-        ),
       }}
     />
   );
 }
 
-/** WebSite — helps search engines label the site as an entity. */
+/** WebSite — etiqueta al sitio como entidad. */
 export function WebSiteJsonLd() {
   return (
     <JsonLd
       data={{
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "@id": `${siteConfig.url}/#website`,
+        "@id": WEBSITE_ID,
         name: siteConfig.name,
-        url: siteConfig.url,
+        url: absUrl("/"),
         inLanguage: "es-DO",
         publisher: { "@id": ORG_ID },
       }}
@@ -102,7 +90,12 @@ export function WebSiteJsonLd() {
   );
 }
 
-/** Product — on each product detail page. Deliberately price-free. */
+/**
+ * Product — ficha de producto, sin precio ni valoraciones. Sin `offers` no habrá
+ * fragmentos de producto en Google; es intencional: no se inventan precios.
+ * `sku` solo si es único en el catálogo; `manufacturer` solo si AG Supply lo fabrica;
+ * `brand` solo para las marcas propias.
+ */
 export function ProductJsonLd({
   product,
   category,
@@ -114,13 +107,14 @@ export function ProductJsonLd({
 }) {
   const specs: [string, string | number | undefined][] = [
     ["Capas", product.specs.ply],
-    ["Color", product.specs.color ?? undefined],
+    ["Color", product.specs.color],
     ["Presentación", product.specs.packFormat],
     ["Gramaje (g/m²)", product.specs.grammageGsm],
     ["Ancho (cm)", product.specs.widthCm],
     ["Hojas", product.specs.sheets],
   ];
-  const url = `${siteConfig.url}/productos/${product.category}/${product.slug}`;
+  const url = absUrl(`/productos/${product.category}/${product.slug}`);
+  const uniqueSku = product.skuStatus === "ok" ? product.sku : undefined;
   return (
     <JsonLd
       data={{
@@ -128,40 +122,24 @@ export function ProductJsonLd({
         "@type": "Product",
         "@id": `${url}#product`,
         name: product.name,
-        description:
-          product.description ??
-          productDescription(product, category?.name, brandName),
-        ...(product.sku
-          ? { sku: product.sku, mpn: product.sku, productID: product.sku }
-          : {}),
-        ...(product.images.length
-          ? { image: `${siteConfig.url}${product.images[0]}` }
-          : {}),
+        description: product.description ?? productDescription(product, category?.name, brandName),
+        ...(uniqueSku ? { sku: uniqueSku } : {}),
+        ...(product.images.length ? { image: `${siteConfig.url}${product.images[0]}` } : {}),
         category: category?.name ?? product.category,
-        brand: { "@type": "Brand", name: brandName ?? brandLabel(product.brand) },
-        manufacturer: { "@id": ORG_ID },
+        ...(product.brand !== "generico" && brandName ? { brand: { "@type": "Brand", name: brandName } } : {}),
+        ...(product.fabricated ? { manufacturer: { "@id": ORG_ID } } : {}),
         additionalProperty: specs
           .filter(([, v]) => v !== undefined && v !== "")
-          .map(([name, value]) => ({
-            "@type": "PropertyValue",
-            name,
-            value,
-          })),
+          .map(([name, value]) => ({ "@type": "PropertyValue", name, value })),
         url,
       }}
     />
   );
 }
 
-/** CollectionPage + ItemList — on each category page. */
-export function CollectionJsonLd({
-  category,
-  products,
-}: {
-  category: Category;
-  products: Product[];
-}) {
-  const url = `${siteConfig.url}/productos/${category.slug}`;
+/** CollectionPage + ItemList — páginas de categoría. */
+export function CollectionJsonLd({ category, products }: { category: Category; products: Product[] }) {
+  const url = absUrl(`/productos/${category.slug}`);
   return (
     <JsonLd
       data={{
@@ -171,7 +149,7 @@ export function CollectionJsonLd({
         description: category.description,
         url,
         inLanguage: "es-DO",
-        isPartOf: { "@id": `${siteConfig.url}/#website` },
+        isPartOf: { "@id": WEBSITE_ID },
         about: { "@id": ORG_ID },
         mainEntity: {
           "@type": "ItemList",
@@ -179,8 +157,8 @@ export function CollectionJsonLd({
           itemListElement: products.map((p, i) => ({
             "@type": "ListItem",
             position: i + 1,
-            url: `${siteConfig.url}/productos/${p.category}/${p.slug}`,
-            name: p.sku ? `${p.name} (SKU ${p.sku})` : p.name,
+            url: absUrl(`/productos/${p.category}/${p.slug}`),
+            name: p.name,
           })),
         },
       }}
@@ -188,7 +166,7 @@ export function CollectionJsonLd({
   );
 }
 
-/** BreadcrumbList — on category and product pages. `trail` is [name, path][]. */
+/** BreadcrumbList — `trail` es [nombre, ruta][]. */
 export function BreadcrumbJsonLd({ trail }: { trail: [string, string][] }) {
   return (
     <JsonLd
@@ -199,14 +177,14 @@ export function BreadcrumbJsonLd({ trail }: { trail: [string, string][] }) {
           "@type": "ListItem",
           position: i + 1,
           name,
-          item: `${siteConfig.url}${path}`,
+          item: absUrl(path),
         })),
       }}
     />
   );
 }
 
-/** FAQPage — on /faq, from the same Q&A array the page renders. */
+/** FAQPage — a partir del mismo arreglo de preguntas que pinta la página. */
 export function FaqJsonLd({ qa }: { qa: { q: string; a: string }[] }) {
   return (
     <JsonLd

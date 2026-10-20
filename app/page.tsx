@@ -1,323 +1,238 @@
 import Link from "next/link";
-import Image from "next/image";
-import {
-  ArrowRight,
-  Factory,
-  Truck,
-  ShieldCheck,
-  Layers,
-} from "lucide-react";
-import { getCategories, getProducts, getBrands } from "@/lib/content";
+import { ArrowRight } from "lucide-react";
+import { getCategories, getBrands } from "@/lib/content";
 import { Container } from "@/components/site/container";
 import { Section, SectionHeading } from "@/components/site/section";
-import { Reveal } from "@/components/site/reveal";
-import { Swoosh } from "@/components/site/swoosh";
-import { Figure } from "@/components/site/figure";
-import { BackgroundCarousel } from "@/components/site/background-carousel";
-import { CategoryCard } from "@/components/site/category-card";
-import { BrandSplit } from "@/components/site/brand-split";
-import { CountUp } from "@/components/site/count-up";
+import { Photo } from "@/components/site/photo";
+import { PageHero } from "@/components/site/page-hero";
+import { CategoryList } from "@/components/site/category-list";
+import { BrandPanels } from "@/components/site/brand-panels";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
-import type { Metadata } from "next";
-import { siteConfig } from "@/lib/site-config";
-import { t } from "@/lib/i18n";
-import { ogFor } from "@/lib/seo";
+import { siteConfig, distributors } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: {
-    absolute:
-      "AG Supply — Convertidora de papel y fábrica de papel higiénico, servilletas y toallas en RD",
-  },
+export const metadata = pageMetadata({
+  title: "AG Supply — Convertidora de papel en Santiago, República Dominicana",
+  absolute: true,
   description:
-    "AG Supply es convertidora y fábrica de papel en Santiago, RD: papel higiénico, toallas, servilletas, faciales, interfoliados y desechables para hoteles, restaurantes y comercios. Marcas Ocean Breeze y Bonche. Cotiza por WhatsApp.",
-  alternates: { canonical: "/" },
-  openGraph: ogFor(
-    "AG Supply — Fabricante de higiene institucional en República Dominicana",
-    "Convertidora de papel en Santiago. Papel higiénico, toallas, servilletas, faciales e interfoliados bajo las marcas Ocean Breeze y Bonche.", "/"),
-};
+    "Convertidora de papel en Santiago, RD. Fabricamos papel higiénico, toallas, servilletas, interfoliados y papel facial. Marcas Ocean Breeze y Bonche.",
+  path: "/",
+});
 
-const HERO_IMAGES = [
-  { src: "/images/placeholders/hero-1.webp", alt: "Planta de conversión de AG Supply" },
-  { src: "/images/placeholders/hero-2.webp", alt: "Bobinas de papel entrando a conversión" },
-  { src: "/images/placeholders/hero-3.webp", alt: "Producto terminado y empacado" },
+const PROCESS = [
+  { title: "Bobinas y materia prima", text: "Recibimos papel base en bobinas de gran diámetro, más el material de empaque." },
+  { title: "Rebobinado y corte", text: "Cada bobina se rebobina y se corta al ancho y largo de hoja del producto final." },
+  { title: "Doblado e interfoliado", text: "Doblez dinner, cocktail, tall fold, C-fold o interfoliado, según la referencia." },
+  { title: "Empaque y despacho", text: "Empaque primario, agrupado por presentación, etiquetado y preparado por pedido." },
+];
+
+const QUOTE_STEPS = [
+  "Filtre el catálogo por categoría, marca o presentación y agregue productos.",
+  "Ajuste las cantidades y deje una nota por producto si hace falta.",
+  "Envíe la lista por WhatsApp: el mensaje sale armado con sus referencias.",
 ];
 
 export default async function HomePage() {
-  const [categories, products, brands] = await Promise.all([
-    getCategories(),
-    getProducts(),
-    getBrands(),
-  ]);
-
-  const oceanBreeze = brands.find((b) => b.slug === "ocean-breeze");
+  const [categories, brands] = await Promise.all([getCategories(), getBrands()]);
+  const made = categories.filter((c) => c.fabricated);
+  const supplied = categories.filter((c) => !c.fabricated);
+  const ocean = brands.find((b) => b.slug === "ocean-breeze");
   const bonche = brands.find((b) => b.slug === "bonche");
-
-  const stats = [
-    { icon: Factory, value: t("stats.factory"), label: t("stats.factoryLabel") },
-    { icon: Truck, value: t("stats.national"), label: t("stats.nationalLabel") },
-    {
-      icon: Layers,
-      value: <CountUp to={products.length} suffix="+" />,
-      label: `${categories.length} categorías · ${t("stats.capacity")}`,
-    },
-    { icon: ShieldCheck, value: t("stats.brands"), label: t("stats.brandsLabel") },
-  ];
-
-  const pillars = [
-    { icon: Factory, title: "Fabricamos, no revendemos", text: "Recibimos bobinas y materia prima y las convertimos en producto terminado en nuestra planta." },
-    { icon: ShieldCheck, title: "Control de calidad propio", text: "Gramaje, formato y rendimiento consistentes en cada lote, porque el proceso es nuestro." },
-    { icon: Truck, title: "Abastecimiento estable", text: "Producción local: menos dependencia de importación y entrega en el tiempo acordado." },
-  ];
-
-  const steps = [
-    { n: 1, title: t("home.step1"), text: "Filtra por categoría, marca o especificación técnica." },
-    { n: 2, title: t("home.step2"), text: "Ajusta cantidades y agrega una nota si lo necesitas." },
-    { n: 3, title: t("home.step3"), text: "Generamos el mensaje con tu lista y lo abres listo para enviar." },
-  ];
-
+  const { company } = siteConfig;
+  const fmt = (n: number) => n.toLocaleString("es-DO");
 
   return (
     <>
-      {/* ---------------------------------------------------------------- hero */}
-      <section className="relative isolate overflow-hidden text-white">
-        <BackgroundCarousel images={HERO_IMAGES} overlay="brand" />
-        <Container className="relative py-20 md:py-28">
-          <div className="max-w-2xl">
-            <h1 className="max-w-xl text-3xl leading-[1.1] text-white sm:text-4xl lg:text-5xl">
-              {t("hero.title")}
-            </h1>
-            <p className="mt-4 font-heading text-xl italic text-white sm:text-2xl">
+      <PageHero
+        title="Convertidora de papel en Santiago, República Dominicana"
+        lead={
+          <>
+            Fabricamos papel higiénico, toallas de papel, servilletas, interfoliados y papel facial
+            para hoteles, restaurantes, comercios y distribuidores. Marcas propias: Ocean Breeze y
+            Bonche.
+            <span className="mt-4 block font-heading text-xl font-semibold italic text-white">
               {siteConfig.slogan}
-            </p>
-            <p className="mt-5 max-w-xl text-base text-white/90 sm:text-lg">
-              {t("hero.body")}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-brand-blue hover:bg-brand-blue-50"
-              >
-                <Link href="/productos">
-                  {t("cta.viewCatalog")}
-                  <ArrowRight className="size-5" />
-                </Link>
-              </Button>
-              <WhatsAppButton size="lg">{t("cta.quoteWhatsapp")}</WhatsAppButton>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* --------------------------------------------------------- trust strip */}
-      <div className="border-b border-border bg-brand-blue-50">
-        <Container className="grid grid-cols-1 gap-6 py-9 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s) => (
-            <div key={s.label} className="flex items-start gap-3.5">
-              <span className="panel-icon size-10 shrink-0">
-                <s.icon className="size-5" aria-hidden />
-              </span>
-              <div>
-                <p className="font-heading text-lg font-bold leading-tight text-ink">
-                  {s.value}
-                </p>
-                <p className="mt-0.5 text-sm leading-snug text-body">
-                  {s.label}
-                </p>
-              </div>
-            </div>
-          ))}
-        </Container>
-      </div>
-
-      {/* ---------------------------------------------------- company / plant */}
-      <Section>
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <Reveal>
-            <Figure
-              src="/images/placeholders/section-manufactura.webp"
-              alt="Detalle de la línea de conversión de AG Supply"
-              className="aspect-4/3 shadow-xl"
-              sizes="(max-width: 1024px) 100vw, 560px"
-            />
-          </Reveal>
-          <Reveal delay={80}>
-            <SectionHeading
-              title="El proceso de conversión ocurre en nuestra planta"
-              intro="Recibimos bobinas de papel y materia prima y las convertimos: rebobinado, corte, doblado, interfoliado y empaque. Eso nos permite controlar el rendimiento, el formato y el abastecimiento de cada pedido."
-            />
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Button asChild>
-                <Link href="/nosotros">
-                  {t("cta.knowAg")} <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/nosotros/planta">{t("cta.seeProcess")}</Link>
-              </Button>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* ---------------------------------------------------------- categories */}
-      <Section className="border-t border-border bg-brand-blue-50">
-        <Reveal>
-          <SectionHeading
-            title={t("home.catalogTitle")}
-            intro="Cada categoría se produce en planta y se entrega en el formato que tu operación necesita. Sin precios públicos, sin intermediarios."
-          />
-        </Reveal>
-        <Reveal className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((c) => (
-            <CategoryCard key={c.slug} category={c} />
-          ))}
-        </Reveal>
-      </Section>
-
-      {/* ------------------------------------------------------------- brands */}
-      <Section className="border-t border-border pb-0">
-        <Reveal>
-          <SectionHeading
-            title={t("home.brandsTitle")}
-            intro="Misma planta, mismo control de calidad. Cambia el posicionamiento según a quién sirve cada línea."
-          />
-        </Reveal>
-      </Section>
-      <Reveal>
-        <BrandSplit
-          oceanBreeze={{
-            slug: "ocean-breeze",
-            name: "Ocean Breeze",
-            tag: "Premium · Hoteles, restaurantes y cadenas",
-            body: oceanBreeze?.short,
-          }}
-          bonche={{
-            slug: "bonche",
-            name: "Bonche",
-            tag: "Económica · Consumo masivo y uso cotidiano",
-            body: bonche?.short,
-          }}
-        />
-      </Reveal>
-
-      {/* --------------------------------------------------------- why us (red band) */}
-      <div className="relative isolate overflow-hidden text-white">
-        <div className="absolute inset-0 -z-10 bg-red-gradient" />
-        <Swoosh
-          variant="field"
-          tone="light"
-          className="inset-x-0 bottom-0 h-1/2 w-full opacity-[0.07]"
-        />
-        <Section className="relative">
-          <Reveal>
-            <SectionHeading
-              title={t("home.whyTitle")}
-              intro="Trabajar con el fabricante cambia el rendimiento, la consistencia y el tiempo de respuesta."
-              className="[&_h2]:text-white [&_p]:text-white/90"
-            />
-          </Reveal>
-          <Reveal className="mt-10 grid gap-5 md:grid-cols-3">
-            {pillars.map((p) => (
-              <div key={p.title} className="panel-quiet p-6">
-                <span className="panel-icon size-11">
-                  <p.icon className="size-5" aria-hidden />
-                </span>
-                <p className="mt-4 font-heading text-base font-semibold">
-                  {p.title}
-                </p>
-                <p className="mt-1.5 text-sm text-white/85">{p.text}</p>
-              </div>
-            ))}
-          </Reveal>
-        </Section>
-      </div>
-
-      {/* ------------------------------------------------------ how to quote */}
-      <Section className="bg-surface">
-        <Reveal>
-          <SectionHeading
-            title={t("home.howTitle")}
-            intro="Sin cuenta, sin espera. Tu lista se arma en el navegador y se envía por WhatsApp."
-          />
-        </Reveal>
-        <Reveal className="mt-12">
-          <ol className="grid gap-5 md:grid-cols-3">
-            {steps.map((step) => (
-              <li key={step.n} className="panel relative p-6">
-                <span className="panel-icon size-11 font-heading text-lg font-bold">
-                  {step.n}
-                </span>
-                <p className="mt-4 font-heading text-lg font-semibold text-ink">
-                  {step.title}
-                </p>
-                <p className="mt-1.5 text-body">{step.text}</p>
-              </li>
-            ))}
-          </ol>
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            <Button asChild size="lg">
+            </span>
+          </>
+        }
+        actions={
+          <>
+            <Button asChild size="lg" variant="light">
               <Link href="/productos">
-                {t("cta.startQuote")} <ArrowRight className="size-5" />
+                Ver catálogo <ArrowRight aria-hidden />
               </Link>
             </Button>
-            <WhatsAppButton size="lg">{t("cta.quoteWhatsapp")}</WhatsAppButton>
-          </div>
-        </Reveal>
-      </Section>
+            <WhatsAppButton size="lg">Cotizar por WhatsApp</WhatsAppButton>
+          </>
+        }
+        image={{
+          src: "/images/fotos/hero-2.webp",
+          alt: "Bobinas de papel base almacenadas en la nave de conversión",
+        }}
+      />
 
-      {/* ----------------------------------------------------------- contact */}
-      <section className="relative isolate border-t border-border text-white">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <Image
-            src="/images/placeholders/section-cta.webp"
-            alt="Almacén y despacho de AG Supply"
-            fill
-            sizes="100vw"
-            draggable={false}
-            className="object-cover"
-          />
-          <div className="absolute inset-0 hero-scrim-deep" />
-        </div>
-        <Container className="relative py-16 md:py-24">
-          <Reveal className="max-w-2xl">
-            <h2 className="text-white">¿Listo para abastecer tu operación?</h2>
-            <p className="mt-4 text-lg text-white/90">
-              Escríbenos o llámanos. Coordinamos volúmenes, formatos y entrega en
-              el tiempo acordado.
-            </p>
-            <div className="mt-6 space-y-1">
-              {siteConfig.phones.map((p) => (
-                <a
-                  key={p.tel}
-                  href={`tel:${p.tel}`}
-                  className="block font-heading text-lg font-semibold text-white"
-                >
-                  {p.value}{" "}
-                  <span className="text-sm font-medium text-white/75">
-                    · {p.label}
-                  </span>
-                </a>
-              ))}
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="block text-white/90 hover:text-white"
-              >
-                {siteConfig.email}
-              </a>
-            </div>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <WhatsAppButton size="lg" />
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-brand-blue hover:bg-brand-blue-50"
-              >
-                <Link href="/contacto">{t("cta.contactForm")}</Link>
+      {/* ------------------------------------------------ ficha de la empresa */}
+      <Section>
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+          <div>
+            <SectionHeading
+              title="Una planta propia, un proceso de conversión"
+              intro="El producto se convierte en la nave de Las Palomas, a partir de bobinas de papel base. Eso permite definir formato, metraje y presentación por pedido."
+            />
+            <Photo
+              src="/images/fotos/planta-3.webp"
+              alt="Máquina de corte y rebobinado en la planta de AG Supply"
+              ratio="3/2"
+              className="mt-8"
+            />
+          </div>
+          <div>
+            <h3 className="label text-muted">Datos de la empresa</h3>
+            <table className="spec-table mt-3">
+              <tbody>
+                <tr><th scope="row">Razón social</th><td>{siteConfig.legalName}</td></tr>
+                <tr><th scope="row">Fundación</th><td>{company.foundedYear}, como {company.formerName}</td></tr>
+                <tr><th scope="row">Conversión de papel</th><td>Desde {company.pivotYear}</td></tr>
+                <tr><th scope="row">Capacidad instalada</th><td>Hasta {company.capacityTonsMonth} toneladas de papel al mes</td></tr>
+                <tr><th scope="row">Planta</th><td>{fmt(company.plant.builtM2)} m² construidos en {fmt(company.plant.landM2)} m² de terreno ({company.plant.productionM2} m² de producción)</td></tr>
+                <tr><th scope="row">Ubicación</th><td>{siteConfig.address.line1}, {siteConfig.address.city}</td></tr>
+                <tr><th scope="row">Acceso</th><td>{company.plant.proximity.join("; ")}</td></tr>
+                <tr><th scope="row">Marcas propias</th><td>Ocean Breeze · Bonche</td></tr>
+              </tbody>
+            </table>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild variant="outline">
+                <Link href="/nosotros">Conocer la empresa</Link>
+              </Button>
+              <Button asChild variant="ghost">
+                <Link href="/nosotros/planta">Ver el proceso en planta</Link>
               </Button>
             </div>
-          </Reveal>
+          </div>
+        </div>
+      </Section>
+
+      {/* ------------------------------------------------------ qué fabricamos */}
+      <Section tone="surface">
+        <SectionHeading
+          title="Qué fabricamos"
+          intro="Papel tissue convertido en la planta de Santiago. Cada categoría tiene su propio catálogo con presentaciones y referencias."
+        />
+        <div className="mt-10">
+          <CategoryList categories={made} />
+        </div>
+        <h3 className="mt-14 text-xl">También suministramos</h3>
+        <p className="mt-2 max-w-2xl text-body">
+          Complementos para la misma operación. No se fabrican en nuestra planta: los suministra AG Supply.
+        </p>
+        <div className="mt-6">
+          <CategoryList categories={supplied} />
+        </div>
+      </Section>
+
+      {/* --------------------------------------------------------- proceso */}
+      <Section>
+        <SectionHeading title="Cómo se convierte el papel" />
+        <ol className="mt-10 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {PROCESS.map((s, i) => (
+            <li key={s.title} className="bg-white py-2 pr-6 sm:p-6 sm:first:pl-0 lg:py-0">
+              <p className="font-heading text-5xl font-bold leading-none text-brand-blue">
+                {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-4 text-xl">{s.title}</h3>
+              <p className="mt-2 text-body">{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {/* ----------------------------------------------------------- marcas */}
+      <Section tone="surface">
+        <SectionHeading
+          title="Dos marcas propias, una sola planta"
+          intro="Ocean Breeze atiende al canal institucional; Bonche, al consumo masivo. Las dos se fabrican en AG Supply."
+        />
+        <div className="mt-10">
+          <BrandPanels
+            ocean={{
+              slug: "ocean-breeze",
+              name: "Ocean Breeze",
+              audience: "Hoteles, restaurantes y cadenas",
+              body: ocean?.short ?? "",
+              count: ocean?.count ?? 0,
+            }}
+            bonche={{
+              slug: "bonche",
+              name: "Bonche",
+              audience: "Consumo masivo y uso cotidiano",
+              body: bonche?.short ?? "",
+              count: bonche?.count ?? 0,
+            }}
+          />
+        </div>
+      </Section>
+
+      {/* ------------------------------------------------- distribución */}
+      <Section>
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SectionHeading
+              title="Venta directa y distribuidores autorizados"
+              intro="Atendemos pedidos de hoteles, restaurantes, comercios e instituciones. Además, los productos se consiguen a través de distribuidores autorizados."
+            />
+            <p className="mt-6">
+              <Link href="/contacto" className="link font-semibold">
+                Ver distribuidores y datos de contacto
+              </Link>
+            </p>
+          </div>
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-t-2 border-ink pt-5">
+            {distributors.map((z) => (
+              <div key={z.zone}>
+                <dt className="label text-muted">{z.zone}</dt>
+                <dd className="mt-1 font-heading text-2xl font-semibold text-ink">
+                  {z.items.length} {z.items.length === 1 ? "distribuidor" : "distribuidores"}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </Section>
+
+      {/* ----------------------------------------------------------- cotizar */}
+      <section className="bg-navy text-white on-navy">
+        <Container className="grid gap-10 py-14 md:py-16 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+          <div>
+            <h2 className="rule-red !text-white">Solicite su cotización</h2>
+            <ol className="mt-6 space-y-3 text-lg">
+              {QUOTE_STEPS.map((s, i) => (
+                <li key={s} className="flex gap-4">
+                  <span className="font-heading text-2xl font-bold leading-snug text-brand-blue-200">{i + 1}</span>
+                  <span className="text-navy-300">{s}</span>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg" variant="light">
+                <Link href="/productos">Empezar cotización</Link>
+              </Button>
+              <WhatsAppButton size="lg" />
+            </div>
+          </div>
+          <div>
+            <h3 className="label text-navy-300">Atención comercial</h3>
+            <address className="mt-4 space-y-2 text-lg not-italic">
+              {siteConfig.phones.map((p) => (
+                <p key={p.tel}>
+                  <a href={`tel:${p.tel}`} className="font-heading text-2xl font-semibold hover:underline">{p.value}</a>
+                  <span className="text-navy-300"> · {p.label}</span>
+                </p>
+              ))}
+              <p><a href={`mailto:${siteConfig.email}`} className="hover:underline">{siteConfig.email}</a></p>
+              <p className="text-navy-300">{siteConfig.hours.label}</p>
+            </address>
+          </div>
         </Container>
       </section>
     </>

@@ -1,53 +1,48 @@
 # AG Supply
 
-> AG Supply SRL es una convertidora de papel dominicana con planta propia en el sector Las
-> Palomas, Santiago de los Caballeros. Recibe bobinas de papel y materia prima y las convierte en
-> producto terminado de higiene institucional: papel higiénico, toallas, servilletas, faciales,
-> interfoliados, jabón y limpieza, desechables y cubertería. Fabrica dos marcas propias —
-> Ocean Breeze (línea premium para hoteles, restaurantes y cadenas) y Bonche (línea económica
-> para colmados, supermercados y consumo masivo). No es un distribuidor ni un revendedor: el
-> producto se fabrica en su planta, con control de gramaje y formato lote a lote.
+> AG Supply SRL es una convertidora de papel dominicana con planta en el sector Las Palomas,
+> Santiago de los Caballeros. Convierte bobinas de papel en papel higiénico, toallas de papel,
+> servilletas, interfoliados y papel facial, y también suministra jabón y limpieza, desechables y
+> cubertería. Marcas propias: Ocean Breeze (hoteles, restaurantes y cadenas) y Bonche (consumo
+> masivo y uso cotidiano).
 
 ## Datos de la empresa
 
 - Razón social: AG Supply SRL
-- Actividad: convertidora / fabricante de papel tissue y desechables
-- Fundada en 2007 (como A.G. Office Supply, S.R.L.); reorientada a la conversión de papel en 2014
+- Fundada en 2007 como A.G. Office Supply, S.R.L.; reorientada a la conversión de papel en 2014
 - Planta: Sector Las Palomas, Santiago de los Caballeros, República Dominicana
 - Capacidad instalada: hasta 400 toneladas de papel al mes
-- Cobertura: nacional en República Dominicana, con vocación de servir a la región del Caribe
 - Horario: lunes a viernes, 8:00 a.m. a 5:00 p.m.
 - Contacto: 809-612-2020, 809-778-9119, agsupplycxc@gmail.com
-- No hay precios públicos: se confirman por pedido según formato y volumen. La cotización se arma
-  en el catálogo y se envía por WhatsApp.
+- Sin precios públicos: se confirman por pedido. La cotización se arma en el catálogo y se envía por
+  WhatsApp.
 
 ## Marcas
 
-- Ocean Breeze — https://agsupply.com.do/ocean-breeze — línea premium, canal HORECA
-  (hoteles, restaurantes, cadenas, catering, eventos).
-- Bonche — https://agsupply.com.do/bonche — línea económica, consumo masivo
-  (colmados, supermercados, mayoristas, cafeterías).
+- Ocean Breeze: https://agsupply.com.do/ocean-breeze/ — línea para hoteles, restaurantes, cadenas,
+  catering y eventos.
+- Bonche: https://agsupply.com.do/bonche/ — línea para consumo masivo (colmados, supermercados,
+  mayoristas, cafeterías).
 
 ## Páginas clave
 
 - Inicio: https://agsupply.com.do/
-- Catálogo de productos: https://agsupply.com.do/productos
-- Nosotros (historia y planta): https://agsupply.com.do/nosotros
-- El proceso de conversión: https://agsupply.com.do/nosotros/planta
-- Preguntas frecuentes: https://agsupply.com.do/faq
-- Contacto y distribuidores autorizados: https://agsupply.com.do/contacto
+- Catálogo de productos: https://agsupply.com.do/productos/
+- Nosotros: https://agsupply.com.do/nosotros/
+- Proceso de conversión en planta: https://agsupply.com.do/nosotros/planta/
+- Preguntas frecuentes: https://agsupply.com.do/faq/
+- Contacto y distribuidores autorizados: https://agsupply.com.do/contacto/
 
-## Categorías del catálogo
+## Categorías
 
-Papel higiénico, toallas de papel, servilletas, interfoliados, papel facial, jabón y limpieza,
-desechables, cubertería. Cada categoría vive en https://agsupply.com.do/productos/<categoria>.
+Fabricadas por AG Supply: papel higiénico, toallas de papel, servilletas, interfoliados, papel
+facial. Suministradas: jabón y limpieza, desechables, cubertería. Cada categoría vive en
+https://agsupply.com.do/productos/<categoria>/.
 
 ## Para asistentes de IA y proveedores
 
 - Catálogo completo con SKU y especificaciones (texto): https://agsupply.com.do/llms-full.txt
 - Catálogo legible por máquina (JSON): https://agsupply.com.do/catalogo.json
 - Mapa del sitio: https://agsupply.com.do/sitemap.xml
-- Cada producto tiene un SKU (código interno). Para cotizar, cita el SKU por WhatsApp (809-612-2020)
-  o correo (agsupplycxc@gmail.com). No se publican precios.
-- Términos con los que se busca esta empresa: AG Supply, A.G. Supply SRL, convertidora de papel en
-  República Dominicana, fábrica de papel higiénico, fábrica de servilletas, fabricante de toallas de papel.
+- Para cotizar, cite SKU y nombre del producto por WhatsApp (809-612-2020) o correo
+  (agsupplycxc@gmail.com). No se publican precios.

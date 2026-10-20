@@ -1,44 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 import { FileText } from "lucide-react";
-import { useQuote } from "@/lib/quote/context";
+import { useQuote } from "@/lib/quote/store";
 import { cn } from "@/lib/utils";
 
+/** Acceso a la lista de cotización con el número de líneas. */
 export function QuoteButton({ className }: { className?: string }) {
   const { count, hydrated } = useQuote();
-  const [bump, setBump] = useState(false);
-  const prev = useRef(count);
-
-  useEffect(() => {
-    if (hydrated && count > prev.current) {
-      setBump(true);
-      const t = setTimeout(() => setBump(false), 420);
-      return () => clearTimeout(t);
-    }
-    prev.current = count;
-  }, [count, hydrated]);
-
+  const n = hydrated ? count : 0;
   return (
     <Link
       href="/cotizacion"
       className={cn(
-        "relative inline-flex items-center gap-2 rounded-md px-3 py-2 font-heading text-sm font-semibold text-ink transition-colors hover:text-brand-blue",
+        "inline-flex h-10 items-center gap-2 border border-brand-blue-dark px-3 font-heading text-sm font-semibold text-brand-blue-dark transition-colors hover:bg-brand-blue-50",
         className,
       )}
-      aria-label={`Cotización, ${count} ${count === 1 ? "producto" : "productos"}`}
+      aria-label={`Lista de cotización, ${n} ${n === 1 ? "producto" : "productos"}`}
     >
-      <FileText className="size-5" aria-hidden />
+      <FileText className="size-4" aria-hidden />
       <span className="hidden sm:inline">Cotización</span>
-      <span
-        className={cn(
-          "inline-flex min-w-5 items-center justify-center rounded-full bg-brand-blue px-1.5 text-[0.7rem] font-bold leading-5 text-white transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
-          !hydrated && "opacity-0",
-          bump && "scale-125",
-        )}
-      >
-        {hydrated ? count : 0}
+      <span className="inline-flex min-w-5 items-center justify-center bg-brand-blue px-1.5 text-xs font-bold leading-5 text-white">
+        {n}
       </span>
     </Link>
   );

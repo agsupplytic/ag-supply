@@ -11,11 +11,38 @@ import type {
   ProductFilter,
 } from "./types";
 
-const products = productsData as unknown as Product[];
-const categories = (categoriesData as unknown as Category[])
+import { parseContent } from "./schema";
+
+const SKU_FORMAT = /^\d{4}-[A-ZÑ]{3}-\d{2}$/;
+const collator = new Intl.Collator("es", { numeric: true, sensitivity: "base" });
+
+const categories = parseContent<Category>("categories", categoriesData)
   .slice()
   .sort((a, b) => a.order - b.order);
-const brands = brandsData as unknown as Brand[];
+const brands = parseContent<Brand>("brands", brandsData);
+const categoryOrder = new Map(categories.map((c) => [c.slug, c.order]));
+
+function withSkuStatus(list: Product[]): Product[] {
+  const counts = new Map<string, number>();
+  for (const p of list) if (p.sku) counts.set(p.sku, (counts.get(p.sku) ?? 0) + 1);
+  return list.map((p) => {
+    if (!p.sku) return { ...p, skuStatus: "missing" as const };
+    if (!SKU_FORMAT.test(p.sku)) {
+      const rest = { ...p };
+      delete rest.sku;
+      return { ...rest, skuStatus: "invalid" as const };
+    }
+    return { ...p, skuStatus: (counts.get(p.sku) ?? 0) > 1 ? ("duplicate" as const) : ("ok" as const) };
+  });
+}
+
+// Orden estable: categoría (según `order`), subcategoría, nombre.
+const products = withSkuStatus(parseContent<Product>("products", productsData)).sort(
+  (a, b) =>
+    (categoryOrder.get(a.category) ?? 99) - (categoryOrder.get(b.category) ?? 99) ||
+    collator.compare(a.subcategory ?? "", b.subcategory ?? "") ||
+    collator.compare(a.name, b.name),
+);
 
 function matchesAttrs(p: Product, attrs: ProductFilter["attrs"]): boolean {
   if (!attrs) return true;
@@ -51,22 +78,21 @@ export const localSource: ContentSource = {
   },
 
   async getRelatedProducts(product, limit = 4) {
-    return products
-      .filter(
-        (p) =>
-          p.active &&
-          p.slug !== product.slug &&
-          p.category === product.category,
-      )
-      .sort((a, b) => {
-        // prefer same brand, then products with a real photo
-        const brandScore = (x: Product) => (x.brand === product.brand ? 1 : 0);
-        const imgScore = (x: Product) => (x.images.length ? 1 : 0);
-        return (
-          brandScore(b) - brandScore(a) || imgScore(b) - imgScore(a)
-        );
-      })
-      .slice(0, limit);
+    // Misma categoría, puntuada por afinidad; el desempate por cercanía en la
+    // lista reparte los enlaces internos entre todas las fichas (no siempre las mismas).
+    const pool = products.filter((p) => p.active && p.category === product.category);
+    const here = pool.findIndex((p) => p.slug === product.slug);
+    const pack = product.specs.packFormat;
+    const score = (x: Product) =>
+      (x.subcategory && x.subcategory === product.subcategory ? 3 : 0) +
+      (pack && x.specs.packFormat === pack ? 2 : 0) +
+      (x.brand === product.brand ? 1 : 0);
+    return pool
+      .map((p, i) => ({ p, s: score(p), d: Math.abs(i - here) }))
+      .filter(({ p }) => p.slug !== product.slug)
+      .sort((a, b) => b.s - a.s || a.d - b.d)
+      .slice(0, limit)
+      .map(({ p }) => p);
   },
 
   async getBrand(slug) {

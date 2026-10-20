@@ -4,65 +4,29 @@ import { BrandBadge } from "./brand-badge";
 import { AddToQuoteButton } from "./add-to-quote-button";
 import type { Product } from "@/lib/content/types";
 
-export function ProductCard({
-  product,
-  categorySlug,
-}: {
-  product: Product;
-  categorySlug: string;
-}) {
-  const href = `/productos/${categorySlug}/${product.slug}`;
-
+/** Tarjeta de producto (vista de cuadrícula del catálogo y productos relacionados). */
+export function ProductCard({ product }: { product: Product }) {
+  const href = `/productos/${product.category}/${product.slug}`;
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue-200 hover:shadow-xl">
-      <Link
-        href={href}
-        className="relative block"
-        tabIndex={-1}
-        aria-hidden="true"
-      >
-        <ProductImage
-          product={product}
-          className="aspect-4/3 border-b border-border"
-        />
-        <span className="absolute left-3 top-3">
-          <BrandBadge brand={product.brand} />
-        </span>
+    <article className="flex flex-col border border-border bg-white">
+      <Link href={href} tabIndex={-1} aria-hidden="true">
+        <ProductImage product={product} className="border-b border-border" />
       </Link>
-
-      <div className="flex flex-1 flex-col gap-3 p-4">
-        <h3 className="font-heading text-[0.95rem] font-semibold leading-snug text-ink">
-          <Link href={href} className="transition-colors hover:text-brand-blue">
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <div className="flex items-center justify-between gap-2">
+          <BrandBadge brand={product.brand} />
+          {product.sku && <span className="text-xs tabular-nums text-muted">{product.sku}</span>}
+        </div>
+        <h3 className="font-heading text-base font-semibold leading-snug text-ink">
+          <Link href={href} className="hover:text-brand-blue-dark hover:underline">
             {product.name}
           </Link>
         </h3>
-
-        {product.sku && (
-          <p className="-mt-1.5 text-xs font-medium tabular-nums text-muted">
-            SKU {product.sku}
-          </p>
-        )}
-
         {product.keySpecs.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
-            {product.keySpecs.map((s) => (
-              <span
-                key={s}
-                className="rounded-md bg-brand-blue-50 px-1.5 py-0.5 text-[0.7rem] font-medium text-brand-blue-dark"
-              >
-                {s}
-              </span>
-            ))}
-          </div>
+          <p className="text-sm text-muted">{product.keySpecs.join(" · ")}</p>
         )}
-
-        <div className="mt-auto pt-1">
-          <AddToQuoteButton
-            product={product}
-            variant="outline"
-            size="sm"
-            className="w-full"
-          />
+        <div className="mt-auto pt-2">
+          <AddToQuoteButton product={product} className="w-full" />
         </div>
       </div>
     </article>

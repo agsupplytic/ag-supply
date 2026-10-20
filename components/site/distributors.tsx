@@ -1,52 +1,37 @@
-import { Phone, MapPin } from "lucide-react";
+import Link from "next/link";
+import { Section, SectionHeading } from "./section";
 import { distributors } from "@/lib/site-config";
 
-export function Distributors() {
+/** Distribuidores autorizados por zona (datos en lib/site-config.ts). */
+export function Distributors({ headingAs = "h2" as "h2" | "h3" }) {
   return (
-    <section className="bg-brand-gradient py-16 text-white md:py-24">
-      <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <h2 className="text-white">Distribuidores autorizados</h2>
-          <p className="mt-4 text-lg text-white/90">
-            Además de la venta directa, nuestros productos se consiguen a través
-            de distribuidores autorizados en todo el país.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {distributors.map((zone) => (
-            <div key={zone.zone} className="panel-quiet p-6">
-              <div className="flex items-center gap-2 text-white/85">
-                <MapPin className="size-4" aria-hidden />
-                <h3 className="font-heading text-base font-semibold uppercase tracking-wide text-white">
-                  {zone.zone}
-                </h3>
-              </div>
-              <ul className="mt-4 space-y-4">
-                {zone.items.map((d) => (
-                  <li key={d.name}>
-                    <p className="font-heading font-semibold text-white">
-                      {d.name}
-                    </p>
-                    <a
-                      href={`tel:${d.tel}`}
-                      className="mt-0.5 inline-flex items-center gap-1.5 text-sm text-white/85 transition-colors hover:text-white"
-                    >
-                      <Phone className="size-3.5" aria-hidden />
-                      {d.phone}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <p className="mt-8 text-sm text-white/90">
-          ¿Quieres ser distribuidor autorizado de AG Supply? Escríbenos y lo
-          conversamos.
-        </p>
+    <Section tone="surface">
+      <SectionHeading
+        as={headingAs}
+        title="Distribuidores autorizados"
+        intro="Además de la venta directa, los productos se consiguen en estos distribuidores, organizados por zona."
+      />
+      <div className="mt-10 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
+        {distributors.map((zone) => (
+          <div key={zone.zone} className="border-t-2 border-ink pt-3">
+            <h3 className="label text-ink">{zone.zone}</h3>
+            <ul className="mt-3 divide-y divide-border">
+              {zone.items.map((d) => (
+                <li key={d.name} className="py-2.5">
+                  <p className="font-heading font-semibold text-ink">{d.name}</p>
+                  <a href={`tel:${d.tel}`} className="text-sm text-brand-blue-dark hover:underline">
+                    {d.phone}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
-    </section>
+      <p className="mt-8 text-sm text-muted">
+        Para ser distribuidor autorizado, escriba a {" "}
+        <Link href="/contacto" className="link">Contacto</Link>.
+      </p>
+    </Section>
   );
 }

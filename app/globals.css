@@ -1,78 +1,93 @@
 @import "tailwindcss";
 
 /* ============================================================================
-   AG Supply brand tokens — the ONLY place hex values live.
-   Anchors taken from the official logo (Logo_1.png), verified by pixel sample.
-   Do NOT use #1E6FB5 or #EB252A anywhere — those are incorrect legacy variants.
+   AG Supply — sistema de diseño. Único lugar con valores hex.
+   Referencia: docs/SISTEMA-DISENO.md
+
+   Colores tomados del logotipo oficial (muestreo de píxeles): azul #1c75bc y rojo
+   #ed1c24. El azul es la marca y la acción; el rojo es acento puntual (nunca
+   bandas). Un único fondo oscuro (marino) para la franja de datos y el pie.
+   Verde Bonche y celeste Ocean Breeze viven SOLO en las páginas de cada marca.
    ========================================================================== */
 @theme {
-  /* Blue — primary. The logo blue is the hero; keep large surfaces bright,
-     reserve the deep tone for text/hover only. */
+  /* Azul de marca */
   --color-brand-blue: #1c75bc;
   --color-brand-blue-700: #175f9a;
-  --color-brand-blue-dark: #124d7c;
-  --color-brand-blue-600: #2f86ca;
-  --color-brand-blue-500: #4ea0da;
-  --color-brand-blue-400: #7bb8e6;
+  --color-brand-blue-dark: #124d7c; /* texto/enlaces sobre blanco: 8.2:1 */
   --color-brand-blue-200: #b8d6ec;
-  --color-brand-blue-100: #d7e8f5;
-  --color-brand-blue-50: #eaf3fb;
+  --color-brand-blue-100: #d9e8f5;
+  --color-brand-blue-50: #eef5fb;
 
-  /* Ready-made brand gradient for big surfaces. Softened per client request —
-     lighter entry, but every stop still keeps white small text >= 4.5:1. */
-  --gradient-brand: linear-gradient(135deg, #2276b3 0%, #1a659f 52%, #134d7c 100%);
-  /* Occasional red band (client-requested alternation). Darkened so white text
-     is >= 5:1 across the whole ramp. */
-  --gradient-red: linear-gradient(135deg, #c81a22 0%, #a5121a 50%, #8f0f16 100%);
-
-  /* Red — accent / urgency. Large fills only in the deliberate red band above. */
+  /* Rojo de marca: acento */
   --color-brand-red: #ed1c24;
-  --color-brand-red-dark: #c2131a;
-  --color-brand-red-900: #8f0f16; /* tiny white text on red (badges, band end) */
+  --color-brand-red-dark: #b8121a; /* texto rojo sobre blanco: 6.5:1 */
 
-  /* Bonche palette — sampled from the Bonche logo (green blob + orange/blue
-     bubbles). Used ONLY on Bonche brand surfaces to match its identity; never
-     for AG Supply itself. Ocean Breeze keeps the AG blue family. */
-  --color-bonche: #3f8f3a;
-  --color-bonche-dark: #245f22;
+  /* Marino: única superficie oscura */
+  --color-navy: #0f2a43;
+  --color-navy-700: #173b5c;
+  --color-navy-300: #9db4c9; /* texto secundario sobre marino: 7.4:1 */
+
+  /* Neutros (fríos, afines al azul) */
+  --color-white: #ffffff;
+  --color-ink: #14222f;
+  --color-body: #36444f; /* 9.8:1 sobre blanco */
+  --color-muted: #566573; /* 6.1:1 sobre blanco, 5.6:1 sobre surface */
+  --color-border: #d3dae1;
+  --color-control-border: #76828e; /* bordes de controles: 3.9:1 */
+  --color-surface: #f3f6f9;
+  --color-surface-2: #e7ecf1;
+  --color-background: #ffffff;
+  --color-foreground: #14222f;
+
+  /* Ocean Breeze (solo páginas de la marca) */
+  --color-ocean: #12427f;
+  --color-ocean-cyan: #0b9fd0;
+  --color-ocean-50: #eaf6fc;
+
+  /* Bonche (solo páginas de la marca) */
+  --color-bonche: #2f7a2b; /* texto blanco encima: 5.4:1 */
+  --color-bonche-dark: #1f5a1d;
   --color-bonche-100: #d9e8cb;
   --color-bonche-50: #f1f6ec;
-  --color-bonche-accent: #f2941d; /* orange bubble */
-  --gradient-bonche: linear-gradient(135deg, #57ab4d 0%, #3c8c37 52%, #276627 100%);
+  --color-bonche-accent: #f2941d;
 
-  /* WhatsApp green. `whatsapp` is the recognizable brand green used as the button
-     FILL; text/icon on top is `whatsapp-ink` (deep green, ~6:1 on #25d366) so the
-     button still passes contrast while looking like WhatsApp. */
+  /* WhatsApp */
   --color-whatsapp: #25d366;
   --color-whatsapp-hover: #1fb257;
   --color-whatsapp-ink: #0b3d1f;
 
-  /* Neutrals — warm-neutral grey, not blue-tinted. */
-  --color-white: #ffffff;
-  --color-ink: #333333;
-  --color-body: #535353; /* 7.6:1 on white, 7.0:1 on surface (AAA) */
-  --color-muted: #6a6a6a; /* 4.9:1 on white, 4.6:1 on surface (AA) */
-  --color-border: #e5e5e5; /* decorative card borders only */
-  --color-control-border: #8b9199; /* interactive borders — 3.2:1 non-text */
-  --color-surface: #f5f5f5;
-  --color-surface-2: #ededed;
-
-  /* Semantic aliases used by base elements. */
-  --color-background: #ffffff;
-  --color-foreground: #333333;
-
-  /* Typography — wired to next/font in app/layout.tsx. */
-  --font-body: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-heading: var(--font-montserrat), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Tipografía — cargada con next/font en app/layout.tsx.
+     Barlow: titulares y navegación (geometría y terminales técnicas, cercana a la
+     "AG" oblicua del logotipo). Source Sans 3: texto corrido (humanista, afín a
+     "Supply"). Barlow Semi Condensed: etiquetas y datos técnicos. */
+  --font-heading: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-source), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-label: var(--font-barlow-sc), var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-body);
 
-  /* Motion. */
-  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
-  --animate-accordion-down: accordion-down 0.24s var(--ease-brand);
-  --animate-accordion-up: accordion-up 0.2s var(--ease-brand);
+  /* Forma: esquinas rectas y sin sombras. Las utilidades de Tailwind heredadas
+     (rounded-xl, shadow-lg…) quedan neutralizadas aquí. */
+  --radius-xs: 2px;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --radius-2xl: 4px;
+  --radius-3xl: 4px;
+  --shadow-xs: none;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-2xl: none;
+  --shadow-menu: 0 12px 28px -12px rgb(15 42 67 / 0.35);
 
-  /* Container. */
-  --spacing-gutter: 1.5rem;
+  /* Movimiento */
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-accordion-down: accordion-down 0.2s var(--ease-brand);
+  --animate-accordion-up: accordion-up 0.16s var(--ease-brand);
+
+  --spacing-gutter: 1.25rem;
 }
 
 /* ============================================================================
@@ -81,252 +96,128 @@
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
   }
 
   body {
     background: var(--color-white);
     color: var(--color-body);
     font-family: var(--font-body);
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: 1.0625rem;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
+  /* Escala: display > h1 > h2 > h3 > h4 > texto > pequeño > etiqueta */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--color-ink);
-    line-height: 1.15;
+    line-height: 1.1;
     text-wrap: balance;
   }
-
-  h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; letter-spacing: -0.02em; }
-  h2 { font-size: clamp(1.75rem, 3.6vw, 2.5rem); font-weight: 600; letter-spacing: -0.015em; }
-  h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); font-weight: 600; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(2.125rem, 4.6vw, 3.25rem); font-weight: 700; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(1.625rem, 3vw, 2.25rem); font-weight: 700; letter-spacing: -0.01em; }
+  h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 600; letter-spacing: -0.005em; line-height: 1.2; }
+  h4 { font-size: 1.0625rem; font-weight: 600; line-height: 1.3; }
 
   a { color: inherit; text-decoration: none; }
+  p { text-wrap: pretty; }
 
   ::selection {
     background: var(--color-brand-blue);
     color: var(--color-white);
   }
 
-  /* Dual ring: white inner + deep-blue outer stays visible on both light and
-     brand-blue backgrounds. */
+  /* Foco: anillo azul oscuro con separación blanca; visible sobre claro y oscuro.
+     No altera el radio del control. */
   :focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid var(--color-brand-blue-dark);
     outline-offset: 2px;
-    box-shadow: 0 0 0 4px var(--color-brand-blue-dark);
-    border-radius: 3px;
+    box-shadow: 0 0 0 2px #fff;
+  }
+  .on-dark :focus-visible,
+  .on-navy :focus-visible {
+    outline-color: #fff;
+    box-shadow: 0 0 0 2px var(--color-navy);
   }
 
-  /* Firefox number input: hide spinners for the quote qty field. */
+  /* Cantidad en la cotización: sin flechas del navegador. */
   input[type="number"] { appearance: textfield; -moz-appearance: textfield; }
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  main:focus { outline: none; }
 }
 
 /* ============================================================================
-   Components — one panel system, used on every surface so cards read as a set.
+   Componentes
    ========================================================================== */
 @layer components {
-  /* Content panel on light sections. Real shadow (offset + soft blur), hairline
-     border, never a colored border-left tab. */
-  .panel {
-    border-radius: 1rem;
-    border: 1px solid var(--color-border);
-    background: var(--color-white);
-    box-shadow:
-      0 1px 2px color-mix(in srgb, var(--color-brand-blue-dark) 6%, transparent),
-      0 14px 34px -20px color-mix(in srgb, var(--color-brand-blue-dark) 22%, transparent);
-  }
-
-  /* Same shape on a brand-colour or photo band. Translucent tint held by an
-     inset ring — NOT a glass/backdrop-blur effect. */
-  .panel-quiet {
-    border-radius: 1rem;
-    background: color-mix(in srgb, #fff 9%, transparent);
-    box-shadow: inset 0 0 0 1px color-mix(in srgb, #fff 18%, transparent);
-  }
-
-  /* Small square icon holder, consistent across sections. */
-  .panel-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.75rem;
-    background: var(--color-brand-blue);
-    color: #fff;
-    box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--color-brand-blue) 60%, transparent);
-  }
-  .panel-quiet .panel-icon,
-  .panel-icon.on-dark {
-    background: color-mix(in srgb, #fff 16%, transparent);
-    box-shadow: none;
-  }
-}
-
-/* ============================================================================
-   Utilities
-   ========================================================================== */
-@layer utilities {
-  /* Label / eyebrow text. */
-  .label-eyebrow {
-    font-family: var(--font-heading);
+  /* Etiqueta funcional (categorías de sección, encabezados de tabla, datos). */
+  .label {
+    font-family: var(--font-label);
     font-size: 0.8125rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-brand-blue-dark); /* 8.8:1 white / 7.9:1 blue-50 (AAA) */
+    letter-spacing: 0.08em;
+    line-height: 1.2;
   }
 
-  /* Bright brand gradient for large surfaces. */
-  .bg-brand-gradient {
-    background-image: var(--gradient-brand);
-  }
-  .bg-red-gradient {
-    background-image: var(--gradient-red);
-  }
-  .bg-bonche-gradient {
-    background-image: var(--gradient-bonche);
-  }
-
-  /* Blue scrim for text-over-photo sections. Deliberately light so the photo
-     stays the hero: a wedge behind the copy (top-left) that clears to
-     transparent on the right, plus a faint bottom band for any stat bar. */
-  .overlay-brand {
-    background:
-      linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-brand-blue-dark) 30%, transparent) 0%,
-        color-mix(in srgb, var(--color-brand-blue-dark) 8%, transparent) 42%,
-        color-mix(in srgb, var(--color-brand-blue-dark) 44%, transparent) 100%
-      ),
-      linear-gradient(
-        100deg,
-        color-mix(in srgb, var(--color-brand-blue-dark) 64%, transparent) 0%,
-        color-mix(in srgb, var(--color-brand-blue-dark) 30%, transparent) 44%,
-        transparent 74%
-      );
-  }
-  @media (max-width: 767px) {
-    .overlay-brand {
-      background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-brand-blue-dark) 52%, transparent) 0%,
-        color-mix(in srgb, var(--color-brand-blue-dark) 40%, transparent) 55%,
-        color-mix(in srgb, var(--color-brand-blue-dark) 58%, transparent) 100%
-      );
-    }
+  /* Filete rojo de 3 px que abre una sección: único uso del rojo estructural. */
+  .rule-red::before {
+    content: "";
+    display: block;
+    width: 2.5rem;
+    height: 3px;
+    margin-bottom: 1rem;
+    background: var(--color-brand-red);
   }
 
-  /* Scrim for interior page headers. Softened so the photo shows through, with a
-     diagonal wedge that stays dense enough behind the copy (left) for the white
-     h1 to hold >= 4.5:1, clearing toward the right. */
-  .hero-scrim-deep {
-    background:
-      linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-brand-blue-dark) 46%, transparent) 0%,
-        color-mix(in srgb, var(--color-brand-blue-dark) 30%, transparent) 45%,
-        color-mix(in srgb, var(--color-brand-blue-dark) 52%, transparent) 100%
-      ),
-      linear-gradient(
-        105deg,
-        color-mix(in srgb, var(--color-brand-blue-dark) 66%, transparent) 0%,
-        color-mix(in srgb, var(--color-brand-blue-dark) 40%, transparent) 42%,
-        transparent 78%
-      );
+  /* Datos técnicos: lista de definiciones en filas con filete. */
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
   }
-
-  /* Same wedge as hero-scrim-deep but in the Bonche green, for the /bonche header. */
-  .hero-scrim-bonche {
-    background:
-      linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--color-bonche-dark) 46%, transparent) 0%,
-        color-mix(in srgb, var(--color-bonche-dark) 30%, transparent) 45%,
-        color-mix(in srgb, var(--color-bonche-dark) 52%, transparent) 100%
-      ),
-      linear-gradient(
-        105deg,
-        color-mix(in srgb, var(--color-bonche-dark) 68%, transparent) 0%,
-        color-mix(in srgb, var(--color-bonche-dark) 42%, transparent) 42%,
-        transparent 78%
-      );
+  .spec-table th,
+  .spec-table td {
+    padding: 0.625rem 0.75rem 0.625rem 0;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-border);
   }
-
-  /* Corner badge for a placeholder/test image. */
-  .figure-note {
-    position: absolute;
-    right: 0.75rem;
-    top: 0.75rem;
-    z-index: 10;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    border-radius: 9999px;
-    background: color-mix(in srgb, var(--color-ink) 88%, transparent);
-    padding: 0.25rem 0.625rem;
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
+  .spec-table th {
+    width: 38%;
+    font-family: var(--font-label);
+    font-size: 0.8125rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: #fff;
-    backdrop-filter: blur(4px);
+    letter-spacing: 0.06em;
+    color: var(--color-muted);
   }
+  .spec-table td {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  .on-navy .spec-table th { color: var(--color-navy-300); }
+  .on-navy .spec-table td { color: #fff; }
+  .on-navy .spec-table th,
+  .on-navy .spec-table td { border-bottom-color: rgb(255 255 255 / 0.18); }
 
+  /* Enlace de texto con subrayado fino. */
+  .link {
+    color: var(--color-brand-blue-dark);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .link:hover { text-decoration-thickness: 2px; }
+}
+
+@layer utilities {
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
-}
-
-/* Deter casual image extraction (not DRM — just friction). */
-img {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  user-select: none;
-}
-[data-protected] {
-  position: relative;
-}
-[data-protected]::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: auto;
-}
-/* keep real controls above the shield */
-[data-protected] a,
-[data-protected] button {
-  position: relative;
-  z-index: 6;
-}
-
-/* Section reveal-on-scroll (hook: components/site/Reveal). */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.6s var(--ease-brand),
-    transform 0.6s var(--ease-brand);
-  will-change: opacity, transform;
-}
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* Swoosh "draw" on hover of a featured card. */
-.swoosh-draw path {
-  stroke-dasharray: var(--swoosh-len, 600);
-  stroke-dashoffset: var(--swoosh-len, 600);
-  transition: stroke-dashoffset 0.7s var(--ease-brand);
-}
-.group:hover .swoosh-draw path,
-.swoosh-draw:hover path {
-  stroke-dashoffset: 0;
 }
 
 @keyframes accordion-down {
@@ -339,11 +230,14 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1 !important; transform: none !important; transition: none; }
-  .swoosh-draw path { transition: none; stroke-dashoffset: 0; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
+}
+
+@media print {
+  header, footer, .no-print { display: none !important; }
 }

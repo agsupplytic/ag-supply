@@ -1,21 +1,19 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
 import { getCategories, getProducts, getBrands } from "@/lib/content";
 import { Container } from "@/components/site/container";
 import { PageHero } from "@/components/site/page-hero";
-import { OperationalInfo } from "@/components/site/operational-info";
 import { Catalog } from "@/components/site/catalog";
-import { ogFor } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
-const CATALOGO_DESC =
-  "Catálogo de AG Supply, convertidora de papel en República Dominicana: papel higiénico, toallas, servilletas, faciales, interfoliados, jabón y desechables con su SKU. Busca por código y cotiza por WhatsApp.";
-
-export const metadata: Metadata = {
-  title: "Catálogo — papel higiénico, servilletas, toallas y desechables",
-  description: CATALOGO_DESC,
-  alternates: { canonical: "/productos" },
-  openGraph: ogFor("Catálogo de productos — AG Supply", CATALOGO_DESC, "/productos"),
-};
+export const metadata = pageMetadata({
+  title: "Catálogo de papel higiénico, servilletas y toallas",
+  description:
+    "Catálogo de AG Supply: papel higiénico, toallas, servilletas, interfoliados, papel facial, jabón y desechables con SKU y presentación. Cotización por WhatsApp.",
+  path: "/productos",
+  image: {
+    url: "/images/fotos/planta-5.webp",
+    alt: "Producto terminado en cajas, listo para despacho",
+  },
+});
 
 export default async function ProductosPage() {
   const [categories, products, brands] = await Promise.all([
@@ -27,26 +25,16 @@ export default async function ProductosPage() {
   return (
     <>
       <PageHero
+        breadcrumb={[{ name: "Inicio", href: "/" }, { name: "Catálogo" }]}
+        title="Catálogo de productos"
+        lead={`${products.length} referencias en ${categories.length} categorías. Busque por producto, SKU o presentación y arme su lista de cotización. Los precios se confirman por pedido.`}
         image={{
-          src: "/images/placeholders/header-productos.webp",
-          alt: "Producto terminado de AG Supply listo para despacho",
+          src: "/images/fotos/planta-5.webp",
+          alt: "Producto terminado en cajas, listo para despacho",
         }}
-        title="Catálogo de productos AG Supply"
-        lead={
-          <>
-            {products.length} productos terminados fabricados en planta, en{" "}
-            {categories.length} categorías. Añade lo que necesites a tu cotización
-            y envíala por WhatsApp. Los precios se confirman por pedido.
-          </>
-        }
       />
-
-      <OperationalInfo />
-
-      <Container className="py-12">
-        <Suspense fallback={<div className="py-20 text-center text-muted">Cargando catálogo…</div>}>
-          <Catalog products={products} categories={categories} brands={brands} />
-        </Suspense>
+      <Container className="py-10 md:py-12">
+        <Catalog products={products} categories={categories} brands={brands} />
       </Container>
     </>
   );

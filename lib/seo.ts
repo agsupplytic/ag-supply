@@ -2,32 +2,63 @@ import type { Metadata } from "next";
 import { siteConfig } from "./site-config";
 import type { Product } from "./content/types";
 
+/** URL absoluta con barra final, igual que el canónico y lo que sirve el hosting. */
+export function absUrl(path = "/"): string {
+  const clean = path === "/" ? "/" : `/${path.replace(/^\/+|\/+$/g, "")}/`;
+  return `${siteConfig.url}${clean}`;
+}
+
+const DEFAULT_OG = {
+  url: "/images/og.png",
+  width: 1200,
+  height: 630,
+  alt: `${siteConfig.name} — ${siteConfig.slogan}`,
+};
+
 /**
- * Per-page Open Graph block. Without this, subpages inherit the root layout's OG
- * title/description, so a shared card would say "AG Supply — Convertidora de
- * papel" regardless of the page. Pass the page's own title and description.
+ * Metadatos completos de una página: título, descripción, canónico, Open Graph y
+ * Twitter coherentes entre sí. `title` es el título propio SIN el sufijo de
+ * marca (la plantilla del layout añade " — AG Supply"); con `absolute` se usa tal
+ * cual. Descripciones de 120–160 caracteres.
  */
-export function ogFor(
-  title: string,
-  description: string,
-  path?: string,
-  image?: string,
-): NonNullable<Metadata["openGraph"]> {
+export function pageMetadata({
+  title,
+  absolute = false,
+  description,
+  path,
+  image,
+  noindex = false,
+}: {
+  title: string;
+  absolute?: boolean;
+  description: string;
+  path: string;
+  /** Imagen propia de la página; sin ella se usa la imagen de marca. */
+  image?: { url: string; alt: string };
+  noindex?: boolean;
+}): Metadata {
+  const fullTitle = absolute ? title : `${title} — ${siteConfig.name}`;
+  const og = image ? { url: image.url, alt: image.alt } : DEFAULT_OG;
   return {
-    title,
+    title: absolute ? { absolute: title } : title,
     description,
-    ...(path ? { url: `${siteConfig.url}${path}` } : {}),
-    siteName: siteConfig.name,
-    locale: "es_DO",
-    type: "website",
-    images: [
-      {
-        url: image ?? "/images/og.png",
-        width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} — ${siteConfig.slogan}`,
-      },
-    ],
+    alternates: { canonical: absUrl(path) },
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
+    openGraph: {
+      title: fullTitle,
+      description,
+      url: absUrl(path),
+      siteName: siteConfig.name,
+      locale: "es_DO",
+      type: "website",
+      images: [og],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+      images: [og.url],
+    },
   };
 }
 
@@ -39,21 +70,24 @@ export function clip(text: string, max = 158): string {
 }
 
 /**
- * Descripción de producto generada SOLO con datos reales (nombre, SKU, marca,
- * categoría, specs). No inventa beneficios ni cifras. Sirve para la meta
- * description, el JSON-LD y el párrafo visible de la ficha.
+ * Descripción de producto generada SOLO con datos reales (nombre, marca, categoría,
+ * especificaciones). No inventa beneficios ni cifras. "Fabricado" únicamente si el
+ * producto está marcado `fabricated` en los datos (papel tissue).
  */
 export function productDescription(
   product: Product,
   categoryName?: string,
   brandName?: string,
 ): string {
-  const sku = product.sku ? ` (SKU ${product.sku})` : "";
-  const cat = categoryName ? ` Categoría: ${categoryName}.` : "";
-  const brand =
-    product.brand !== "generico" && brandName ? ` Marca ${brandName}.` : "";
-  const specs = product.keySpecs.length ? ` ${product.keySpecs.join(", ")}.` : "";
-  return (
-    `${product.name}${sku}.${cat}${brand}${specs} Fabricado por AG Supply, convertidora de papel en Santiago, República Dominicana. Cotiza por WhatsApp citando el SKU.`
+  const parts = [`${product.name}.`];
+  if (categoryName) parts.push(`${categoryName}.`);
+  if (product.brand !== "generico" && brandName) parts.push(`Marca ${brandName}.`);
+  if (product.keySpecs.length) parts.push(`${product.keySpecs.join(", ")}.`);
+  parts.push(
+    product.fabricated
+      ? "Fabricado por AG Supply en Santiago, República Dominicana."
+      : "Suministrado por AG Supply, Santiago, República Dominicana.",
   );
+  parts.push("Cotización por WhatsApp.");
+  return parts.join(" ");
 }
