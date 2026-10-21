@@ -14,7 +14,7 @@ const buttonVariants = cva(
         subtle: "bg-surface text-ink hover:bg-surface-2",
         ghost: "text-brand-blue-dark hover:bg-brand-blue-50",
         /** Sobre fondo marino. */
-        light: "bg-white text-navy hover:bg-brand-blue-50",
+        light: "bg-white text-brand-blue-dark hover:bg-brand-blue-50",
         "outline-light":
           "border border-white/70 bg-transparent text-white hover:bg-white/10",
         whatsapp:

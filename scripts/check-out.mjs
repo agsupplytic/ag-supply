@@ -55,9 +55,22 @@ for (const f of htmlFiles) {
   if (!canon) fail(`${path}: sin canónico`);
   else if (!canon.startsWith(SITE) || !canon.endsWith("/")) fail(`${path}: canónico inválido (${canon})`);
   else if (canon !== `${SITE}${path}`) fail(`${path}: canónico apunta a otra URL (${canon})`);
+  // idioma del documento y hreflang recíproco
+  const htmlLang = /<html lang="([^"]*)"/.exec(html)?.[1];
+  const isEn = path.startsWith("/en/") || path === "/en/";
+  if (htmlLang !== (isEn ? "en" : "es-DO")) fail(`${path}: <html lang="${htmlLang}" incorrecto`);
+  const alts = Object.fromEntries([...html.matchAll(/<link rel="alternate" hrefLang="([^"]*)" href="([^"]*)"/g)].map((m) => [m[1], m[2]]));
+  if (!alts["es-DO"] || !alts.en || !alts["x-default"]) fail(`${path}: faltan hreflang`);
+  else {
+    if (alts[isEn ? "en" : "es-DO"] !== canon) fail(`${path}: hreflang propio distinto del canónico`);
+    for (const other of [alts["es-DO"], alts.en]) {
+      const p2 = other.slice(SITE.length);
+      if (!resolves(p2)) fail(`${path}: hreflang apunta a una página inexistente (${other})`);
+    }
+  }
   if (!noindex) {
-    if (title) titles.set(title, [...(titles.get(title) ?? []), path]);
-    if (desc) descs.set(desc, [...(descs.get(desc) ?? []), path]);
+    if (title) titles.set(`${isEn ? "en" : "es"}|${title}`, [...(titles.get(`${isEn ? "en" : "es"}|${title}`) ?? []), path]);
+    if (desc) descs.set(`${isEn ? "en" : "es"}|${desc}`, [...(descs.get(`${isEn ? "en" : "es"}|${desc}`) ?? []), path]);
   }
   if (title && title.length > 70) fail(`${path}: título de ${title.length} caracteres (máx. 70)`);
   if (desc && desc.length > 165) fail(`${path}: descripción de ${desc.length} caracteres (máx. 165)`);
@@ -84,15 +97,15 @@ for (const f of htmlFiles) {
   if (/>\s*0\+\s*</.test(html)) fail(`${path}: contador "0+" en el HTML`);
 }
 
-for (const [t, pages] of titles) if (pages.length > 1) fail(`título repetido «${t}» en ${pages.slice(0, 3).join(", ")}`);
+for (const [t, pages] of titles) if (pages.length > 1) fail(`título repetido «${t.slice(3)}» en ${pages.slice(0, 3).join(", ")}`);
 for (const pages of descs.values()) if (pages.length > 1) fail(`descripción repetida en ${pages.slice(0, 3).join(", ")}`);
 
 // catálogo presente en el HTML
-for (const p of ["/productos/", "/productos/papel-higienico/"]) {
+for (const p of ["/productos/", "/productos/papel-higienico/", "/en/products/", "/en/products/toilet-paper/"]) {
   const file = join(OUT, p, "index.html");
   const html = existsSync(file) ? readFileSync(file, "utf8") : "";
   if (html.includes("Cargando catálogo")) fail(`${p}: el HTML trae «Cargando catálogo»`);
-  const rows = (html.match(/\/productos\/[a-z-]+\/[a-z0-9-]+\//g) ?? []).length;
+  const rows = (html.match(/\/(?:productos|products)\/[a-z-]+\/[a-z0-9-]+\//g) ?? []).length;
   if (rows < 20) fail(`${p}: solo ${rows} enlaces a productos en el HTML`);
 }
 
@@ -105,7 +118,7 @@ for (const l of locs) {
 }
 console.log(`páginas HTML: ${htmlFiles.length} · URLs en sitemap: ${locs.length}`);
 const inSitemap = new Set(locs.map((l) => l.slice(SITE.length)));
-for (const p of pageSet) if (!inSitemap.has(p) && p !== "/cotizacion/") fail(`falta en sitemap: ${p}`);
+for (const p of pageSet) if (!inSitemap.has(p) && p !== "/cotizacion/" && p !== "/en/quote/") fail(`falta en sitemap: ${p}`);
 
 // redirecciones de slugs: el destino debe existir
 const redirects = JSON.parse(readFileSync(join(process.cwd(), "content", "slug-redirects.json"), "utf8"));

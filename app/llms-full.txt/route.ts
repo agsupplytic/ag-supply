@@ -1,6 +1,7 @@
 import { getBrands, getCategories, getProducts } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 import { absUrl } from "@/lib/seo";
+import { href } from "@/lib/i18n/routes";
 
 export const dynamic = "force-static";
 
@@ -20,7 +21,7 @@ export async function GET() {
   L.push("# AG Supply — catálogo completo");
   L.push("");
   L.push(
-    `> ${siteConfig.legalName} es una convertidora de papel con planta en ${siteConfig.address.city}, República Dominicana. Fabrica papel higiénico, toallas, servilletas, interfoliados y papel facial; también suministra jabón y limpieza, desechables y cubertería. Marcas propias: Ocean Breeze (hoteles, restaurantes y cadenas) y Bonche (consumo masivo). Sitio: ${absUrl("/")}`,
+    `> ${siteConfig.legalName} es una convertidora de papel con planta en ${siteConfig.address.city}, República Dominicana. Fabrica papel higiénico, toallas, servilletas, interfoliados y papel facial; también suministra jabón y limpieza, desechables y cubertería. Marcas propias: Ocean Breeze (hoteles, restaurantes y cadenas) y Bonche (consumo masivo). Sitio: ${absUrl("/")} · English version: ${absUrl("/en/")}`,
   );
   L.push("");
   L.push("## Cómo cotizar");
@@ -38,7 +39,7 @@ export async function GET() {
     const items = products.filter((p) => p.category === c.slug);
     L.push(`## ${c.name} (${items.length})`);
     L.push("");
-    L.push(`${c.description} ${c.fabricated ? "Fabricado por AG Supply." : "Suministrado por AG Supply."} ${absUrl(`/productos/${c.slug}`)}`);
+    L.push(`${c.description} ${c.fabricated ? "Fabricado por AG Supply." : "Suministrado por AG Supply."} ${absUrl(href("es", { name: "category", cat: c.slug }))}`);
     L.push("");
     for (const p of items) {
       const bits = [
@@ -48,7 +49,7 @@ export async function GET() {
         ...p.keySpecs,
       ].filter(Boolean);
       L.push(
-        `- [${p.name}](${absUrl(`/productos/${p.category}/${p.slug}`)})${bits.length ? " — " + bits.join(" · ") : ""}`,
+        `- [${p.name}](${absUrl(href("es", { name: "product", cat: p.category, slug: p.slug }))})${bits.length ? " — " + bits.join(" · ") : ""}`,
       );
     }
     L.push("");

@@ -1,5 +1,7 @@
 import { siteConfig } from "@/lib/site-config";
 import { absUrl, productDescription } from "@/lib/seo";
+import { textFor } from "@/lib/i18n/site-text";
+import { HTML_LANG, href, type Lang } from "@/lib/i18n/routes";
 import type { Product, Category } from "@/lib/content/types";
 
 const ORG_ID = `${siteConfig.url}/#organization`;
@@ -21,8 +23,9 @@ function JsonLd({ data }: { data: unknown }) {
  * La sede va en `location` (Place); no se declara como LocalBusiness porque la
  * empresa atiende a clientes corporativos desde una planta, no es un comercio local.
  */
-export function OrganizationJsonLd() {
+export function OrganizationJsonLd({ lang }: { lang: Lang }) {
   const a = siteConfig.address;
+  const tt = textFor(lang);
   return (
     <JsonLd
       data={{
@@ -31,11 +34,11 @@ export function OrganizationJsonLd() {
         "@id": ORG_ID,
         name: siteConfig.legalName,
         alternateName: [siteConfig.name, "A.G. Supply, S.R.L."],
-        slogan: siteConfig.slogan,
+        slogan: tt.slogan,
         url: absUrl("/"),
         logo: `${siteConfig.url}/images/brand/agsupply-logo-main.png`,
         image: `${siteConfig.url}/images/og.png`,
-        description: siteConfig.description,
+        description: tt.description,
         foundingDate: String(siteConfig.company.foundedYear),
         email: siteConfig.email,
         telephone: siteConfig.phones.map((p) => p.tel),
@@ -44,11 +47,11 @@ export function OrganizationJsonLd() {
           contactType: "ventas",
           telephone: p.tel,
           email: siteConfig.email,
-          availableLanguage: "es",
+          availableLanguage: ["es", "en"],
         })),
         location: {
           "@type": "Place",
-          name: "Planta de AG Supply",
+          name: lang === "es" ? "Planta de AG Supply" : "AG Supply plant",
           address: {
             "@type": "PostalAddress",
             streetAddress: a.line1,
@@ -74,7 +77,7 @@ export function OrganizationJsonLd() {
 }
 
 /** WebSite — etiqueta al sitio como entidad. */
-export function WebSiteJsonLd() {
+export function WebSiteJsonLd({ lang }: { lang: Lang }) {
   return (
     <JsonLd
       data={{
@@ -82,8 +85,8 @@ export function WebSiteJsonLd() {
         "@type": "WebSite",
         "@id": WEBSITE_ID,
         name: siteConfig.name,
-        url: absUrl("/"),
-        inLanguage: "es-DO",
+        url: absUrl(href(lang, { name: "home" })),
+        inLanguage: HTML_LANG[lang],
         publisher: { "@id": ORG_ID },
       }}
     />
@@ -100,20 +103,23 @@ export function ProductJsonLd({
   product,
   category,
   brandName,
+  lang,
 }: {
   product: Product;
   category?: Category | null;
   brandName?: string;
+  lang: Lang;
 }) {
+  const es = lang === "es";
   const specs: [string, string | number | undefined][] = [
-    ["Capas", product.specs.ply],
+    [es ? "Capas" : "Plies", product.specs.ply],
     ["Color", product.specs.color],
-    ["Presentación", product.specs.packFormat],
-    ["Gramaje (g/m²)", product.specs.grammageGsm],
-    ["Ancho (cm)", product.specs.widthCm],
-    ["Hojas", product.specs.sheets],
+    [es ? "Presentación" : "Pack size", product.specs.packFormat],
+    [es ? "Gramaje (g/m²)" : "Basis weight (g/m²)", product.specs.grammageGsm],
+    [es ? "Ancho (cm)" : "Width (cm)", product.specs.widthCm],
+    [es ? "Hojas" : "Sheets", product.specs.sheets],
   ];
-  const url = absUrl(`/productos/${product.category}/${product.slug}`);
+  const url = absUrl(href(lang, { name: "product", cat: product.category, slug: product.slug }));
   const uniqueSku = product.skuStatus === "ok" ? product.sku : undefined;
   return (
     <JsonLd
@@ -122,7 +128,8 @@ export function ProductJsonLd({
         "@type": "Product",
         "@id": `${url}#product`,
         name: product.name,
-        description: product.description ?? productDescription(product, category?.name, brandName),
+        description: product.description ?? productDescription(product, category?.name, brandName, lang),
+        inLanguage: HTML_LANG[lang],
         ...(uniqueSku ? { sku: uniqueSku } : {}),
         ...(product.images.length ? { image: `${siteConfig.url}${product.images[0]}` } : {}),
         category: category?.name ?? product.category,
@@ -138,8 +145,8 @@ export function ProductJsonLd({
 }
 
 /** CollectionPage + ItemList — páginas de categoría. */
-export function CollectionJsonLd({ category, products }: { category: Category; products: Product[] }) {
-  const url = absUrl(`/productos/${category.slug}`);
+export function CollectionJsonLd({ category, products, lang }: { category: Category; products: Product[]; lang: Lang }) {
+  const url = absUrl(href(lang, { name: "category", cat: category.slug }));
   return (
     <JsonLd
       data={{
@@ -148,7 +155,7 @@ export function CollectionJsonLd({ category, products }: { category: Category; p
         name: `${category.name} — AG Supply`,
         description: category.description,
         url,
-        inLanguage: "es-DO",
+        inLanguage: HTML_LANG[lang],
         isPartOf: { "@id": WEBSITE_ID },
         about: { "@id": ORG_ID },
         mainEntity: {
@@ -157,7 +164,7 @@ export function CollectionJsonLd({ category, products }: { category: Category; p
           itemListElement: products.map((p, i) => ({
             "@type": "ListItem",
             position: i + 1,
-            url: absUrl(`/productos/${p.category}/${p.slug}`),
+            url: absUrl(href(lang, { name: "product", cat: p.category, slug: p.slug })),
             name: p.name,
           })),
         },
@@ -185,12 +192,13 @@ export function BreadcrumbJsonLd({ trail }: { trail: [string, string][] }) {
 }
 
 /** FAQPage — a partir del mismo arreglo de preguntas que pinta la página. */
-export function FaqJsonLd({ qa }: { qa: { q: string; a: string }[] }) {
+export function FaqJsonLd({ qa, lang }: { qa: { q: string; a: string }[]; lang: Lang }) {
   return (
     <JsonLd
       data={{
         "@context": "https://schema.org",
         "@type": "FAQPage",
+        inLanguage: HTML_LANG[lang],
         mainEntity: qa.map(({ q, a }) => ({
           "@type": "Question",
           name: q,

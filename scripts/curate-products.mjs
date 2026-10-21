@@ -12,9 +12,11 @@
 //  - Marca `fabricated` por producto (categoría de papel tissue y no textil).
 //  - Si el slug cambia, escribe content/slug-redirects.json y el bloque 301 de
 //    public/.htaccess (solo para las rutas que existían).
+//  - Detecta las fotos de public/images/products (odoo-<id>.webp, odoo-<id>-2.webp, .jpg, .png)
+//    y rellena `images`: para añadir una foto basta copiarla allí con ese nombre y re-ejecutar.
 //  - NO toca SKU: los duplicados o malformados se reportan en
 //    docs/CATALOGO-DATOS.md para corregirse en Odoo.
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const ROOT = process.cwd();
@@ -69,6 +71,14 @@ const slugify = (s) =>
   s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase()
     .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "").slice(0, 60);
 
+const photoDir = join(ROOT, "public", "images", "products");
+const photoFiles = existsSync(photoDir) ? readdirSync(photoDir) : [];
+const photosFor = (odooId) =>
+  photoFiles
+    .filter((f) => new RegExp(`^(?:odoo-)?${odooId}(?:-\\d+)?\\.(?:webp|jpe?g|png)$`, "i").test(f))
+    .sort((a, b) => a.localeCompare(b, "en", { numeric: true }))
+    .map((f) => `/images/products/${f}`);
+
 const redirects = [];
 const SKU_OK = /^\d{4}-[A-ZÑ]{3}-\d{2}$/;
 
@@ -103,6 +113,8 @@ for (const p of products) {
   }
   p.keySpecs = key;
 
+  p.images = photosFor(p.odooId);
+  p.placeholderImage = p.images.length === 0;
   p.fabricated = fabricatedCat.has(p.category) && !/\btela\b/i.test(name);
 }
 
@@ -117,8 +129,14 @@ writeFileSync(productsPath, JSON.stringify(products, null, 2) + "\n");
 
 // Redirecciones 301 (solo cambios de slug); el destino siempre existe.
 const slugSet = new Set(products.map((p) => `${p.category}/${p.slug}`));
-const valid = redirects.filter((r) => slugSet.has(`${r.category}/${r.to}`));
-writeFileSync(join(ROOT, "content", "slug-redirects.json"), JSON.stringify(valid, null, 2) + "\n");
+// Se conservan las redirecciones de ejecuciones anteriores (el script es idempotente: una
+// segunda pasada ya no ve el cambio de nombre) y se descartan las que apunten a algo inexistente.
+const redirectsPath = join(ROOT, "content", "slug-redirects.json");
+const previous = existsSync(redirectsPath) ? JSON.parse(readFileSync(redirectsPath, "utf8")) : [];
+const merged = new Map();
+for (const r of [...previous, ...redirects]) merged.set(`${r.category}/${r.from}`, r);
+const valid = [...merged.values()].filter((r) => slugSet.has(`${r.category}/${r.to}`) && r.from !== r.to);
+writeFileSync(redirectsPath, JSON.stringify(valid, null, 2) + "\n");
 
 const htPath = join(ROOT, "public", ".htaccess");
 const START = "# >>> slug-redirects (generado por scripts/curate-products.mjs)";

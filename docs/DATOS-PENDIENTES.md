@@ -18,3 +18,6 @@ Nada de esto se publica como hecho hasta que se confirme.
 | Certificaciones, clientes, equipo | No hay; no se publica ninguna. | Nosotros |
 | Web3Forms | Crear la clave, restringirla a agsupply.com.do y cargarla como secreto `NEXT_PUBLIC_WEB3FORMS_KEY`. | Formulario |
 | Bonche | Solo 2 referencias en catálogo: confirmar el resto de la línea. | Página Bonche |
+| Versión en inglés | Redacción y glosario de nombres de producto hechos por nosotros (`lib/i18n/*`, `content/en.json`, `content/en-overrides.json`): revisar términos técnicos. Eslogan en inglés usado: «Feel the clean» (el oficial es «Siente la limpieza»). | `/en/` |
+| Nombre «5 pulgoso» | Aparece en un higiénico 48/1 sin envoltura (Odoo 4237); en inglés se omitió. ¿Qué significa? | Ficha |
+| Fotos de producto | 135 referencias sin foto: `docs/FOTOS-PRODUCTOS.csv`. | Catálogo |

@@ -1,15 +1,16 @@
 import { Container } from "./container";
 import { cn } from "@/lib/utils";
 
-type Tone = "white" | "surface" | "navy";
+export type Tone = "white" | "soft" | "surface" | "band";
 
 const TONE: Record<Tone, string> = {
   white: "bg-white",
+  soft: "bg-brand-blue-50",
   surface: "bg-surface",
-  navy: "bg-navy text-white on-navy",
+  band: "bg-brand-blue text-white on-band",
 };
 
-/** Sección de página: fondo plano (blanco, gris frío o marino) y ritmo vertical fijo. */
+/** Sección de página: fondo plano (blanco, azul muy claro, gris frío o banda azul de marca). */
 export function Section({
   className,
   containerClassName,
@@ -29,7 +30,7 @@ export function Section({
 
 /**
  * Encabezado de sección: filete rojo, titular y párrafo de apoyo opcional.
- * `as` permite mantener la jerarquía (h2 por defecto).
+ * `as` permite mantener la jerarquía (h2 por defecto); `tone="dark"` es para bandas azules.
  */
 export function SectionHeading({
   title,
@@ -48,14 +49,7 @@ export function SectionHeading({
     <div className={cn("max-w-3xl", className)}>
       <Tag className={cn("rule-red", tone === "dark" && "!text-white")}>{title}</Tag>
       {intro && (
-        <p
-          className={cn(
-            "mt-4 text-lg leading-relaxed",
-            tone === "dark" ? "text-navy-300" : "text-body",
-          )}
-        >
-          {intro}
-        </p>
+        <p className={cn("mt-4 text-lg leading-relaxed", tone === "dark" ? "text-white" : "text-body")}>{intro}</p>
       )}
     </div>
   );

@@ -1,0 +1,64 @@
+{
+  "categories": {
+    "papel-higienico": {
+      "name": "Toilet paper",
+      "short": "Household and institutional toilet paper: generic 12/1, two-ply 24/1 and 30/1, and individually wrapped 48/1 in 24 m and 35 m rolls.",
+      "description": "Toilet paper for household and institutional use. The range includes the classic generic 12/1 format, two-ply 24/1 (65, 75 and 85 g) and 30/1 (75 and 90–95 g), 6/1 packs of 9 lb, and the 48/1 format with individually wrapped options in 24 m and 35 m rolls (Ocean Breeze and Bonche brands)."
+    },
+    "toallas": {
+      "name": "Paper towels",
+      "short": "Hand drying and cleaning for high-traffic areas: center-pull 6/1, kitchen towels, 550 ft Kraft rolls and 600 and 700 ft Bleach rolls.",
+      "description": "Solutions for hand drying and cleaning in corporate and hotel environments with heavy traffic. Highlights include 6/1 center-pull towels, plain kitchen towels, 550 ft Kraft paper towel rolls, Wave-box towels or 800 ft bales, and industrial Bleach towel rolls in 600 and 700 ft formats."
+    },
+    "servilletas": {
+      "name": "Napkins",
+      "short": "Table, café and restaurant napkins: dispenser (Softpel, Bonche), 15x17 dinner in white or two-ply Kraft, Moka and cocktail.",
+      "description": "A line of napkins for tables, cafés and restaurants. It ranges from the generic 10-pack napkin and the 13x13 square napkin to dispenser napkins (Softpel, Bonche) in 10/500 and 10/1 formats, the 15x17 Dinner line in white or two-ply Kraft, Moka napkins, and cocktail napkins in white, Kraft and black."
+    },
+    "interfoliados": {
+      "name": "Interfolded towels",
+      "short": "Interfolded towels (Z or V fold) for single-sheet dispensing: Sanitisue 20/200, Mini Napkin Waves 30/200 and Quick Nap.",
+      "description": "Interfolded paper towels (Z or V fold) for manual single-sheet dispensing, which sharply reduces waste and ensures maximum hygiene in offices and shops. Examples: Interfold Sanitisue 20/200, Interfold Mini Napkin Waves 30/200, Interfold Quick Nap and two-ply Mini Napkin."
+    },
+    "facial": {
+      "name": "Facial tissue",
+      "short": "Soft, absorbent two-ply facial tissue. Ocean Breeze brand in flat box and 30/1 cube format.",
+      "description": "Two-ply facial tissue with outstanding softness and high absorbency, for personal care in offices, clinics and hotel rooms. Sold under the Ocean Breeze brand in flat box or 30/1 cube format."
+    },
+    "jabon": {
+      "name": "Soap and cleaning",
+      "short": "Chemicals and liquid cleaning: bleach, scented disinfectants, degreasers, dishwashing liquid, hand soap, fabric softeners and powder detergents.",
+      "description": "Chemical products and liquid cleaning solutions for industrial, institutional and household hygiene: liquid bleach, scented disinfectants (lavender, floral, sea breeze), degreasers, dishwashing liquid, liquid hand soaps, hypoallergenic soap, fabric softeners and powder detergents for white, coloured or black clothes."
+    },
+    "desechables": {
+      "name": "Disposables",
+      "short": "Trash bags, wax paper, aluminium trays and disposable containers for food service and waste handling.",
+      "description": "Disposables for food service and waste handling: trash bags in different gauges and gallon sizes, wax paper and MG paper for wrapping, aluminium trays, 4 oz soup/bean containers with lids, and pizza boxes. Plastic and biodegradable options."
+    },
+    "cuberteria": {
+      "name": "Cutlery",
+      "short": "Disposable spoons, forks, knives, cups, plates and straws, plus pre-assembled cutlery + napkin combo sets.",
+      "description": "Single-use tableware for fast food, events and catering. It includes loose cutlery — spoons, forks, wooden-handle knives, plates (no. 9, no. 6 for snacks and divided), rigid and biodegradable cups (no. 10 and 7) and paper straws — and the Combo sets subcategory: pre-packed high-quality cutlery + napkin sets, ideal for delivery and hospitality (HW 2-piece 500/1 combos, 1-piece white MW, 3-piece boxed, and 2-piece black MW)."
+    }
+  },
+  "brands": {
+    "ocean-breeze": {
+      "short": "AG Supply line for the institutional, corporate and hotel market: toilet paper, paper towels, napkins, interfolded towels and facial tissue.",
+      "description": "AG Supply line for the institutional, corporate and hotel market. It is manufactured at the Santiago plant with roll lengths and cuts defined for each item, and is offered as toilet paper, paper towels, napkins, interfolded towels and facial tissue.",
+      "audience": ["Hotels", "Restaurants", "Chains", "Catering", "Events"]
+    },
+    "bonche": {
+      "short": "AG Supply line for mass consumption and everyday use, at an affordable price, aimed at corner stores, supermarkets and wholesalers.",
+      "description": "AG Supply line for mass consumption and everyday use, at an affordable price. It targets corner stores, supermarkets, wholesalers and cafeterias. The published catalog currently includes Bonche napkins and wax paper; other items are confirmed on request.",
+      "audience": ["Corner stores", "Supermarkets", "Wholesalers", "Cafeterias"]
+    },
+    "generico": {
+      "short": "Institutional-line products with no brand of their own, for operations that prioritise performance and cost.",
+      "description": "Institutional-line products with no brand of their own, for operations that prioritise performance and cost per unit. Includes items made by AG Supply and others it supplies."
+    }
+  },
+  "subcategories": {
+    "Combos": "Combo sets",
+    "Cubertería suelta": "Loose cutlery"
+  }
+}

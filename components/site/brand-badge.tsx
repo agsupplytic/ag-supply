@@ -1,18 +1,17 @@
 import { Badge } from "@/components/ui/badge";
 import type { BrandSlug } from "@/lib/content/types";
+import type { Lang } from "@/lib/i18n/routes";
+import { ui } from "@/lib/i18n/ui";
 
-const LABEL: Record<BrandSlug, string> = {
-  "ocean-breeze": "Ocean Breeze",
-  bonche: "Bonche",
-  generico: "Genérico",
-};
+export function brandLabel(b: BrandSlug, lang: Lang): string {
+  const t = ui(lang).brand;
+  return b === "ocean-breeze" ? t.ob : b === "bonche" ? t.bonche : t.generic;
+}
 
-export function BrandBadge({ brand }: { brand: BrandSlug }) {
+export function BrandBadge({ brand, lang }: { brand: BrandSlug; lang: Lang }) {
   return (
     <Badge variant={brand === "generico" ? "outline" : brand === "bonche" ? "neutral" : "blue"}>
-      {LABEL[brand]}
+      {brandLabel(brand, lang)}
     </Badge>
   );
 }
-
-export const brandLabel = (b: BrandSlug) => LABEL[b];

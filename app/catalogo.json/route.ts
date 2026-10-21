@@ -1,6 +1,8 @@
 import { getBrands, getCategories, getProducts } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 import { absUrl } from "@/lib/seo";
+import { href } from "@/lib/i18n/routes";
+import { translateProductName } from "@/lib/i18n/product-terms";
 
 export const dynamic = "force-static";
 
@@ -24,13 +26,15 @@ export async function GET() {
     productos: products.map((p) => ({
       sku: p.sku ?? null,
       nombre: p.name,
+      nameEn: translateProductName(p.name, p.odooId),
+      urlEn: absUrl(href("en", { name: "product", cat: p.category, slug: p.slug })),
       marca: p.brand === "generico" ? null : brandName.get(p.brand),
       fabricadoPorAgSupply: p.fabricated,
       categoria: catName.get(p.category) ?? p.category,
       subcategoria: p.subcategory ?? null,
       especificaciones: p.keySpecs,
       imagen: p.images[0] ? `${siteConfig.url}${p.images[0]}` : null,
-      url: absUrl(`/productos/${p.category}/${p.slug}`),
+      url: absUrl(href("es", { name: "product", cat: p.category, slug: p.slug })),
     })),
   };
   return Response.json(body);

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 /** Etiqueta funcional (marca de un producto, estado). Cuadrada, sin decoración. */
 const badgeVariants = cva(
-  "inline-flex items-center rounded-xs font-label font-semibold uppercase tracking-[0.06em]",
+  "inline-flex items-center rounded-sm font-label font-semibold uppercase tracking-[0.06em]",
   {
     variants: {
       variant: {

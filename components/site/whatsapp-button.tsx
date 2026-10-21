@@ -3,15 +3,20 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppIcon } from "./icons";
-import { siteConfig, waLink } from "@/lib/site-config";
+import { waLink } from "@/lib/site-config";
+import { textFor } from "@/lib/i18n/site-text";
+import type { Lang } from "@/lib/i18n/routes";
+import { ui } from "@/lib/i18n/ui";
 import { cn } from "@/lib/utils";
 
 export function WhatsAppButton({
-  message = siteConfig.whatsapp.genericMessage,
-  children = "Cotizar por WhatsApp",
+  lang,
+  message,
+  children,
   size = "md",
   className,
 }: {
+  lang: Lang;
   message?: string;
   children?: React.ReactNode;
   size?: "sm" | "md" | "lg";
@@ -19,52 +24,46 @@ export function WhatsAppButton({
 }) {
   return (
     <Button asChild variant="whatsapp" size={size} className={className}>
-      <a href={waLink(message)} target="_blank" rel="noopener noreferrer">
+      <a href={waLink(message ?? textFor(lang).whatsapp.genericMessage)} target="_blank" rel="noopener noreferrer">
         <WhatsAppIcon className="size-[1.1em]" />
-        {children}
+        {children ?? ui(lang).quoteWhatsapp}
       </a>
     </Button>
   );
 }
 
 /**
- * Floating action button, mobile-first (hidden on lg where the header CTA shows).
- * Stays hidden while the page hero is in view — most heroes carry their own
- * "Cotizar por WhatsApp" button, so the FAB would just duplicate it and overlap
- * the hero copy on small screens. It fades in once the hero scrolls away.
+ * Botón flotante, solo móvil (en escritorio ya está el de la cabecera). Se oculta mientras
+ * se ve la primera sección, que casi siempre trae su propio botón de WhatsApp.
  */
-export function WhatsAppFab() {
+export function WhatsAppFab({ lang }: { lang: Lang }) {
   const [pastHero, setPastHero] = useState(false);
+  const t = ui(lang);
 
   useEffect(() => {
-    // First <section> in <main> is the page hero on every route (the JSON-LD
-    // components that sometimes sit first render a <script>, not an element box).
     const hero = document.querySelector("main section");
     if (!hero || typeof IntersectionObserver === "undefined") {
-      // No hero / no observer support: just show the FAB (next frame, so we
-      // never setState synchronously inside the effect body).
       const raf = requestAnimationFrame(() => setPastHero(true));
       return () => cancelAnimationFrame(raf);
     }
-    const io = new IntersectionObserver(
-      ([entry]) => setPastHero(!entry.isIntersecting),
-      { rootMargin: "-45% 0px 0px 0px" },
-    );
+    const io = new IntersectionObserver(([entry]) => setPastHero(!entry.isIntersecting), {
+      rootMargin: "-45% 0px 0px 0px",
+    });
     io.observe(hero);
     return () => io.disconnect();
   }, []);
 
   return (
-    <aside aria-label="Atención por WhatsApp" className="lg:hidden">
+    <aside aria-label={t.whatsappFab} className="lg:hidden">
       <a
-        href={waLink(siteConfig.whatsapp.genericMessage)}
+        href={waLink(textFor(lang).whatsapp.genericMessage)}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Escríbanos por WhatsApp"
+        aria-label={t.whatsappFabLabel}
         aria-hidden={!pastHero}
         tabIndex={pastHero ? undefined : -1}
         className={cn(
-          "fixed bottom-4 right-4 z-40 flex size-12 items-center justify-center rounded-md bg-whatsapp text-[color:var(--color-whatsapp-ink)] transition-opacity duration-200 hover:bg-whatsapp-hover",
+          "fixed bottom-4 right-4 z-40 flex size-12 items-center justify-center rounded-xl bg-whatsapp text-[color:var(--color-whatsapp-ink)] shadow-md transition-opacity duration-200 hover:bg-whatsapp-hover",
           pastHero ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       >

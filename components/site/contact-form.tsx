@@ -1,27 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
+import { ui } from "@/lib/i18n/ui";
+import type { Lang } from "@/lib/i18n/routes";
 
-const schema = z.object({
-  nombre: z.string().trim().min(2, "Escriba su nombre").max(80),
-  empresa: z.string().trim().min(2, "Escriba el nombre de su empresa").max(120),
-  telefono: z
-    .string()
-    .trim()
-    .regex(/^[+\d][\d\s().-]{6,19}$/, "Escriba un teléfono válido, solo números"),
-  email: z.email("Escriba un correo válido").max(120),
-  mensaje: z.string().trim().min(10, "Cuéntenos qué necesita (mínimo 10 caracteres)").max(2000),
-  // Señuelo anti-spam: una persona no lo ve ni lo llena.
-  botcheck: z.string().max(0).optional(),
-});
+const makeSchema = (lang: Lang) => {
+  const e = ui(lang).form.errors;
+  return z.object({
+    nombre: z.string().trim().min(2, e.name).max(80),
+    empresa: z.string().trim().min(2, e.company).max(120),
+    telefono: z.string().trim().regex(/^[+\d][\d\s().-]{6,19}$/, e.phone),
+    email: z.email(e.email).max(120),
+    mensaje: z.string().trim().min(10, e.message).max(2000),
+    // Señuelo anti-spam: una persona no lo ve ni lo llena.
+    botcheck: z.string().max(0).optional(),
+  });
+};
 
-type FormValues = z.infer<typeof schema>;
+type FormValues = z.infer<ReturnType<typeof makeSchema>>;
 
 /**
  * NEXT_PUBLIC_WEB3FORMS_KEY (clave gratuita de web3forms.com, verificada al correo de
@@ -30,24 +32,14 @@ type FormValues = z.infer<typeof schema>;
  */
 const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
-function mailtoHref(v: FormValues) {
-  const body = [
-    `Nombre: ${v.nombre}`,
-    `Empresa: ${v.empresa}`,
-    `Teléfono: ${v.telefono}`,
-    `Correo: ${v.email}`,
-    "",
-    v.mensaje,
-  ].join("\r\n");
-  return `mailto:${siteConfig.email}?subject=${encodeURIComponent(`Contacto web — ${v.empresa}`)}&body=${encodeURIComponent(body)}`;
-}
-
 const field =
-  "mt-1.5 w-full border border-control-border bg-white px-3 py-2.5 text-base text-ink placeholder:text-muted aria-[invalid=true]:border-brand-red-dark";
-const labelCls = "font-heading text-sm font-semibold text-ink";
+  "mt-1.5 w-full rounded-md border border-control-border bg-white px-3 py-2.5 text-base text-ink placeholder:text-muted aria-[invalid=true]:border-brand-red-dark";
+const labelCls = "font-heading text-sm font-bold text-ink";
 const errCls = "mt-1 text-sm font-medium text-brand-red-dark";
 
-export function ContactForm() {
+export function ContactForm({ lang }: { lang: Lang }) {
+  const t = ui(lang).form;
+  const schema = useMemo(() => makeSchema(lang), [lang]);
   const {
     register,
     handleSubmit,
@@ -55,6 +47,18 @@ export function ContactForm() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
   const [status, setStatus] = useState<"idle" | "sent" | "mail" | "error">("idle");
+
+  function mailtoHref(v: FormValues) {
+    const body = [
+      `${t.mailLabels.name}: ${v.nombre}`,
+      `${t.mailLabels.company}: ${v.empresa}`,
+      `${t.mailLabels.phone}: ${v.telefono}`,
+      `${t.mailLabels.email}: ${v.email}`,
+      "",
+      v.mensaje,
+    ].join("\r\n");
+    return `mailto:${siteConfig.email}?subject=${encodeURIComponent(t.subject(v.empresa))}&body=${encodeURIComponent(body)}`;
+  }
 
   async function onSubmit(values: FormValues) {
     setStatus("idle");
@@ -66,7 +70,7 @@ export function ContactForm() {
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
             access_key: WEB3FORMS_KEY,
-            subject: `Contacto web — ${values.empresa}`,
+            subject: t.subject(values.empresa),
             from_name: values.nombre,
             replyto: values.email,
             botcheck: "",
@@ -75,6 +79,7 @@ export function ContactForm() {
             telefono: values.telefono,
             email: values.email,
             mensaje: values.mensaje,
+            idioma: lang,
           }),
         });
         const data = (await res.json().catch(() => null)) as { success?: boolean } | null;
@@ -115,13 +120,13 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
       <div className="grid gap-4 sm:grid-cols-2">
-        {input("nombre", "Nombre", { autoComplete: "name" })}
-        {input("empresa", "Empresa", { autoComplete: "organization" })}
-        {input("telefono", "Teléfono", { type: "tel", inputMode: "tel", autoComplete: "tel" })}
-        {input("email", "Correo", { type: "email", inputMode: "email", autoComplete: "email" })}
+        {input("nombre", t.name, { autoComplete: "name" })}
+        {input("empresa", t.company, { autoComplete: "organization" })}
+        {input("telefono", t.phone, { type: "tel", inputMode: "tel", autoComplete: "tel" })}
+        {input("email", t.email, { type: "email", inputMode: "email", autoComplete: "email" })}
       </div>
       <div>
-        <label className={labelCls} htmlFor="mensaje">Mensaje</label>
+        <label className={labelCls} htmlFor="mensaje">{t.message}</label>
         <textarea
           id="mensaje"
           rows={5}
@@ -134,29 +139,24 @@ export function ContactForm() {
       </div>
 
       <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-        <label htmlFor="botcheck">No llenar este campo</label>
+        <label htmlFor="botcheck">{t.honeypot}</label>
         <input id="botcheck" tabIndex={-1} autoComplete="off" {...register("botcheck")} />
       </div>
 
       <Button type="submit" size="lg" disabled={isSubmitting}>
-        {isSubmitting ? "Enviando…" : "Enviar mensaje"}
+        {isSubmitting ? t.sending : t.send}
       </Button>
 
       <div role="status" aria-live="polite">
-        {status === "sent" && (
-          <p className="text-base font-semibold text-brand-blue-dark">
-            Mensaje enviado. Le responderemos en horario comercial.
-          </p>
-        )}
+        {status === "sent" && <p className="text-base font-bold text-brand-blue-dark">{t.sent}</p>}
         {status === "mail" && (
           <p className="text-base text-body">
-            Se abrió su aplicación de correo con el mensaje listo. Si no ocurrió, escríbanos a{" "}
-            <a className="link" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
+            {t.mail} <a className="link" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>.
           </p>
         )}
         {status === "error" && (
-          <p className="text-base font-semibold text-brand-red-dark">
-            No se pudo enviar. Escríbanos a {siteConfig.email} o por WhatsApp.
+          <p className="text-base font-bold text-brand-red-dark">
+            {t.error} {siteConfig.email} {t.errorOr}
           </p>
         )}
       </div>

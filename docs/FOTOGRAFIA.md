@@ -1,12 +1,19 @@
 # Fotografía: estado y tomas necesarias
 
+> **Fotos de producto**: hoy 33 de 168 referencias tienen foto. Las que faltan están listadas en
+> `docs/FOTOS-PRODUCTOS.csv` (id, SKU, categoría, nombre). Cada foto se guarda en
+> `public/images/products/` como `odoo-<id>.webp` (o `.jpg`/`.png`; varias fotos: `odoo-<id>-2.webp`),
+> sobre fondo blanco, 1:1 o 4:3, mínimo 900 px. Después: `npm run content:curate` y `npm run content:photos`.
+> Mientras no exista foto, el listado muestra el icono de la categoría y «Foto próximamente».
+
 ## Qué hay hoy (`public/images/fotos/`)
 
 | Archivo | Uso | Observación |
 |---|---|---|
 | `hero-2`, `planta-2`, `planta-3`, `planta-4`, `planta-5` | Inicio, planta, categorías, catálogo | Retocadas con IA a partir de fotos de la planta (indicado por el cliente). El retoque puede alterar rótulos de empaque; no se usan en primer plano. |
 | `section-nosotros` | Nosotros | Fachada. |
-| `brand-bonche-hero` | Página de Bonche | Producto Bonche sobre fondo verde. |
+| `brand-bonche-hero` | Meta Open Graph de Bonche | Producto Bonche sobre fondo verde (original). |
+| `bonche-productos` | Página de Bonche | Recorte del original sin el fondo verde (relleno por conectividad desde los bordes y despill). Si se dispone del archivo sin fondo, sustituirlo. |
 
 **Retiradas del sitio** (siguen en el historial de Git): `hero-1`, `section-manufactura`
 (rótulos de cajas deformados: «Klim Pel», «POP UP»), `planta-1` y `section-cta` (montacargas y

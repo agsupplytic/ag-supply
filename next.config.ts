@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
   images: { loader: "custom", loaderFile: "./lib/image-loader.ts" },
   // /ruta/ → out/ruta/index.html, lo que resuelve un host de archivos.
   trailingSlash: true,
+  // Dos raíces (es / en) con su propio <html lang>: el 404 global lo define app/global-not-found.tsx.
+  experimental: { globalNotFound: true },
   ...(basePath ? { basePath, assetPrefix: basePath } : {}),
 };
 

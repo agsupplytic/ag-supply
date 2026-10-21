@@ -5,8 +5,8 @@
    Referencia: docs/SISTEMA-DISENO.md
 
    Colores tomados del logotipo oficial (muestreo de píxeles): azul #1c75bc y rojo
-   #ed1c24. El azul es la marca y la acción; el rojo es acento puntual (nunca
-   bandas). Un único fondo oscuro (marino) para la franja de datos y el pie.
+   #ed1c24. El azul es la marca y la acción, y también la banda fuerte (cabeceras y
+   cierres, texto blanco); el rojo es acento puntual. No hay fondos oscuros.
    Verde Bonche y celeste Ocean Breeze viven SOLO en las páginas de cada marca.
    ========================================================================== */
 @theme {
@@ -21,11 +21,6 @@
   /* Rojo de marca: acento */
   --color-brand-red: #ed1c24;
   --color-brand-red-dark: #b8121a; /* texto rojo sobre blanco: 6.7:1 */
-
-  /* Marino: única superficie oscura */
-  --color-navy: #0f2a43;
-  --color-navy-700: #173b5c;
-  --color-navy-300: #9db4c9; /* texto secundario sobre marino: 6.8:1 */
 
   /* Neutros (fríos, afines al azul) */
   --color-white: #ffffff;
@@ -48,8 +43,9 @@
   --color-bonche: #2f7a2b; /* texto blanco encima: 5.3:1 */
   --color-bonche-dark: #1f5a1d;
   --color-bonche-100: #d9e8cb;
-  --color-bonche-50: #f1f6ec;
-  --color-bonche-accent: #f2941d;
+  --color-bonche-50: #f4f9ee;
+  --color-bonche-accent: #f2941d; /* naranja del logo */
+  --color-bonche-sky: #12b8f0; /* celeste del logo */
 
   /* WhatsApp */
   --color-whatsapp: #25d366;
@@ -57,30 +53,30 @@
   --color-whatsapp-ink: #0b3d1f;
 
   /* Tipografía — cargada con next/font en app/layout.tsx.
-     Barlow: titulares y navegación (geometría y terminales técnicas, cercana a la
-     "AG" oblicua del logotipo). Source Sans 3: texto corrido (humanista, afín a
-     "Supply"). Barlow Semi Condensed: etiquetas y datos técnicos. */
-  --font-heading: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-source), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-label: var(--font-barlow-sc), var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+     Archivo (eje de ancho): titulares y etiquetas; semiexpandida y de peso alto, con
+     aspecto de maquinaria y rotulación corporativa, afín a la «AG» pesada del logo.
+     IBM Plex Sans: texto corrido; herencia técnica, muy legible en español. */
+  --font-heading: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-plex), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-label: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-body);
 
-  /* Forma: esquinas rectas y sin sombras. Las utilidades de Tailwind heredadas
-     (rounded-xl, shadow-lg…) quedan neutralizadas aquí. */
-  --radius-xs: 2px;
-  --radius-sm: 2px;
-  --radius-md: 3px;
-  --radius-lg: 4px;
-  --radius-xl: 4px;
-  --radius-2xl: 4px;
-  --radius-3xl: 4px;
+  /* Forma: esquinas redondeadas moderadas (8 px controles, 12 px tarjetas). */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  /* Sombras suaves, solo en hover y capas flotantes. */
   --shadow-xs: none;
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-  --shadow-xl: none;
-  --shadow-2xl: none;
-  --shadow-menu: 0 12px 28px -12px rgb(15 42 67 / 0.35);
+  --shadow-sm: 0 1px 2px rgb(18 77 124 / 0.08);
+  --shadow-md: 0 8px 20px -10px rgb(18 77 124 / 0.28);
+  --shadow-lg: 0 18px 36px -18px rgb(18 77 124 / 0.34);
+  --shadow-xl: 0 24px 48px -20px rgb(18 77 124 / 0.38);
+  --shadow-2xl: 0 24px 48px -20px rgb(18 77 124 / 0.38);
+  --shadow-menu: 0 14px 32px -14px rgb(18 77 124 / 0.4);
 
   /* Movimiento */
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
@@ -104,7 +100,7 @@
     color: var(--color-body);
     font-family: var(--font-body);
     font-size: 1.0625rem;
-    line-height: 1.6;
+    line-height: 1.62;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -112,14 +108,15 @@
   /* Escala: display > h1 > h2 > h3 > h4 > texto > pequeño > etiqueta */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    font-stretch: 112%;
     color: var(--color-ink);
-    line-height: 1.1;
+    line-height: 1.08;
     text-wrap: balance;
   }
-  h1 { font-size: clamp(2.125rem, 4.6vw, 3.25rem); font-weight: 700; letter-spacing: -0.015em; }
-  h2 { font-size: clamp(1.625rem, 3vw, 2.25rem); font-weight: 700; letter-spacing: -0.01em; }
-  h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 600; letter-spacing: -0.005em; line-height: 1.2; }
-  h4 { font-size: 1.0625rem; font-weight: 600; line-height: 1.3; }
+  h1 { font-size: clamp(2rem, 4.4vw, 3.125rem); font-weight: 800; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(1.5rem, 2.8vw, 2.125rem); font-weight: 800; letter-spacing: -0.015em; }
+  h3 { font-size: clamp(1.1875rem, 1.7vw, 1.4375rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.18; }
+  h4 { font-size: 1.0625rem; font-weight: 700; line-height: 1.3; }
 
   a { color: inherit; text-decoration: none; }
   p { text-wrap: pretty; }
@@ -136,10 +133,9 @@
     outline-offset: 2px;
     box-shadow: 0 0 0 2px #fff;
   }
-  .on-dark :focus-visible,
-  .on-navy :focus-visible {
+  .on-band :focus-visible {
     outline-color: #fff;
-    box-shadow: 0 0 0 2px var(--color-navy);
+    box-shadow: 0 0 0 2px var(--color-brand-blue-dark);
   }
 
   /* Cantidad en la cotización: sin flechas del navegador. */
@@ -157,8 +153,9 @@
   /* Etiqueta funcional (categorías de sección, encabezados de tabla, datos). */
   .label {
     font-family: var(--font-label);
+    font-stretch: 100%;
     font-size: 0.8125rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     line-height: 1.2;
@@ -168,9 +165,10 @@
   .rule-red::before {
     content: "";
     display: block;
-    width: 2.5rem;
-    height: 3px;
+    width: 2.75rem;
+    height: 4px;
     margin-bottom: 1rem;
+    border-radius: 2px;
     background: var(--color-brand-red);
   }
 
@@ -190,8 +188,9 @@
   .spec-table th {
     width: 38%;
     font-family: var(--font-label);
+    font-stretch: 100%;
     font-size: 0.8125rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--color-muted);
@@ -200,10 +199,36 @@
     color: var(--color-ink);
     font-weight: 500;
   }
-  .on-navy .spec-table th { color: var(--color-navy-300); }
-  .on-navy .spec-table td { color: #fff; }
-  .on-navy .spec-table th,
-  .on-navy .spec-table td { border-bottom-color: rgb(255 255 255 / 0.18); }
+  .on-band .spec-table th,
+  .on-band .spec-table td { color: #fff; border-bottom-color: rgb(255 255 255 / 0.3); }
+
+  /* Chip de icono: único estilo para los iconos de orientación. */
+  .icon-chip {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.625rem;
+    background: var(--color-brand-blue-50);
+    color: var(--color-brand-blue);
+  }
+  .icon-chip > svg { width: 1.25rem; height: 1.25rem; }
+  .on-band .icon-chip { background: rgb(255 255 255 / 0.18); color: #fff; }
+
+  /* Tarjeta: borde fino, radio 12 px y elevación suave al pasar el cursor. */
+  .card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    transition: box-shadow 0.2s var(--ease-brand), transform 0.2s var(--ease-brand), border-color 0.2s;
+  }
+  a.card:hover, .card-hover:hover {
+    border-color: var(--color-brand-blue-200);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
 
   /* Enlace de texto con subrayado fino. */
   .link {
@@ -218,6 +243,21 @@
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
+}
+
+/* Entrada al desplazarse: mejora progresiva. Sin soporte de animation-timeline el
+   contenido simplemente está visible. */
+@supports (animation-timeline: view()) {
+  .rise {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+  @keyframes rise {
+    /* Solo desplazamiento: sin cambio de opacidad, el texto conserva su contraste en todo momento. */
+    from { transform: translateY(24px); }
+    to { transform: none; }
+  }
 }
 
 @keyframes accordion-down {
@@ -236,6 +276,7 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+  .rise { animation: none !important; transform: none !important; }
 }
 
 @media print {

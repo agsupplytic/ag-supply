@@ -109,3 +109,32 @@ catálogo. INP no es medible en laboratorio.
 
 No se asigna una puntuación global: el 20 % de identidad depende de la validación del cliente y de la
 fotografía, y no hay evidencia que lo sustituya.
+
+---
+
+# Ronda 2 — ajustes tras revisar la vista previa (octubre 2026)
+
+Diez peticiones del cliente tras ver https://agsupplytic.github.io/ag-supply/. Mediciones en laboratorio.
+
+| # | Petición | Qué se hizo | Estado |
+|---|---|---|---|
+| 1 | Fuentes poco industriales | Archivo (eje de ancho, 112 %, peso 800) + IBM Plex Sans; Barlow y Source Sans fuera | Verificado (fuentes cargadas en el navegador) |
+| 2 | Colores oscuros | Se eliminó el marino: bandas en azul de marca con texto blanco (4,9:1), pie claro | Verificado (axe/Lighthouse contraste 0 fallos) |
+| 3 | Bordes puntiagudos | Radios: controles 8 px, tarjetas/fotos 12 px, insignias 6 px, chips 10 px | Verificado (estilos calculados) |
+| 4 | Logo con fondo | Sin pastilla ni caja blanca en pie ni Bonche; OG regenerada | Verificado |
+| 5 | «Se eliminaron productos» | **No se eliminó ninguno** (168/168, 11/11 HW). Causa real: error de maquetación que dejaba los resultados fuera de vista con pocos resultados + búsqueda sin categoría. Corregidos; chips de categoría con icono; «combo»→12, «hw»→11, «cuberter»→24 | Verificado |
+| 6 | Imágenes en el listado | Miniaturas 72 px (33 con foto) + visor accesible (Esc, foco); sin foto, icono de la categoría; `docs/FOTOS-PRODUCTOS.csv` con las 135 que faltan | Verificado; **faltan las fotos** |
+| 7 | Secciones muertas | Datos de empresa en franja, tarjetas de categoría con miniaturas, proceso en 5 pasos con foto, bandas azules, mosaicos de mercados, hover y entrada al desplazarse (sin librerías, respeta reduced-motion) | Verificado visualmente |
+| 8 | Bonche como Ocean Breeze | Misma composición, fondo claro de la marca, logo original; recorte del producto sin fondo verde | Verificado visualmente |
+| 9 | Iconos | Iconos funcionales con un único estilo en categorías, contacto, pasos, origen, valores, filtros, pie | Verificado |
+| 10 | Botón de inglés | `/en/` real: 185 páginas, hreflang recíproco, sitemap con ambas, selector EN/ES que conserva la página, WhatsApp y formulario en inglés | Verificado; **traducción pendiente de revisión** |
+
+Pruebas: `npm run verify` (lint, tipos, build, `check:out` con hreflang y `<html lang>`, `check:i18n` sin texto
+español en `/en/`), 82 comprobaciones E2E (catálogo ES/EN, visor, cotización ES→EN, mensaje largo, selector
+de idioma en 11 tipos de ruta, 404, diseño, formularios, 22 rutas sin errores de consola), axe 0 violaciones
+(24 rutas × 2 anchos). Lighthouse (laboratorio): accesibilidad, mejores prácticas y SEO 100; rendimiento escritorio
+100, móvil 90–94; CLS 0.
+
+Riesgos: la traducción al inglés es nuestra (revisar términos técnicos); el recorte de Bonche es por
+software (sustituir si hay un archivo sin fondo); la animación de entrada usa `animation-timeline`
+(sin soporte, el contenido se ve igual); `experimental.globalNotFound` es una opción experimental de Next.

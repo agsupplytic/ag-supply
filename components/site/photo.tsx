@@ -33,7 +33,7 @@ export function Photo({
   className?: string;
 }) {
   return (
-    <div className={cn("relative w-full overflow-hidden bg-surface-2", RATIO[ratio], className)}>
+    <div className={cn("relative w-full overflow-hidden rounded-xl bg-surface-2", RATIO[ratio], className)}>
       <Image
         src={src}
         alt={alt}

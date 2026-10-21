@@ -9,7 +9,10 @@
     "typecheck": "tsc --noEmit",
     "check:out": "node scripts/check-out.mjs",
     "content:curate": "node scripts/curate-products.mjs",
-    "check": "npm run lint && npm run typecheck"
+    "check": "npm run lint && npm run typecheck",
+    "content:photos": "node scripts/list-missing-photos.mjs",
+    "check:i18n": "node scripts/check-translations.mjs",
+    "verify": "npm run check && npm run build && npm run check:out && npm run check:i18n"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

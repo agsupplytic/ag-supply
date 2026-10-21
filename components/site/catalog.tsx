@@ -4,7 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { LayoutGrid, List, Search, SlidersHorizontal, X } from "lucide-react";
 import { ProductCard } from "./product-card";
 import { ProductRow, ROW_COLS } from "./product-row";
+import { CategoryIcon } from "./category-icon";
 import { replaceUrlSearch, useUrlSearch } from "@/lib/use-url-search";
+import { QUERY, catFromSlug, catSlug, type Lang } from "@/lib/i18n/routes";
+import { specValue } from "@/lib/i18n/content";
+import { ui } from "@/lib/i18n/ui";
 import { cn } from "@/lib/utils";
 import type { Brand, Category, Product } from "@/lib/content/types";
 
@@ -12,39 +16,41 @@ const norm = (s: string) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").to
 const collator = new Intl.Collator("es", { numeric: true, sensitivity: "base" });
 
 const ATTRS = [
-  { key: "ply", param: "capas", label: "Capas", show: (v: string) => `${v} ${v === "1" ? "capa" : "capas"}` },
-  { key: "fold", param: "doblez", label: "Doblez", show: (v: string) => v },
-  { key: "color", param: "color", label: "Color", show: (v: string) => v },
-  { key: "packFormat", param: "pres", label: "Presentación", show: (v: string) => v },
-] as const;
-
-const SORTS = [
-  { id: "", label: "Orden del catálogo" },
-  { id: "nombre", label: "Nombre (A–Z)" },
-  { id: "sku", label: "SKU" },
-  { id: "marca", label: "Marca" },
-] as const;
-
-const FILTER_PARAMS = ["categoria", "marca", "sub", ...ATTRS.map((a) => a.param)];
+  { key: "ply", param: "capas" as const },
+  { key: "fold", param: "doblez" as const },
+  { key: "color", param: "color" as const },
+  { key: "packFormat", param: "pres" as const },
+];
+const SORT_IDS = ["", "nombre", "sku", "marca"] as const;
 
 type Params = Record<string, string>;
 
+/**
+ * Catálogo con filtros, búsqueda y dos vistas (tabla densa y tarjetas). Recibe los datos
+ * ya localizados; el estado vive en la URL (parámetros según el idioma). El servidor
+ * renderiza la lista completa, así que el HTML estático trae todos los productos.
+ */
 export function Catalog({
   products,
   categories,
   brands,
+  lang,
   lockedCategory,
   headingLevel = "h2",
 }: {
   products: Product[];
   categories: Category[];
   brands: Brand[];
+  lang: Lang;
   lockedCategory?: string;
   headingLevel?: "h2" | "h3";
 }) {
+  const t = ui(lang).catalog;
+  const Q = QUERY[lang];
   const search = useUrlSearch();
   const url = useMemo(() => new URLSearchParams(search), [search]);
-  const get = (k: string) => url.get(k) ?? "";
+  const get = (k: keyof typeof Q) => url.get(Q[k]) ?? "";
+  const iconOf = useMemo(() => new Map(categories.map((c) => [c.slug, c.icon])), [categories]);
 
   // ------------------------------------------------------------ estado en URL
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -55,13 +61,13 @@ export function Catalog({
   const update = (changes: Params) => {
     const next = new URLSearchParams(window.location.search);
     for (const [k, v] of Object.entries(changes)) {
-      if (v) next.set(k, v);
-      else next.delete(k);
+      if (v) next.set(Q[k as keyof typeof Q], v);
+      else next.delete(Q[k as keyof typeof Q]);
     }
     replaceUrlSearch(next);
   };
 
-  const setFilter = (key: string, value: string) => {
+  const setFilter = (key: keyof typeof Q, value: string) => {
     // Cambiar de categoría invalida los filtros que dependen de ella.
     const reset: Params = key === "categoria" ? { sub: "", capas: "", doblez: "", color: "", pres: "" } : {};
     update({ ...reset, [key]: value });
@@ -78,19 +84,16 @@ export function Catalog({
 
   const urlQ = get("q");
   const query = draft ?? urlQ;
-  const view = get("vista") === "tarjetas" ? "tarjetas" : "tabla";
-  const sort = SORTS.some((s) => s.id === get("orden")) ? get("orden") : "";
+  const view = get("vista") === (lang === "es" ? "tarjetas" : "cards") ? "cards" : "table";
+  const sortId = (SORT_IDS as readonly string[]).includes(get("orden")) ? get("orden") : "";
 
   // ------------------------------------------------------------------ filtros
   const scoped = useMemo(
     () => products.filter((p) => !lockedCategory || p.category === lockedCategory),
     [products, lockedCategory],
   );
-  const categoria = lockedCategory ?? get("categoria");
-  const inCategory = useMemo(
-    () => scoped.filter((p) => !categoria || p.category === categoria),
-    [scoped, categoria],
-  );
+  const categoria = lockedCategory ?? catFromSlug(lang, get("categoria"));
+  const inCategory = useMemo(() => scoped.filter((p) => !categoria || p.category === categoria), [scoped, categoria]);
 
   const brandOptions = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -117,6 +120,10 @@ export function Catalog({
     const v = p.specs[key as keyof Product["specs"]];
     return v === undefined || v === null || v === "" ? "" : String(v);
   };
+  const attrLabel = (param: string) =>
+    param === "capas" ? t.ply : param === "doblez" ? t.fold : param === "color" ? t.color : t.pack;
+  const attrShow = (param: string, v: string) =>
+    param === "capas" ? t.plyValue(v) : param === "pres" ? v : specValue(v, lang);
 
   // Opciones de cada atributo: se calculan con los demás atributos aplicados.
   const attrOptions = useMemo(() => {
@@ -124,18 +131,17 @@ export function Catalog({
     for (const def of ATTRS) {
       const counts = new Map<string, number>();
       for (const p of base) {
-        const others = ATTRS.every((o) => o.param === def.param || !url.get(o.param) || attrValue(p, o.key) === url.get(o.param));
+        const others = ATTRS.every((o) => o.param === def.param || !url.get(Q[o.param]) || attrValue(p, o.key) === url.get(Q[o.param]));
         if (!others) continue;
         const v = attrValue(p, def.key);
         if (v) counts.set(v, (counts.get(v) ?? 0) + 1);
       }
       if (counts.size > 1) {
-        out[def.param] = [...counts.entries()]
-          .map(([value, n]) => ({ value, n }))
-          .sort((a, b) => collator.compare(a.value, b.value));
+        out[def.param] = [...counts.entries()].map(([value, n]) => ({ value, n })).sort((a, b) => collator.compare(a.value, b.value));
       }
     }
     return out;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [base, url]);
 
   // Un valor en la URL que ya no existe entre las opciones se ignora (no filtra a ciegas).
@@ -144,24 +150,25 @@ export function Catalog({
   const filtered = useMemo(() => {
     const tokens = norm(urlQ.trim()).split(/\s+/).filter(Boolean);
     const brandName = (slug: string) => brands.find((b) => b.slug === slug)?.name ?? "";
+    const catName = (slug: string) => categories.find((c) => c.slug === slug)?.name ?? "";
     let list = base.filter((p) => {
       if (!activeAttrs.every((d) => attrValue(p, d.key) === get(d.param))) return false;
       if (!tokens.length) return true;
       const hay = norm(
-        `${p.name} ${p.sku ?? ""} ${brandName(p.brand)} ${p.subcategory ?? ""} ${p.keySpecs.join(" ")} ${p.specs.packFormat ?? ""}`,
+        `${p.name} ${p.sku ?? ""} ${catName(p.category)} ${brandName(p.brand)} ${p.subcategory ?? ""} ${p.keySpecs.join(" ")} ${p.specs.packFormat ?? ""}`,
       );
-      return tokens.every((t) => hay.includes(t));
+      return tokens.every((tk) => hay.includes(tk));
     });
-    if (sort) {
+    if (sortId) {
       list = list.slice().sort((a, b) =>
-        sort === "sku" ? collator.compare(a.sku ?? "~", b.sku ?? "~")
-        : sort === "marca" ? collator.compare(a.brand, b.brand) || collator.compare(a.name, b.name)
+        sortId === "sku" ? collator.compare(a.sku ?? "~", b.sku ?? "~")
+        : sortId === "marca" ? collator.compare(a.brand, b.brand) || collator.compare(a.name, b.name)
         : collator.compare(a.name, b.name),
       );
     }
     return list;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [base, activeAttrs, urlQ, sort, brands, search]);
+  }, [base, activeAttrs, urlQ, sortId, brands, categories, search]);
 
   const hasFilters = Boolean((!lockedCategory && categoria) || marca || sub || activeAttrs.length || urlQ);
   const activeCount = [!lockedCategory && categoria, marca, sub, ...activeAttrs].filter(Boolean).length;
@@ -169,7 +176,7 @@ export function Catalog({
     if (timer.current) clearTimeout(timer.current);
     setDraft(null);
     const next = new URLSearchParams(window.location.search);
-    for (const k of [...FILTER_PARAMS, "q"]) next.delete(k);
+    for (const k of ["categoria", "marca", "sub", "capas", "doblez", "color", "pres", "q"] as const) next.delete(Q[k]);
     replaceUrlSearch(next);
   };
 
@@ -181,25 +188,25 @@ export function Catalog({
   }, [scoped]);
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-10">
-      {/* búsqueda primero en móvil */}
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] lg:grid-rows-[auto_auto_1fr] lg:items-start lg:gap-x-10 lg:gap-y-5">
+      {/* búsqueda primero (también en móvil) */}
       <div className="lg:col-start-2 lg:row-start-1">
         <div className="relative">
-          <Search className="pointer-events-none absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-muted" aria-hidden />
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 size-5 -translate-y-1/2 text-brand-blue" aria-hidden />
           <input
             type="search"
             value={query}
             onChange={(e) => onQuery(e.target.value)}
-            placeholder="Buscar producto, SKU o presentación"
-            aria-label="Buscar productos"
-            className="h-12 w-full border border-control-border bg-white pl-11 pr-10 text-base text-ink placeholder:text-muted"
+            placeholder={t.searchPlaceholder}
+            aria-label={t.searchLabel}
+            className="h-12 w-full rounded-lg border border-control-border bg-white pl-11 pr-10 text-base text-ink placeholder:text-muted"
           />
           {query && (
             <button
               type="button"
               onClick={() => { setDraft(null); update({ q: "" }); }}
-              aria-label="Borrar búsqueda"
-              className="absolute right-2 top-1/2 grid size-8 -translate-y-1/2 place-items-center text-muted hover:text-ink"
+              aria-label={t.clearSearch}
+              className="absolute right-2 top-1/2 grid size-8 -translate-y-1/2 place-items-center rounded-md text-muted hover:text-ink"
             >
               <X className="size-4" aria-hidden />
             </button>
@@ -207,45 +214,55 @@ export function Catalog({
         </div>
       </div>
 
+      {/* categorías: acceso directo con icono y conteo */}
+      {!lockedCategory && (
+        <div className="lg:col-start-2 lg:row-start-2">
+          <ul className="flex gap-2 overflow-x-auto pb-1 lg:flex-wrap lg:overflow-visible" aria-label={t.category}>
+            <li>
+              <Chip active={!categoria} onClick={() => setFilter("categoria", "")}>
+                {t.all} <span className="text-muted">{scoped.length}</span>
+              </Chip>
+            </li>
+            {categories.map((c) => (
+              <li key={c.slug}>
+                <Chip active={categoria === c.slug} onClick={() => setFilter("categoria", catSlug(lang, c.slug))}>
+                  <CategoryIcon name={c.icon} className="size-4 text-brand-blue" />
+                  {c.name} <span className="text-muted">{categoryCounts[c.slug] ?? 0}</span>
+                </Chip>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* filtros */}
-      <aside className="lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-start">
+      <aside className="lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:self-start">
         <button
           type="button"
           onClick={() => setFiltersOpen((o) => !o)}
           aria-expanded={filtersOpen}
           aria-controls="catalog-filters"
-          className="flex h-11 w-full items-center justify-between border border-control-border px-3 font-heading font-semibold text-ink lg:hidden"
+          className="flex h-11 w-full items-center justify-between rounded-lg border border-control-border px-3 font-heading font-bold text-ink lg:hidden"
         >
           <span className="inline-flex items-center gap-2">
-            <SlidersHorizontal className="size-4" aria-hidden /> Filtros
+            <SlidersHorizontal className="size-4 text-brand-blue" aria-hidden /> {t.filters}
           </span>
-          {activeCount > 0 && <span className="bg-brand-blue px-1.5 text-sm text-white">{activeCount}</span>}
+          {activeCount > 0 && <span className="rounded-sm bg-brand-blue px-1.5 text-sm text-white">{activeCount}</span>}
         </button>
 
         <div id="catalog-filters" className={cn("lg:block", filtersOpen ? "block" : "hidden")}>
           <div className="mt-4 flex items-center justify-between lg:mt-0">
-            <H className="label !text-ink">Filtros</H>
+            <H className="label !text-ink">{t.filters}</H>
             {hasFilters && (
-              <button type="button" onClick={clearAll} className="inline-flex items-center gap-1 text-sm font-semibold text-brand-blue-dark hover:underline">
-                <X className="size-3.5" aria-hidden /> Limpiar todo
+              <button type="button" onClick={clearAll} className="inline-flex items-center gap-1 text-sm font-bold text-brand-blue-dark hover:underline">
+                <X className="size-3.5" aria-hidden /> {t.clearAll}
               </button>
             )}
           </div>
 
-          {!lockedCategory && (
-            <Group label="Categoría">
-              <Option active={!categoria} onClick={() => setFilter("categoria", "")} n={scoped.length}>Todas</Option>
-              {categories.map((c) => (
-                <Option key={c.slug} active={categoria === c.slug} onClick={() => setFilter("categoria", c.slug)} n={categoryCounts[c.slug] ?? 0}>
-                  {c.name}
-                </Option>
-              ))}
-            </Group>
-          )}
-
           {brandOptions.length > 1 && (
-            <Group label="Marca">
-              <Option active={!marca} onClick={() => setFilter("marca", "")}>Todas</Option>
+            <Group label={t.brand}>
+              <Option active={!marca} onClick={() => setFilter("marca", "")}>{t.all}</Option>
               {brandOptions.map((b) => (
                 <Option key={b.slug} active={marca === b.slug} onClick={() => setFilter("marca", b.slug)} n={b.n}>
                   {b.name}
@@ -255,8 +272,8 @@ export function Catalog({
           )}
 
           {subOptions.length > 0 && (
-            <Group label="Tipo">
-              <Option active={!sub} onClick={() => setFilter("sub", "")}>Todos</Option>
+            <Group label={t.type}>
+              <Option active={!sub} onClick={() => setFilter("sub", "")}>{t.allM}</Option>
               {subOptions.map((s) => (
                 <Option key={s.name} active={sub === s.name} onClick={() => setFilter("sub", s.name)} n={s.n}>
                   {s.name}
@@ -266,11 +283,11 @@ export function Catalog({
           )}
 
           {ATTRS.filter((d) => attrOptions[d.param]).map((def) => (
-            <Group key={def.param} label={def.label}>
-              <Option active={!activeAttrs.includes(def)} onClick={() => setFilter(def.param, "")}>Todas</Option>
+            <Group key={def.param} label={attrLabel(def.param)}>
+              <Option active={!activeAttrs.includes(def)} onClick={() => setFilter(def.param, "")}>{t.all}</Option>
               {attrOptions[def.param].map((o) => (
                 <Option key={o.value} active={get(def.param) === o.value} onClick={() => setFilter(def.param, o.value)} n={o.n}>
-                  {def.show(o.value)}
+                  {attrShow(def.param, o.value)}
                 </Option>
               ))}
             </Group>
@@ -279,32 +296,32 @@ export function Catalog({
       </aside>
 
       {/* resultados */}
-      <div className="lg:col-start-2 lg:row-start-2">
+      <div className={cn("lg:col-start-2", lockedCategory ? "lg:row-start-2" : "lg:row-start-3")}>
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
           <p role="status" aria-live="polite" className="text-sm text-muted">
-            <strong className="font-semibold text-ink">{filtered.length}</strong>{" "}
-            {filtered.length === 1 ? "producto" : "productos"}
-            {urlQ ? ` para «${urlQ}»` : ""}
+            <strong className="font-bold text-ink">{filtered.length}</strong>{" "}
+            {ui(lang).count.product(filtered.length).replace(/^\d+\s/, "")}
+            {urlQ ? t.forQuery(urlQ) : ""}
           </p>
           <div className="flex items-center gap-3">
             <label className="flex items-center gap-2 text-sm text-muted">
-              <span className="sr-only sm:not-sr-only">Ordenar</span>
+              <span className="sr-only sm:not-sr-only">{t.sort}</span>
               <select
-                value={sort}
+                value={sortId}
                 onChange={(e) => update({ orden: e.target.value })}
-                className="h-10 border border-control-border bg-white px-2 text-sm text-ink"
+                className="h-10 rounded-md border border-control-border bg-white px-2 text-sm text-ink"
               >
-                {SORTS.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
+                {SORT_IDS.map((id) => <option key={id} value={id}>{t.sortOptions[id]}</option>)}
               </select>
             </label>
-            <div className="inline-flex border border-control-border" role="group" aria-label="Vista">
-              {([["tabla", List, "Tabla"], ["tarjetas", LayoutGrid, "Tarjetas"]] as const).map(([id, Icon, label]) => (
+            <div className="inline-flex overflow-hidden rounded-md border border-control-border" role="group" aria-label={t.view}>
+              {([["table", List, t.table], ["cards", LayoutGrid, t.cards]] as const).map(([id, Icon, label]) => (
                 <button
                   key={id}
                   type="button"
                   aria-pressed={view === id}
-                  onClick={() => update({ vista: id === "tabla" ? "" : id })}
-                  className={cn("inline-flex h-10 items-center gap-1.5 px-3 text-sm font-semibold", view === id ? "bg-brand-blue-dark text-white" : "bg-white text-body hover:bg-surface")}
+                  onClick={() => update({ vista: id === "table" ? "" : lang === "es" ? "tarjetas" : "cards" })}
+                  className={cn("inline-flex h-10 items-center gap-1.5 px-3 text-sm font-bold", view === id ? "bg-brand-blue-dark text-white" : "bg-white text-body hover:bg-surface")}
                 >
                   <Icon className="size-4" aria-hidden /> <span className="hidden sm:inline">{label}</span>
                   <span className="sr-only sm:hidden">{label}</span>
@@ -314,28 +331,31 @@ export function Catalog({
           </div>
         </div>
 
-        <h2 className="sr-only">Resultados</h2>
+        <h2 className="sr-only">{t.results}</h2>
         {filtered.length === 0 ? (
-          <div className="border border-dashed border-control-border p-10 text-center">
-            <p className="font-heading text-lg font-semibold text-ink">
-              {urlQ ? `Ningún producto coincide con «${urlQ}».` : "Sin resultados con estos filtros."}
-            </p>
-            <p className="mt-1 text-body">Pruebe con menos filtros o escríbanos y le ayudamos a ubicar la referencia.</p>
-            <button type="button" onClick={clearAll} className="mt-4 font-semibold text-brand-blue-dark underline underline-offset-4">
-              Limpiar búsqueda y filtros
+          <div className="rounded-xl border border-dashed border-control-border p-10 text-center">
+            <p className="font-heading text-lg font-bold text-ink">{urlQ ? t.emptyQuery(urlQ) : t.emptyFilters}</p>
+            <p className="mt-1 text-body">{t.emptyHint}</p>
+            <button type="button" onClick={clearAll} className="mt-4 font-bold text-brand-blue-dark underline underline-offset-4">
+              {t.emptyClear}
             </button>
           </div>
-        ) : view === "tarjetas" ? (
+        ) : view === "cards" ? (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((p) => <ProductCard key={p.slug} product={p} />)}
+            {filtered.map((p) => <ProductCard key={p.slug} product={p} icon={iconOf.get(p.category) ?? ""} lang={lang} />)}
           </div>
         ) : (
-          <div className="border-y border-border">
-            <div className={cn("label hidden gap-x-4 border-b-2 border-ink px-3 py-2 text-muted md:grid", ROW_COLS)} aria-hidden>
-              <span>SKU</span><span>Producto</span><span>Marca</span><span>Presentación</span><span className="text-right">Cotizar</span>
+          <div className="overflow-hidden rounded-xl border border-border">
+            <div className={cn("label hidden gap-x-4 border-b border-border bg-brand-blue-50 px-3 py-2.5 text-brand-blue-dark md:grid", ROW_COLS)} aria-hidden>
+              <span />
+              <span>{t.colSku}</span>
+              <span>{t.colProduct}</span>
+              <span>{t.colBrand}</span>
+              <span>{t.colPack}</span>
+              <span className="text-right">{t.colQuote}</span>
             </div>
             <ul className="divide-y divide-border">
-              {filtered.map((p) => <ProductRow key={p.slug} product={p} />)}
+              {filtered.map((p) => <ProductRow key={p.slug} product={p} icon={iconOf.get(p.category) ?? ""} lang={lang} />)}
             </ul>
           </div>
         )}
@@ -344,10 +364,26 @@ export function Catalog({
   );
 }
 
+function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={cn(
+        "inline-flex h-10 items-center gap-2 whitespace-nowrap rounded-full border px-3.5 text-sm font-semibold transition-colors",
+        active ? "border-brand-blue bg-brand-blue-50 text-brand-blue-dark" : "border-control-border bg-white text-body hover:border-brand-blue hover:bg-brand-blue-50",
+      )}
+    >
+      {children}
+    </button>
+  );
+}
+
 function Group({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <fieldset className="mt-6 min-w-0 border-t border-border pt-3">
-      <legend className="label -ml-0 pr-2 text-muted">{label}</legend>
+      <legend className="label pr-2 text-muted">{label}</legend>
       <ul className="mt-1">{children}</ul>
     </fieldset>
   );
@@ -361,8 +397,8 @@ function Option({ active, onClick, n, children }: { active: boolean; onClick: ()
         onClick={onClick}
         aria-pressed={active}
         className={cn(
-          "flex w-full items-baseline justify-between gap-2 border-l-[3px] px-2.5 py-1.5 text-left text-[0.9375rem] hover:bg-surface",
-          active ? "border-brand-red bg-brand-blue-50 font-semibold text-brand-blue-dark" : "border-transparent text-body",
+          "flex w-full items-baseline justify-between gap-2 rounded-md border-l-[3px] px-2.5 py-1.5 text-left text-[0.9375rem] hover:bg-brand-blue-50",
+          active ? "border-brand-red bg-brand-blue-50 font-bold text-brand-blue-dark" : "border-transparent text-body",
         )}
       >
         <span>{children}</span>
