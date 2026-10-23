@@ -1,6 +1,6 @@
 # Guía de Google Search Console
 
-Para hacer **después** de publicar el sitio en `https://agsupply.com.do` (la vista previa lleva `noindex` y no sirve para esto). La verificación de propiedad requiere acceso al DNS o al hosting: lo hace o autoriza el cliente.
+Para hacer **después** de publicar el sitio en `https://agsupply.com.do` (la vista previa en GitHub Pages ya no existe). La verificación de propiedad requiere acceso al DNS o al hosting: lo hace o autoriza el cliente.
 
 ## 1. Verificar el dominio
 1. Entrar en https://search.google.com/search-console con la cuenta de la empresa y elegir «Dominio» → `agsupply.com.do`.
