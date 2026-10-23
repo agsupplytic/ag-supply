@@ -124,6 +124,8 @@ for (const p of products) if (p.sku) bySku.set(p.sku, [...(bySku.get(p.sku) ?? [
 const dupes = [...bySku.entries()].filter(([, v]) => v.length > 1);
 const malformed = products.filter((p) => p.sku && !SKU_OK.test(p.sku));
 const missing = products.filter((p) => !p.sku);
+// Misma regla que lib/content/thin.ts.
+const thin = products.filter((p) => p.images.length === 0 && Object.keys(p.specs).every((k) => k === "packFormat"));
 
 writeFileSync(productsPath, JSON.stringify(products, null, 2) + "\n");
 
@@ -171,6 +173,14 @@ const lines = [
   `## Productos sin SKU (${missing.length})`,
   "",
   ...missing.map((p) => `- ${p.name} (Odoo ${p.odooId})`),
+  "",
+  `## Fichas sin indexar por contenido delgado (${thin.length} de ${products.length})`,
+  "",
+  "Sin foto propia y sin datos técnicos aparte de la presentación: llevan `noindex` y no están en el",
+  "sitemap. Salen solas de esta lista al añadir una foto (`public/images/products/odoo-<id>.webp`)",
+  "o datos técnicos en Odoo y volver a ejecutar `npm run content:curate`.",
+  "",
+  ...thin.map((p) => `- ${p.name} (Odoo ${p.odooId})`),
   "",
   "## Siglas internas sin definición pública",
   "",

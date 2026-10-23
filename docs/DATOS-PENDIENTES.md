@@ -13,7 +13,7 @@ Nada de esto se publica como hecho hasta que se confirme.
 | Cifras | 400 t/mes, 2 000/1 000 m², año 2007/2014: ya en `siteConfig` como confirmadas por el cliente. | Inicio, Nosotros |
 | Correo y horario | `agsupplycxc@gmail.com` y lun–vie 8:00–17:00: confirmar que son los definitivos. | Todo el sitio |
 | Dirección | Solo «Sector Las Palomas, Santiago»; falta calle/número/código postal. | Contacto, JSON-LD |
-| WhatsApp | El número `809-612-2020` figura como «Central»; confirmar que recibe WhatsApp. | Cotización |
+| WhatsApp | `809-612-2020` es el único teléfono publicado (se retiró el alterno por indicación del cliente); confirmar que recibe WhatsApp. | Cotización |
 | Pedido mínimo, plazos, cobertura | No existen como dato; el sitio dice «se coordina por pedido». | Catálogo |
 | Certificaciones, clientes, equipo | No hay; no se publica ninguna. | Nosotros |
 | Web3Forms | Crear la clave, restringirla a agsupply.com.do y cargarla como secreto `NEXT_PUBLIC_WEB3FORMS_KEY`. | Formulario |

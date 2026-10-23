@@ -17,12 +17,12 @@ const COPY = {
   es: {
     meta: {
       title: "Contacto y cotización",
-      description: "Contacte a AG Supply en Las Palomas, Santiago: teléfonos, correo, WhatsApp, horario, mapa y distribuidores autorizados. Lunes a viernes, 8:00 a.m. a 5:00 p.m.",
+      description: "Contacte a AG Supply en Las Palomas, Santiago: teléfono, correo, WhatsApp, horario, mapa y distribuidores autorizados. Lunes a viernes, 8:00 a.m. a 5:00 p.m.",
     },
     h1: "Contacto y cotización",
     lead: "Indíquenos qué productos y volúmenes maneja su operación. Atención comercial responde en horario de oficina.",
     data: "Datos de contacto",
-    phones: "Teléfonos",
+    phones: "Teléfono",
     email: "Correo",
     whatsapp: "WhatsApp",
     whatsappLink: "Escribir por WhatsApp",
@@ -36,12 +36,12 @@ const COPY = {
   en: {
     meta: {
       title: "Contact and quotes",
-      description: "Contact AG Supply in Las Palomas, Santiago: phones, email, WhatsApp, business hours, map and authorized distributors. Monday to Friday, 8:00 a.m. to 5:00 p.m.",
+      description: "Contact AG Supply in Las Palomas, Santiago: phone, email, WhatsApp, business hours, map and authorized distributors. Monday to Friday, 8:00 a.m. to 5:00 p.m.",
     },
     h1: "Contact and quotes",
     lead: "Tell us which products and volumes your operation handles. Our sales team replies during office hours.",
     data: "Contact details",
-    phones: "Phones",
+    phones: "Phone",
     email: "Email",
     whatsapp: "WhatsApp",
     whatsappLink: "Write on WhatsApp",

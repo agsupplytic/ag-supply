@@ -18,6 +18,7 @@ import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/site/json-ld";
 import { textFor } from "@/lib/i18n/site-text";
 import { href, type Lang } from "@/lib/i18n/routes";
 import { ui } from "@/lib/i18n/ui";
+import { isThinProduct } from "@/lib/content/thin";
 import { clip, pageMetadata, productDescription } from "@/lib/seo";
 
 export async function productMetadata(lang: Lang, cat: string, slug: string) {
@@ -36,6 +37,7 @@ export async function productMetadata(lang: Lang, cat: string, slug: string) {
       productDescription(product, category ? localizeCategory(category, lang).name : undefined, brand ? localizeBrand(brand, lang).name : undefined, lang),
     ),
     image: product.images[0] ? { url: product.images[0], alt: product.name } : undefined,
+    noindex: isThinProduct(raw),
   });
 }
 

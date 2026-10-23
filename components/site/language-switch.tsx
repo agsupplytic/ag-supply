@@ -23,6 +23,7 @@ export function LanguageSwitch({ lang, className }: { lang: Lang; className?: st
       lang={other}
       prefetch={false}
       title={t.language}
+      data-track="language_switch"
       className={cn(
         "inline-flex h-10 items-center gap-1.5 rounded-md border border-control-border px-3 font-heading text-sm font-bold text-ink transition-colors hover:border-brand-blue hover:bg-brand-blue-50",
         className,

@@ -6,6 +6,7 @@ import { SiteHeader } from "./site-header";
 import { SiteFooter } from "./site-footer";
 import { WhatsAppFab } from "./whatsapp-button";
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from "./analytics";
 import { OrganizationJsonLd, WebSiteJsonLd } from "./json-ld";
 
 /** Raíz de cada idioma: <html lang>, tipografías, cabecera, pie y avisos. */
@@ -28,6 +29,7 @@ export function RootShell({ lang, children }: { lang: Lang; children: React.Reac
         <SiteFooter lang={lang} />
         <WhatsAppFab lang={lang} />
         <Toaster />
+        <Analytics lang={lang} />
       </body>
     </html>
   );

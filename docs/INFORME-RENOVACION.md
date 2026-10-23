@@ -138,3 +138,12 @@ de idioma en 11 tipos de ruta, 404, diseño, formularios, 22 rutas sin errores d
 Riesgos: la traducción al inglés es nuestra (revisar términos técnicos); el recorte de Bonche es por
 software (sustituir si hay un archivo sin fondo); la animación de entrada usa `animation-timeline`
 (sin soporte, el contenido se ve igual); `experimental.globalNotFound` es una opción experimental de Next.
+
+## Ronda 3 — cierre SEO y teléfono
+
+| Cambio | Estado |
+|---|---|
+| Medición de conversiones (`lib/analytics.ts`, `components/site/analytics.tsx`, `docs/MEDICION.md`): apagada sin ID; con ID solo mide a quien acepta; 6 eventos sin datos personales | Verificado en local con Playwright (17 comprobaciones, ID de prueba y peticiones a Google interceptadas); axe 0 violaciones con el aviso. **Pendiente del cliente:** ID de GA4, texto del aviso y política de privacidad |
+| Fichas delgadas con `noindex` y fuera del sitemap (`lib/content/thin.ts`): 55 de 168; 113 indexables | Verificado: `check:out` comprueba noindex ⇔ regla y sitemap (258 URLs) |
+| Guía de Search Console (`docs/GUIA-SEARCH-CONSOLE.md`) | Redactada; **no ejecutada** (requiere el sitio publicado y acceso al DNS) |
+| Teléfono: solo `809-612-2020` (se retiró `809-778-9119` de contacto, FAQ, JSON-LD y `llms.txt`); los de distribuidores se mantienen | Verificado: sin rastro en `out/` |

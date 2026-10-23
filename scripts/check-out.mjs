@@ -40,6 +40,8 @@ const titles = new Map();
 const descs = new Map();
 const BLOCKED = /\b(Pannez|Chito|Rancho Chito|Samey|Senator|Jerez Brand|Sumeh|Barcelo|Geto)\b/i;
 const pageSet = new Set();
+const noindexSet = new Set();
+const enOf = new Map(); // ruta ES → ruta EN (por hreflang)
 
 for (const f of htmlFiles) {
   const path = pageOf(f);
@@ -49,6 +51,7 @@ for (const f of htmlFiles) {
   const desc = /<meta name="description" content="([^"]*)"/.exec(html)?.[1];
   const canon = /<link rel="canonical" href="([^"]*)"/.exec(html)?.[1];
   const noindex = /<meta name="robots" content="[^"]*noindex/.test(html);
+  if (noindex) noindexSet.add(path);
 
   if (!title) fail(`${path}: sin <title>`);
   if (!desc) fail(`${path}: sin meta description`);
@@ -60,6 +63,7 @@ for (const f of htmlFiles) {
   const isEn = path.startsWith("/en/") || path === "/en/";
   if (htmlLang !== (isEn ? "en" : "es-DO")) fail(`${path}: <html lang="${htmlLang}" incorrecto`);
   const alts = Object.fromEntries([...html.matchAll(/<link rel="alternate" hrefLang="([^"]*)" href="([^"]*)"/g)].map((m) => [m[1], m[2]]));
+  if (alts.en) enOf.set(path, alts.en.slice(SITE.length));
   if (!alts["es-DO"] || !alts.en || !alts["x-default"]) fail(`${path}: faltan hreflang`);
   else {
     if (alts[isEn ? "en" : "es-DO"] !== canon) fail(`${path}: hreflang propio distinto del canónico`);
@@ -118,7 +122,22 @@ for (const l of locs) {
 }
 console.log(`páginas HTML: ${htmlFiles.length} · URLs en sitemap: ${locs.length}`);
 const inSitemap = new Set(locs.map((l) => l.slice(SITE.length)));
-for (const p of pageSet) if (!inSitemap.has(p) && p !== "/cotizacion/" && p !== "/en/quote/") fail(`falta en sitemap: ${p}`);
+for (const p of pageSet) if (!inSitemap.has(p) && !noindexSet.has(p)) fail(`falta en sitemap: ${p}`);
+for (const p of noindexSet) if (inSitemap.has(p)) fail(`sitemap incluye una página noindex: ${p}`);
+
+// fichas delgadas (misma regla que lib/content/thin.ts): sin foto y sin datos técnicos aparte de la presentación
+const catalog = JSON.parse(readFileSync(join(process.cwd(), "content", "products.json"), "utf8"));
+const isThin = (p) => p.images.length === 0 && Object.keys(p.specs).every((k) => k === "packFormat");
+const pagesOf = (p) => { const es = `/productos/${p.category}/${p.slug}/`; return [es, enOf.get(es)].filter(Boolean); };
+let thinCount = 0;
+for (const p of catalog.filter((x) => x.active !== false)) {
+  for (const path of pagesOf(p)) {
+    if (!pageSet.has(path)) continue;
+    if (isThin(p) !== noindexSet.has(path)) fail(`${path}: ${isThin(p) ? "ficha delgada sin noindex" : "ficha con contenido marcada noindex"}`);
+    if (isThin(p) && path.startsWith("/productos/")) thinCount++;
+  }
+}
+console.log(`fichas: ${catalog.length - thinCount} indexables · ${thinCount} noindex (sin foto ni datos técnicos)`);
 
 // redirecciones de slugs: el destino debe existir
 const redirects = JSON.parse(readFileSync(join(process.cwd(), "content", "slug-redirects.json"), "utf8"));

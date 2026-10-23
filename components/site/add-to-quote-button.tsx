@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Check, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toaster";
+import { track } from "@/lib/analytics";
 import { useQuote } from "@/lib/quote/store";
 import { href, type Lang } from "@/lib/i18n/routes";
 import { ui } from "@/lib/i18n/ui";
@@ -48,6 +49,7 @@ export function AddToQuoteButton({
       n,
     );
     setQty("1");
+    track("quote_add", { quantity: n });
     toast.success(isNew ? t.added : t.updated, {
       description: product.name,
       action: { label: t.viewList, onClick: () => router.push(href(lang, { name: "quote" })) },

@@ -14,7 +14,6 @@ export const siteConfig = {
 
   phones: [
     { label: "Central", value: "809-612-2020", tel: "+18096122020" },
-    { label: "Alterno", value: "809-778-9119", tel: "+18097789119" },
   ],
   email: "agsupplycxc@gmail.com",
   social: { handle: "@agsupplyrd", instagram: "https://instagram.com/agsupplyrd" },

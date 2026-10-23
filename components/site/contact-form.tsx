@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import { track } from "@/lib/analytics";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { ui } from "@/lib/i18n/ui";
@@ -85,15 +86,19 @@ export function ContactForm({ lang }: { lang: Lang }) {
         const data = (await res.json().catch(() => null)) as { success?: boolean } | null;
         if (res.ok && data?.success) {
           setStatus("sent");
+          track("contact_submit", { result: "sent" });
           reset();
         } else {
           setStatus("error");
+          track("contact_submit", { result: "error" });
         }
       } catch {
         setStatus("error");
+        track("contact_submit", { result: "error" });
       }
       return;
     }
+    track("contact_submit", { result: "mail" });
     window.location.assign(mailtoHref(values));
     setStatus("mail");
   }

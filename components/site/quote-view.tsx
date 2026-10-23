@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toaster";
 import { useQuote } from "@/lib/quote/store";
 import { buildWhatsAppMessages } from "@/lib/quote/build-message";
+import { track } from "@/lib/analytics";
 import { waLink } from "@/lib/site-config";
 import { href, type Lang } from "@/lib/i18n/routes";
 import { ui } from "@/lib/i18n/ui";
@@ -57,6 +58,7 @@ export function QuoteView({ index, lang }: { index: QuoteIndex; lang: Lang }) {
   async function copyList() {
     try {
       await navigator.clipboard.writeText(messages.join("\n\n"));
+      track("quote_copy", { items: items.length });
       toast.success(t.copied, { description: t.copiedHint });
     } catch {
       toast.error(t.copyFail);
@@ -149,7 +151,7 @@ export function QuoteView({ index, lang }: { index: QuoteIndex; lang: Lang }) {
                 <div className="mt-5 flex flex-col gap-2">
                   {messages.map((m, i) => (
                     <Button key={i} asChild variant="whatsapp" size="lg" className="w-full">
-                      <a href={waLink(m)} target="_blank" rel="noopener noreferrer">
+                      <a href={waLink(m)} target="_blank" rel="noopener noreferrer" data-track="quote_whatsapp_send">
                         <Send aria-hidden />
                         {messages.length > 1 ? t.sendPart(i + 1, messages.length) : t.send}
                       </a>

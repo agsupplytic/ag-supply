@@ -67,7 +67,7 @@ export async function FaqPage({ lang }: { lang: Lang }) {
             { q: "¿Cómo pido una cotización?", a: "En el catálogo, añada los productos a la lista, ajuste las cantidades y agregue una nota por producto si lo necesita. Al enviar, se genera un mensaje de WhatsApp con su lista. No hace falta registrarse." },
             { q: "¿Pueden fabricar un formato o empaque específico?", a: "Consulte por WhatsApp o por el formulario de contacto indicando producto, formato y volumen; atención comercial evalúa cada caso." },
             { q: "¿Tienen distribuidores autorizados?", a: "Sí, en Santiago, Santo Domingo, Región Este y Puerto Plata. Sus datos están en la página de contacto." },
-            { q: "¿Cómo los contacto directamente?", a: `Por teléfono (${siteConfig.phones[0].value} y ${siteConfig.phones[1].value}), por correo (${siteConfig.email}) o por WhatsApp desde cualquier botón del sitio.` },
+            { q: "¿Cómo los contacto directamente?", a: `Por teléfono (${siteConfig.phones[0].value}), por correo (${siteConfig.email}) o por WhatsApp desde cualquier botón del sitio.` },
           ],
         },
       ]
@@ -96,7 +96,7 @@ export async function FaqPage({ lang }: { lang: Lang }) {
             { q: "How do I request a quote?", a: "In the catalog, add products to the list, adjust quantities and add a note per product if needed. When you send it, a WhatsApp message with your list is generated. No registration is required." },
             { q: "Can you make a specific format or packaging?", a: "Ask on WhatsApp or through the contact form with the product, format and volume; sales evaluates each case." },
             { q: "Do you have authorized distributors?", a: "Yes, in Santiago, Santo Domingo, the East region and Puerto Plata. Their details are on the contact page." },
-            { q: "How do I contact you directly?", a: `By phone (${siteConfig.phones[0].value} and ${siteConfig.phones[1].value}), by email (${siteConfig.email}) or on WhatsApp from any button on the site.` },
+            { q: "How do I contact you directly?", a: `By phone (${siteConfig.phones[0].value}), by email (${siteConfig.email}) or on WhatsApp from any button on the site.` },
           ],
         },
       ];
