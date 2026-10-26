@@ -1,6 +1,7 @@
 import { getBrands, getCategories, getProducts } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 import { absUrl } from "@/lib/seo";
+import { publishedCollections } from "@/lib/collections";
 import { href } from "@/lib/i18n/routes";
 
 export const dynamic = "force-static";
@@ -29,6 +30,11 @@ export async function GET() {
   L.push(
     `Cada producto tiene un SKU (código interno de AG Supply; algunos códigos están repetidos entre referencias, por eso se cita también el nombre). Indique SKU y nombre al cotizar por WhatsApp (${siteConfig.phones[0].value}) o correo (${siteConfig.email}). No hay precios públicos: se confirman por pedido según formato y volumen. Horario: ${siteConfig.hours.label}`,
   );
+  L.push("");
+  L.push("## Tipos de producto");
+  L.push("");
+  for (const x of publishedCollections(products))
+    L.push(`- ${x.collection.es.name} (${x.products.length}): ${absUrl(href("es", { name: "collection", col: x.collection.id }))} · EN: ${absUrl(href("en", { name: "collection", col: x.collection.id }))}`);
   L.push("");
   L.push("## Marcas");
   L.push("");

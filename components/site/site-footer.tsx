@@ -4,7 +4,8 @@ import { Logo } from "./logo";
 import { Container } from "./container";
 import { InstagramIcon } from "./icons";
 import { CategoryIcon } from "./category-icon";
-import { getCategories } from "@/lib/content";
+import { getCategories, getProducts } from "@/lib/content";
+import { publishedCollections } from "@/lib/collections";
 import { localizeCategory } from "@/lib/i18n/content";
 import { siteConfig } from "@/lib/site-config";
 import { textFor } from "@/lib/i18n/site-text";
@@ -14,6 +15,7 @@ import { ui } from "@/lib/i18n/ui";
 /** Pie claro: el logotipo (con transparencia) va directo, sin caja blanca. */
 export async function SiteFooter({ lang }: { lang: Lang }) {
   const categories = (await getCategories()).map((c) => localizeCategory(c, lang));
+  const types = publishedCollections(await getProducts());
   const t = ui(lang);
   const tt = textFor(lang);
   const year = new Date().getFullYear();
@@ -58,6 +60,13 @@ export async function SiteFooter({ lang }: { lang: Lang }) {
                 <Link href={href(lang, { name: "category", cat: c.slug })} className={`${link} inline-flex items-center gap-2`}>
                   <CategoryIcon name={c.icon} className="size-4 text-brand-blue" />
                   {c.name}
+                </Link>
+              </li>
+            ))}
+            {types.map((x) => (
+              <li key={x.collection.id} className="text-sm">
+                <Link href={href(lang, { name: "collection", col: x.collection.id })} className={link}>
+                  {x.collection[lang].name}
                 </Link>
               </li>
             ))}

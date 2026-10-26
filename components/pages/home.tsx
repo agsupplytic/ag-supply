@@ -4,6 +4,7 @@ import {
   Scissors, Search, Send, Store, Truck, UtensilsCrossed, Warehouse, Disc3,
 } from "lucide-react";
 import { getBrands, getCategories, getProducts } from "@/lib/content";
+import { publishedCollections } from "@/lib/collections";
 import { localizeBrand, localizeCategory, localizeProduct } from "@/lib/i18n/content";
 import { Container } from "@/components/site/container";
 import { Section, SectionHeading } from "@/components/site/section";
@@ -39,7 +40,8 @@ const COPY = {
       { icon: Building2, value: `${m2} m²`, label: "construidos en Las Palomas, Santiago" },
       { icon: Layers, value: String(refs), label: `referencias en ${cats} categorías` },
     ],
-    makeTitle: "Qué fabricamos",
+    makeTitle: "Qué fabricamos: papel higiénico, papel toalla y servilletas",
+    typesTitle: "Busque por tipo de producto",
     makeIntro: "Papel tissue convertido en la planta de Santiago. Cada categoría tiene su propio catálogo con presentaciones y referencias.",
     suppliedTitle: "También suministramos",
     suppliedIntro: "Complementos para la misma operación. No se fabrican en nuestra planta: los suministra AG Supply.",
@@ -103,7 +105,8 @@ const COPY = {
       { icon: Building2, value: `${m2} m²`, label: "built in Las Palomas, Santiago" },
       { icon: Layers, value: String(refs), label: `items in ${cats} categories` },
     ],
-    makeTitle: "What we manufacture",
+    makeTitle: "What we manufacture: toilet paper, paper towels and napkins",
+    typesTitle: "Browse by product type",
     makeIntro: "Tissue paper converted at our Santiago plant. Each category has its own catalog with pack sizes and item codes.",
     suppliedTitle: "We also supply",
     suppliedIntro: "Complements for the same operation. They are not manufactured at our plant: AG Supply supplies them.",
@@ -227,6 +230,16 @@ export async function HomePage({ lang }: { lang: Lang }) {
         <div className="mt-10">
           <CategoryCards categories={made} samples={samples} lang={lang} />
         </div>
+        <h3 className="mt-14 text-xl">{c.typesTitle}</h3>
+        <ul className="mt-4 flex flex-wrap gap-3">
+          {publishedCollections(products).map((x) => (
+            <li key={x.collection.id}>
+              <Link href={href(lang, { name: "collection", col: x.collection.id })} className="card inline-block px-4 py-2 font-heading font-bold text-brand-blue-dark hover:underline">
+                {x.collection[lang].name}
+              </Link>
+            </li>
+          ))}
+        </ul>
         <h3 className="mt-14 text-xl">{c.suppliedTitle}</h3>
         <p className="mt-2 max-w-2xl text-body">{c.suppliedIntro}</p>
         <div className="mt-6">

@@ -14,7 +14,7 @@ import { CopySku } from "@/components/site/copy-sku";
 import { AddToQuoteButton } from "@/components/site/add-to-quote-button";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { BrandBadge } from "@/components/site/brand-badge";
-import { ProductJsonLd, BreadcrumbJsonLd } from "@/components/site/json-ld";
+import { ItemPageJsonLd, BreadcrumbJsonLd } from "@/components/site/json-ld";
 import { textFor } from "@/lib/i18n/site-text";
 import { href, type Lang } from "@/lib/i18n/routes";
 import { ui } from "@/lib/i18n/ui";
@@ -101,7 +101,7 @@ export async function ProductPage({ lang, cat, slug }: { lang: Lang; cat: string
 
   return (
     <>
-      <ProductJsonLd product={product} category={category} brandName={brand?.name} lang={lang} />
+      <ItemPageJsonLd product={product} category={category} brandName={brand?.name} lang={lang} />
       <BreadcrumbJsonLd
         trail={[
           [catalogName, href(lang, { name: "products" })],

@@ -188,3 +188,15 @@ Resultado: «su página se puede optimizar», 10 recomendaciones. Posicionamient
 | Esquema de negocio local | Pendiente de dirección completa (calle y número) |
 | Perfiles de YouTube, X, Facebook y LinkedIn | Solo si el cliente los crea; no se enlazan perfiles que no existen |
 | Evitar múltiples redirecciones | `http://www…` pasa por 2 saltos (HTTPS de Hostinger y luego www→raíz). Se evita desactivando «Forzar HTTPS» en hPanel y dejando que `.htaccess` haga ambos; no se tocó |
+
+### Ronda 4d — auditoría con los complementos de SEO (código y datos estructurados)
+
+**Código (revisión de `technical-seo-code-audit`).** Sin bloqueos de indexación: `noindex` global solo con `NEXT_PUBLIC_PREVIEW` (solo lo define el workflow de vista previa), `robots.txt` abierto, canónicos absolutos con barra final, hreflang recíproco (lo valida `check:out`), 404 real (verificado en producción), JSON-LD en el HTML servido, ninguna página pasa de 600 KB (límite de Google: 2 MB), listados con enlaces `<a>` reales y todos los productos en el HTML. Un aviso: `lastmod` de fichas y colecciones es la fecha del último cambio de `content/`, común a todas.
+
+**Datos estructurados (revisión de `seo-schema`).**
+- Las 113 fichas indexables declaraban `Product` sin `offers`: Search Console lo marca como error crítico. No se inventan precios, así que `Product` no puede ser válido. Ahora cada ficha es `ItemPage` con el producto en `about` (nombre, SKU único, imagen, descripción). Para volver a `Product` hace falta publicar precios reales.
+- `Organization.sameAs` incluye ahora la ficha de Google Maps que ya publica el sitio.
+- Sin cambios: `WebSite` solo en portada, `BreadcrumbList`, `FAQPage` (las preguntas están visibles en la página) y `CollectionPage` con `ItemList`.
+- `LocalBusiness`: pendiente de la dirección completa; con la actual (sector y ciudad) el marcado quedaría incompleto.
+
+**Enlazado interno y lectura por IA.** Las 9 colecciones se enlazan desde el inicio y desde el pie de todas las páginas; el H2 de «Qué fabricamos» nombra papel higiénico, papel toalla y servilletas; `llms.txt` y `llms-full.txt` listan los tipos de producto.

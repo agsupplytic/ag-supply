@@ -33,9 +33,22 @@
 - Preguntas frecuentes: https://agsupply.com.do/faq/
 - Contacto y distribuidores autorizados: https://agsupply.com.do/contacto/
 
+## Tipos de producto
+
+- Papel higiénico jumbo: https://agsupply.com.do/productos/papel-higienico-jumbo/
+- Papel toalla kraft: https://agsupply.com.do/productos/papel-toalla-kraft/
+- Papel toalla de cocina: https://agsupply.com.do/productos/papel-toalla-de-cocina/
+- Servilletas dinner: https://agsupply.com.do/productos/servilletas-dinner/
+- Servilletas cocktail: https://agsupply.com.do/productos/servilletas-cocktail/
+- Servilletas kraft: https://agsupply.com.do/productos/servilletas-kraft/
+- Servilletas para dispensador: https://agsupply.com.do/productos/servilletas-para-dispensador/
+- Combos de cubiertos desechables: https://agsupply.com.do/productos/combos-de-cubiertos-desechables/
+- Cubertería desechable suelta: https://agsupply.com.do/productos/cuberteria-desechable-suelta/
+- English version: https://agsupply.com.do/en/
+
 ## Categorías
 
-Fabricadas por AG Supply: papel higiénico, toallas de papel, servilletas, interfoliados, papel
+Fabricadas por AG Supply: papel higiénico, papel toalla, servilletas, interfoliados, papel
 facial. Suministradas: jabón y limpieza, desechables, cubertería. Cada categoría vive en
 https://agsupply.com.do/productos/<categoria>/.
 

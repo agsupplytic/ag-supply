@@ -66,7 +66,7 @@ export function OrganizationJsonLd({ lang }: { lang: Lang }) {
             closes: siteConfig.hours.closes,
           },
         },
-        sameAs: [siteConfig.social.instagram],
+        sameAs: [siteConfig.social.instagram, siteConfig.address.mapsUrl],
         brand: [
           { "@type": "Brand", name: "Ocean Breeze" },
           { "@type": "Brand", name: "Bonche" },
@@ -95,12 +95,14 @@ export function WebSiteJsonLd({ lang }: { lang: Lang }) {
 }
 
 /**
- * Product — ficha de producto, sin precio ni valoraciones. Sin `offers` no habrá
- * fragmentos de producto en Google; es intencional: no se inventan precios.
- * `sku` solo si es único en el catálogo; `manufacturer` solo si AG Supply lo fabrica;
- * `brand` solo para las marcas propias.
+ * ItemPage — ficha de producto. No se declara `Product`: Google exige `offers`, `review` o
+ * `aggregateRating` para ese tipo y el sitio no publica precios ni valoraciones (no se
+ * inventan), así que Search Console marcaba error en cada ficha. El producto va como
+ * `about` (Thing) con su nombre, SKU (solo si es único), imagen y descripción; las
+ * especificaciones quedan en la tabla visible de la página. Si algún día se publican
+ * precios reales, volver a `Product` con `offers` (ver historial de git).
  */
-export function ProductJsonLd({
+export function ItemPageJsonLd({
   product,
   category,
   brandName,
@@ -111,35 +113,31 @@ export function ProductJsonLd({
   brandName?: string;
   lang: Lang;
 }) {
-  const es = lang === "es";
-  const specs: [string, string | number | undefined][] = [
-    [es ? "Capas" : "Plies", product.specs.ply],
-    ["Color", product.specs.color],
-    [es ? "Presentación" : "Pack size", product.specs.packFormat],
-    [es ? "Gramaje (g/m²)" : "Basis weight (g/m²)", product.specs.grammageGsm],
-    [es ? "Ancho (cm)" : "Width (cm)", product.specs.widthCm],
-    [es ? "Hojas" : "Sheets", product.specs.sheets],
-  ];
   const url = absUrl(href(lang, { name: "product", cat: product.category, slug: product.slug }));
   const uniqueSku = product.skuStatus === "ok" ? product.sku : undefined;
+  const description = product.description ?? productDescription(product, category?.name, brandName, lang);
+  const image = product.images.length ? `${siteConfig.url}${product.images[0]}` : undefined;
   return (
     <JsonLd
       data={{
         "@context": "https://schema.org",
-        "@type": "Product",
-        "@id": `${url}#product`,
-        name: product.name,
-        description: product.description ?? productDescription(product, category?.name, brandName, lang),
-        inLanguage: HTML_LANG[lang],
-        ...(uniqueSku ? { sku: uniqueSku } : {}),
-        ...(product.images.length ? { image: `${siteConfig.url}${product.images[0]}` } : {}),
-        category: category?.name ?? product.category,
-        ...(product.brand !== "generico" && brandName ? { brand: { "@type": "Brand", name: brandName } } : {}),
-        ...(product.fabricated ? { manufacturer: { "@id": ORG_ID } } : {}),
-        additionalProperty: specs
-          .filter(([, v]) => v !== undefined && v !== "")
-          .map(([name, value]) => ({ "@type": "PropertyValue", name, value })),
+        "@type": "ItemPage",
+        "@id": `${url}#itempage`,
         url,
+        name: product.name,
+        description,
+        inLanguage: HTML_LANG[lang],
+        isPartOf: { "@id": WEBSITE_ID },
+        publisher: { "@id": ORG_ID },
+        ...(image ? { primaryImageOfPage: { "@type": "ImageObject", url: image } } : {}),
+        about: {
+          "@type": "Thing",
+          name: product.name,
+          description,
+          ...(uniqueSku ? { identifier: uniqueSku } : {}),
+          ...(image ? { image } : {}),
+          url,
+        },
       }}
     />
   );
