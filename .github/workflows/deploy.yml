@@ -29,6 +29,8 @@ jobs:
       - run: npm run build
         env:
           NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.NEXT_PUBLIC_WEB3FORMS_KEY }}
+          # Contenedor de Google Tag Manager (público: va en el HTML). Solo carga con consentimiento.
+          NEXT_PUBLIC_ANALYTICS_ID: GTM-5NPH9GL9
       - run: npm run check:out
       - run: npm run check:i18n
       - name: Subir out/ a Hostinger (FTP)

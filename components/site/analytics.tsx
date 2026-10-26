@@ -8,13 +8,13 @@ import type { Lang } from "@/lib/i18n/routes";
 const TEXT = {
   es: {
     region: "Medición del sitio",
-    text: "Usamos una medición anónima (Google Analytics) para saber qué páginas y botones se usan y mejorar el sitio. No guarda tu nombre, teléfono ni mensajes.",
+    text: "Usamos herramientas de medición de Google para saber, de forma anónima, qué páginas y botones se usan y mejorar el sitio. No registramos tu nombre, teléfono ni mensajes.",
     accept: "Aceptar",
     reject: "Rechazar",
   },
   en: {
     region: "Site measurement",
-    text: "We use anonymous measurement (Google Analytics) to learn which pages and buttons are used and improve the site. It does not store your name, phone or messages.",
+    text: "We use Google measurement tools to learn, anonymously, which pages and buttons are used and improve the site. We do not record your name, phone or messages.",
     accept: "Accept",
     reject: "Reject",
   },

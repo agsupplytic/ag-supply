@@ -1,12 +1,16 @@
-// Medición de conversiones, apagada por defecto. Solo envía algo si hay ID de Google
-// Analytics 4 en el build (NEXT_PUBLIC_ANALYTICS_ID, formato G-XXXXXXXXXX) Y la persona
-// aceptó la medición. Sin ID no se carga ningún script de terceros ni se guarda nada.
+// Medición de conversiones. Solo envía algo si hay ID en el build (NEXT_PUBLIC_ANALYTICS_ID)
+// Y la persona aceptó la medición. Sin ID no se carga ningún script de terceros ni se guarda nada.
+// El ID puede ser un contenedor de Google Tag Manager (GTM-XXXXXXX): los eventos se empujan al
+// dataLayer y las etiquetas (GA4, etc.) se configuran en el panel de GTM; o un ID de medición de
+// GA4 (G-XXXXXXXXXX), que se carga directo con gtag.js.
 // Los parámetros nunca llevan datos personales (nombre, teléfono, correo, mensaje).
 
 const RAW_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID ?? "";
 
 /** ID válido o cadena vacía: el valor se inserta en una URL, así que se valida el formato. */
-export const ANALYTICS_ID = /^G-[A-Z0-9]{4,20}$/.test(RAW_ID) ? RAW_ID : "";
+export const ANALYTICS_ID = /^(?:GTM-[A-Z0-9]{4,12}|G-[A-Z0-9]{4,20})$/.test(RAW_ID) ? RAW_ID : "";
+const IS_GTM = ANALYTICS_ID.startsWith("GTM-");
+let loaded = false;
 
 export const CONSENT_KEY = "ag-consent";
 export type Consent = "granted" | "denied";
@@ -50,27 +54,36 @@ export function track(event: TrackEvent, params: Params = {}): void {
   if (!ANALYTICS_ID || typeof window === "undefined") return;
   try {
     if (readConsent() !== "granted") return;
-    window.gtag?.("event", event, { ...params, page_path: location.pathname });
+    const data = { ...params, page_path: location.pathname };
+    if (IS_GTM) window.dataLayer?.push({ event, ...data });
+    else window.gtag?.("event", event, data);
   } catch {
     /* la medición nunca debe romper la página */
   }
 }
 
-/** Carga gtag.js una sola vez, con anonimización de IP y sin señales de publicidad. */
+/** Carga Tag Manager o gtag.js una sola vez, tras el consentimiento. */
 export function loadAnalytics(): void {
-  if (!ANALYTICS_ID || window.gtag) return;
+  if (!ANALYTICS_ID || loaded) return;
+  loaded = true;
   window.dataLayer = window.dataLayer ?? [];
-  window.gtag = function gtag(...args: unknown[]) {
-    window.dataLayer?.push(args);
-  };
-  window.gtag("js", new Date());
-  window.gtag("config", ANALYTICS_ID, {
-    anonymize_ip: true,
-    allow_google_signals: false,
-    allow_ad_personalization_signals: false,
-  });
   const s = document.createElement("script");
   s.async = true;
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`;
+  if (IS_GTM) {
+    window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+    s.src = `https://www.googletagmanager.com/gtm.js?id=${ANALYTICS_ID}`;
+  } else {
+    window.gtag = function gtag(...args: unknown[]) {
+      window.dataLayer?.push(args);
+    };
+    window.gtag("js", new Date());
+    // IP anonimizada y sin señales de publicidad.
+    window.gtag("config", ANALYTICS_ID, {
+      anonymize_ip: true,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+    });
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`;
+  }
   document.head.appendChild(s);
 }
