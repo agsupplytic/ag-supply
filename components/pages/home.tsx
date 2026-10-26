@@ -27,7 +27,7 @@ import { pageMetadata } from "@/lib/seo";
 const COPY = {
   es: {
     meta: {
-      title: "AG Supply — Convertidora de papel en Santiago, RD",
+      title: "AG Supply — Papel higiénico, papel toalla y servilletas",
       description: "Convertidora de papel en Santiago, RD. Fabricamos papel higiénico, toallas, servilletas, interfoliados y papel facial. Marcas Ocean Breeze y Bonche.",
     },
     h1: "Convertidora de papel en Santiago, República Dominicana",
@@ -91,7 +91,7 @@ const COPY = {
   },
   en: {
     meta: {
-      title: "AG Supply — Paper converter, Dominican Republic",
+      title: "AG Supply — Toilet paper, paper towels and napkins",
       description: "Paper converter in Santiago, DR. We manufacture toilet paper, paper towels, napkins, interfolded towels and facial tissue. Ocean Breeze and Bonche brands.",
     },
     h1: "Paper converter in Santiago, Dominican Republic",

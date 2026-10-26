@@ -173,3 +173,18 @@ No cambiable desde el código: ID de Google Analytics, perfil de Google Maps, en
 - **Títulos de ficha** con su categoría cuando caben en 60 caracteres: «Toalla Center Pull 6/1 · Papel toalla — AG Supply».
 - Sitemap: 258 → 276 URLs. `check:out`, E2E (82/82 + 9 nuevas), axe 0 violaciones.
 - **Límite:** esto mejora que Google entienda qué ofrece cada página. El puesto para búsquedas genéricas lo deciden el rastreo de Google, la competencia y la autoridad del dominio (enlaces externos, perfil de Google Maps); no se garantiza.
+
+### Ronda 4c — informe de SEOptimer sobre producción (26 oct 2026, versión anterior)
+
+Resultado: «su página se puede optimizar», 10 recomendaciones. Posicionamiento, GEO y usabilidad salieron bien; PageSpeed móvil bueno (LCP 2,3 s, TBT 0,02 s, CLS 0,049).
+
+| Recomendación | Estado |
+|---|---|
+| Construir enlaces (alta): 1 solo backlink, nofollow, de un sitio de dominios | Fuera del código: directorios, Google Maps, enlaces de distribuidores y proveedores |
+| Acortar el título (67 caracteres) | Hecho en la rama: ahora 54 («AG Supply — Papel higiénico, papel toalla y servilletas») |
+| Recursos que bloquean el renderizado (CSS de 10 KB) | Probado `inlineCss`: engorda el HTML de 184 a 297 KB. Descartado |
+| Optimizar imágenes (miniaturas de 66 KB descargadas a 128 px) | Hecho en la rama: variantes reducidas (3 a 4 KB) |
+| Herramienta de analítica | Código listo y apagado; falta el ID de GA4 |
+| Esquema de negocio local | Pendiente de dirección completa (calle y número) |
+| Perfiles de YouTube, X, Facebook y LinkedIn | Solo si el cliente los crea; no se enlazan perfiles que no existen |
+| Evitar múltiples redirecciones | `http://www…` pasa por 2 saltos (HTTPS de Hostinger y luego www→raíz). Se evita desactivando «Forzar HTTPS» en hPanel y dejando que `.htaccess` haga ambos; no se tocó |

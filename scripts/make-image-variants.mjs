@@ -27,7 +27,7 @@ for (const dir of SRC_DIRS) {
       const dest = join(to, `${name}-${w}.webp`);
       if (existsSync(dest) && statSync(dest).mtimeMs >= statSync(src).mtimeMs) { kept++; continue; }
       // Nunca se amplía: si el original es más estrecho, la variante conserva su tamaño.
-      await sharp(src).resize({ width: Math.min(w, meta.width ?? w), withoutEnlargement: true }).webp({ quality: 80 }).toFile(dest);
+      await sharp(src).resize({ width: Math.min(w, meta.width ?? w), withoutEnlargement: true }).webp({ quality: 76 }).toFile(dest);
       made++;
     }
   }

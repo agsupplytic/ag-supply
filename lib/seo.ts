@@ -23,8 +23,8 @@ export function rootMetadata(lang: Lang): Metadata {
   const t = textFor(lang);
   const title =
     lang === "es"
-      ? "AG Supply — Convertidora de papel en Santiago, RD"
-      : "AG Supply — Paper converter, Dominican Republic";
+      ? "AG Supply — Papel higiénico, papel toalla y servilletas"
+      : "AG Supply — Toilet paper, paper towels and napkins";
   return {
     metadataBase: new URL(siteConfig.url),
     title: { default: title, template: `%s — ${siteConfig.name}` },
