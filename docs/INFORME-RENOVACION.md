@@ -147,3 +147,20 @@ software (sustituir si hay un archivo sin fondo); la animación de entrada usa `
 | Fichas delgadas con `noindex` y fuera del sitemap (`lib/content/thin.ts`): 55 de 168; 113 indexables | Verificado: `check:out` comprueba noindex ⇔ regla y sitemap (258 URLs) |
 | Guía de Search Console (`docs/GUIA-SEARCH-CONSOLE.md`) | Redactada; **no ejecutada** (requiere el sitio publicado y acceso al DNS) |
 | Teléfono: solo `809-612-2020` (se retiró `809-778-9119` de contacto, FAQ, JSON-LD y `llms.txt`); los de distribuidores se mantienen | Verificado: sin rastro en `out/` |
+
+## Ronda 4 — auditoría SEO y nombre del sitio (26 oct 2026)
+
+Criterios que ahora vigila `npm run check:out` en todas las páginas indexables: título ≤ 60 caracteres sin repetir la marca, descripción de 110 a 160, texto alternativo en todas las imágenes y al menos 300 palabras visibles.
+
+| Cambio | Resultado medido (local) |
+|---|---|
+| Títulos: 28 páginas pasaban de 60 caracteres (inicio con 67); duplicaban «AG Supply» en marca y FAQ | Máximo 60, mediana 46 |
+| Descripciones: 17 con menos de 120 y 5 con más de 160 | Mínimo 127, máximo 159 |
+| Texto: 131 páginas con menos de 300 palabras (fichas, FAQ, contacto, planta, categorías) | Mínimo 312, mediana 459. Texto añadido solo con datos reales (categoría, origen, presentación, pasos de cotización, horario) |
+| Imágenes sin alt (miniaturas del catálogo) | 0 |
+| Nombre del sitio en Google: `WebSite` con `name` «AG Supply» y `alternateName`, ahora solo en la portada de cada idioma; ícono 192 px y `favicon.ico` | Pendiente: Google debe volver a rastrear la portada; la fecha no depende de nosotros |
+| Peso: las miniaturas descargaban la foto completa (hasta 67 KB cada una); ahora variantes de 128 a 1080 px (`npm run images`, corre en prebuild) | Inicio móvil: 689 KB → 444 KB. HTML del catálogo: 636 → 550 KB |
+| HSTS (`max-age=31536000`, sin includeSubDomains ni preload) | Se activa al desplegar `.htaccess` |
+| Lighthouse móvil local: rendimiento 92–94; accesibilidad, buenas prácticas y SEO 100. axe: 0 violaciones; E2E: 82/82 | La puntuación de rendimiento varía de una corrida a otra (70 a 92 sobre producción con el mismo código) |
+
+No cambiable desde el código: ID de Google Analytics, perfil de Google Maps, enlaces a más redes sociales, dirección completa. Varios auditores penalizan su ausencia.

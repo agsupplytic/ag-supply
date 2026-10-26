@@ -23,7 +23,7 @@ const BRAND_SLUG = { oceanBreeze: "ocean-breeze", bonche: "bonche" } as const;
 const COPY = {
   es: {
     oceanBreeze: {
-      meta: { title: "Ocean Breeze: línea institucional de AG Supply", description: "Ocean Breeze, marca de AG Supply para hoteles, restaurantes y cadenas: servilletas, papel higiénico, toallas, interfoliados y papel facial fabricados en Santiago." },
+      meta: { title: "Ocean Breeze: línea institucional", description: "Ocean Breeze, marca de AG Supply para hoteles, restaurantes y cadenas: servilletas, papel higiénico, toallas e interfoliados fabricados en Santiago." },
       h1: "Ocean Breeze, la línea de AG Supply para hoteles y restaurantes",
       sub: "Servilletas, papel higiénico, toallas, interfoliados y papel facial con marca Ocean Breeze, para hoteles, restaurantes, cadenas, catering y eventos.",
       audience: ["Hoteles", "Restaurantes", "Cadenas", "Catering", "Eventos"],
@@ -60,7 +60,7 @@ const COPY = {
   },
   en: {
     oceanBreeze: {
-      meta: { title: "Ocean Breeze: AG Supply's institutional line", description: "Ocean Breeze, AG Supply's brand for hotels, restaurants and chains: napkins, toilet paper, paper towels, interfolded towels and facial tissue made in Santiago." },
+      meta: { title: "Ocean Breeze: institutional line", description: "Ocean Breeze, AG Supply's brand for hotels, restaurants and chains: napkins, toilet paper, paper towels and interfolded towels made in Santiago." },
       h1: "Ocean Breeze, AG Supply's line for hotels and restaurants",
       sub: "Napkins, toilet paper, paper towels, interfolded towels and facial tissue under the Ocean Breeze brand, for hotels, restaurants, chains, catering and events.",
       audience: ["Hotels", "Restaurants", "Chains", "Catering", "Events"],

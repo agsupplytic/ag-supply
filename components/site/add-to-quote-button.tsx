@@ -66,10 +66,7 @@ export function AddToQuoteButton({
       onBlur={() => setQty(String(parseQty(qty)))}
       onKeyDown={(e) => e.key === "Enter" && add()}
       aria-label={t.qty(product.name)}
-      className={cn(
-        "rounded-md border border-control-border bg-white text-center font-heading font-bold text-ink",
-        layout === "detail" ? "h-12 w-20" : "h-9 w-16 text-sm",
-      )}
+      className={layout === "detail" ? "qty-input qty-input-lg" : "qty-input"}
     />
   );
 
@@ -80,7 +77,7 @@ export function AddToQuoteButton({
       <div className={cn("flex items-center gap-2", className)}>
         {qtyInput}
         <Button size="sm" variant={inQuote ? "subtle" : "primary"} onClick={add}>
-          {icon}
+          {inQuote && icon}
           {inQuote ? t.addMore : t.add}
         </Button>
       </div>

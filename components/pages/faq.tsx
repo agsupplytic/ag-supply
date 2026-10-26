@@ -17,11 +17,11 @@ type QA = { q: string; a: string };
 
 const META = {
   es: {
-    title: "Preguntas frecuentes sobre AG Supply",
+    title: "Preguntas frecuentes: papel y desechables",
     description: "Respuestas sobre AG Supply: qué fabrica, las marcas Ocean Breeze y Bonche, cómo se cotiza, distribuidores, ubicación de la planta y horario de atención.",
   },
   en: {
-    title: "AG Supply frequently asked questions",
+    title: "FAQ: paper products and quotes",
     description: "Answers about AG Supply: what it manufactures, the Ocean Breeze and Bonche brands, how to request a quote, distributors, plant location and business hours.",
   },
 };
@@ -66,6 +66,9 @@ export async function FaqPage({ lang }: { lang: Lang }) {
             { q: "¿Por qué no hay precios en el sitio?", a: "El precio depende de la referencia y del volumen de cada pedido, por eso se confirma por pedido. Arme su lista en el catálogo y envíela por WhatsApp." },
             { q: "¿Cómo pido una cotización?", a: "En el catálogo, añada los productos a la lista, ajuste las cantidades y agregue una nota por producto si lo necesita. Al enviar, se genera un mensaje de WhatsApp con su lista. No hace falta registrarse." },
             { q: "¿Pueden fabricar un formato o empaque específico?", a: "Consulte por WhatsApp o por el formulario de contacto indicando producto, formato y volumen; atención comercial evalúa cada caso." },
+            { q: "¿Puedo cotizar varios productos a la vez?", a: "Sí. La lista de cotización admite todos los productos del catálogo, cada uno con su cantidad y su nota. Si la lista es muy larga, el mensaje se divide en partes para que WhatsApp lo acepte." },
+            { q: "¿Qué datos debo incluir al pedir una cotización?", a: "Código (SKU) y nombre del producto, cantidad, presentación y la ciudad de entrega. Con la lista del catálogo, esos datos ya van en el mensaje." },
+            { q: "¿Dónde está la planta y cuál es el horario de atención?", a: `La planta está en el ${siteConfig.address.line1}, ${siteConfig.address.city}. Horario: ${siteConfig.hours.label}.` },
             { q: "¿Tienen distribuidores autorizados?", a: "Sí, en Santiago, Santo Domingo, Región Este y Puerto Plata. Sus datos están en la página de contacto." },
             { q: "¿Cómo los contacto directamente?", a: `Por teléfono (${siteConfig.phones[0].value}), por correo (${siteConfig.email}) o por WhatsApp desde cualquier botón del sitio.` },
           ],
@@ -95,6 +98,9 @@ export async function FaqPage({ lang }: { lang: Lang }) {
             { q: "Why are there no prices on the site?", a: "Price depends on the item and the volume of each order, so it is confirmed per order. Build your list in the catalog and send it via WhatsApp." },
             { q: "How do I request a quote?", a: "In the catalog, add products to the list, adjust quantities and add a note per product if needed. When you send it, a WhatsApp message with your list is generated. No registration is required." },
             { q: "Can you make a specific format or packaging?", a: "Ask on WhatsApp or through the contact form with the product, format and volume; sales evaluates each case." },
+            { q: "Can I quote several products at once?", a: "Yes. The quote list accepts every catalog product, each with its own quantity and note. If the list is very long, the message is split into parts so WhatsApp accepts it." },
+            { q: "What information should I include when requesting a quote?", a: "Product code (SKU) and name, quantity, pack size and the delivery city. With the catalog list, that information is already in the message." },
+            { q: "Where is the plant and what are the business hours?", a: `The plant is in ${siteConfig.address.line1}, ${siteConfig.address.city}. Hours: ${textFor("en").hours}.` },
             { q: "Do you have authorized distributors?", a: "Yes, in Santiago, Santo Domingo, the East region and Puerto Plata. Their details are on the contact page." },
             { q: "How do I contact you directly?", a: `By phone (${siteConfig.phones[0].value}), by email (${siteConfig.email}) or on WhatsApp from any button on the site.` },
           ],
@@ -102,8 +108,8 @@ export async function FaqPage({ lang }: { lang: Lang }) {
       ];
 
   const c2 = es
-    ? { title: "Preguntas frecuentes", lead: "Lo que más preguntan los clientes sobre la empresa, las marcas y la cotización.", none: "¿No encuentra su pregunta?", write: "Escríbanos con su caso concreto.", goContact: "Ir a contacto" }
-    : { title: "Frequently asked questions", lead: "What customers ask most about the company, the brands and quotes.", none: "Can't find your question?", write: "Write to us with your specific case.", goContact: "Go to contact" };
+    ? { title: "Preguntas frecuentes", lead: "Lo que más preguntan los clientes sobre la empresa, las marcas y la cotización.", none: "¿No encuentra su pregunta?", write: "Escríbanos con su caso concreto.", goContact: "Ir a contacto", intro: "AG Supply es una convertidora de papel con planta en Santiago, República Dominicana. Aquí respondemos lo que más nos preguntan hoteles, restaurantes, distribuidores y comercios sobre nuestros productos, las marcas Ocean Breeze y Bonche, y cómo pedir una cotización por WhatsApp o correo." }
+    : { title: "Frequently asked questions", lead: "What customers ask most about the company, the brands and quotes.", none: "Can't find your question?", write: "Write to us with your specific case.", goContact: "Go to contact", intro: "AG Supply is a paper converter with a plant in Santiago, Dominican Republic. Here we answer what hotels, restaurants, distributors and shops ask us most about our products, the Ocean Breeze and Bonche brands, and how to request a quote via WhatsApp or email." };
 
   return (
     <>
@@ -116,6 +122,7 @@ export async function FaqPage({ lang }: { lang: Lang }) {
       />
       <Section>
         <div className="mx-auto max-w-3xl space-y-12">
+          <p className="text-lg text-body">{c2.intro}</p>
           {groups.map((g) => (
             <section key={g.title}>
               <h2 className="rule-red">{g.title}</h2>

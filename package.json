@@ -12,7 +12,10 @@
     "check": "npm run lint && npm run typecheck",
     "content:photos": "node scripts/list-missing-photos.mjs",
     "check:i18n": "node scripts/check-translations.mjs",
-    "verify": "npm run check && npm run build && npm run check:out && npm run check:i18n"
+    "verify": "npm run check && npm run build && npm run check:out && npm run check:i18n",
+    "images": "node scripts/make-image-variants.mjs",
+    "prebuild": "npm run images",
+    "predev": "npm run images"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

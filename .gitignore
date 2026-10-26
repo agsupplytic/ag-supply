@@ -43,3 +43,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Variantes reducidas de imágenes (se generan con `npm run images` en prebuild)
+/public/images/_w/

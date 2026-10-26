@@ -14,7 +14,7 @@ import { pageMetadata } from "@/lib/seo";
 const COPY = {
   es: {
     meta: {
-      title: "La planta: así se convierte el papel en Santiago",
+      title: "Planta: conversión de papel en Santiago",
       description: "Proceso de conversión en la planta de AG Supply, Las Palomas, Santiago: bobinas, rebobinado, corte, doblado, interfoliado y empaque.",
     },
     h1: "Proceso de conversión, etapa por etapa",
@@ -27,13 +27,14 @@ const COPY = {
       { icon: Truck, photo: PLANT_PHOTOS.dispatch, title: "Almacén y despacho", text: "Producto terminado en cajas, consolidado por pedido para su despacho." },
     ],
     see: "Ver lo que producimos",
+    outro: "Del rebobinado al empaque, cada línea trabaja con las presentaciones que figuran en el catálogo. Si necesita un formato o empaque que no aparece, consúltelo con atención comercial: se evalúa cada caso.",
     closingTitle: "¿Quiere conocer la planta?",
     closingText: "Coordine una visita o consulte capacidad y formatos con atención comercial.",
     stage: "Etapa",
   },
   en: {
     meta: {
-      title: "The plant: how paper is converted in Santiago",
+      title: "Plant: paper converting in Santiago",
       description: "Converting process at the AG Supply plant, Las Palomas, Santiago: reels, rewinding, cutting, folding, interfolding and packing.",
     },
     h1: "The converting process, stage by stage",
@@ -46,6 +47,7 @@ const COPY = {
       { icon: Truck, photo: PLANT_PHOTOS.dispatch, title: "Storage and dispatch", text: "Finished product in boxes, consolidated per order for dispatch." },
     ],
     see: "See what we produce",
+    outro: "From rewinding to packing, each line works with the pack sizes listed in the catalog. If you need a format or packaging that is not listed, ask our sales team: each case is evaluated.",
     closingTitle: "Want to see the plant?",
     closingText: "Arrange a visit or ask sales about capacity and formats.",
     stage: "Stage",
@@ -89,7 +91,8 @@ export function PlantPage({ lang }: { lang: Lang }) {
             </li>
           ))}
         </ol>
-        <div className="mt-8">
+        <p className="mt-8 max-w-3xl text-body">{c.outro}</p>
+        <div className="mt-6">
           <Button asChild>
             <Link href={href(lang, { name: "products" })}>{c.see}</Link>
           </Button>

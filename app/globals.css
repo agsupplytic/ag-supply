@@ -230,6 +230,38 @@
     transform: translateY(-2px);
   }
 
+  /* Fila del catálogo: las clases viven aquí y no en cada <li>, para que las 168 filas no
+     repitan la misma cadena de utilidades en el HTML. Columnas = ROW_COLS (product-row.tsx). */
+  .prow {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    column-gap: 1rem;
+    row-gap: 0.5rem;
+    padding: 0.75rem;
+  }
+  .prow:hover { background: color-mix(in srgb, var(--color-brand-blue-50) 60%, transparent); }
+  @media (min-width: 48rem) {
+    .prow {
+      align-items: center;
+      grid-template-columns: 5.5rem 7rem minmax(0, 1fr) 7rem 6.5rem 12.5rem;
+    }
+  }
+
+  /* Cantidad en la cotización (campo numérico). */
+  .qty-input {
+    height: 2.25rem;
+    width: 4rem;
+    border: 1px solid var(--color-control-border);
+    border-radius: var(--radius-md);
+    background: #fff;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  .qty-input-lg { height: 3rem; width: 5rem; font-size: 1rem; }
+
   /* Enlace de texto con subrayado fino. */
   .link {
     color: var(--color-brand-blue-dark);

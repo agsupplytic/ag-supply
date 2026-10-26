@@ -76,7 +76,7 @@ export function OrganizationJsonLd({ lang }: { lang: Lang }) {
   );
 }
 
-/** WebSite — etiqueta al sitio como entidad. */
+/** WebSite — nombre del sitio para Google. Solo en la portada de cada idioma, como pide su guía. */
 export function WebSiteJsonLd({ lang }: { lang: Lang }) {
   return (
     <JsonLd
@@ -85,6 +85,7 @@ export function WebSiteJsonLd({ lang }: { lang: Lang }) {
         "@type": "WebSite",
         "@id": WEBSITE_ID,
         name: siteConfig.name,
+        alternateName: [siteConfig.legalName, "agsupply.com.do"],
         url: absUrl(href(lang, { name: "home" })),
         inLanguage: HTML_LANG[lang],
         publisher: { "@id": ORG_ID },

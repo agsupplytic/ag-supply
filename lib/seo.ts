@@ -23,8 +23,8 @@ export function rootMetadata(lang: Lang): Metadata {
   const t = textFor(lang);
   const title =
     lang === "es"
-      ? "AG Supply — Convertidora de papel en Santiago, República Dominicana"
-      : "AG Supply — Paper converter in Santiago, Dominican Republic";
+      ? "AG Supply — Convertidora de papel en Santiago, RD"
+      : "AG Supply — Paper converter, Dominican Republic";
   return {
     metadataBase: new URL(siteConfig.url),
     title: { default: title, template: `%s — ${siteConfig.name}` },
@@ -131,6 +131,8 @@ export function productDescription(
       ? es ? "Fabricado por AG Supply en Santiago, República Dominicana." : "Manufactured by AG Supply in Santiago, Dominican Republic."
       : es ? "Suministrado por AG Supply, Santiago, República Dominicana." : "Supplied by AG Supply, Santiago, Dominican Republic.",
   );
-  parts.push(es ? "Cotización por WhatsApp." : "Quote via WhatsApp.");
+  parts.push(es ? "Cotización por WhatsApp o correo." : "Quote via WhatsApp or email.");
+  // Descripciones cortas: se completa con información que aplica a todas las fichas (sin cifras ni promesas).
+  if (parts.join(" ").length < 125) parts.push(es ? "Consulte presentaciones y disponibilidad." : "Ask about pack sizes and availability.");
   return parts.join(" ");
 }

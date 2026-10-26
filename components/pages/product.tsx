@@ -21,6 +21,39 @@ import { ui } from "@/lib/i18n/ui";
 import { isThinProduct } from "@/lib/content/thin";
 import { clip, pageMetadata, productDescription } from "@/lib/seo";
 
+const ABOUT = {
+  es: {
+    title: "Acerca de este producto",
+    inCategory: (name: string, cat: string) => `${name} pertenece a la categoría ${cat} de AG Supply.`,
+    made: "AG Supply lo fabrica en su planta del sector Las Palomas, en Santiago, República Dominicana.",
+    supplied: "AG Supply lo suministra desde Santiago, República Dominicana.",
+    pack: (pack: string) => `Se presenta en formato ${pack}, tal como figura en nuestro inventario. Confirme con ventas la unidad de pedido antes de cotizar.`,
+    noPack: "Consulte con ventas la presentación disponible antes de cotizar.",
+    howTitle: "Cómo cotizar este producto",
+    steps: [
+      "Añádalo a su lista de cotización con la cantidad que necesita.",
+      "Revise la lista y agregue otros productos del catálogo si lo desea.",
+      "Envíela por WhatsApp o escríbanos por correo: ventas confirma precio y disponibilidad por pedido.",
+    ],
+    list: "Ver mi lista de cotización",
+  },
+  en: {
+    title: "About this product",
+    inCategory: (name: string, cat: string) => `${name} belongs to AG Supply's ${cat} category.`,
+    made: "AG Supply manufactures it at its plant in the Las Palomas district of Santiago, Dominican Republic.",
+    supplied: "AG Supply supplies it from Santiago, Dominican Republic.",
+    pack: (pack: string) => `It is offered in ${pack} format, as listed in our inventory. Confirm the order unit with sales before requesting a quote.`,
+    noPack: "Ask sales about the available pack size before requesting a quote.",
+    howTitle: "How to request a quote for this product",
+    steps: [
+      "Add it to your quote list with the quantity you need.",
+      "Review the list and add other catalog products if you wish.",
+      "Send it via WhatsApp or email us: sales confirms price and availability per order.",
+    ],
+    list: "View my quote list",
+  },
+} as const;
+
 export async function productMetadata(lang: Lang, cat: string, slug: string) {
   const raw = await getProduct(slug);
   if (!raw || raw.category !== cat) return {};
@@ -32,9 +65,10 @@ export async function productMetadata(lang: Lang, cat: string, slug: string) {
   return pageMetadata({
     lang,
     route: { name: "product", cat, slug },
-    title: clip(product.name, 56),
+    title: clip(product.name, 47),
     description: clip(
       productDescription(product, category ? localizeCategory(category, lang).name : undefined, brand ? localizeBrand(brand, lang).name : undefined, lang),
+      150,
     ),
     image: product.images[0] ? { url: product.images[0], alt: product.name } : undefined,
     noindex: isThinProduct(raw),
@@ -56,6 +90,7 @@ export async function ProductPage({ lang, cat, slug }: { lang: Lang; cat: string
   const { packFormat } = product.specs;
   const catalogName = lang === "es" ? "Catálogo" : "Catalog";
   const icon = iconOf.get(product.category) ?? "";
+  const about = ABOUT[lang];
 
   return (
     <>
@@ -149,6 +184,29 @@ export async function ProductPage({ lang, cat, slug }: { lang: Lang; cat: string
         <p className="mt-3 max-w-2xl text-body">{t.product.specsIntro(category?.name?.toLowerCase() ?? "")}</p>
         <div className="mt-8">
           <SpecGroups specs={product.specs} lang={lang} />
+        </div>
+      </Section>
+
+      <Section>
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <h2 className="rule-red">{about.title}</h2>
+            <div className="mt-4 space-y-3 text-body">
+              <p>{about.inCategory(product.name, category?.name ?? product.category)} {product.fabricated ? about.made : about.supplied}</p>
+              {category?.description && <p>{category.description}</p>}
+              <p>{packFormat ? about.pack(packFormat) : about.noPack}</p>
+              {brand && product.brand !== "generico" && <p>{brand.description}</p>}
+            </div>
+          </div>
+          <div>
+            <h2 className="rule-red">{about.howTitle}</h2>
+            <ol className="mt-4 list-decimal space-y-2 pl-5 text-body marker:font-bold marker:text-brand-blue-dark">
+              {about.steps.map((step) => <li key={step}>{step}</li>)}
+            </ol>
+            <p className="mt-4">
+              <Link href={href(lang, { name: "quote" })} className="link font-bold">{about.list}</Link>
+            </p>
+          </div>
         </div>
       </Section>
 

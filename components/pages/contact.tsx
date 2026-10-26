@@ -16,7 +16,7 @@ import { pageMetadata } from "@/lib/seo";
 const COPY = {
   es: {
     meta: {
-      title: "Contacto y cotización",
+      title: "Contacto y cotización en Santiago, RD",
       description: "Contacte a AG Supply en Las Palomas, Santiago: teléfono, correo, WhatsApp, horario, mapa y distribuidores autorizados. Lunes a viernes, 8:00 a.m. a 5:00 p.m.",
     },
     h1: "Contacto y cotización",
@@ -35,7 +35,7 @@ const COPY = {
   },
   en: {
     meta: {
-      title: "Contact and quotes",
+      title: "Contact and quotes in Santiago, DR",
       description: "Contact AG Supply in Las Palomas, Santiago: phone, email, WhatsApp, business hours, map and authorized distributors. Monday to Friday, 8:00 a.m. to 5:00 p.m.",
     },
     h1: "Contact and quotes",
@@ -53,6 +53,31 @@ const COPY = {
     mapTitle: "AG Supply location in Las Palomas, Santiago",
   },
 };
+
+const PREP = {
+  es: {
+    title: "Antes de escribirnos",
+    lead: "Con estos datos, atención comercial puede responder más rápido y con menos idas y vueltas:",
+    items: [
+      "Los productos que le interesan, con su código (SKU) y nombre tal como aparecen en el catálogo.",
+      "La cantidad y la presentación que necesita, por ejemplo cajas o fardos.",
+      "La ciudad o zona donde necesita recibir el pedido.",
+      "Si es un formato, empaque o marca específica, una descripción o una foto de referencia.",
+    ],
+    hours: (label: string) => `Horario de atención: ${label}. Fuera de ese horario puede dejar su mensaje por WhatsApp o por correo.`,
+  },
+  en: {
+    title: "Before you write to us",
+    lead: "With this information, our sales team can answer faster and with fewer back-and-forths:",
+    items: [
+      "The products you are interested in, with their code (SKU) and name as shown in the catalog.",
+      "The quantity and pack size you need, for example cases or bales.",
+      "The city or area where you need the order delivered.",
+      "For a specific format, packaging or brand, a description or a reference photo.",
+    ],
+    hours: (label: string) => `Business hours: ${label}. Outside those hours you can leave your message on WhatsApp or by email.`,
+  },
+} as const;
 
 export function contactMetadata(lang: Lang) {
   const c = COPY[lang].meta;
@@ -147,6 +172,15 @@ export function ContactPage({ lang }: { lang: Lang }) {
           className="h-80 w-full rounded-xl border border-border md:h-96"
         />
       </Container>
+
+      <Section tone="surface">
+        <h2 className="rule-red">{PREP[lang].title}</h2>
+        <p className="mt-3 max-w-3xl text-body">{PREP[lang].lead}</p>
+        <ul className="mt-4 max-w-3xl list-disc space-y-2 pl-5 text-body marker:text-brand-blue">
+          {PREP[lang].items.map((i) => <li key={i}>{i}</li>)}
+        </ul>
+        <p className="mt-4 max-w-3xl text-body">{PREP[lang].hours(tt.hours)}</p>
+      </Section>
 
       <Distributors lang={lang} />
     </>

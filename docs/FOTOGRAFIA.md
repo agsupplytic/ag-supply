@@ -39,4 +39,4 @@ Sin retoque, con luz natural o de nave, horizontales, mínimo 2400 px de ancho.
 
 Pedir a diseño: logotipo de AG Supply en **vector** (SVG/AI) y en **versión en negativo** (blanco)
 para fondo marino; logotipos de Ocean Breeze y Bonche en vector con fondo transparente.
-Hoy el logotipo va sobre pastilla blanca en el pie.
+Hoy el logotipo va directo (WebP con transparencia) sobre fondo claro.

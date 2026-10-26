@@ -1,5 +1,7 @@
 import { getBrands, getCategories, getProducts } from "@/lib/content";
 import { localizeBrand, localizeCategory, localizeProduct } from "@/lib/i18n/content";
+import Link from "next/link";
+import { Section } from "@/components/site/section";
 import { Container } from "@/components/site/container";
 import { PageHero } from "@/components/site/page-hero";
 import { Catalog } from "@/components/site/catalog";
@@ -14,7 +16,7 @@ import { notFound } from "next/navigation";
 const COPY = {
   es: {
     meta: {
-      title: "Catálogo de papel higiénico, servilletas y toallas",
+      title: "Catálogo: papel higiénico, servilletas, toallas",
       description: "Catálogo de AG Supply: papel higiénico, toallas, servilletas, interfoliados, papel facial, jabón y desechables con SKU y presentación. Cotización por WhatsApp.",
     },
     lead: (refs: number, cats: number) => `${refs} referencias en ${cats} categorías. Busque por producto, SKU o presentación y arme su lista de cotización. Los precios se confirman por pedido.`,
@@ -72,6 +74,27 @@ export async function CatalogPage({ lang }: { lang: Lang }) {
   );
 }
 
+const HOW = {
+  es: {
+    title: "Cómo cotizar en esta categoría",
+    steps: [
+      "Filtre o busque la referencia por nombre, código (SKU), marca o presentación.",
+      "Añádala a su lista con la cantidad que necesita; puede sumar productos de otras categorías.",
+      "Envíe la lista por WhatsApp o escríbanos: ventas confirma precio y disponibilidad por pedido.",
+    ],
+    list: "Ver mi lista de cotización",
+  },
+  en: {
+    title: "How to request a quote in this category",
+    steps: [
+      "Filter or search for the item by name, code (SKU), brand or pack size.",
+      "Add it to your list with the quantity you need; you can add products from other categories.",
+      "Send the list via WhatsApp or write to us: sales confirms price and availability per order.",
+    ],
+    list: "View my quote list",
+  },
+} as const;
+
 // ---------------------------------------------------------------- categoría
 export async function categoryMetadata(lang: Lang, slug: string) {
   const cat = await getCategories().then((l) => l.find((x) => x.slug === slug));
@@ -127,6 +150,15 @@ export async function CategoryPage({ lang, slug }: { lang: Lang; slug: string })
       <Container className="py-10 md:py-12">
         <Catalog products={products} categories={categories} brands={brands} lang={lang} lockedCategory={slug} />
       </Container>
+      <Section tone="surface">
+        <h2 className="rule-red">{HOW[lang].title}</h2>
+        <ol className="mt-4 max-w-3xl list-decimal space-y-2 pl-5 text-body marker:font-bold marker:text-brand-blue-dark">
+          {HOW[lang].steps.map((step) => <li key={step}>{step}</li>)}
+        </ol>
+        <p className="mt-4">
+          <Link href={href(lang, { name: "quote" })} className="link font-bold">{HOW[lang].list}</Link>
+        </p>
+      </Section>
     </>
   );
 }

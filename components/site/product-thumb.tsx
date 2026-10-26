@@ -47,7 +47,7 @@ export function ProductThumb({
         aria-label={t.catalog.enlarge(product.name)}
         className={cn(box, "group relative bg-white transition-shadow hover:shadow-md focus-visible:ring-2")}
       >
-        <Image src={src} alt="" width={72} height={72} className="size-full object-contain p-1" />
+        <Image src={src} alt={product.name} width={72} height={72} className="size-full object-contain p-1" />
         <span className="absolute inset-x-0 bottom-0 flex justify-end bg-white/80 p-0.5 text-brand-blue opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
           <ZoomIn className="size-3.5" aria-hidden />
         </span>

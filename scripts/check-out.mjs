@@ -76,8 +76,19 @@ for (const f of htmlFiles) {
     if (title) titles.set(`${isEn ? "en" : "es"}|${title}`, [...(titles.get(`${isEn ? "en" : "es"}|${title}`) ?? []), path]);
     if (desc) descs.set(`${isEn ? "en" : "es"}|${desc}`, [...(descs.get(`${isEn ? "en" : "es"}|${desc}`) ?? []), path]);
   }
-  if (title && title.length > 70) fail(`${path}: título de ${title.length} caracteres (máx. 70)`);
-  if (desc && desc.length > 165) fail(`${path}: descripción de ${desc.length} caracteres (máx. 165)`);
+  // Límites que usan los auditores de SEO: título ≤ 60, descripción 110–160 (solo páginas indexables).
+  if (title && title.length > 60) fail(`${path}: título de ${title.length} caracteres (máx. 60)`);
+  if (desc && desc.length > 160) fail(`${path}: descripción de ${desc.length} caracteres (máx. 160)`);
+  if (!noindex && desc && desc.length < 110) fail(`${path}: descripción de ${desc.length} caracteres (mín. 110)`);
+  if (title && /AG Supply.*AG Supply/.test(title)) fail(`${path}: el título repite la marca`);
+  // imágenes con texto alternativo (las decorativas deben marcarse aria-hidden, no alt vacío)
+  for (const im of html.match(/<img\b[^>]*>/g) ?? []) if (!/\balt="[^"]+"/.test(im)) fail(`${path}: imagen sin texto alternativo`);
+  // contenido mínimo en páginas indexables
+  if (!noindex) {
+    const visible = html.replace(/<script[\s\S]*?<\/script>/g, "").replace(/<style[\s\S]*?<\/style>/g, "").replace(/<[^>]+>/g, " ").replace(/&[a-z#0-9]+;/g, " ");
+    const words = visible.split(/\s+/).filter(Boolean).length;
+    if (words < 300) fail(`${path}: solo ${words} palabras visibles (mín. 300)`);
+  }
 
   // JSON-LD
   for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {

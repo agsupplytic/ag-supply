@@ -6,7 +6,7 @@ import { href, type Lang } from "@/lib/i18n/routes";
 import { ui } from "@/lib/i18n/ui";
 import type { Product } from "@/lib/content/types";
 
-/** Columnas de la tabla del catálogo (compartidas por la cabecera y las filas). */
+/** Columnas de la tabla del catálogo (compartidas por la cabecera y las filas): ver `.prow` en globals.css. */
 export const ROW_COLS = "md:grid-cols-[5.5rem_7rem_minmax(0,1fr)_7rem_6.5rem_12.5rem]";
 
 /**
@@ -21,7 +21,7 @@ export function ProductRow({ product, icon, lang }: { product: Product; icon: st
   const sub = [product.subcategory, ...detail].filter(Boolean).join(" · ");
 
   return (
-    <li className={`grid grid-cols-[4.5rem_1fr] gap-x-4 gap-y-2 px-3 py-3 hover:bg-brand-blue-50/60 md:items-center ${ROW_COLS}`}>
+    <li className="prow">
       <ProductThumb product={product} icon={icon} lang={lang} className="row-span-3 md:order-1 md:row-span-1" />
 
       <div className="min-w-0 md:order-3">
