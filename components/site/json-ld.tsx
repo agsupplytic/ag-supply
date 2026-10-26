@@ -1,7 +1,7 @@
 import { siteConfig } from "@/lib/site-config";
 import { absUrl, productDescription } from "@/lib/seo";
 import { textFor } from "@/lib/i18n/site-text";
-import { HTML_LANG, href, type Lang } from "@/lib/i18n/routes";
+import { HTML_LANG, href, type Lang, type Route } from "@/lib/i18n/routes";
 import type { Product, Category } from "@/lib/content/types";
 
 const ORG_ID = `${siteConfig.url}/#organization`;
@@ -146,8 +146,8 @@ export function ProductJsonLd({
 }
 
 /** CollectionPage + ItemList — páginas de categoría. */
-export function CollectionJsonLd({ category, products, lang }: { category: Category; products: Product[]; lang: Lang }) {
-  const url = absUrl(href(lang, { name: "category", cat: category.slug }));
+export function CollectionJsonLd({ category, products, lang, route }: { category: Category; products: Product[]; lang: Lang; route?: Route }) {
+  const url = absUrl(href(lang, route ?? { name: "category", cat: category.slug }));
   return (
     <JsonLd
       data={{

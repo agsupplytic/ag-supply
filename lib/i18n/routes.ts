@@ -13,6 +13,7 @@ export type Route =
   | { name: "plant" }
   | { name: "products" }
   | { name: "category"; cat: string }
+  | { name: "collection"; col: string }
   | { name: "product"; cat: string; slug: string }
   | { name: "oceanBreeze" }
   | { name: "bonche" }
@@ -20,7 +21,7 @@ export type Route =
   | { name: "faq" }
   | { name: "quote" };
 
-type Fixed = Exclude<Route["name"], "category" | "product" | "home">;
+type Fixed = Exclude<Route["name"], "category" | "collection" | "product" | "home">;
 
 const SEG: Record<Lang, Record<Fixed, string>> = {
   es: {
@@ -61,6 +62,26 @@ const CAT_ES = Object.fromEntries(Object.entries(CAT_EN).map(([es, en]) => [en, 
 export const catSlug = (lang: Lang, cat: string) => (lang === "en" ? (CAT_EN[cat] ?? cat) : cat);
 export const catFromSlug = (lang: Lang, slug: string) => (lang === "en" ? (CAT_ES[slug] ?? slug) : slug);
 
+/**
+ * Colecciones: páginas por tipo de producto dentro de una categoría («Servilletas dinner»,
+ * «Papel higiénico jumbo»…). Viven en /productos/<slug>/, junto a las categorías, con slug
+ * propio por idioma. Las reglas que deciden qué productos entran están en lib/collections.ts.
+ */
+export const COLLECTION_SLUGS: Record<string, { cat: string; es: string; en: string }> = {
+  jumbo: { cat: "papel-higienico", es: "papel-higienico-jumbo", en: "jumbo-toilet-paper" },
+  "toalla-kraft": { cat: "toallas", es: "papel-toalla-kraft", en: "kraft-paper-towels" },
+  "toalla-cocina": { cat: "toallas", es: "papel-toalla-de-cocina", en: "kitchen-paper-towels" },
+  dinner: { cat: "servilletas", es: "servilletas-dinner", en: "dinner-napkins" },
+  cocktail: { cat: "servilletas", es: "servilletas-cocktail", en: "cocktail-napkins" },
+  "servilleta-kraft": { cat: "servilletas", es: "servilletas-kraft", en: "kraft-napkins" },
+  dispenser: { cat: "servilletas", es: "servilletas-para-dispensador", en: "dispenser-napkins" },
+  combos: { cat: "cuberteria", es: "combos-de-cubiertos-desechables", en: "disposable-cutlery-combos" },
+  suelta: { cat: "cuberteria", es: "cuberteria-desechable-suelta", en: "loose-disposable-cutlery" },
+};
+export const collectionSlug = (lang: Lang, col: string) => COLLECTION_SLUGS[col]?.[lang] ?? col;
+export const collectionFromSlug = (lang: Lang, slug: string): string | undefined =>
+  Object.entries(COLLECTION_SLUGS).find(([, v]) => v[lang] === slug)?.[0];
+
 /** Ruta interna (con barra inicial y final) de una página en un idioma. */
 export function href(lang: Lang, route: Route): string {
   const prefix = lang === "en" ? "/en" : "";
@@ -69,6 +90,8 @@ export function href(lang: Lang, route: Route): string {
       return `${prefix}/`;
     case "category":
       return `${prefix}/${SEG[lang].products}/${catSlug(lang, route.cat)}/`;
+    case "collection":
+      return `${prefix}/${SEG[lang].products}/${collectionSlug(lang, route.col)}/`;
     case "product":
       return `${prefix}/${SEG[lang].products}/${catSlug(lang, route.cat)}/${route.slug}/`;
     default:
@@ -87,7 +110,11 @@ export function parsePath(pathname: string): { lang: Lang; route: Route } | null
     if (SEG[lang][name] === joined) return { lang, route: { name } as Route };
   }
   if (parts[0] === SEG[lang].products) {
-    if (parts.length === 2) return { lang, route: { name: "category", cat: catFromSlug(lang, parts[1]) } };
+    if (parts.length === 2) {
+      const col = collectionFromSlug(lang, parts[1]);
+      if (col) return { lang, route: { name: "collection", col } };
+      return { lang, route: { name: "category", cat: catFromSlug(lang, parts[1]) } };
+    }
     if (parts.length === 3) return { lang, route: { name: "product", cat: catFromSlug(lang, parts[1]), slug: parts[2] } };
   }
   return null;

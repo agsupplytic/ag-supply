@@ -2,6 +2,7 @@ import { execSync } from "node:child_process";
 import type { MetadataRoute } from "next";
 import { getCategories, getProducts } from "@/lib/content";
 import { isThinProduct } from "@/lib/content/thin";
+import { publishedCollections } from "@/lib/collections";
 import { absUrl } from "@/lib/seo";
 import { href, type Route } from "@/lib/i18n/routes";
 import { siteConfig } from "@/lib/site-config";
@@ -51,6 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...pages.flatMap(([route, file]) => entry(route, lastChange(file, ...(route.name === "home" ? shared : [])))),
     ...categories.flatMap((c) => entry({ name: "category", cat: c.slug }, catalogDate)),
+    ...publishedCollections(products).flatMap((x) => entry({ name: "collection", col: x.collection.id }, catalogDate)),
     ...products.filter((p) => !isThinProduct(p)).flatMap((p) =>
       entry({ name: "product", cat: p.category, slug: p.slug }, catalogDate, p.images[0] ? [`${siteConfig.url}${p.images[0]}`] : undefined),
     ),

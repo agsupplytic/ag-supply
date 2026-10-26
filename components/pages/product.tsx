@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Factory, Truck } from "lucide-react";
-import { getBrand, getCategories, getProduct, getRelatedProducts } from "@/lib/content";
+import { getBrand, getCategories, getProduct, getProducts, getRelatedProducts } from "@/lib/content";
 import { localizeBrand, localizeCategory, localizeProduct } from "@/lib/i18n/content";
 import { Container } from "@/components/site/container";
 import { Section } from "@/components/site/section";
@@ -19,6 +19,7 @@ import { textFor } from "@/lib/i18n/site-text";
 import { href, type Lang } from "@/lib/i18n/routes";
 import { ui } from "@/lib/i18n/ui";
 import { isThinProduct } from "@/lib/content/thin";
+import { collectionsOf } from "@/lib/collections";
 import { clip, pageMetadata, productDescription } from "@/lib/seo";
 
 const ABOUT = {
@@ -36,6 +37,7 @@ const ABOUT = {
       "Envíela por WhatsApp o escríbanos por correo: ventas confirma precio y disponibilidad por pedido.",
     ],
     list: "Ver mi lista de cotización",
+    moreOf: "Vea más:",
   },
   en: {
     title: "About this product",
@@ -51,6 +53,7 @@ const ABOUT = {
       "Send it via WhatsApp or email us: sales confirms price and availability per order.",
     ],
     list: "View my quote list",
+    moreOf: "See more:",
   },
 } as const;
 
@@ -65,7 +68,10 @@ export async function productMetadata(lang: Lang, cat: string, slug: string) {
   return pageMetadata({
     lang,
     route: { name: "product", cat, slug },
-    title: clip(product.name, 47),
+    // Con la categoría cuando cabe (47 + « — AG Supply» = 60): «Toalla 6/1 TAD 500 Pies · Papel toalla».
+    title: category && `${product.name} · ${localizeCategory(category, lang).name}`.length <= 47
+      ? `${product.name} · ${localizeCategory(category, lang).name}`
+      : clip(product.name, 47),
     description: clip(
       productDescription(product, category ? localizeCategory(category, lang).name : undefined, brand ? localizeBrand(brand, lang).name : undefined, lang),
       150,
@@ -80,7 +86,8 @@ export async function ProductPage({ lang, cat, slug }: { lang: Lang; cat: string
   const raw = await getProduct(slug);
   if (!raw || raw.category !== cat) notFound();
 
-  const [cats, brandRaw, relatedRaw] = await Promise.all([getCategories(), getBrand(raw.brand), getRelatedProducts(raw, 4)]);
+  const [cats, brandRaw, relatedRaw, allProducts] = await Promise.all([getCategories(), getBrand(raw.brand), getRelatedProducts(raw, 4), getProducts()]);
+  const collections = collectionsOf(raw, allProducts);
   const categories = cats.map((x) => localizeCategory(x, lang));
   const category = categories.find((x) => x.slug === raw.category);
   const iconOf = new Map(categories.map((x) => [x.slug, x.icon]));
@@ -206,6 +213,18 @@ export async function ProductPage({ lang, cat, slug }: { lang: Lang; cat: string
             <p className="mt-4">
               <Link href={href(lang, { name: "quote" })} className="link font-bold">{about.list}</Link>
             </p>
+            {collections.length > 0 && (
+              <p className="mt-4 text-body">
+                {about.moreOf}{" "}
+                {collections.map((col, i) => (
+                  <span key={col.id}>
+                    {i > 0 && ", "}
+                    <Link href={href(lang, { name: "collection", col: col.id })} className="link font-bold">{col[lang].name}</Link>
+                  </span>
+                ))}
+                .
+              </p>
+            )}
           </div>
         </div>
       </Section>

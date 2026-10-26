@@ -32,7 +32,7 @@ const CATEGORIES = [
     description: "Papel higiénico de uso doméstico e institucional. La gama incluye el formato clásico 12/1 genérico, formatos de doble capa 24/1 (gramajes de 65, 75 y 85 g) y 30/1 (75 y 90–95 g), paquetes de 6/1 de 9 libras y el formato 48/1 con opciones envueltas individualmente en metrajes de 24 m y 35 m (marcas Ocean Breeze y Bonche).",
   },
   {
-    slug: "toallas", fabricated: true, name: "Toallas de papel", icon: "Layers", order: 2,
+    slug: "toallas", fabricated: true, name: "Papel toalla", icon: "Layers", order: 2,
     short: "Secado de manos y limpieza para alto tránsito: center pull 6/1, toallas de cocina, bobina Kraft de 550 pies y rollos Bleach de 600 y 700 pies.",
     description: "Soluciones para el secado de manos y la limpieza en entornos corporativos y hoteleros de alto tránsito. Destacan las toallas Center Pull 6/1, toallas de cocina lisas, bobinas de papel toalla Kraft de 550 pies, toallas en caja Wave o fardo de 800 pies y los rollos de Toalla Bleach industrial en formatos de 600 y 700 pies.",
   },

@@ -164,3 +164,12 @@ Criterios que ahora vigila `npm run check:out` en todas las páginas indexables:
 | Lighthouse móvil local: rendimiento 92–94; accesibilidad, buenas prácticas y SEO 100. axe: 0 violaciones; E2E: 82/82 | La puntuación de rendimiento varía de una corrida a otra (70 a 92 sobre producción con el mismo código) |
 
 No cambiable desde el código: ID de Google Analytics, perfil de Google Maps, enlaces a más redes sociales, dirección completa. Varios auditores penalizan su ausencia.
+
+### Ronda 4b — búsquedas por tipo de producto («papel toalla», «servilletas dinner»…)
+
+- **Colecciones** (`lib/collections.ts`, rutas en `lib/i18n/routes.ts`): 9 páginas indexables por tipo, en español e inglés, en `/productos/<slug>/`: papel higiénico jumbo, papel toalla kraft, papel toalla de cocina, servilletas dinner, cocktail, kraft y para dispensador, combos de cubiertos desechables y cubertería desechable suelta. Cada una agrupa referencias reales por una regla sobre nombre o subcategoría; se publica solo con 3 o más. El texto usa datos calculados de esos productos (presentaciones, capas, colores).
+- **Enlazado interno:** cada categoría lista sus tipos; cada ficha enlaza a sus colecciones; cada colección enlaza a las hermanas y a la categoría.
+- **Categoría «Papel toalla»** (antes «Toallas de papel»), el término que usan los clientes y que el propio catálogo trae en `paperType`.
+- **Títulos de ficha** con su categoría cuando caben en 60 caracteres: «Toalla Center Pull 6/1 · Papel toalla — AG Supply».
+- Sitemap: 258 → 276 URLs. `check:out`, E2E (82/82 + 9 nuevas), axe 0 violaciones.
+- **Límite:** esto mejora que Google entienda qué ofrece cada página. El puesto para búsquedas genéricas lo deciden el rastreo de Google, la competencia y la autoridad del dominio (enlaces externos, perfil de Google Maps); no se garantiza.

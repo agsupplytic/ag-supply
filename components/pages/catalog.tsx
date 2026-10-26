@@ -1,5 +1,6 @@
 import { getBrands, getCategories, getProducts } from "@/lib/content";
-import { localizeBrand, localizeCategory, localizeProduct } from "@/lib/i18n/content";
+import { collectionFacts, collectionById, publishedCollections } from "@/lib/collections";
+import { localizeBrand, localizeCategory, localizeProduct, specValue } from "@/lib/i18n/content";
 import Link from "next/link";
 import { Section } from "@/components/site/section";
 import { Container } from "@/components/site/container";
@@ -95,6 +96,146 @@ const HOW = {
   },
 } as const;
 
+// ---------------------------------------------------------------- colección (tipo de producto)
+const COL = {
+  es: {
+    lead: (n: number, name: string) => `${n} referencias de ${name.toLowerCase()} en el catálogo de AG Supply, en Santiago, República Dominicana.`,
+    metaTail: "Cotice por WhatsApp o correo.",
+    factsTitle: "Lo que incluye esta selección",
+    packs: "Presentaciones",
+    plies: "Capas",
+    colors: "Colores",
+    othersTitle: (cat: string) => `Más tipos de ${cat.toLowerCase()}`,
+    allIn: (cat: string) => `Ver todo en ${cat}`,
+    typesTitle: "Explorar por tipo",
+  },
+  en: {
+    lead: (n: number, name: string) => `${name}: ${n} items in the AG Supply catalog, Santiago, Dominican Republic.`,
+    metaTail: "Request a quote via WhatsApp or email.",
+    factsTitle: "What this selection includes",
+    packs: "Pack sizes",
+    plies: "Plies",
+    colors: "Colors",
+    othersTitle: (cat: string) => `More types of ${cat.toLowerCase()}`,
+    allIn: (cat: string) => `See all ${cat}`,
+    typesTitle: "Browse by type",
+  },
+} as const;
+
+export async function collectionMetadata(lang: Lang, id: string) {
+  const col = collectionById(id);
+  if (!col) return {};
+  const all = await getProducts();
+  const published = publishedCollections(all).find((x) => x.collection.id === id);
+  if (!published) return {};
+  const k = COL[lang];
+  const copy = col[lang];
+  const photo = CATEGORY_PHOTOS[col.cat];
+  return pageMetadata({
+    lang,
+    route: { name: "collection", col: id },
+    title: lang === "es" ? `${copy.name}: catálogo` : `${copy.name}: catalog`,
+    description: clip(`${k.lead(published.products.length, copy.name)} ${copy.blurb} ${k.metaTail}`, 155),
+    image: photo ? { url: photo.src, alt: photo.alt[lang] } : undefined,
+  });
+}
+
+export async function CollectionPage({ lang, id }: { lang: Lang; id: string }) {
+  const col = collectionById(id);
+  const all = await getProducts();
+  const published = publishedCollections(all);
+  const found = published.find((x) => x.collection.id === id);
+  if (!col || !found) notFound();
+  const [cats, brs] = await Promise.all([getCategories(), getBrands()]);
+  const t = ui(lang);
+  const k = COL[lang];
+  const c = COPY[lang];
+  const copy = col[lang];
+  const rawCat = cats.find((x) => x.slug === col.cat);
+  if (!rawCat) notFound();
+  const categories = cats.map((x) => localizeCategory(x, lang));
+  const category = categories.find((x) => x.slug === col.cat)!;
+  const brands = brs.map((b) => localizeBrand(b, lang));
+  const products = found.products.map((p) => localizeProduct(p, lang));
+  const facts = collectionFacts(products, lang, (v) => specValue(v, lang));
+  const siblings = published.filter((x) => x.collection.cat === col.cat && x.collection.id !== id);
+  const photo = CATEGORY_PHOTOS[col.cat];
+  const catalogName = lang === "es" ? "Catálogo" : "Catalog";
+  const rows = [
+    [k.packs, facts.packs.join(", ")],
+    [k.plies, facts.plies.join(", ")],
+    [k.colors, facts.colors.join(", ")],
+  ].filter(([, v]) => v);
+
+  return (
+    <>
+      <CollectionJsonLd category={{ ...category, name: copy.name, description: copy.blurb }} products={products} lang={lang} route={{ name: "collection", col: id }} />
+      <BreadcrumbJsonLd
+        trail={[
+          [catalogName, href(lang, { name: "products" })],
+          [category.name, href(lang, { name: "category", cat: col.cat })],
+          [copy.name, href(lang, { name: "collection", col: id })],
+        ]}
+      />
+      <PageHero
+        breadcrumb={[
+          { name: t.home, href: href(lang, { name: "home" }) },
+          { name: catalogName, href: href(lang, { name: "products" }) },
+          { name: category.name, href: href(lang, { name: "category", cat: col.cat }) },
+          { name: copy.name },
+        ]}
+        breadcrumbLabel={t.nav.breadcrumb}
+        title={copy.name}
+        lead={k.lead(products.length, copy.name)}
+        meta={`${t.count.product(products.length)} · ${rawCat.fabricated ? c.made : c.supplied}`}
+        image={photo ? { src: photo.src, alt: photo.alt[lang] } : undefined}
+      />
+      <Container className="pt-10 md:pt-12">
+        <p className="max-w-3xl text-lg text-body">{copy.blurb}</p>
+        {rows.length > 0 && (
+          <div className="mt-6 max-w-3xl">
+            <h2 className="label !text-brand-blue-dark">{k.factsTitle}</h2>
+            <table className="spec-table mt-2">
+              <tbody>
+                {rows.map(([label, value]) => (
+                  <tr key={label}><th scope="row">{label}</th><td>{value}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Container>
+      <Container className="py-10 md:py-12">
+        <Catalog products={products} categories={categories} brands={brands} lang={lang} lockedCategory={col.cat} />
+      </Container>
+      <Section tone="surface">
+        <h2 className="rule-red">{HOW[lang].title}</h2>
+        <ol className="mt-4 max-w-3xl list-decimal space-y-2 pl-5 text-body marker:font-bold marker:text-brand-blue-dark">
+          {HOW[lang].steps.map((step) => <li key={step}>{step}</li>)}
+        </ol>
+        <p className="mt-4">
+          <Link href={href(lang, { name: "quote" })} className="link font-bold">{HOW[lang].list}</Link>
+        </p>
+        <h2 className="rule-red mt-10">{k.othersTitle(category.name)}</h2>
+        <ul className="mt-4 flex flex-wrap gap-3">
+          {siblings.map((x) => (
+            <li key={x.collection.id}>
+              <Link href={href(lang, { name: "collection", col: x.collection.id })} className="card inline-block px-4 py-2 font-heading font-bold text-brand-blue-dark hover:underline">
+                {x.collection[lang].name}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <Link href={href(lang, { name: "category", cat: col.cat })} className="card inline-block px-4 py-2 font-heading font-bold text-brand-blue-dark hover:underline">
+              {k.allIn(category.name)}
+            </Link>
+          </li>
+        </ul>
+      </Section>
+    </>
+  );
+}
+
 // ---------------------------------------------------------------- categoría
 export async function categoryMetadata(lang: Lang, slug: string) {
   const cat = await getCategories().then((l) => l.find((x) => x.slug === slug));
@@ -122,6 +263,7 @@ export async function CategoryPage({ lang, slug }: { lang: Lang; slug: string })
   const products = prods.map((p) => localizeProduct(p, lang));
   const brands = brs.map((b) => localizeBrand(b, lang));
   const photo = CATEGORY_PHOTOS[slug];
+  const types = publishedCollections(await getProducts()).filter((x) => x.collection.cat === slug);
 
   return (
     <>
@@ -146,6 +288,20 @@ export async function CategoryPage({ lang, slug }: { lang: Lang; slug: string })
       />
       <Container className="pt-10 md:pt-12">
         <p className="max-w-3xl text-lg text-body">{category.description}</p>
+        {types.length > 0 && (
+          <div className="mt-6">
+            <h2 className="label !text-brand-blue-dark">{COL[lang].typesTitle}</h2>
+            <ul className="mt-3 flex flex-wrap gap-3">
+              {types.map((x) => (
+                <li key={x.collection.id}>
+                  <Link href={href(lang, { name: "collection", col: x.collection.id })} className="card inline-block px-4 py-2 font-heading font-bold text-brand-blue-dark hover:underline">
+                    {x.collection[lang].name} <span className="font-normal text-muted">({x.products.length})</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Container>
       <Container className="py-10 md:py-12">
         <Catalog products={products} categories={categories} brands={brands} lang={lang} lockedCategory={slug} />
