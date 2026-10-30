@@ -3,6 +3,7 @@ import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "./logo";
 import { Container } from "./container";
 import { InstagramIcon } from "./icons";
+import { ConsentLink } from "./consent-link";
 import { CategoryIcon } from "./category-icon";
 import { getCategories, getProducts } from "@/lib/content";
 import { publishedCollections } from "@/lib/collections";
@@ -126,7 +127,10 @@ export async function SiteFooter({ lang }: { lang: Lang }) {
 
       <div className="border-t border-border bg-white">
         <Container className="flex flex-col gap-2 py-5 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© {year} {siteConfig.legalName}. {t.footer.rights}</p>
+          <p>
+            © {year} {siteConfig.legalName}. {t.footer.rights}{" "}
+            <ConsentLink lang={lang} className="underline underline-offset-4 hover:text-brand-blue-dark" />
+          </p>
           <p className="font-heading font-bold italic text-brand-blue-dark">{tt.slogan}</p>
         </Container>
       </div>

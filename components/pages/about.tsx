@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Briefcase, Eye, Factory, Gauge, HeartHandshake, Lightbulb, MapPin, ShieldCheck, Sparkles, Target, Users, Building2 } from "lucide-react";
+import { Briefcase, Eye, Gauge, HeartHandshake, Lightbulb, MapPin, ShieldCheck, Sparkles, Target, Users, Building2 } from "lucide-react";
 import { PageHero } from "@/components/site/page-hero";
 import { Section, SectionHeading } from "@/components/site/section";
 import { ClosingCta } from "@/components/site/closing-cta";

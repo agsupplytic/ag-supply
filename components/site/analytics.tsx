@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { CONSENT_RESET_EVENT } from "./consent-link";
 import { ANALYTICS_ID, loadAnalytics, readConsent, track, writeConsent, type TrackEvent } from "@/lib/analytics";
 import type { Lang } from "@/lib/i18n/routes";
 
@@ -45,8 +46,11 @@ export function Analytics({ lang }: { lang: Lang }) {
       }
       if (el instanceof HTMLAnchorElement && el.href.startsWith("https://wa.me/")) track("whatsapp_click");
     }
+    const onReset = () => setChoice("ask");
+    window.addEventListener(CONSENT_RESET_EVENT, onReset);
     document.addEventListener("click", onClick);
     return () => {
+      window.removeEventListener(CONSENT_RESET_EVENT, onReset);
       cancelAnimationFrame(raf);
       document.removeEventListener("click", onClick);
     };
