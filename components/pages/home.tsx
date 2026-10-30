@@ -31,8 +31,10 @@ const COPY = {
       title: "AG Supply — Papel higiénico, papel toalla y servilletas",
       description: "Convertidora de papel en Santiago, RD. Fabricamos papel higiénico, toallas, servilletas, interfoliados y papel facial. Marcas Ocean Breeze y Bonche.",
     },
-    h1: "Convertidora de papel en Santiago, República Dominicana",
-    lead: "Fabricamos papel higiénico, toallas de papel, servilletas, interfoliados y papel facial para hoteles, restaurantes, comercios y distribuidores. Marcas propias: Ocean Breeze y Bonche.",
+    eyebrow: "Convertidora de papel · Santiago, República Dominicana",
+    h1: "Calidad a tiempo, todo el tiempo",
+    lead: "Más de 10 años fabricando papel higiénico, toallas de papel, servilletas, interfoliados y papel facial para hoteles, restaurantes, comercios y distribuidores. Stock permanente, maquinaria de última generación y precios competitivos para toda la región del Caribe.",
+    brandsLine: "Marcas propias: Ocean Breeze y Bonche",
     heroAlt: "Bobinas de papel base almacenadas en la nave de conversión",
     stats: (cats: number, refs: number, tons: number, m2: string, since: number) => [
       { icon: Calendar, value: String(since), label: "año de fundación" },
@@ -55,14 +57,13 @@ const COPY = {
       { title: "Almacén y despacho", text: "Producto terminado en cajas, preparado por pedido para su despacho.", icon: Truck },
     ],
     plantTitle: "Una planta propia en Las Palomas",
-    plantIntro: "El producto se convierte en nuestra nave de Santiago, a partir de bobinas de papel base. Eso permite definir formato, metraje y presentación por pedido.",
+    plantIntro: "El producto se convierte en nuestras naves de Las Palomas, Santiago, a partir de bobinas de papel base. Eso permite definir formato, metraje y presentación por pedido.",
     facts: "Datos de la empresa",
     rows: {
-      name: "Razón social", founded: "Fundación", pivot: "Conversión de papel", capacity: "Capacidad instalada", plant: "Planta",
+      name: "Razón social", founded: "Fundación", capacity: "Capacidad instalada", plant: "Planta",
       location: "Ubicación", access: "Acceso", brands: "Marcas propias",
     },
     foundedValue: (y: number, f: string) => `${y}, como ${f}`,
-    pivotValue: (y: number) => `Desde ${y}`,
     capacityValue: (t: number) => `Hasta ${t} toneladas de papel al mes`,
     plantValue: (b: string, l: string, p: number) => `${b} m² construidos en ${l} m² de terreno (${p} m² de producción)`,
     knowCompany: "Conocer la empresa",
@@ -96,8 +97,10 @@ const COPY = {
       title: "AG Supply — Toilet paper, paper towels and napkins",
       description: "Paper converter in Santiago, DR. We manufacture toilet paper, paper towels, napkins, interfolded towels and facial tissue. Ocean Breeze and Bonche brands.",
     },
-    h1: "Paper converter in Santiago, Dominican Republic",
-    lead: "We manufacture toilet paper, paper towels, napkins, interfolded towels and facial tissue for hotels, restaurants, shops and distributors. Our own brands: Ocean Breeze and Bonche.",
+    eyebrow: "Paper converter · Santiago, Dominican Republic",
+    h1: "Quality on time, every time",
+    lead: "More than 10 years manufacturing toilet paper, paper towels, napkins, interfolded towels and facial tissue for hotels, restaurants, shops and distributors. Permanent stock, state-of-the-art machinery and competitive prices for the entire Caribbean region.",
+    brandsLine: "Own brands: Ocean Breeze and Bonche",
     heroAlt: "Base paper reels stored in the converting plant",
     stats: (cats: number, refs: number, tons: number, m2: string, since: number) => [
       { icon: Calendar, value: String(since), label: "year founded" },
@@ -120,14 +123,13 @@ const COPY = {
       { title: "Storage and dispatch", text: "Finished product in boxes, prepared per order for dispatch.", icon: Truck },
     ],
     plantTitle: "Our own plant in Las Palomas",
-    plantIntro: "The product is converted at our Santiago plant from base paper reels. This lets us define format, length and pack size per order.",
+    plantIntro: "The product is converted at our Las Palomas buildings in Santiago from base paper reels. This lets us define format, length and pack size per order.",
     facts: "Company facts",
     rows: {
-      name: "Legal name", founded: "Founded", pivot: "Paper converting", capacity: "Installed capacity", plant: "Plant",
+      name: "Legal name", founded: "Founded", capacity: "Installed capacity", plant: "Plant",
       location: "Location", access: "Access", brands: "Own brands",
     },
     foundedValue: (y: number, f: string) => `${y}, as ${f}`,
-    pivotValue: (y: number) => `Since ${y}`,
     capacityValue: (t: number) => `Up to ${t} tonnes of paper per month`,
     plantValue: (b: string, l: string, p: number) => `${b} m² built on ${l} m² of land (${p} m² of production)`,
     knowCompany: "About the company",
@@ -190,11 +192,16 @@ export async function HomePage({ lang }: { lang: Lang }) {
     <>
       <WebSiteJsonLd lang={lang} />
       <PageHero
-        title={c.h1}
+        title={
+          <>
+            <span className="mb-3 block font-body text-base font-semibold tracking-wide text-white [font-stretch:100%]">{c.eyebrow}</span>
+            {c.h1}
+          </>
+        }
         lead={
           <>
             {c.lead}
-            <span className="mt-4 block font-heading text-xl font-bold italic text-white">{tt.slogan}</span>
+            <span className="mt-4 block font-heading text-xl font-bold text-white">{c.brandsLine}</span>
           </>
         }
         actions={
@@ -285,7 +292,6 @@ export async function HomePage({ lang }: { lang: Lang }) {
               <tbody>
                 <tr><th scope="row">{c.rows.name}</th><td>{siteConfig.legalName}</td></tr>
                 <tr><th scope="row">{c.rows.founded}</th><td>{c.foundedValue(company.foundedYear, company.formerName)}</td></tr>
-                <tr><th scope="row">{c.rows.pivot}</th><td>{c.pivotValue(company.pivotYear)}</td></tr>
                 <tr><th scope="row">{c.rows.capacity}</th><td>{c.capacityValue(company.capacityTonsMonth)}</td></tr>
                 <tr><th scope="row">{c.rows.plant}</th><td>{c.plantValue(fmt(company.plant.builtM2), fmt(company.plant.landM2), company.plant.productionM2)}</td></tr>
                 <tr><th scope="row">{c.rows.location}</th><td>{tt.address.line1}, {tt.address.city}</td></tr>

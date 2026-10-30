@@ -21,3 +21,15 @@ Nada de esto se publica como hecho hasta que se confirme.
 | Versión en inglés | Redacción y glosario de nombres de producto hechos por nosotros (`lib/i18n/*`, `content/en.json`, `content/en-overrides.json`): revisar términos técnicos. Eslogan en inglés usado: «Feel the clean» (el oficial es «Siente la limpieza»). | `/en/` |
 | Nombre «5 pulgoso» | Aparece en un higiénico 48/1 sin envoltura (Odoo 4237); en inglés se omitió. ¿Qué significa? | Ficha |
 | Fotos de producto | 135 referencias sin foto: `docs/FOTOS-PRODUCTOS.csv`. | Catálogo |
+
+## Confirmado por el cliente (WhatsApp, 30 oct 2026)
+
+| Dato | Antes | Ahora |
+|---|---|---|
+| Año de fundación | 2007 | **2015** (nace como A.G. Office Supply, S.R.L.). Se retiró el hito «2014: giro a la conversión de papel» |
+| Terreno de la planta | 2 000 m² | **3 000 m²** (construcción: 1 000 m², sin cambios) |
+| Locales | una nave | **3 naves** en el sector Las Palomas |
+| Texto de portada | «Convertidora de papel en Santiago…» | «Calidad a tiempo, todo el tiempo», con «más de 10 años», stock permanente, maquinaria de última generación y precios competitivos para el Caribe. La traducción al inglés es nuestra: revisar |
+| Eslogan «Siente la limpieza» | En la portada | Fuera de la portada (se mantiene en los datos de la organización) |
+
+Pendiente: el **marco filosófico** (misión, visión y valores) que el cliente enviará. Hasta entonces se mantienen los textos actuales.

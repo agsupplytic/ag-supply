@@ -38,12 +38,12 @@ export const siteConfig = {
   },
 
   company: {
-    foundedYear: 2007,
-    pivotYear: 2014,
+    foundedYear: 2015, // confirmado por el cliente (WhatsApp, 30 oct 2026)
     formerName: "A.G. Office Supply, S.R.L.",
     capacityTonsMonth: 400,
     plant: {
-      landM2: 2000,
+      landM2: 3000, // confirmado por el cliente (30 oct 2026)
+      premises: 3, // naves en el sector Las Palomas, confirmado por el cliente
       builtM2: 1000,
       officeM2: 200,
       productionM2: 800,

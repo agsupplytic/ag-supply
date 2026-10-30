@@ -46,7 +46,7 @@ export async function FaqPage({ lang }: { lang: Lang }) {
         {
           title: "La empresa",
           items: [
-            { q: "¿Qué es AG Supply?", a: `${siteConfig.legalName} es una convertidora de papel dominicana con planta en el sector Las Palomas, Santiago. Recibe bobinas de papel y las convierte en producto terminado. Nació en ${company.foundedYear} como ${company.formerName} y se reorientó a la conversión de papel en ${company.pivotYear}.` },
+            { q: "¿Qué es AG Supply?", a: `${siteConfig.legalName} es una convertidora de papel dominicana con planta en el sector Las Palomas, Santiago. Recibe bobinas de papel y las convierte en producto terminado. Nació en ${company.foundedYear} como ${company.formerName}.` },
             { q: "¿Dónde está la planta?", a: `${a.line1}, ${a.city}. Queda a ${px[0]}, ${px[1]} y ${px[2]}.` },
             { q: "¿Cuál es la capacidad de producción?", a: `La planta tiene capacidad instalada para procesar hasta ${company.capacityTonsMonth} toneladas de papel al mes.` },
             { q: "¿Cuál es el horario de atención?", a: `${tt.hours}.` },
@@ -78,7 +78,7 @@ export async function FaqPage({ lang }: { lang: Lang }) {
         {
           title: "The company",
           items: [
-            { q: "What is AG Supply?", a: `${siteConfig.legalName} is a Dominican paper converter with a plant in the Las Palomas district of Santiago. It receives paper reels and converts them into finished product. It was founded in ${company.foundedYear} as ${company.formerName} and moved into paper converting in ${company.pivotYear}.` },
+            { q: "What is AG Supply?", a: `${siteConfig.legalName} is a Dominican paper converter with a plant in the Las Palomas district of Santiago. It receives paper reels and converts them into finished product. It was founded in ${company.foundedYear} as ${company.formerName}.` },
             { q: "Where is the plant?", a: `${a.line1}, ${a.city}. It is ${px[0]}, ${px[1]} and ${px[2]}.` },
             { q: "What is the production capacity?", a: `The plant has installed capacity to process up to ${company.capacityTonsMonth} tonnes of paper per month.` },
             { q: "What are the business hours?", a: `${tt.hours}.` },

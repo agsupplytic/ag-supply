@@ -21,7 +21,7 @@ export function PageHero({
 }: {
   breadcrumb?: Crumb[];
   breadcrumbLabel?: string;
-  title: string;
+  title: React.ReactNode;
   lead?: React.ReactNode;
   actions?: React.ReactNode;
   image?: { src: string; alt: string; position?: string };
