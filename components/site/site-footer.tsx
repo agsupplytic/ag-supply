@@ -129,6 +129,10 @@ export async function SiteFooter({ lang }: { lang: Lang }) {
         <Container className="flex flex-col gap-2 py-5 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {siteConfig.legalName}. {t.footer.rights}{" "}
+            <Link href={href(lang, { name: "privacy" })} className="underline underline-offset-4 hover:text-brand-blue-dark">
+              {lang === "es" ? "Política de privacidad" : "Privacy policy"}
+            </Link>
+            {" · "}
             <ConsentLink lang={lang} className="underline underline-offset-4 hover:text-brand-blue-dark" />
           </p>
           <p className="font-heading font-bold italic text-brand-blue-dark">{tt.slogan}</p>

@@ -7,7 +7,9 @@ Estado: **apagada**. El código está listo pero no carga nada hasta que el clie
 - `lib/analytics.ts`: valida el ID, guarda la elección de consentimiento (`localStorage["ag-consent"]`), carga Tag Manager y empuja cada evento al `dataLayer` con `track()`.
 - `components/site/analytics.tsx`: aviso de consentimiento (ES/EN) y escucha de clics por delegación.
 - Sin ID en el build: no se muestra aviso, no se carga ningún script de terceros, no se guarda nada.
-- Con ID: no se carga nada (ni Tag Manager) hasta que la persona pulsa «Aceptar». «Rechazar» no carga nada y no vuelve a preguntar.
+- Modo de consentimiento (`CONSENT_MODE` en `lib/analytics.ts`): hoy **«opt-out»**. La medición arranca al entrar y un aviso informativo ofrece «Entendido» o «Rechazar». Quien rechaza, o tiene activada la señal Global Privacy Control o «No rastrear», no se mide; al rechazar la página se recarga para dejar Tag Manager apagado. El pie tiene «Preferencias de medición» para cambiar la elección y la página `/privacidad/` (`/en/privacy/`) explica qué se recoge.
+- Para volver a pedir permiso antes de medir (**«opt-in»**), basta cambiar `CONSENT_MODE` a `"opt-in"`: no se carga nada hasta pulsar «Aceptar».
+- Aviso legal de este modo: la ley dominicana de datos (Ley 172-13) exige consentimiento para tratar datos personales, pero no encontré en su texto una regla específica sobre cookies de medición; algunas consultoras interpretan que sí piden consentimiento previo. Que el modo «opt-out» sea suficiente debe confirmarlo un abogado dominicano. Si el sitio se dirige a visitantes de la Unión Europea o de California, el modo «opt-in» es el prudente.
 
 ## Eventos
 | Evento | Cuándo | Parámetros |
@@ -33,5 +35,5 @@ Los eventos llegan al `dataLayer` como `{ event: "whatsapp_click", page_path: "/
 ## Pendiente del cliente
 - Aprobar el texto del aviso de consentimiento. Dice que se usan «herramientas de medición de Google»; si Tag Manager carga etiquetas de otros proveedores, hay que reflejarlo.
 - El ID de medición `G-XXXXXXXXXX` de GA4 para la etiqueta de configuración dentro de Tag Manager.
-- El sitio no tiene página de política de privacidad; conviene publicar una antes de activar la medición (qué se mide, proveedor, cómo rechazar).
+- La política de privacidad (`components/pages/privacy.tsx`) es un texto redactado por nosotros a partir de lo que hace el sitio; **debe revisarla un abogado** antes de darla por definitiva.
 - Un clic en WhatsApp o un envío de formulario mide la **intención**, no una cotización cerrada: no se debe presentar como ventas.

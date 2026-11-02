@@ -47,6 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     [{ name: "bonche" }, "components/pages/brand.tsx"],
     [{ name: "faq" }, "components/pages/faq.tsx"],
     [{ name: "contact" }, "components/pages/contact.tsx"],
+    [{ name: "privacy" }, "components/pages/privacy.tsx"],
   ];
 
   return [

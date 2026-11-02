@@ -1,5 +1,11 @@
-// Medición de conversiones. Solo envía algo si hay ID en el build (NEXT_PUBLIC_ANALYTICS_ID)
-// Y la persona aceptó la medición. Sin ID no se carga ningún script de terceros ni se guarda nada.
+// Medición de conversiones. Sin ID en el build (NEXT_PUBLIC_ANALYTICS_ID) no se carga ningún script
+// de terceros, no se guarda nada y no se muestra aviso.
+//
+// Modo de consentimiento (CONSENT_MODE):
+//  - "opt-out" (actual): la medición arranca por defecto y un aviso informativo ofrece «Rechazar».
+//    Quien rechaza, o tiene activada la señal Global Privacy Control / No rastrear, no se mide.
+//  - "opt-in": no se carga nada hasta que la persona pulse «Aceptar».
+// Cambiar el modo es cambiar esta constante; el resto del código ya lo respeta.
 // El ID puede ser un contenedor de Google Tag Manager (GTM-XXXXXXX): los eventos se empujan al
 // dataLayer y las etiquetas (GA4, etc.) se configuran en el panel de GTM; o un ID de medición de
 // GA4 (G-XXXXXXXXXX), que se carga directo con gtag.js.
@@ -11,7 +17,10 @@ const RAW_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID ?? "";
 export const ANALYTICS_ID = /^(?:GTM-[A-Z0-9]{4,12}|G-[A-Z0-9]{4,20})$/.test(RAW_ID) ? RAW_ID : "";
 const IS_GTM = ANALYTICS_ID.startsWith("GTM-");
 let loaded = false;
+/** ¿Ya se cargó la medición en esta visita? (para recargar si se rechaza después). */
+export const analyticsLoaded = () => loaded;
 
+export const CONSENT_MODE: "opt-in" | "opt-out" = "opt-out";
 export const CONSENT_KEY = "ag-consent";
 export type Consent = "granted" | "denied";
 
@@ -41,6 +50,24 @@ export function readConsent(): Consent | null {
   }
 }
 
+/** Señales del navegador que equivalen a rechazar: Global Privacy Control y No rastrear. */
+export function browserOptOut(): boolean {
+  try {
+    const nav = navigator as Navigator & { globalPrivacyControl?: boolean };
+    return nav.globalPrivacyControl === true || nav.doNotTrack === "1";
+  } catch {
+    return false;
+  }
+}
+
+/** Decisión efectiva: la elección guardada y, si no hay, el modo por defecto. */
+export function effectiveConsent(): Consent | null {
+  if (browserOptOut()) return "denied";
+  const saved = readConsent();
+  if (saved) return saved;
+  return CONSENT_MODE === "opt-out" ? "granted" : null;
+}
+
 export function writeConsent(value: Consent): void {
   try {
     localStorage.setItem(CONSENT_KEY, value);
@@ -53,7 +80,7 @@ export function writeConsent(value: Consent): void {
 export function track(event: TrackEvent, params: Params = {}): void {
   if (!ANALYTICS_ID || typeof window === "undefined") return;
   try {
-    if (readConsent() !== "granted") return;
+    if (effectiveConsent() !== "granted") return;
     const data = { ...params, page_path: location.pathname };
     if (IS_GTM) window.dataLayer?.push({ event, ...data });
     else window.gtag?.("event", event, data);

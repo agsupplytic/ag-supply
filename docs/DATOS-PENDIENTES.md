@@ -33,3 +33,7 @@ Nada de esto se publica como hecho hasta que se confirme.
 | Eslogan «Siente la limpieza» | En la portada | Fuera de la portada (se mantiene en los datos de la organización) |
 
 Pendiente: el **marco filosófico** (misión, visión y valores) que el cliente enviará. Hasta entonces se mantienen los textos actuales.
+
+## Política de privacidad (2 nov 2026)
+
+Publicada en `/privacidad/` y `/en/privacy/`. Pendiente del cliente: revisión legal, y confirmar el correo de contacto para solicitudes sobre datos (hoy `agsupplycxc@gmail.com`), el período de retención configurado en Google Analytics, y si el formulario seguirá usando Web3Forms.

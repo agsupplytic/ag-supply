@@ -19,6 +19,7 @@ export type Route =
   | { name: "bonche" }
   | { name: "contact" }
   | { name: "faq" }
+  | { name: "privacy" }
   | { name: "quote" };
 
 type Fixed = Exclude<Route["name"], "category" | "collection" | "product" | "home">;
@@ -32,6 +33,7 @@ const SEG: Record<Lang, Record<Fixed, string>> = {
     bonche: "bonche",
     contact: "contacto",
     faq: "faq",
+    privacy: "privacidad",
     quote: "cotizacion",
   },
   en: {
@@ -42,6 +44,7 @@ const SEG: Record<Lang, Record<Fixed, string>> = {
     bonche: "bonche",
     contact: "contact",
     faq: "faq",
+    privacy: "privacy",
     quote: "quote",
   },
 };
