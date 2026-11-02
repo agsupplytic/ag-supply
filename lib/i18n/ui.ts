@@ -195,6 +195,8 @@ const es = {
     mail: "Se abrió su aplicación de correo con el mensaje listo. Si no ocurrió, escríbanos a",
     error: "No se pudo enviar. Escríbanos a",
     errorOr: "o por WhatsApp.",
+    privacyNote: "Usamos sus datos solo para responder a su consulta.",
+    privacyLink: "Política de privacidad",
     subject: (company: string) => `Contacto web — ${company}`,
     mailLabels: { name: "Nombre", company: "Empresa", phone: "Teléfono", email: "Correo" },
     errors: {
@@ -415,6 +417,8 @@ const en: UI = {
     mail: "Your email app opened with the message ready. If it did not, write to us at",
     error: "Could not send. Write to us at",
     errorOr: "or via WhatsApp.",
+    privacyNote: "We use your data only to answer your inquiry.",
+    privacyLink: "Privacy policy",
     subject: (company) => `Website contact — ${company}`,
     mailLabels: { name: "Name", company: "Company", phone: "Phone", email: "Email" },
     errors: {

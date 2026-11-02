@@ -78,7 +78,7 @@ const COPY = {
         title: "7. Cómo rechazar la medición",
         paras: [
           "La medición con Google se activa al entrar al sitio y, la primera vez, verá un aviso. Si pulsa «Rechazar», la medición se detiene y no vuelve a cargarse en sus próximas visitas. Puede cambiar su elección en cualquier momento con el botón de abajo o con «Preferencias de medición» en el pie de página.",
-          "También respetamos la señal «Global Privacy Control» y «No rastrear» de su navegador: si está activada, la medición no se carga. Además puede bloquear o borrar las cookies desde los ajustes de su navegador.",
+          "Si usted visita desde la Unión Europea, el Reino Unido o Suiza (lo detectamos por la zona horaria de su navegador), la medición solo se activa si pulsa «Aceptar». También respetamos la señal «Global Privacy Control» y «No rastrear» de su navegador: si está activada, la medición no se carga. Además puede bloquear o borrar las cookies desde los ajustes de su navegador.",
         ],
       },
       {
@@ -159,7 +159,7 @@ const COPY = {
         title: "7. How to opt out of measurement",
         paras: [
           "Google measurement starts when you enter the site and, the first time, you will see a notice. If you press «Reject», measurement stops and will not load on your future visits. You can change your choice at any time with the button below or with «Measurement preferences» in the footer.",
-          "We also honor your browser's «Global Privacy Control» and «Do Not Track» signals: if either is on, measurement is not loaded. You can also block or delete cookies in your browser settings.",
+          "If you visit from the European Union, the United Kingdom or Switzerland (we detect this from your browser's time zone), measurement only starts if you press «Accept». We also honor your browser's «Global Privacy Control» and «Do Not Track» signals: if either is on, measurement is not loaded. You can also block or delete cookies in your browser settings.",
         ],
       },
       {

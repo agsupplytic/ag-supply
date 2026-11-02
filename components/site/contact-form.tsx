@@ -9,7 +9,8 @@ import { track } from "@/lib/analytics";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 import { ui } from "@/lib/i18n/ui";
-import type { Lang } from "@/lib/i18n/routes";
+import Link from "next/link";
+import { href, type Lang } from "@/lib/i18n/routes";
 
 const makeSchema = (lang: Lang) => {
   const e = ui(lang).form.errors;
@@ -147,6 +148,11 @@ export function ContactForm({ lang }: { lang: Lang }) {
         <label htmlFor="botcheck">{t.honeypot}</label>
         <input id="botcheck" tabIndex={-1} autoComplete="off" {...register("botcheck")} />
       </div>
+
+      <p className="text-sm text-muted">
+        {t.privacyNote}{" "}
+        <Link href={href(lang, { name: "privacy" })} className="link">{t.privacyLink}</Link>.
+      </p>
 
       <Button type="submit" size="lg" disabled={isSubmitting}>
         {isSubmitting ? t.sending : t.send}

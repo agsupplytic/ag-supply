@@ -4,6 +4,7 @@
 // Modo de consentimiento (CONSENT_MODE):
 //  - "opt-out" (actual): la medición arranca por defecto y un aviso informativo ofrece «Rechazar».
 //    Quien rechaza, o tiene activada la señal Global Privacy Control / No rastrear, no se mide.
+//    En zonas horarias de la UE/Reino Unido/Suiza (priorConsentRequired) se pide «Aceptar» antes.
 //  - "opt-in": no se carga nada hasta que la persona pulse «Aceptar».
 // Cambiar el modo es cambiar esta constante; el resto del código ya lo respeta.
 // El ID puede ser un contenedor de Google Tag Manager (GTM-XXXXXXX): los eventos se empujan al
@@ -50,6 +51,26 @@ export function readConsent(): Consent | null {
   }
 }
 
+/**
+ * Zonas horarias de la Unión Europea, el Reino Unido, Suiza, Islandia y los territorios
+ * franceses de ultramar (Guadalupe, Martinica, Guayana Francesa, San Martín, Reunión,
+ * Mayotte), donde el consentimiento previo para cookies de medición es exigible. Es una
+ * heurística: la zona horaria del navegador no prueba la residencia, pero evita pedir
+ * permiso a todos y obliga a pedirlo donde la norma es más estricta.
+ */
+const PRIOR_CONSENT_ZONE =
+  /^(?:Europe\/|Atlantic\/(?:Azores|Canary|Madeira|Reykjavik)$|America\/(?:Martinique|Guadeloupe|Marigot|Cayenne)$|Indian\/(?:Reunion|Mayotte)$)/;
+
+/** ¿Hay que pedir permiso antes de medir? Siempre en modo opt-in; en opt-out, solo en esas regiones. */
+export function priorConsentRequired(): boolean {
+  if (CONSENT_MODE === "opt-in") return true;
+  try {
+    return PRIOR_CONSENT_ZONE.test(Intl.DateTimeFormat().resolvedOptions().timeZone ?? "");
+  } catch {
+    return false;
+  }
+}
+
 /** Señales del navegador que equivalen a rechazar: Global Privacy Control y No rastrear. */
 export function browserOptOut(): boolean {
   try {
@@ -65,7 +86,7 @@ export function effectiveConsent(): Consent | null {
   if (browserOptOut()) return "denied";
   const saved = readConsent();
   if (saved) return saved;
-  return CONSENT_MODE === "opt-out" ? "granted" : null;
+  return priorConsentRequired() ? null : "granted";
 }
 
 export function writeConsent(value: Consent): void {

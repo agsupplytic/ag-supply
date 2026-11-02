@@ -37,3 +37,12 @@ Los eventos llegan al `dataLayer` como `{ event: "whatsapp_click", page_path: "/
 - El ID de medición `G-XXXXXXXXXX` de GA4 para la etiqueta de configuración dentro de Tag Manager.
 - La política de privacidad (`components/pages/privacy.tsx`) es un texto redactado por nosotros a partir de lo que hace el sitio; **debe revisarla un abogado** antes de darla por definitiva.
 - Un clic en WhatsApp o un envío de formulario mide la **intención**, no una cotización cerrada: no se debe presentar como ventas.
+
+## Revisión legal asistida (2 nov 2026)
+
+Hecha con las habilidades `legal:compliance-check` y `legal:legal-risk-assessment`. **No es asesoría legal**: la confirma un abogado dominicano.
+- Ley 172-13: general y basada en consentimiento; sin norma específica de cookies ni autoridad de control dedicada (fuentes consultadas: DLA Piper, Chambers; las consultoras que afirman consentimiento previo para cookies no citan artículos).
+- Riesgo del modo «opt-out» solo en República Dominicana: **bajo** (gravedad 2 × probabilidad 2 = 4, verde).
+- Riesgo para visitantes de la UE, el Reino Unido y Suiza si se mide sin permiso: **medio** (3 × 3 = 9, amarillo), porque el sitio habla de «toda la región del Caribe», que incluye territorios franceses (Guadalupe, Martinica). Mitigación implementada: en esas zonas horarias la medición espera el «Aceptar». Es una heurística por zona horaria, no por residencia.
+- Mitigaciones adicionales en el código: respeto de Global Privacy Control y «No rastrear», aviso con «Rechazar», política publicada, nota de privacidad bajo el formulario de contacto.
+- A hacer en Google Analytics (cliente): aceptar las condiciones de procesamiento de datos (Administrar → Configuración de la cuenta), desactivar las señales de Google y la personalización de anuncios (Recopilación de datos), y fijar la retención de datos de eventos en 14 meses.

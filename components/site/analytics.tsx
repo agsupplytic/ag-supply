@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/button";
 import { CONSENT_RESET_EVENT } from "./consent-link";
 import {
   ANALYTICS_ID,
-  CONSENT_MODE,
   analyticsLoaded,
   browserOptOut,
   effectiveConsent,
+  priorConsentRequired,
   loadAnalytics,
   readConsent,
   track,
@@ -23,14 +23,16 @@ const TEXT = {
     region: "Cookies y medición del sitio",
     text: "Este sitio usa cookies de Google para medir de forma anónima las visitas y mejorar el sitio. No registramos su nombre, teléfono ni mensajes.",
     policy: "Política de privacidad y cookies",
-    ok: CONSENT_MODE === "opt-out" ? "Entendido" : "Aceptar",
+    ok: "Entendido",
+    accept: "Aceptar",
     reject: "Rechazar",
   },
   en: {
     region: "Cookies and site measurement",
     text: "This site uses Google cookies to measure visits anonymously and improve the site. We do not record your name, phone or messages.",
     policy: "Privacy and cookies policy",
-    ok: CONSENT_MODE === "opt-out" ? "Got it" : "Accept",
+    ok: "Got it",
+    accept: "Accept",
     reject: "Reject",
   },
 } as const;
@@ -43,13 +45,17 @@ const TEXT = {
  */
 export function Analytics({ lang }: { lang: Lang }) {
   const [ask, setAsk] = useState(false);
+  const [prior, setPrior] = useState(false);
   const t = TEXT[lang];
 
   useEffect(() => {
     if (!ANALYTICS_ID) return;
     if (effectiveConsent() === "granted") loadAnalytics();
     // Aviso solo si todavía no hay elección guardada y el navegador no pidió no ser medido.
-    const raf = requestAnimationFrame(() => setAsk(!readConsent() && !browserOptOut()));
+    const raf = requestAnimationFrame(() => {
+      setPrior(priorConsentRequired());
+      setAsk(!readConsent() && !browserOptOut());
+    });
 
     function onClick(e: MouseEvent) {
       const el = (e.target as Element | null)?.closest<HTMLElement>("a[href], [data-track]");
@@ -61,7 +67,10 @@ export function Analytics({ lang }: { lang: Lang }) {
       }
       if (el instanceof HTMLAnchorElement && el.href.startsWith("https://wa.me/")) track("whatsapp_click");
     }
-    const onReset = () => setAsk(true);
+    const onReset = () => {
+      setPrior(priorConsentRequired());
+      setAsk(true);
+    };
     window.addEventListener(CONSENT_RESET_EVENT, onReset);
     document.addEventListener("click", onClick);
     return () => {
@@ -91,7 +100,7 @@ export function Analytics({ lang }: { lang: Lang }) {
         <Link href={href(lang, { name: "privacy" })} className="link font-bold">{t.policy}</Link>.
       </p>
       <div className="mt-3 flex gap-2">
-        <Button size="sm" onClick={() => decide("granted")}>{t.ok}</Button>
+        <Button size="sm" onClick={() => decide("granted")}>{prior ? t.accept : t.ok}</Button>
         <Button size="sm" variant="outline" onClick={() => decide("denied")}>{t.reject}</Button>
       </div>
     </section>
