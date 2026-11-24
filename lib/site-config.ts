@@ -4,6 +4,8 @@
 export const siteConfig = {
   name: "AG Supply",
   legalName: "AG Supply SRL",
+  /** Nombre del sitio que muestra Google en la cabecera del resultado. */
+  searchName: "AG Supply S.R.L.",
   /** One-line description of what the company is — a converter, not a reseller. */
   tagline: "Convertidora de papel dominicana",
   /** Official brand slogan. */

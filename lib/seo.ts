@@ -36,7 +36,7 @@ export function rootMetadata(lang: Lang): Metadata {
     openGraph: {
       title,
       description: t.description,
-      siteName: siteConfig.name,
+      siteName: siteConfig.searchName,
       locale: OG_LOCALE[lang],
       type: "website",
       images: [{ ...DEFAULT_OG, alt: `${siteConfig.name} — ${t.slogan}` }],
@@ -94,7 +94,7 @@ export function pageMetadata({
       title: fullTitle,
       description,
       url,
-      siteName: siteConfig.name,
+      siteName: siteConfig.searchName,
       locale: OG_LOCALE[lang],
       type: "website",
       images: [og],
